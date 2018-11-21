@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/Fr_l"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <EditText
+            android:gravity="center_vertical"
+            android:textSize="@dimen/dp_14"
+            android:id="@+id/Ed_search"
+            style="@style/Searchbar_hint_left"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:textCursorDrawable="@drawable/cursor"
+            android:imeOptions="actionSearch"/>
+        <TextView
+            android:id="@+id/tv_cancel_search"
+            android:padding="@dimen/dp_5"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/dp_12"
+            android:visibility="gone"
+            android:textColor="@color/material_red_500"
+            android:text="取消"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <com.coahr.fanoftruck.widgets.DropDown.ConditionSelectView
+        android:id="@+id/rl_store_condition"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/conditon_menu_height"
+        android:background="@drawable/bg_fff_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:hidenIcon="@mipmap/down"
+        app:itemCount="3"
+        app:showIcon="@mipmap/up">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:textSize="@dimen/dp_14"
+                android:id="@+id/store_city_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="城市" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:textSize="@dimen/dp_14"
+                android:id="@+id/store_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="排序" />
+
+        </RelativeLayout>
+
+    </com.coahr.fanoftruck.widgets.DropDown.ConditionSelectView>
+
+   <android.support.v4.widget.SwipeRefreshLayout
+       android:id="@+id/store_swipe"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <FrameLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <android.support.v7.widget.RecyclerView
+               android:id="@+id/store_recycler"
+               android:visibility="visible"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+           </android.support.v7.widget.RecyclerView>
+           <android.support.v7.widget.RecyclerView
+               android:visibility="gone"
+               android:background="@color/colorPrimary"
+               android:id="@+id/search_recycler"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+           </android.support.v7.widget.RecyclerView>
+       </FrameLayout>
+
+   </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

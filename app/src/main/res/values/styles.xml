@@ -1,0 +1,86 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:background">@drawable/bg_fff_background</item>       控制基础view,viewgroup,dialog  de window默认背景，不设置则透明（button貌似不行）-->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--Table样式-->
+    <style name="TextAppearance.Design.Tab.Custom" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">@dimen/dp_14</item>
+    </style>
+
+    <style name="Photo_See_Animation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/photo_push_center_in</item>
+        <item name="android:windowExitAnimation">@anim/photo_push_center_out</item>
+    </style>
+
+    <style name="bottom_in_out_animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="Searchbar_hint_left">
+        <item name="android:background">@drawable/bg_searchbar</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:drawableStart">@mipmap/search</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:imeOptions">actionSearch</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:layout_marginLeft">@dimen/edge_margin</item>
+        <item name="android:layout_marginRight">@dimen/edge_margin</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">#666</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:hint">搜索</item>
+    </style>
+
+    <style name="XSpinnerStyle" parent="android:Widget.ListView.DropDown">
+        <!-- 分隔线颜色 -->
+        <item name="android:divider">#DFDFDF</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <declare-styleable name="StarBar">
+        <!--星星间距-->
+        <attr name="starDistance" format="dimension" />
+        <!--星星大小-->
+        <attr name="starSize" format="dimension" />
+        <!--星星个数-->
+        <attr name="starCount" format="integer" />
+        <!--星星空图-->
+        <attr name="starEmpty" format="reference" />
+        <!--星星满图-->
+        <attr name="starFill" format="reference" />
+        <!--分数-->
+        <attr name="starMark" format="float" />
+
+        <!--分数-->
+        <attr name="isIntegerMark" format="boolean" />
+
+        <!--是否可以手动打星-->
+        <attr name="isCanChangeMark" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ConditionSelectView">
+        <attr name="itemCount" format="integer" />
+        <attr name="showIcon" format="reference" />
+        <attr name="hidenIcon" format="reference" />
+    </declare-styleable>
+
+
+
+    <style name="Commodity_Condition_Popupwindow_Animation">
+        <item name="android:windowEnterAnimation">@anim/trm_popup_enter</item>
+        <item name="android:windowExitAnimation">@anim/trm_popup_exit</item>
+    </style>
+</resources>

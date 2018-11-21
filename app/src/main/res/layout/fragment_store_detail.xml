@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+        android:id="@+id/mytitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tittle="门店详情" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/store_detail_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_36">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.donkingliang.banner.CustomBanner
+                android:id="@+id/storeDetail_Banner"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@color/colorPrimary" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/edge_margin">
+
+                <TextView
+                    android:id="@+id/tv_store_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_16" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/edge_margin">
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="营业时间"
+                    android:textColor="@color/red_1"
+                    android:textSize="@dimen/dp_14" />
+
+                <TextView
+                    android:id="@+id/tv_store_business_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/text1"
+                    android:textColor="@color/red_1"
+                    android:textSize="@dimen/dp_14" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/store_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/edge_margin"></android.support.v7.widget.RecyclerView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/edge_margin">
+
+                <TextView
+                    android:id="@+id/tv_store_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/images"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLength="35"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_14" />
+
+                <ImageView
+                    android:id="@+id/iv_to_store"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/images" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:padding="@dimen/edge_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/material_blue_600"
+                    android:text="联系门店："
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_tel"
+                    android:layout_toRightOf="@+id/text2"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:textSize="@dimen/dp_14"
+                    android:textColor="@color/material_blue_600"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/iv_play_tel"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/images"/>
+            </RelativeLayout>
+            <include
+                layout="@layout/layout_store_tagtitle"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/store_detail_businessScope"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="@dimen/dp_14"
+                android:id="@+id/tv_bottom_left"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/material_blue_700"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="维修预约" />
+
+
+            <TextView
+                android:textSize="@dimen/dp_14"
+                android:id="@+id/tv_bottom_right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="保养预约"
+                android:textColor="@color/white"
+                android:background="@color/material_red_600"
+                android:gravity="center" />
+        </LinearLayout>
+    </FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

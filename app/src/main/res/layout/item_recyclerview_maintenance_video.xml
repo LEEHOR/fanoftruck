@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="@dimen/dp_5"
+    app:cardElevation="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <FrameLayout
+               android:id="@+id/top_part"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+             <TextView
+                 android:id="@+id/video_type"
+                 android:layout_gravity="right"
+                 android:layout_marginRight="@dimen/dp_20"
+                 android:layout_marginTop="@dimen/dp_20"
+                 android:textColor="@color/material_red_500"
+                 android:text="3:00 | 53M"
+                 android:textSize="@dimen/dp_14"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+               <ImageView
+                   android:scaleType="fitXY"
+                   android:src="@mipmap/images"
+                   android:layout_width="match_parent"
+                   android:layout_height="200dp" />
+               <LinearLayout
+                   android:background="@color/material_grey_1000"
+                   android:alpha="0.6"
+                   android:layout_gravity="bottom"
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <TextView
+                      android:layout_marginTop="@dimen/dp_10"
+                       android:layout_marginLeft="@dimen/dp_5"
+                       android:id="@+id/video_tag"
+                       android:text="卡车之友互动撞去"
+                       android:textColor="@color/origin_1"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content" />
+                   <TextView
+                       android:layout_marginTop="@dimen/dp_10"
+                       android:layout_marginBottom="@dimen/dp_10"
+                       android:layout_marginLeft="@dimen/dp_5"
+                       android:id="@+id/video_name"
+                       android:text="卡车之友互动撞去"
+                       android:textColor="@color/origin_1"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content" />
+               </LinearLayout>
+           </FrameLayout>
+                <RelativeLayout
+                    android:id="@+id/center_part"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/edge_margin"
+                    android:layout_below="@+id/top_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_alignParentLeft="true"
+                        android:id="@+id/iv_user_head"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14"
+                        android:text="dsdsadadsadashjsbdhsabhsahdasbasbdjksdjkassdasbdjasbdasbdsabdasbdjsabdsadsadasasd"
+                        android:id="@+id/tv_user_name"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_toRightOf="@+id/iv_user_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="@dimen/dp_10"
+                        android:textColor="@color/black"
+                        android:text="sdsdsdsdsdsds"
+                        android:layout_below="@+id/tv_user_name"
+                        android:layout_alignLeft="@+id/tv_user_name"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+           <RelativeLayout
+               android:padding="@dimen/edge_margin"
+               android:layout_below="@+id/center_part"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:drawableLeft="@mipmap/images"
+                   android:drawablePadding="@dimen/dp_5"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentLeft="true"
+                   android:text="54545"
+                   android:id="@+id/video_browse"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+               <TextView
+                   android:drawableLeft="@mipmap/images"
+                   android:drawablePadding="@dimen/dp_5"
+                   android:layout_centerVertical="true"
+                   android:layout_centerHorizontal="true"
+                   android:text="54545"
+                   android:id="@+id/video_comment"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+               <TextView
+                   android:drawableLeft="@mipmap/images"
+                   android:drawablePadding="@dimen/dp_5"
+                   android:layout_centerVertical="true"
+                  android:layout_alignParentRight="true"
+                   android:text="54545"
+                   android:id="@+id/video_like"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+           </RelativeLayout>
+       </RelativeLayout>
+</android.support.v7.widget.CardView>
