@@ -84,6 +84,8 @@ public class Constants {
 
     public static  final  int Fragment_Store_Detail=7;
 
+    public static  final int Fragment_maintenance=8; //维修视频
+
 
 
 

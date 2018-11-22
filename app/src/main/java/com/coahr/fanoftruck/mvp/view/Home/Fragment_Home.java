@@ -6,10 +6,12 @@ import android.view.View;
 
 import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.R;
+import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_home_P;
+import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.mvp.view.TribuneActivity;
 
 import javax.inject.Inject;
@@ -47,7 +49,8 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
     cardview_home.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent=new Intent(getActivity(),TribuneActivity.class);
+            Intent intent=new Intent(getActivity(),ContainerActivity.class);
+            intent.putExtra("tofragment",Constants.Fragment_maintenance);
             startActivity(intent);
         }
     });

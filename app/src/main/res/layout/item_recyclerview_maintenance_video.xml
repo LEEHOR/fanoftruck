@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
+    android:id="@+id/card_video"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:cardCornerRadius="@dimen/dp_5"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/dp_8"
     app:cardElevation="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
        <RelativeLayout
@@ -95,7 +96,6 @@
                    android:drawablePadding="@dimen/dp_5"
                    android:layout_centerVertical="true"
                    android:layout_alignParentLeft="true"
-                   android:text="54545"
                    android:id="@+id/video_browse"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content" />
@@ -105,6 +105,8 @@
                    android:layout_centerVertical="true"
                    android:layout_centerHorizontal="true"
                    android:text="54545"
+                   android:textSize="@dimen/dp_8"
+                   android:textColor="@color/material_grey_400"
                    android:id="@+id/video_comment"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content" />

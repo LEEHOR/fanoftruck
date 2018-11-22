@@ -5,6 +5,9 @@ import com.coahr.fanoftruck.dagger.components.BaseFragmentComponents;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_business_child;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
+import com.coahr.fanoftruck.mvp.view.Home.Fragment_MaintenanceVideo_viewPage;
+import com.coahr.fanoftruck.mvp.view.Home.Fragment_maintenance_child;
+import com.coahr.fanoftruck.mvp.view.Home.Fragment_maintenance_videoPlay;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_Myself;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Services;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
@@ -47,4 +50,13 @@ public abstract class AllFragmentModule {
     @ContributesAndroidInjector(modules = Fragment_store_detail_Module.class)
     abstract Fragment_store_detail Fragment_store_detailInjector();
 
+
+    @ContributesAndroidInjector(modules = Fragment_maintenance_viewp_Module.class)
+    abstract Fragment_MaintenanceVideo_viewPage Fragment_MaintenanceVideo_viewPageInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_maintenance_child_Module.class)
+    abstract Fragment_maintenance_child Fragment_maintenance_childInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_maintenance_videoPlay_Module.class)
+    abstract Fragment_maintenance_videoPlay Fragment_maintenance_videoPlayInjector();
 }

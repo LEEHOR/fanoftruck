@@ -35,7 +35,7 @@ public class Imageloader {
     public static void loadImage(String path, final ImageView targetImage) {
       //  setAnimator(targetImage);
         //R.drawable.image_loading_anim_progress
-        Glide.with(BaseApplication.mContext).load(path).crossFade().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).override(500,500).listener(new RequestListener<String, GlideDrawable>() {
+        Glide.with(BaseApplication.mContext).load(path).crossFade().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).listener(new RequestListener<String, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                // anim.cancel();
@@ -61,7 +61,7 @@ public class Imageloader {
 
         //
        // setAnimator(targetImage);
-        Glide.with(BaseApplication.mContext).load(path).crossFade().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).override(500,500).listener(new RequestListener<Uri, GlideDrawable>() {
+        Glide.with(BaseApplication.mContext).load(path).crossFade().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).listener(new RequestListener<Uri, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, Uri model, Target<GlideDrawable> target, boolean isFirstResource) {
                // anim.cancel();
@@ -95,7 +95,6 @@ public class Imageloader {
             }
         });
     }
-
     /**
      * 加载圆形图片
      * @param path

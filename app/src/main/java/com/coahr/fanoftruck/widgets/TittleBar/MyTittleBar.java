@@ -92,6 +92,7 @@ public class MyTittleBar extends RelativeLayout {
     /**
      * 最右边文字
      * @return
+     *
      */
     public TextView getRightText()
     {
@@ -99,6 +100,21 @@ public class MyTittleBar extends RelativeLayout {
     }
 
     public TextView getRightText(int resId)
+    {
+        return (TextView) view.findViewById(resId);
+    }
+
+
+    /**
+     * 搜索框
+     * @return
+     */
+    public TextView getEditSearch()
+    {
+        return (TextView) view.findViewById(R.id.search);
+    }
+
+    public TextView getEditSearch(int resId)
     {
         return (TextView) view.findViewById(resId);
     }

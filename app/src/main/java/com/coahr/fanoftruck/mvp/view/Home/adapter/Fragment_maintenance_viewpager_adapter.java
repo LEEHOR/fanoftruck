@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.coahr.fanoftruck.mvp.model.Fragment_maintenance_child_M;
+import com.coahr.fanoftruck.mvp.view.Home.Fragment_maintenance_child;
+
 /**
  * Created by Leehor
  * on 2018/11/21
@@ -18,7 +21,7 @@ public class Fragment_maintenance_viewpager_adapter extends FragmentPagerAdapter
 
     @Override
     public Fragment getItem(int i) {
-        return null;
+        return Fragment_maintenance_child.newInstance(i);
     }
 
     @Override

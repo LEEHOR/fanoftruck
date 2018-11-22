@@ -3,6 +3,7 @@ package com.coahr.fanoftruck.mvp.view;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseSupportActivity;
+import com.coahr.fanoftruck.mvp.view.Home.Fragment_MaintenanceVideo_viewPage;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_store_detail;
 
@@ -10,6 +11,7 @@ import com.coahr.fanoftruck.mvp.view.Services.Fragment_store_detail;
  * Created by Leehor
  * on 2018/11/20
  * on 16:55
+ * 中间跳转页面
  */
 public class ContainerActivity extends BaseSupportActivity {
 
@@ -28,6 +30,9 @@ public class ContainerActivity extends BaseSupportActivity {
                 //门店详情
             case Constants.Fragment_Store_Detail:
             loadRootFragment(R.id.con_fragment,Fragment_store_detail.newInstance(getIntent().getStringExtra("s_id")));
+                break;
+            case  Constants.Fragment_maintenance:
+                loadRootFragment(R.id.con_fragment,Fragment_MaintenanceVideo_viewPage.newInstance());
                 break;
         }
     }

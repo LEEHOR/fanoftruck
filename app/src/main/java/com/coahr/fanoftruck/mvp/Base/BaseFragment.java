@@ -15,16 +15,10 @@ import android.widget.ImageView;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
-import com.coahr.fanoftruck.Utils.JDBC.DataBaseWorkAsync;
-import com.coahr.fanoftruck.Utils.JDBC.JDBCSelectMultiListener;
 import com.coahr.fanoftruck.Utils.KeyBoardUtils;
-import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.Utils.ScreenUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
-import com.coahr.fanoftruck.commom.Constants;
-import com.socks.library.KLog;
 
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

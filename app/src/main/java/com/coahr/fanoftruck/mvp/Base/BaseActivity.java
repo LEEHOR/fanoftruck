@@ -13,7 +13,6 @@ import com.coahr.fanoftruck.Utils.Permission.RequestPermissionUtils;
 import com.coahr.fanoftruck.commom.ActivityManager;
 import com.gyf.barlibrary.ImmersionBar;
 
-import org.litepal.tablemanager.Connector;
 
 import java.util.List;
 

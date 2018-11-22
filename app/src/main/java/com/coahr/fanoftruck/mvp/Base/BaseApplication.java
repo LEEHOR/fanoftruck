@@ -9,15 +9,14 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatImageView;
 
 import com.coahr.fanoftruck.dagger.components.DaggerApplicationComponents;
+import com.coahr.fanoftruck.widgets.MyVideo.MyFileNameGenerator;
+import com.danikula.videocache.HttpProxyCacheServer;
 import com.mob.MobSDK;
 import com.mob.bbssdk.theme1.BBSTheme1;
 import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixManager;
 import com.taobao.sophix.listener.PatchLoadStatusListener;
 import com.tencent.smtt.sdk.QbSdk;
-
-import org.litepal.LitePal;
-
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
@@ -46,6 +45,20 @@ public class BaseApplication extends Application implements HasActivityInjector,
     @Inject
     DispatchingAndroidInjector<Fragment> dispatchingAndroidFragmentInjector;
 
+    //视频缓存
+    private HttpProxyCacheServer proxy;
+
+    public static HttpProxyCacheServer getProxy(Context context) {
+        BaseApplication app = (BaseApplication) context.getApplicationContext();
+        return app.proxy == null ? (app.proxy = app.newProxy()) : app.proxy;
+    }
+
+    private HttpProxyCacheServer newProxy() {
+        return new HttpProxyCacheServer.Builder(this)
+                .maxCacheSize(1024 * 1024 * 1024)       // 1 Gb for cache
+                .fileNameGenerator(new MyFileNameGenerator())
+                .build();
+    }
     @Override
     public void onCreate() {
         super.onCreate();
