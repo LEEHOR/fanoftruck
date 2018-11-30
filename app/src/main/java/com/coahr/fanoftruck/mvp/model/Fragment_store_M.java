@@ -1,20 +1,16 @@
 package com.coahr.fanoftruck.mvp.model;
 
 import com.baidu.location.BDLocation;
-import com.coahr.fanoftruck.Utils.BaiDuLocation.BaiduLocationHelper;
+import com.coahr.fanoftruck.Utils.GpsLocation.BaiduLocationHelper;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.Base.SearchBean;
-import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_C;
 import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 
-import java.lang.reflect.Field;
 import java.util.Map;
 
 import javax.inject.Inject;
-
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Leehor

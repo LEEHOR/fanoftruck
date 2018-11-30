@@ -1,7 +1,7 @@
 package com.coahr.fanoftruck.mvp.model;
 
 import com.baidu.location.BDLocation;
-import com.coahr.fanoftruck.Utils.BaiDuLocation.BaiduLocationHelper;
+import com.coahr.fanoftruck.Utils.GpsLocation.BaiduLocationHelper;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_maintenance_child_C;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
@@ -9,8 +9,6 @@ import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import java.util.Map;
 
 import javax.inject.Inject;
-
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Leehor

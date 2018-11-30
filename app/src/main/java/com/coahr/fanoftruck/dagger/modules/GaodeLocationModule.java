@@ -1,6 +1,7 @@
 package com.coahr.fanoftruck.dagger.modules;
 
 import com.coahr.fanoftruck.Utils.GpsLocation.BaiduLocationHelper;
+import com.coahr.fanoftruck.Utils.GpsLocation.GaodeMapLocation;
 
 import javax.inject.Singleton;
 
@@ -13,10 +14,10 @@ import dagger.Provides;
  * on 17:56
  */
 @Module
-public class BaiduLocationModule {
+public class GaodeLocationModule {
     @Singleton
     @Provides
-    public BaiduLocationHelper getBaiduLocation(){
-        return new BaiduLocationHelper();
+    public GaodeMapLocation getGaodeLocation(){
+        return new GaodeMapLocation();
     }
 }

@@ -1,12 +1,8 @@
 package com.coahr.fanoftruck.mvp.model;
 
-import android.net.Uri;
-
 import com.baidu.location.BDLocation;
-import com.coahr.fanoftruck.Utils.BaiDuLocation.BaiduLocationHelper;
-import com.coahr.fanoftruck.Utils.StoreSpaceUtils;
+import com.coahr.fanoftruck.Utils.GpsLocation.BaiduLocationHelper;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
-import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recorder_preview_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
 

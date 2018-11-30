@@ -3,6 +3,7 @@ package com.coahr.fanoftruck.dagger.components;
 import com.coahr.fanoftruck.dagger.modules.AllActivityModule;
 import com.coahr.fanoftruck.dagger.modules.AllFragmentModule;
 import com.coahr.fanoftruck.dagger.modules.BaiduLocationModule;
+import com.coahr.fanoftruck.dagger.modules.GaodeLocationModule;
 import com.coahr.fanoftruck.dagger.modules.retrofit.ApiModule;
 import com.coahr.fanoftruck.dagger.modules.retrofit.OkHttpModule;
 import com.coahr.fanoftruck.dagger.modules.retrofit.RetrofitModule;
@@ -29,7 +30,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ApiModule.class,
         OkHttpModule.class,
         RetrofitModule.class,
-        BaiduLocationModule.class
+        BaiduLocationModule.class,
+        GaodeLocationModule.class
 })
 public  interface ApplicationComponents {
 

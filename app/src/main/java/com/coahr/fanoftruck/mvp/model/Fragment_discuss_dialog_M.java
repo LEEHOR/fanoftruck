@@ -1,13 +1,11 @@
 package com.coahr.fanoftruck.mvp.model;
 
 import com.baidu.location.BDLocation;
-import com.coahr.fanoftruck.Utils.BaiDuLocation.BaiduLocationHelper;
+import com.coahr.fanoftruck.Utils.GpsLocation.BaiduLocationHelper;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_discuss_dialog_C;
-import com.coahr.fanoftruck.mvp.constract.Fragment_help_C;
 import com.coahr.fanoftruck.mvp.model.Bean.AddDiscuss;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoDiscussList;
-import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 
 import java.util.Map;
 

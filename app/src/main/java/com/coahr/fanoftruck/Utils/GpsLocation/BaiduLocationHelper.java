@@ -1,4 +1,4 @@
-package com.coahr.fanoftruck.Utils.BaiDuLocation;
+package com.coahr.fanoftruck.Utils.GpsLocation;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -31,6 +31,7 @@ public class BaiduLocationHelper {
     }
 
     private void initlocation() {
+
         locationClient = new LocationClient(BaseApplication.mContext);
         // 设置定位条件
         LocationClientOption option = new LocationClientOption();
