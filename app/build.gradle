@@ -95,6 +95,8 @@ dependencies {
     implementation 'com.google.dagger:dagger-android:2.16'
     implementation 'com.google.dagger:dagger-android-support:2.16'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.16'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //基于扁平化的设计，有可能用不上
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
@@ -170,7 +172,8 @@ dependencies {
 
     //视频缓存
     implementation 'com.danikula:videocache:2.7.1'
-  
+    androidTestImplementation 'junit:junit:4.12'
+
 }
 
 // 在MobSDK的扩展中注册BBSSDK的相关信息
