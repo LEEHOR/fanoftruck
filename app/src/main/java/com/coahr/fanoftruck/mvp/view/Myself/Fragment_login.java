@@ -1,7 +1,9 @@
 package com.coahr.fanoftruck.mvp.view.Myself;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -14,13 +16,17 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.coahr.fanoftruck.R;
+import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
+import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
+import com.coahr.fanoftruck.mvp.Base.EventBusBean;
 import com.coahr.fanoftruck.mvp.constract.Fragment_login_C;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginBean;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_Login_P;
+import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf;
 import com.socks.library.KLog;
@@ -29,6 +35,8 @@ import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -149,13 +157,14 @@ public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> imp
             @Override
             public void onClick(View view) {
 
+                start(Fragment_register.newInstance());
             }
         });
         //忘记密码
         forget_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                start(Fragment_forgetPass.newInstance());
             }
         });
     }
@@ -167,7 +176,13 @@ public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> imp
 
     @Override
     public void LoginSuccess(LoginBean loginBean) {
+        PreferenceUtils.setPrefString(BaseApplication.mContext, Constants.token_key, loginBean.getJdata().getToken());
+        PreferenceUtils.setPrefString(BaseApplication.mContext, Constants.uid_key, loginBean.getJdata().getUid());
+        Constants.token = loginBean.getJdata().getToken();
+        Constants.uid = loginBean.getJdata().getUid();
         ToastUtils.showLong(loginBean.getMsg());
+        EventBus.getDefault().postSticky(new EventBusBean(1, "success"));
+        _mActivity.onBackPressed();
     }
 
     @Override

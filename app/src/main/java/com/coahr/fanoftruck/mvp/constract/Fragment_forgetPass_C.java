@@ -1,7 +1,7 @@
 package com.coahr.fanoftruck.mvp.constract;
 
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
-import com.coahr.fanoftruck.mvp.model.Bean.LoginBean;
+import com.coahr.fanoftruck.mvp.model.Bean.ForgetPass;
 import com.coahr.fanoftruck.mvp.model.Bean.RegisterBean;
 import com.coahr.fanoftruck.mvp.model.Bean.VerifyCode;
 
@@ -12,13 +12,14 @@ import java.util.Map;
  * on 2018/11/6
  * on 17:49
  */
-public interface Fragment_register_C {
+public interface Fragment_forgetPass_C {
 
     interface View extends BaseContract.View {
 
-        void RegisterSuccess(RegisterBean registerBean);
+        void forgetPassSuccess(ForgetPass forgetPass);
 
-        void RegisterFailure(String failure);
+        void forgetPassFailure(String failure);
+
 
         void getVerifyCodeSuccess(VerifyCode verifyCode);
 
@@ -26,11 +27,11 @@ public interface Fragment_register_C {
     }
 
     interface Presenter extends BaseContract.Presenter {
-        void Register(Map<String, String> map);
+        void forgetPass(Map<String, String> map);
 
-        void RegisterSuccess(RegisterBean registerBean);
+        void forgetPassSuccess(ForgetPass forgetPass);
 
-        void RegisterFailure(String failure);
+        void forgetPassFailure(String failure);
 
         void getVerifyCode(Map<String, String> map);
 
@@ -42,8 +43,8 @@ public interface Fragment_register_C {
 
     interface Model extends BaseContract.Model {
 
-        void Register(Map<String,String> map);
+        void forgetPass(Map<String, String> map);
 
-        void getVerifyCode(Map<String,String> map);
+        void getVerifyCode(Map<String, String> map);
     }
 }

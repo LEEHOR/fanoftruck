@@ -1,6 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+        app:tittle="注册"
+        android:id="@+id/myTittle_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:padding="@dimen/edge_margin"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <RelativeLayout
+            android:padding="@dimen/edge_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text5"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14"
+                android:text="用户名"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/register_userName"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/text5"
+                android:layout_marginLeft="25dp"
+                android:hint="请输入用户名"
+                android:textSize="@dimen/dp_14"
+                android:textColor="@color/black"
+                style="@style/normal_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/material_grey_200"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"/>
+        <RelativeLayout
+            android:padding="@dimen/edge_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text3"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14"
+                android:text="@string/pass"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/register_pass"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/text3"
+                android:layout_marginLeft="25dp"
+                android:hint="请输入密码"
+                android:textSize="@dimen/dp_14"
+                android:textColor="@color/black"
+                style="@style/normal_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/material_grey_200"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"/>
+        <RelativeLayout
+            android:padding="@dimen/edge_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text6"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14"
+                android:text="确认密码"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/register_pass_again"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/text6"
+                android:layout_marginLeft="25dp"
+                android:hint="请输入密码"
+                android:textSize="@dimen/dp_14"
+                android:textColor="@color/black"
+                style="@style/normal_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/material_grey_200"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"/>
+        <RelativeLayout
+            android:padding="@dimen/edge_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text4"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14"
+                android:text="@string/email"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/register_email"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/text4"
+                android:layout_marginLeft="25dp"
+                android:hint="请输入邮箱"
+                android:textSize="@dimen/dp_14"
+                android:textColor="@color/black"
+                style="@style/normal_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/material_grey_200"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"/>
+        <RelativeLayout
+            android:padding="@dimen/edge_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text1"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14"
+                android:text="手机号"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/register_phone"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/text1"
+                android:layout_marginLeft="25dp"
+                android:hint="请输入手机号"
+                android:textSize="@dimen/dp_14"
+                android:textColor="@color/black"
+                style="@style/normal_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/material_grey_200"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"/>
+
+
+        <RelativeLayout
+            android:padding="@dimen/edge_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text2"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14"
+                android:text="验证码"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/register_code"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/text2"
+                android:layout_marginLeft="25dp"
+                android:hint="请输入验证码"
+                android:textSize="@dimen/dp_14"
+                android:textColor="@color/black"
+                style="@style/normal_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.coahr.fanoftruck.widgets.BlockTextView
+                android:id="@+id/getRegister_code"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/verification_input"
+                android:textColor="@color/white"
+                android:padding="@dimen/dp_1"
+                android:background="@drawable/business_shape_bule700_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:background="@color/material_grey_200"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"/>
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:padding="@dimen/edge_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/ck_check"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/dp_14"
+                android:text="已阅读并同意"
+                android:button="@null"
+                android:drawableLeft="@drawable/checkbox_beautiful_selector"
+                android:drawablePadding="@dimen/dp_5"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/user_agreement"
+                android:layout_toRightOf="@+id/ck_check"
+                android:textSize="@dimen/dp_14"
+                android:textColor="@color/red_1"
+                android:text="《用户协议》"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    <TextView
+        android:layout_marginTop="@dimen/dp_20"
+        android:id="@+id/tv_register"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_14"
+        android:text="注册"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/edge_margin"
+        android:background="@drawable/business_shape_bule700_white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
 </LinearLayout>

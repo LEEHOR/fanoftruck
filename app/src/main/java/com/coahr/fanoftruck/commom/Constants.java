@@ -17,12 +17,10 @@ public class Constants {
     public static double Longitude;
     //sessionId
     public static String sessionId;
-    //ht_projectId
-    public static String ht_ProjectId;  //服务器端项目id
-    //user_id;
-    public static String user_id;
-    //DbProjectId 数据库中的id
-    public static String DbProjectId;
+    //token
+    public static String token;
+    //uid
+    public static String uid;
 
     //网络访问超时时间
     public static int timeout=15;
@@ -97,9 +95,13 @@ public class Constants {
 
     public static final int Fragment_userInfo=13;
 
-    public static final int Fragment_regiser=14;
+    public static final int Fragment_register=14;
 
     public static final int Fragment_forgetPass=15;
+
+    public static final int Fragment_recommendCar=16;
+
+    public static final int Fragment_mycar=17;
 
 
 
@@ -114,4 +116,6 @@ public class Constants {
     public static  String user_key;
     //token_key
     public static  String token_key;
+    //uid
+    public static  String uid_key;
 }

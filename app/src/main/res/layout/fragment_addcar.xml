@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/material_grey_200"
+    android:orientation="vertical">
+    <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+        app:tittle="添加车辆"
+        android:id="@+id/mytittle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:padding="@dimen/edge_margin"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.CardView
+                android:padding="@dimen/edge_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:padding="@dimen/edge_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/text1"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="@dimen/dp_14"
+                        android:textColor="@color/black"
+                        android:text="车架号"
+                        android:drawableLeft="@mipmap/images"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:layout_toRightOf="@+id/text1"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        style="@style/normal_edittext_style"
+                        android:textSize="@dimen/dp_14"
+                        android:textColor="@color/black"
+                        android:hint="请输入车架号"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_marginTop="@dimen/dp_10"
+                android:padding="@dimen/edge_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:padding="@dimen/edge_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/text2"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="@dimen/dp_14"
+                        android:textColor="@color/black"
+                        android:text="车牌号"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:layout_toRightOf="@+id/text2"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        style="@style/normal_edittext_style"
+                        android:textSize="@dimen/dp_14"
+                        android:textColor="@color/black"
+                        android:hint="请输入车牌号"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_30"
+                android:padding="@dimen/edge_margin"
+                android:textSize="@dimen/dp_14"
+                android:textColor="@color/white"
+                android:text="提交"
+                android:gravity="center"
+                android:background="@drawable/business_shape_bule700_white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+</LinearLayout>

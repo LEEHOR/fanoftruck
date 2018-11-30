@@ -173,14 +173,16 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
         tv_bottom_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                start(Fragment_storeOrder.newInstance(1, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
+               // start(Fragment_storeOrder.newInstance(1, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
+                start(Fragment_appointment.newInstance());
             }
         });
 
         tv_bottom_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                start(Fragment_storeOrder.newInstance(2, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
+                //start(Fragment_storeOrder.newInstance(2, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
+                start(Fragment_appointment.newInstance());
             }
         });
     }

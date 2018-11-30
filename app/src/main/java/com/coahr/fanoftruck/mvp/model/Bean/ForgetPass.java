@@ -2,15 +2,15 @@ package com.coahr.fanoftruck.mvp.model.Bean;
 
 /**
  * Created by Leehor
- * on 2018/11/29
- * on 19:29
+ * on 2018/11/30
+ * on 14:32
  */
-public class LoginBean {
+public class ForgetPass {
 
     /**
      * code : 0
-     * msg : 登录成功！
-     * jdata : {"token":"910c76897b9912c484bb1d23426774e0","uid":null}
+     * msg : success
+     * jdata : {"verify_code":123456}
      */
 
     private int code;
@@ -43,27 +43,17 @@ public class LoginBean {
 
     public static class JdataBean {
         /**
-         * token : 910c76897b9912c484bb1d23426774e0
-         * uid : null
+         * verify_code : 123456
          */
 
-        private String token;
-        private String uid;
+        private int verify_code;
 
-        public String getToken() {
-            return token;
+        public int getVerify_code() {
+            return verify_code;
         }
 
-        public void setToken(String token) {
-            this.token = token;
-        }
-
-        public String getUid() {
-            return uid;
-        }
-
-        public void setUid(String uid) {
-            this.uid = uid;
+        public void setVerify_code(int verify_code) {
+            this.verify_code = verify_code;
         }
     }
 }

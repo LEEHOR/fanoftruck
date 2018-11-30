@@ -46,4 +46,15 @@ public class ApiContact {
     //登录接口
     public static final String login="/APP/Basic/user_login";
 
+    //注册验证码接口
+    public static final String getRegisterVerifyCode="/APP/Basic/get_verify_code";
+
+    //注册接口
+    public static final String registerAccount="/APP/Basic/register_user";
+
+    //找回密码验证码
+    public static final String forgertPass_VerifyCode="/APP/Basic/get_modify_code";
+
+    //忘记密码
+    public static final String forgertPass="/APP/Basic/retrieve_password";
 }

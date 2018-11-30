@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+    app:tittle="我的车辆"
+    android:id="@+id/mytittle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:src="@mipmap/images"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

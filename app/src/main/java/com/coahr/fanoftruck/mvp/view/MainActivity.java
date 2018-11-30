@@ -11,16 +11,23 @@ import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseActivity;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
+import com.coahr.fanoftruck.mvp.Base.EventBusBean;
 import com.coahr.fanoftruck.mvp.constract.MainActivityC;
 import com.coahr.fanoftruck.mvp.presenter.MainActivityP;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business_viewPager;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_Myself;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myUerInfo;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Services;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_Shopping;
 import com.coahr.fanoftruck.widgets.MyBottomNavigation.MyBottomNavigation;
+import com.socks.library.KLog;
 
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
 
@@ -62,6 +69,7 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
             mFragments[4] = Fragment_Myself.newInstance();
         }
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -80,14 +88,15 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
         myBottomNavigation.setOnTabPositionListener(new MyBottomNavigation.OnTabPositionListener() {
             @Override
             public void onPositionTab(int position) {
-                if(position==4 && !PreferenceUtils.contains(BaseApplication.mContext,Constants.sessionId_key)){
+                if (position == 4 && !PreferenceUtils.contains(BaseApplication.mContext, Constants.token_key)) {
                     Intent intent = new Intent(MainActivity.this,ContainerActivity.class);
                     intent.putExtra("tofragment",Constants.Fragment_login);
-                    startActivityForResult(intent,1);
+                    startActivity(intent);
+                   // start(Fragment_login.newInstance(), 1);
                 } else {
                     showFragment(position);
                 }
-
+                //  showFragment(position);
             }
         });
 
@@ -126,5 +135,32 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == 100) {
+            KLog.d("回来了");
+            // ((Fragment_myUerInfo) mFragments[4])
+
+        }
+    }
+
+    /**
+     * 登陆成功回调
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void receiveMessage(EventBusBean event) {
+        if (event.getCode() == 1) {
+            KLog.d("接受");
+            showFragment(4);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+        super.onDestroy();
     }
 }

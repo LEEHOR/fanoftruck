@@ -40,4 +40,8 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     public void initData() {
 
     }
+
+    public  static void loadUserInfo(){
+
+    }
 }

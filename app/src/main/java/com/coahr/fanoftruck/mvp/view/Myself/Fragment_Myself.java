@@ -2,6 +2,7 @@ package com.coahr.fanoftruck.mvp.view.Myself;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,9 +25,11 @@ import butterknife.BindView;
  */
 public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> implements Fragment_myself_C.View,View.OnClickListener {
 @Inject
-    Fragment_myself_P p;
+Fragment_myself_P p;
     @BindView(R.id.my_userInfo)
     RelativeLayout my_userInfo;
+    @BindView(R.id.mycar)
+    ImageView mycar;
 
     public static Fragment_Myself newInstance() {
         return new Fragment_Myself();
@@ -54,6 +57,7 @@ public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> i
             }
         });*/
         my_userInfo.setOnClickListener(this);
+        mycar.setOnClickListener(this);
     }
 
     @Override
@@ -77,6 +81,10 @@ public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> i
             case R.id.my_userInfo:  //个人中心
                 intent.setClass(_mActivity,ContainerActivity.class);
                 intent.putExtra("tofragment",Constants.Fragment_userInfo);
+                break;
+            case R.id.mycar:
+                intent.setClass(_mActivity,ContainerActivity.class);
+                intent.putExtra("tofragment",Constants.Fragment_mycar);
                 break;
         }
 

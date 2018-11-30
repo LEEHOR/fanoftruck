@@ -1,14 +1,18 @@
 package com.coahr.fanoftruck.mvp.view.BusinessOpportunity;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.R;
+import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_business_viewPager_C;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_business_viewPager_P;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.adapter.ViewPageAdapter;
+import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 
 import javax.inject.Inject;
 
@@ -27,6 +31,8 @@ public class Fragment_Business_viewPager extends BaseFragment<Fragment_business_
     ViewPager businss_viewPage;
     @BindView(R.id.tab)
     TabLayout tabLayout;
+    @BindView(R.id.mytitle_business)
+    MyTittleBar mytitle_business;
 
     public static Fragment_Business_viewPager newInstance() {
         return new Fragment_Business_viewPager();
@@ -45,7 +51,23 @@ public class Fragment_Business_viewPager extends BaseFragment<Fragment_business_
 
     @Override
     public void initView() {
-
+        mytitle_business.getLeftIcon().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                _mActivity.onBackPressed();
+            }
+        });
+        mytitle_business.getRightText().setText("推荐购车");
+        mytitle_business.getRightText().setVisibility(View.VISIBLE);
+        mytitle_business.getRightText().setTextColor(getResources().getColor(R.color.material_blue_550));
+        mytitle_business.getRightText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.putExtra("tofragment",Constants.Fragment_recommendCar);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

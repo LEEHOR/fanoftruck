@@ -2,13 +2,19 @@ package com.coahr.fanoftruck.dagger.modules;
 
 import com.coahr.fanoftruck.dagger.components.BaseFragmentComponents;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business_viewPager;
+import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_RecommendCar;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_business_child;
 import com.coahr.fanoftruck.mvp.view.CallForHelp.CallForHelp_viewPager;
 import com.coahr.fanoftruck.mvp.view.CallForHelp.Fragment_help;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_addCar;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_forgetPass;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myCar;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myUerInfo;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_register;
 import com.coahr.fanoftruck.mvp.view.RecorderVideo.Fragment_recorder_Preview;
+import com.coahr.fanoftruck.mvp.view.Services.Fragment_appointment;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_MaintenanceVideo_viewPage;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_discuss;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_maintenance_child;
@@ -95,4 +101,22 @@ public abstract class AllFragmentModule {
 
     @ContributesAndroidInjector(modules = Fragment_UserInfo_Module.class)
     abstract Fragment_myUerInfo Fragment_myUerInfoInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_register_module.class)
+    abstract Fragment_register Fragment_registerInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_forgetPass_module.class)
+    abstract Fragment_forgetPass Fragment_forgetPassInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_forgetPass_module.class)
+    abstract Fragment_appointment Fragment_appointmentInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_recommendCar_Module.class)
+    abstract Fragment_RecommendCar Fragment_RecommendCarInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_myCar_Module.class)
+    abstract Fragment_myCar Fragment_myCarInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_addCar_Module.class)
+    abstract Fragment_addCar Fragment_addCarInjector();
 }

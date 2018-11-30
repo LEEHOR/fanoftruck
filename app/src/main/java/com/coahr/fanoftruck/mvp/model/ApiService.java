@@ -5,14 +5,17 @@ import android.support.annotation.Nullable;
 import com.coahr.fanoftruck.mvp.Base.SearchBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AddDiscuss;
 import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
+import com.coahr.fanoftruck.mvp.model.Bean.ForgetPass;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginBean;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoDiscussList;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideo_dz;
+import com.coahr.fanoftruck.mvp.model.Bean.RegisterBean;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallBean;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
+import com.coahr.fanoftruck.mvp.model.Bean.VerifyCode;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
 
 
@@ -152,7 +155,7 @@ public interface ApiService {
     /**
      * 视频评论
      */
-    @Multipart
+    @FormUrlEncoded
     @POST(ApiContact.getAdddiscuss)
     Call<AddDiscuss> getAddDiscuss(@Field("video_id") String video_id, @Field("token") String token,@Field("discuss_content") String discuss_content);
 
@@ -160,8 +163,41 @@ public interface ApiService {
     /**
      * 登录接口
      */
-    @Multipart
+    @FormUrlEncoded
     @POST(ApiContact.login)
-    Call<LoginBean> login(@Field("phone") String video_id, @Field("pwd") String token);
+    Call<LoginBean> login(@Field("phone") String phone, @Field("pwd") String pwd);
 
+    /**
+     * 注册接口
+     * @param userName
+     * @param email
+     * @param device_token
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.registerAccount)
+    Call<RegisterBean> register(@Field("phone") String phone, @Field("userName") String userName,@Field("pwd") String pwd
+            ,@Field("email") String email,@Field("device_token") String device_token,@Field("verify_code") String verify_code);
+
+    /**
+     * 注册短信接口
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.getRegisterVerifyCode)
+    Call<VerifyCode> getRegisterCode(@Field("phone") String phone);
+
+
+    /**
+     * 忘记密码
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.forgertPass)
+    Call<ForgetPass> forgertPass(@Field("phone") String phone, @Field("pwd") String pwd, @Field("verify_code") String verify_code);
+
+    /**
+     * 忘记密码短信接口
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.forgertPass_VerifyCode)
+    Call<VerifyCode> forgertPass_VerifyCode(@Field("phone") String phone);
 }
