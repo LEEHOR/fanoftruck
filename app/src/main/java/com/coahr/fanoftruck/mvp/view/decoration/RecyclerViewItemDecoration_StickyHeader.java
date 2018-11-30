@@ -34,18 +34,18 @@ public class RecyclerViewItemDecoration_StickyHeader extends RecyclerView.ItemDe
         resources = context.getResources();
         dimension = context.getResources().getDimensionPixelOffset(R.dimen.dp_10);
         paint = new Paint();
-        paint.setColor(context.getResources().getColor(R.color.material_blue_600));
+        paint.setColor(context.getResources().getColor(R.color.material_blue_700));
 
         textPaint = new TextPaint();
         fontMetrics = new Paint.FontMetrics();
 
         textPaint.setTypeface(Typeface.DEFAULT_BOLD); //加粗
-        textPaint.setTextSize(80); //大小
+        textPaint.setTextSize(60); //大小
         textPaint.setColor(resources.getColor(R.color.black));
         textPaint.getFontMetrics(fontMetrics); //字体风格
         textPaint.setTextAlign(Paint.Align.LEFT); //文字位置
         textPaint.setAntiAlias(true);  //抗锯齿
-        topGap = resources.getDimensionPixelOffset(R.dimen.dp_20);
+        topGap = resources.getDimensionPixelOffset(R.dimen.dp_16);
     }
 
     @Override

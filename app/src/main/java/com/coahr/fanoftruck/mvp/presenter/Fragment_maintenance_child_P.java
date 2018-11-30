@@ -3,9 +3,11 @@ package com.coahr.fanoftruck.mvp.presenter;
 import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_maintenance_child_C;
+import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.model.Fragment_maintenance_child_M;
-import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business;
-import com.coahr.fanoftruck.mvp.view.Home.Fragment_maintenance_child;
+import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_maintenance_child;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -39,6 +41,69 @@ public class Fragment_maintenance_child_P extends BasePresenter<Fragment_mainten
     public void onLocationFailure(int failure) {
         if (getView() != null) {
             getView().onLocationFailure(failure);
+        }
+    }
+
+    @Override
+    public void getVideoList(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.getVideoList(map);
+        }
+    }
+
+    @Override
+    public void getVideoListSuccess(MaintenanceVideoList maintenanceVideoList) {
+        if (getView() != null) {
+            getView().getVideoListSuccess(maintenanceVideoList);
+        }
+    }
+
+    @Override
+    public void getVideoListFailure(String failure) {
+        if (getView() != null) {
+            getView().getVideoListFailure(failure);
+        }
+    }
+
+    @Override
+    public void getVideoMore(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.getVideoMore(map);
+        }
+    }
+
+    @Override
+    public void getVideoMoreSuccess(MaintenanceVideoList maintenanceVideoList) {
+        if (getView() != null) {
+            getView().getVideoMoreSuccess(maintenanceVideoList);
+        }
+    }
+
+    @Override
+    public void getVideoMoreFailure(String failure) {
+        if (getView() != null) {
+            getView().getVideoMoreFailure(failure);
+        }
+    }
+
+    @Override
+    public void getVideoSearch(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.getVideoSearch(map);
+        }
+    }
+
+    @Override
+    public void getVideoSearchSuccess(MaintenanceVideoList maintenanceVideoList) {
+        if (getView() != null) {
+            getView().getVideoSearchSuccess(maintenanceVideoList);
+        }
+    }
+
+    @Override
+    public void getVideoSearchFailure(String failure) {
+        if (getView() != null) {
+            getView().getVideoSearchFailure(failure);
         }
     }
 }

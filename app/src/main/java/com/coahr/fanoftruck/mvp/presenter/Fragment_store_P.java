@@ -5,6 +5,7 @@ import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.Base.SearchBean;
 import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_C;
+import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 import com.coahr.fanoftruck.mvp.model.Fragment_home_M;
 import com.coahr.fanoftruck.mvp.model.Fragment_store_M;
@@ -108,6 +109,27 @@ public class Fragment_store_P extends BasePresenter<Fragment_store_C.View,Fragme
     public void getSearchFailure(String failure) {
         if (getView() != null) {
             getView().getSearchFailure(failure);
+        }
+    }
+
+    @Override
+    public void getCityList(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.getCityList(map);
+        }
+    }
+
+    @Override
+    public void getCityListSuccess(CityInfoBean cityInfoBean) {
+        if (getView() != null) {
+            getView().getCityListSuccess(cityInfoBean);
+        }
+    }
+
+    @Override
+    public void getCityListFailure(String failure) {
+        if (getView() != null) {
+            getView().getCityListFailure(failure);
         }
     }
 }

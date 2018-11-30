@@ -19,7 +19,7 @@ public class RecyclerSimplePadding_color extends RecyclerView.ItemDecoration {
     private  float dimension;
     private Paint paint;
     public RecyclerSimplePadding_color(Context context) {
-         dimension = context.getResources().getDimensionPixelOffset(R.dimen.dp_5);
+         dimension = context.getResources().getDimensionPixelOffset(R.dimen.dp_1);
          paint =new Paint();
          paint.setColor(context.getResources().getColor(R.color.material_grey_400));
     }

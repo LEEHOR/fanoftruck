@@ -29,6 +29,7 @@ import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.Base.SearchBean;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_C;
 import com.coahr.fanoftruck.mvp.model.Bean.CityBean;
+import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_store_P;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
@@ -42,6 +43,7 @@ import com.coahr.fanoftruck.widgets.PopupWindows.PopupWindows_city;
 import com.socks.library.KLog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,8 +73,13 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.search_recycler)
     RecyclerView search_recycler;
-    private List<CityBean> list = new ArrayList<>();
-    private List<String> stringList=new ArrayList<>();
+    @BindView(R.id.store_city_select)
+    TextView tv_store_city;
+    @BindView(R.id.store_sort)
+    TextView tv_store_sort;
+    private List<CityInfoBean.JdataEntity.CityListEntity> cityInfoBeanList = new ArrayList<>();
+    private static String[] sortStringArray = new String[3];//排序
+    private List<String> sortList = new ArrayList<>();
     private PopupWindows_city city;
     private int selectSortPosition;
     private LinearLayoutManager linearLayoutManager_store;
@@ -110,6 +117,8 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
 
     @Override
     public void initView() {
+        sortStringArray = _mActivity.getResources().getStringArray(R.array.store_ssortStringArray);
+        sortList = Arrays.asList(sortStringArray);
         Ed_search.addTextChangedListener(new edit_textChance());
         Ed_search.setOnEditorActionListener(this);
 
@@ -123,14 +132,15 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
         });
         city = new PopupWindows_city();
         city.showPopupWindows(spinner,0,0);
+
         spinner.setItemShowHidenListener(new ConditionSelectView.onItemShowHidenListener() {
             @Override
             public void onItemShow(int position) {
             if (position ==0){ //城市
-                city.setCityList(list,0);
+                city.setCityList(cityInfoBeanList, 0);
             }
             if (position==1){
-                city.setSortList(stringList,selectSortPosition,1);
+                city.setSortList(sortList,selectSortPosition,1);
             }
             city.showAsDropDown();
             }
@@ -177,23 +187,26 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
             }
         });
         fragment_store_adapter = new Fragment_store_adapter();
+
         fragment_store_adapter.setItemClickListener(new StoreItemClickListener() {
             @Override
             public void onItemClick(StoreBean.JdataEntity.StationEntity entity) {
-                Intent intent=new Intent(_mActivity,ContainerActivity.class);
+              /*  Intent intent=new Intent(_mActivity,ContainerActivity.class);
                 intent.putExtra("tofragment",Constants.Fragment_Store_Detail);
                 intent.putExtra("s_id",entity.getS_id());
-                startActivity(intent);
+                startActivity(intent);*/
+                start(Fragment_store_detail.newInstance(entity.getS_id()));
             }
         });
         searchAdapter = new SearchAdapter();
         searchAdapter.setOnItemClickListener(new OnSearchItemClickListener() {
             @Override
             public void onClick(SearchBean.JdataEntity.SearchEntity item, int type) {
-                Intent intent=new Intent(_mActivity,ContainerActivity.class);
+              /*  Intent intent=new Intent(_mActivity,ContainerActivity.class);
                 intent.putExtra("tofragment",Constants.Fragment_Store_Detail);
                 intent.putExtra("s_id",item.getId());
-                startActivity(intent);
+                startActivity(intent);*/
+                start(Fragment_store_detail.newInstance(item.getId()));
             }
         });
     }
@@ -201,6 +214,9 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
     @Override
     public void initData() {
         p.startLocation();
+        Map map=new HashMap();
+        map.put("token","9a99788a604f85782dc5f625966205cb");
+        p.getCityList(map);
         linearLayoutManager_search = new LinearLayoutManager(BaseApplication.mContext);
         search_recycler.setLayoutManager(linearLayoutManager_search);
         search_recycler.setAdapter(searchAdapter);
@@ -220,51 +236,34 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
             }
         }
         store_recycler.setAdapter(fragment_store_adapter);
-        for (int i = 0; i <10 ; i++) {
-            stringList.add("排序"+i);
-        }
-       // city.showPopupWindows( spinner_left, 0, 0);
-        for (int i = 0; i < 10; i++) {
-            list.add(new CityBean("安徽", "A"));
-            list.add(new CityBean("合肥", "H"));
-            list.add(new CityBean("芜湖", "W"));
-            list.add(new CityBean("蚌埠", "B"));
-            list.add(new CityBean("淮南", "H"));
-            list.add(new CityBean("马鞍山", "M"));
-            list.add(new CityBean("淮北", "H"));
-            list.add(new CityBean("铜陵", "T"));
-            list.add(new CityBean("安庆", "A"));
-            list.add(new CityBean("淮北", "H"));
-            list.add(new CityBean("铜陵", "T"));
-            list.add(new CityBean("安庆", "A"));
-            list.add(new CityBean("黄山", "H"));
-            list.add(new CityBean("滁州", "Z"));
-            list.add(new CityBean("阜阳", "F"));
-            list.add(new CityBean("宿州", "S"));
-            list.add(new CityBean("六安", "L"));
-            list.add(new CityBean("亳州", "B"));
-            list.add(new CityBean("池州", "C"));
-            list.add(new CityBean("宣城", "X"));
-        }
+
 
         city.setListener(new PopupWindows_city.getCity() {
             @Override
             public void getCity(String city) {
-                selectedCity=city;
-                getDataList();
+                if (city !=null){
+                    selectedCity=city;
+                    if (!city.equals("")){
+                        tv_store_city.setText(city);
+                    }
+                }
             }
 
             @Override
             public void getSort(String sort,int type,int position) {
                 selectSortPosition = position;
                 selectSort=sort;
+                if (sort !=null && !sort.equals("")){
+                    tv_store_sort.setText(sort);
+                }
 
-                getDataList();
             }
 
             @Override
             public void dismiss() {
                 spinner.hidenAll();
+                getDataList();
+
             }
         });
 
@@ -279,9 +278,9 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
                 if (fragment_store_adapter.getFooterLayoutCount() ==0 && fragment_store_adapter.getData().size()>=pageLength){
                     fragment_store_adapter.addFooterView(addFooterView);
                 }
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPosition + 1 == fragment_store_adapter.getItemCount()){
+               /* if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPosition + 1 == fragment_store_adapter.getItemCount()){
 
-                }
+                }*/
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 //屏幕中最后一个可见子项的position
                // int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
@@ -292,21 +291,27 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
                 //RecyclerView的滑动状态
                 int state = recyclerView.getScrollState();
                 if(visibleItemCount > 0 && lastVisibleItemPosition == totalItemCount - 1 && state == RecyclerView.SCROLL_STATE_IDLE ){
-                    store_recycler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            isLoading=true;
-                            currentPage++;
-                            Map map = new HashMap();
-                            map.put("page", String.valueOf(currentPage));
-                            map.put("length", String.valueOf(pageLength));
-                            map.put("order", selectSort);
-                            map.put("city", selectedCity);
-                            map.put("longitude", String.valueOf(Constants.Longitude));
-                            map.put("latitude", String .valueOf(Constants.Latitude));
-                            p.getStoreMore(map);
-                        }
-                    }, 500);
+                    if (!isLoading) {
+                        store_recycler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                isLoading = true;
+                                currentPage++;
+                                Map map = new HashMap();
+                                map.put("page", String.valueOf(currentPage));
+                                map.put("length", String.valueOf(pageLength));
+                                map.put("order", selectSort);
+                                map.put("city", selectedCity);
+                                map.put("longitude", String.valueOf(Constants.Longitude));
+                                map.put("latitude", String.valueOf(Constants.Latitude));
+                                p.getStoreMore(map);
+                            }
+                        }, 500);
+                    } else {
+                        ToastUtils.showLong("正在加载中...");
+                    }
+
+
                 }else {
 
                 }
@@ -380,6 +385,7 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
     @Override
     public void getStoreMoreFailure(String failure) {
         isLoading=false;
+        currentPage--;
         swipeRefreshLayout.setRefreshing(false);
         if (fragment_store_adapter.getFooterLayoutCount() > 0) {
             fragment_store_adapter.removeAllFooterView();
@@ -397,6 +403,19 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
     @Override
     public void getSearchFailure(String failure) {
             ToastUtils.showLong(failure);
+    }
+
+    @Override
+    public void getCityListSuccess(CityInfoBean cityInfoBean) {
+        List<CityInfoBean.JdataEntity.CityListEntity> city_list = cityInfoBean.getJdata().getCity_list();
+        if (city_list != null && city_list.size() > 0) {
+            cityInfoBeanList.addAll(city_list);
+        }
+    }
+
+    @Override
+    public void getCityListFailure(String failure) {
+        ToastUtils.showLong(failure);
     }
 
     @Override

@@ -36,4 +36,19 @@
 
     <!--访问-->
     <string name="remark">点击编辑</string>
+
+
+    <string-array name="shoppingmall_ssortStringArray">
+        <item>综合排序</item>
+        <item>好评有效</item>
+        <item>价格最低</item>
+        <item>销量最高</item>
+    </string-array>
+
+    <string-array name="store_ssortStringArray">
+        <item>默认排序</item>
+        <item>好评优先</item>
+        <item>距离最近</item>
+
+    </string-array>
 </resources>

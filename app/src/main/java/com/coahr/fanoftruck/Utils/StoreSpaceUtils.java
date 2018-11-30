@@ -363,14 +363,14 @@ public class StoreSpaceUtils {
 	}
 
 	/**
-	 * 得到后缀或文件名或字符串
+	 * 得到文件后缀
 	 * @param path
 	 * @param flag
 	 * @return
 	 */
-	public static String getE(String path,String flag){
+	public static String getSuffix(String path,String flag){
 		int i = path.lastIndexOf(flag);
-		String substring_name = path.substring(i+1);
+		String substring_name = path.substring(i);
 		return substring_name;
 	}
 }

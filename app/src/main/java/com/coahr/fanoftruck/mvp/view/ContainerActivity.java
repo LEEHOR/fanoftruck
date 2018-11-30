@@ -3,9 +3,12 @@ package com.coahr.fanoftruck.mvp.view;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseSupportActivity;
-import com.coahr.fanoftruck.mvp.view.Home.Fragment_MaintenanceVideo_viewPage;
+import com.coahr.fanoftruck.mvp.view.CallForHelp.CallForHelp_viewPager;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myUerInfo;
+import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_MaintenanceVideo_viewPage;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
-import com.coahr.fanoftruck.mvp.view.Services.Fragment_store_detail;
+import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_ShoppingDetail;
 
 /**
  * Created by Leehor
@@ -23,17 +26,26 @@ public class ContainerActivity extends BaseSupportActivity {
     @Override
     public void initView() {
         switch (getIntent().getIntExtra("tofragment", 0)) {
-            //搜索页面
-            case Constants.Fragment_store:
+
+            case Constants.Fragment_store://门店列表页面
                 loadRootFragment(R.id.con_fragment, Fragment_Store.newInstance(getIntent().getIntExtra("type",0)));
                 break;
-                //门店详情
-            case Constants.Fragment_Store_Detail:
-            loadRootFragment(R.id.con_fragment,Fragment_store_detail.newInstance(getIntent().getStringExtra("s_id")));
+            case Constants.Fragment_maintenance: //维修视频
+                loadRootFragment(R.id.con_fragment, Fragment_MaintenanceVideo_viewPage.newInstance());
                 break;
-            case  Constants.Fragment_maintenance:
-                loadRootFragment(R.id.con_fragment,Fragment_MaintenanceVideo_viewPage.newInstance());
+            case Constants.Fragment_shoppingDetail: //商品详情页
+                loadRootFragment(R.id.con_fragment, Fragment_ShoppingDetail.newInstance(getIntent().getStringExtra("c_id")));
                 break;
+            case Constants.Fragment_help:  //一键呼叫
+                loadRootFragment(R.id.con_fragment, CallForHelp_viewPager.newInstance());
+                break;
+            case Constants.Fragment_login:
+                loadRootFragment(R.id.con_fragment, Fragment_login.newInstance());
+                break;
+            case Constants.Fragment_userInfo:
+                loadRootFragment(R.id.con_fragment, Fragment_myUerInfo.newInstance());
+                break;
+
         }
     }
 

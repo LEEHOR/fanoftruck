@@ -2,6 +2,9 @@ package com.coahr.fanoftruck.mvp.constract;
 
 import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
+import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
+
+import java.util.Map;
 
 /**
  * Created by Leehor
@@ -16,7 +19,18 @@ public interface Fragment_maintenance_child_C {
 
         void onLocationFailure(int failure);
 
+        void getVideoListSuccess(MaintenanceVideoList maintenanceVideoList);
 
+        void getVideoListFailure(String failure);
+
+        void getVideoMoreSuccess(MaintenanceVideoList maintenanceVideoList);
+
+        void getVideoMoreFailure(String failure);
+
+
+        void getVideoSearchSuccess(MaintenanceVideoList maintenanceVideoList);
+
+        void getVideoSearchFailure(String failure);
     }
 
     interface Presenter extends BaseContract.Presenter {
@@ -25,12 +39,34 @@ public interface Fragment_maintenance_child_C {
         void onLocationSuccess(BDLocation location);
 
         void onLocationFailure(int failure);
+        void getVideoList(Map<String, String> map);
 
+        void getVideoListSuccess(MaintenanceVideoList maintenanceVideoList);
+
+        void getVideoListFailure(String failure);
+
+
+        void getVideoMore(Map<String, String> map);
+
+        void getVideoMoreSuccess(MaintenanceVideoList maintenanceVideoList);
+
+        void getVideoMoreFailure(String failure);
+
+        void getVideoSearch(Map<String, String> map);
+
+        void getVideoSearchSuccess(MaintenanceVideoList maintenanceVideoList);
+
+        void getVideoSearchFailure(String failure);
     }
 
     interface Model extends BaseContract.Model {
         void startLocation();
 
+        void getVideoList(Map<String, String> map);
 
+
+        void getVideoMore(Map<String, String> map);
+
+        void getVideoSearch(Map<String, String> map);
     }
 }

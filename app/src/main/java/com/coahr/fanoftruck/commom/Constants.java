@@ -35,7 +35,7 @@ public class Constants {
     /**
      * 本地存储总目录
      */
-    public static String SAVE_DIR_BASE = SDCARD_PATH.concat("/com.thoughtRui.coahr/");
+    public static String SAVE_DIR_BASE = SDCARD_PATH.concat("/com.fanoftruck.coahr/");
     /**
      *
      */
@@ -45,13 +45,9 @@ public class Constants {
      */
     public static String SAVE_DIR_TAKE_PHOTO = SAVE_DIR_BASE.concat("takePhoto/");
     /**
-     * 工程图片位置
+     * 上传视频时封面图片位置
      */
-    public static String SAVE_DIR_PROJECT_PHOTO = SAVE_DIR_BASE.concat("projectPhoto/");
-    /**
-     * 压缩图片存储位置
-     */
-    public static String SAVE_DIR_ZIP_PHOTO = SAVE_DIR_BASE.concat("zipPhoto/");
+    public static String SAVE_DIR_PHOTO = SAVE_DIR_BASE.concat("Photo/");
     /**
      * 头像存储位置
      */
@@ -60,6 +56,11 @@ public class Constants {
      * 视频存储位置
      */
     public static String SAVE_DIR_VIDEO = SAVE_DIR_BASE.concat("video/");
+
+    /**
+     * 压缩视频存储位置
+     */
+    public static String SAVE_DIR_ZIPVIDEO=SAVE_DIR_BASE.concat("zipVideo/");
     /**
      * 语音存储位置
      */
@@ -86,6 +87,21 @@ public class Constants {
 
     public static  final int Fragment_maintenance=8; //维修视频
 
+    public static  final int Fragment_recorder=9;  //录制视频
+
+    public static final int Fragment_shoppingDetail=10;
+
+    public static final int Fragment_help=11;  //一键呼救
+
+    public  static final int Fragment_login=12;
+
+    public static final int Fragment_userInfo=13;
+
+    public static final int Fragment_regiser=14;
+
+    public static final int Fragment_forgetPass=15;
+
+
 
 
 
@@ -96,4 +112,6 @@ public class Constants {
     public static  String sessionId_key;
     //user_key
     public static  String user_key;
+    //token_key
+    public static  String token_key;
 }

@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
@@ -41,6 +43,11 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
     protected final String TAG = this.getClass().getSimpleName();
     Unbinder unbinder;
     private Dialog dialog;
+    private Dialog dialog_wait;
+    private View wait_dialog_view;
+    private TextView tv_type;
+    private ProgressBar zip_progress;
+
     public abstract P getPresenter();
 
     public abstract int bindLayout();
@@ -49,7 +56,7 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
 
     public abstract void initData();
 
-    protected View addFooterView;
+    public View addFooterView;
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
@@ -70,14 +77,13 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(bindLayout(), container, false);
-
         unbinder = ButterKnife.bind(this, view);
         View tittleView = ((ViewGroup) view.getRootView()).getChildAt(0);
         if (tittleView != null) {
             tittleView.setPadding(tittleView.getPaddingLeft(), ScreenUtils.getStatusBarHeight(BaseApplication.mContext), tittleView.getPaddingRight(), tittleView.getPaddingBottom());
         }
-        addFooterView = inflater.inflate(R.layout.recyclerview_item_foot, container, false);
         UpdateUI(view.getRootView());
+        addFooterView = inflater.inflate(R.layout.recyclerview_item_foot, container, false);
         initView();
         initData();
         return view;
@@ -209,4 +215,32 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         _mActivity.startActivity(intent);
     }
+
+    public void WaitingDialog() {
+        wait_dialog_view = LayoutInflater.from(_mActivity).inflate(R.layout.layout_waiting_dialog, null, false);
+        tv_type = wait_dialog_view.findViewById(R.id.tv_type);
+        zip_progress = wait_dialog_view.findViewById(R.id.zip_progress);
+        zip_progress.setMax(100);
+        tv_type.setText("正在压缩视频...");
+        dialog_wait = new Dialog(_mActivity, R.style.dialog_loading_zip);
+        dialog_wait.setCanceledOnTouchOutside(false);
+        dialog_wait.setCancelable(false);
+        dialog_wait.setContentView(wait_dialog_view);
+        if (!dialog_wait.isShowing()) {
+            dialog_wait.show();
+        }
+    }
+
+    public void setWait_dialog_text(String s){
+        if (dialog_wait!=null && tv_type !=null){
+            tv_type.setText(s);
+        }
+    }
+
+    public void dismissWaitDialog() {
+        if (dialog_wait != null && dialog_wait.isShowing()) {
+            dialog_wait.dismiss();
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.coahr.fanoftruck.mvp.Base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -39,7 +40,7 @@ public  abstract  class BaseLazyFragment<P extends BaseContract.Presenter> exten
         if (tittleView != null) {
             tittleView.setPadding(tittleView.getPaddingLeft(), ScreenUtils.getStatusBarHeight(BaseApplication.mContext), tittleView.getPaddingRight(), tittleView.getPaddingBottom());
         }
-        addFooterView = inflater.inflate(R.layout.recyclerview_item_foot, container, false);
+
         UpdateUI(view.getRootView());
         return view;
     }
@@ -65,6 +66,9 @@ public  abstract  class BaseLazyFragment<P extends BaseContract.Presenter> exten
             hasload = true;
         }
     }
-
+public View getFootView(Context context){
+    View inflate = LayoutInflater.from(context).inflate(R.layout.recyclerview_item_foot, null, false);
+    return inflate;
+}
 
 }

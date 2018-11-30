@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.coahr.fanoftruck.R;
+
 import butterknife.ButterKnife;
 
 /**
@@ -19,7 +21,7 @@ public abstract class BaseChildFragment<P extends BaseContract.Presenter> extend
 
     private boolean hasload = false;
 
-
+    public View  child_footView;
     /**
      * onHiddenChanged()方法是否被调用，当一个fragment第一个被add到activity，这个方法不调用，使用懒加载的话，这个fragment的initview和initdata不调用
      * 所以这里做一个判断方法是否被调用来判断这个fragment是不是第一个被加入的fragment，然后在onstart（）中调用这个fragment的initview和initdata（）；
@@ -38,6 +40,7 @@ public abstract class BaseChildFragment<P extends BaseContract.Presenter> extend
 //        initView();
 //        initData();
 //        EventBus.getDefault().register(this);
+        child_footView =inflater.inflate(R.layout.recyclerview_item_foot, container, false);
         return view;
     }
 

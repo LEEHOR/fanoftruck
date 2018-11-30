@@ -12,14 +12,18 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.coahr.fanoftruck.R;
+import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.ScreenUtils;
 import com.coahr.fanoftruck.Utils.SideBar;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.model.Bean.CityBean;
+import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 import com.coahr.fanoftruck.mvp.view.decoration.RecyclerSimplePadding_color;
 import com.coahr.fanoftruck.mvp.view.decoration.RecyclerViewItemDecoration_StickyHeader;
+import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
 import com.socks.library.KLog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.widget.LinearLayout.*;
@@ -35,7 +39,6 @@ public class PopupWindows_city {
     private SideBar sidebar;
     private LinearLayoutManager linearLayoutManager;
     private RecyclerViewCity_adapter recyclerView_City_adapter;
-    private List<CityBean> sortEntity;
     private TextView text_dialog;
     private int measuredHeight2;
     private int measuredHeight1;
@@ -48,6 +51,8 @@ public class PopupWindows_city {
     private int yoff;
     private Recycler_sort_adapter recycler_sort_adapter;
     private LinearLayoutManager linearLayoutManager1;
+    private List<CityBean> cityBeanList=new ArrayList<>();
+    private List<CityBean> sortEntity;
 
     public void showPopupWindows( View view, int xoff, int yoff) {
         this.view = view;
@@ -86,7 +91,7 @@ public class PopupWindows_city {
                 text_dialog.setVisibility(GONE);
             }
         });
-        recycler_ct.addItemDecoration(new RecyclerSimplePadding_color(BaseApplication.mContext));
+        recycler_ct.addItemDecoration(new SpacesItemDecoration(0,DensityUtils.dp2px(BaseApplication.mContext,1),BaseApplication.mContext.getResources().getColor(R.color.material_grey_200)));
 
         // 创建PopupWindow对象，其中：
         // 第一个参数是用于PopupWindow中的View，第二个参数是PopupWindow的宽度，
@@ -94,24 +99,32 @@ public class PopupWindows_city {
 
         getPopupWindow();
     }
-    public PopupWindows_city setCityList(List<CityBean> list, int selectedPosition) {
+
+    public PopupWindows_city setCityList(List<CityInfoBean.JdataEntity.CityListEntity> list, int selectedPosition) {
         sidebar.setVisibility(View.VISIBLE);
         recycler_ct.setLayoutManager(linearLayoutManager);
         recycler_ct.setAdapter(recyclerView_City_adapter);
-        sortEntity = CityBean.getSortEntity(list);
+        for (CityInfoBean.JdataEntity.CityListEntity Entity : list) {
+            for (CityInfoBean.JdataEntity.CityListEntity.CityEntity cityEntity : Entity.getCity()) {
+                cityBeanList.add(new CityBean(cityEntity.getC_name(), cityEntity.getC_code()));
+            }
+        }
+        //排序
+        sortEntity = CityBean.getSortEntity(cityBeanList);
+        sortEntity.add(0,new CityBean("全国","全国"));
         if (recycler_ct.getItemDecorationCount() == 1){
         recycler_ct.addItemDecoration(new RecyclerViewItemDecoration_StickyHeader(BaseApplication.mContext, new RecyclerViewItemDecoration_StickyHeader.DecorationCallback() {
             @Override
             public long getGroupId(int position) {
-                return Character.toUpperCase(sortEntity.get(position).getCity_code().charAt(0));
+                return Character.toUpperCase(PopupWindows_city.this.sortEntity.get(position).getCity_code().charAt(0));
             }
 
             @Override
             public String getGroupFirstLine(int position) {
-                return sortEntity.get(position).getCity_code().substring(0, 1).toUpperCase();
+                return PopupWindows_city.this.sortEntity.get(position).getCity_code().substring(0, 1).toUpperCase();
             }
         }));
-        recyclerView_City_adapter.setData(sortEntity);
+            recyclerView_City_adapter.setData(this.sortEntity);
         recyclerView_City_adapter.setListener(new RecyclerViewCity_adapter.getCity_adapter() {
             @Override
             public void getCity_adapter(String string) {
@@ -139,6 +152,9 @@ public class PopupWindows_city {
                 @Override
                 public void getSort_adapter(String string,int position) {
                     if (listener != null) {
+                        if (window.isShowing()) {
+                            window.dismiss();
+                        }
                         listener.getSort(string,type,position);
                     }
                 }
@@ -150,13 +166,11 @@ public class PopupWindows_city {
         window = new PopupWindow(inflate);
         window.setWidth(ScreenUtils.getScreenWidth(BaseApplication.mContext));
         window.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-        KLog.d("高度", ScreenUtils.getScreenHeight(BaseApplication.mContext), i);
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         // 设置PopupWindow是否能响应外部点击事件
-        window.setOutsideTouchable(false);
+        window.setOutsideTouchable(true);
         // 设置PopupWindow是否能响应点击事件
-        window.setTouchable(true);
-        window.setFocusable(false);
+        window.setFocusable(true);
         window.setAnimationStyle(R.style.Commodity_Condition_Popupwindow_Animation);
         // 显示PopupWindow，其中：
         // 第一个参数是PopupWindow的锚点，第二和第三个参数分别是PopupWindow相对锚点的x、y偏移
@@ -201,6 +215,7 @@ public class PopupWindows_city {
             window.dismiss();
         }
     }
+
 
     public void showAsDropDown() {//以类似dropdown形式展示
         if (window != null && !window.isShowing()) {

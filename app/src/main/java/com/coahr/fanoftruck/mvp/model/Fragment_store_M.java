@@ -6,11 +6,15 @@ import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.Base.SearchBean;
 import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_C;
+import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 import javax.inject.Inject;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Leehor
@@ -108,6 +112,23 @@ public class Fragment_store_M extends BaseModel<Fragment_store_C.Presenter> impl
                             }
                         }
 
+                    }
+                }));
+    }
+
+    @Override
+    public void getCityList(Map<String, String> map) {
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<CityInfoBean>(getApiService().getCity(map.get("token"))))
+                .subscribeWith(new SimpleDisposableSubscriber<CityInfoBean>() {
+                    @Override
+                    public void _onNext(CityInfoBean cityInfoBean) {
+                        if (getPresenter() != null) {
+                            if (cityInfoBean.getCode() == 0) {
+                                getPresenter().getCityListSuccess(cityInfoBean);
+                            } else {
+                                getPresenter().getCityListFailure(cityInfoBean.getMsg());
+                            }
+                        }
                     }
                 }));
     }

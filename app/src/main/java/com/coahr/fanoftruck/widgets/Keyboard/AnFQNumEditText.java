@@ -33,7 +33,7 @@ public class AnFQNumEditText extends RelativeLayout {
     private TextView tvNum;//字数显示TextView
     private View vLine;//底部横线
     private String TYPES = SINGULAR;//类型
-    private int MaxNum = 100;//最大字符
+    private int MaxNum = 50;//最大字符
     private String hint = "";
 
     private OnTextInputListener onTextInputListener;

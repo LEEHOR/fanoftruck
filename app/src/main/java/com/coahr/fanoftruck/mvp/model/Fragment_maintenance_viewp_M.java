@@ -4,6 +4,9 @@ import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.Utils.BaiDuLocation.BaiduLocationHelper;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_maintenance_viewp_C;
+import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -42,5 +45,41 @@ public class Fragment_maintenance_viewp_M extends BaseModel<Fragment_maintenance
     @Override
     public void startLocation() {
 
+    }
+
+    @Override
+    public void getVideoSearch(Map<String, String> map) {
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<MaintenanceVideoList>(getApiService().getMaintenanceVideoList(map.get("video_name"),
+                map.get("video_type"),map.get("start"),map.get("length"))))
+                .subscribeWith(new SimpleDisposableSubscriber<MaintenanceVideoList>() {
+                    @Override
+                    public void _onNext(MaintenanceVideoList maintenanceVideoList) {
+                        if (getPresenter() != null) {
+                            if (maintenanceVideoList.getCode()==0) {
+                                getPresenter().getVideoSearchSuccess(maintenanceVideoList);
+                            }else {
+                                getPresenter().getVideoSearchFailure(maintenanceVideoList.getMsg());
+                            }
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void getVideoSearchMore(Map<String, String> map) {
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<MaintenanceVideoList>(getApiService().getMaintenanceVideoList(map.get("video_name"),
+                map.get("video_type"),map.get("start"),map.get("length"))))
+                .subscribeWith(new SimpleDisposableSubscriber<MaintenanceVideoList>() {
+                    @Override
+                    public void _onNext(MaintenanceVideoList maintenanceVideoList) {
+                        if (getPresenter() != null) {
+                            if (maintenanceVideoList.getCode()==0) {
+                                getPresenter().getVideoSearchMoreSuccess(maintenanceVideoList);
+                            }else {
+                                getPresenter().getVideoSearchMoreFailure(maintenanceVideoList.getMsg());
+                            }
+                        }
+                    }
+                }));
     }
 }

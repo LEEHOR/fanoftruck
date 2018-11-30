@@ -2,9 +2,12 @@ package com.coahr.fanoftruck.widgets.TittleBar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -109,14 +112,17 @@ public class MyTittleBar extends RelativeLayout {
      * 搜索框
      * @return
      */
-    public TextView getEditSearch()
+    public EditText getEditSearch()
     {
-        return (TextView) view.findViewById(R.id.search);
+        EditText viewById = view.findViewById(R.id.search);
+        viewById.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+
+        return viewById;
     }
 
-    public TextView getEditSearch(int resId)
+    public EditText getEditSearch(int resId)
     {
-        return (TextView) view.findViewById(resId);
+        return (EditText) view.findViewById(resId);
     }
 
 }

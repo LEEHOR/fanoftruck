@@ -23,9 +23,7 @@ public class Recycler_sort_adapter extends BaseQuickAdapter<String,BaseViewHolde
     @Override
     protected void convert(final BaseViewHolder helper, final String item) {
         helper.setText(R.id.tv_city,item);
-        if (helper.getAdapterPosition() == selectedPosition) {
-            helper.setTextColor(R.id.tv_city, R.color.prominent_text_color);
-        }
+
         helper.getView(R.id.tv_city).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,6 +32,9 @@ public class Recycler_sort_adapter extends BaseQuickAdapter<String,BaseViewHolde
                 }
             }
         });
+        if (helper.getAdapterPosition() == selectedPosition) {
+            helper.setTextColor(R.id.tv_city, R.color.material_blue_500);
+        }
     }
     public void setData(List<String> data, int selectedPosition) {
         this.selectedPosition = selectedPosition;

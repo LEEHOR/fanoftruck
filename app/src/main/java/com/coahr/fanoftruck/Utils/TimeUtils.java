@@ -29,4 +29,18 @@ public class TimeUtils {
             return startTime;
         }
     }
+
+    public static String getStringDate_Normal(String date){
+        String startTime=null;
+        if (date != null) {
+            long l = Long.parseLong(date);
+            Date d = new Date(l);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            startTime = sdf.format(d);
+        } else {
+            startTime="暂无";
+        }
+
+        return startTime;
+    }
 }

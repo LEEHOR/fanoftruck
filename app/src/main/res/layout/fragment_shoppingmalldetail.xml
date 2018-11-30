@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_grey_200"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/shopping_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp_36">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/dp_36"
+                    android:orientation="vertical">
+
+                    <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tittle="商品详情" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/material_grey_250" />
+
+                    <com.donkingliang.banner.CustomBanner
+                        android:id="@+id/custom_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@color/colorPrimary" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:background="@color/colorPrimary"
+                        android:orientation="vertical"
+                        android:padding="@dimen/edge_margin">
+
+                        <TextView
+                            android:id="@+id/mall_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="dsdsdsdsds"
+                            android:textColor="@color/material_grey_1000"
+                            android:textSize="@dimen/dp_16" />
+
+                        <TextView
+                            android:id="@+id/mall_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:text="dsdsdsdsds"
+                            android:textColor="@color/red_ea3340"
+                            android:textSize="@dimen/dp_14" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/send_address_rel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:background="@color/colorPrimary"
+                        android:padding="@dimen/edge_margin">
+
+                        <TextView
+                            android:id="@+id/text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:drawableRight="@mipmap/images"
+                            android:drawablePadding="@dimen/dp_8"
+                            android:text="送至"
+                            android:textColor="@color/material_grey_1000"
+                            android:textSize="@dimen/dp_14" />
+
+                        <TextView
+                            android:id="@+id/send_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginRight="@dimen/dp_8"
+                            android:layout_toLeftOf="@+id/iv_1"
+                            android:layout_toRightOf="@+id/text1"
+                            android:ellipsize="end"
+                            android:gravity="left|center_vertical"
+                            android:lines="1"
+                            android:textColor="@color/material_grey_1000"
+                            android:textSize="@dimen/dp_14" />
+
+                        <ImageView
+                            android:id="@+id/iv_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/images" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/layout_shopping_tagtitle" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_1"
+                            android:background="@color/material_grey_250" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/mall_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/shopping_now"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/material_blue_550"
+                        android:gravity="center"
+                        android:text="立即购买"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/dp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/append_shoppingCar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/red_ea3340"
+                        android:gravity="center"
+                        android:text="加入购物车"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/dp_14" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</FrameLayout>

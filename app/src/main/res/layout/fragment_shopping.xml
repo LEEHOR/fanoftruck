@@ -5,60 +5,102 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
-<com.coahr.fanoftruck.widgets.ShoppingToolbar
+<com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+    android:id="@+id/mytitle"
+    app:tittle="商城"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-</com.coahr.fanoftruck.widgets.ShoppingToolbar>
+</com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar>
     <View
         android:layout_width="match_parent"
         android:background="@color/material_grey_200"
         android:layout_height="1dp"/>
-    <LinearLayout
-        android:padding="@dimen/dp_5"
+    <com.coahr.fanoftruck.widgets.DropDown.ConditionSelectView
+        android:id="@+id/rl_store_condition"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Spinner
-           android:layoutDirection="locale"
-            android:dropDownListViewStyle="@style/XSpinnerStyle"
-            android:spinnerMode="dropdown"
-            android:animateLayoutChanges="true"
-            android:padding="@dimen/dp_5"
-            android:id="@+id/spinner_left"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-        <Spinner
-            android:dropDownListViewStyle="@style/XSpinnerStyle"
-            android:animateLayoutChanges="true"
-            android:padding="@dimen/dp_5"
-            android:id="@+id/spinner_center"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-        <Spinner
-            android:dropDownListViewStyle="@style/XSpinnerStyle"
-            android:padding="@dimen/dp_5"
-            android:id="@+id/spinner_right"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        android:layout_height="@dimen/conditon_menu_height"
+        android:background="@drawable/bg_fff_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:hidenIcon="@mipmap/down"
+        app:itemCount="3"
+        app:showIcon="@mipmap/up">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:textSize="@dimen/dp_14"
+                android:id="@+id/tv_mall_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="全部品牌" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:textSize="@dimen/dp_14"
+                android:id="@+id/tv_mall_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="分类" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:textSize="@dimen/dp_14"
+                android:id="@+id/tv_mall_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="排序" />
+
+        </RelativeLayout>
+
+    </com.coahr.fanoftruck.widgets.DropDown.ConditionSelectView>
     <View
         android:layout_width="match_parent"
         android:background="@color/material_grey_200"
         android:layout_height="1dp"/>
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/shopping_swipe"
         android:layout_marginTop="@dimen/dp_5"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:background="@color/colorPrimary"
+            android:id="@+id/shopping_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-      <include
-          android:id="@+id/shopping_include"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          layout="@layout/layout_recyclerview"/>
+        </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:background="@color/colorPrimary"
+            android:visibility="gone"
+            android:id="@+id/search_re"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </FrameLayout>
+
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

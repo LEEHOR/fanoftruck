@@ -1,8 +1,13 @@
 package com.coahr.fanoftruck.Utils.imageLoader;
 
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.widget.ImageView;
@@ -13,12 +18,14 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 
 
 /**
@@ -33,23 +40,80 @@ public class Imageloader {
     private static Bitmap bitmap;
 
     public static void loadImage(String path, final ImageView targetImage) {
-      //  setAnimator(targetImage);
-        //R.drawable.image_loading_anim_progress
+
         Glide.with(BaseApplication.mContext).load(path).crossFade().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).listener(new RequestListener<String, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-               // anim.cancel();
-              //  stopAnim(targetImage);
+
                 return false;
             }
 
             @Override
             public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-              //  anim.cancel();
-              //  stopAnim(targetImage);
+
                 return false;
             }
         }).into(targetImage);
+    }
+
+    /**
+     *  服务器返回url，通过url去获取视频的第一帧
+     *  Android 原生给我们提供了一个MediaMetadataRetriever类
+     *  提供了获取url视频第一帧的方法,返回Bitmap对象
+     *
+     *  @param videoUrl
+     *  @return
+     */
+    public static Bitmap getNetVideoBitmap(String videoUrl) {
+        Bitmap bitmap = null;
+
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        try {
+            if (videoUrl.startsWith("http")) {  //网络视频
+                //根据url获取缩略图
+                retriever.setDataSource(videoUrl, new HashMap());
+            }else {                               //本地视频
+                retriever.setDataSource(videoUrl);
+            }
+            //获得第一帧图片
+            bitmap = retriever.getFrameAtTime();
+
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } finally {
+            retriever.release();
+        }
+        return bitmap;
+    }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public static Bitmap createVideoThumbnail(String url, int width, int height) {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        int kind = MediaStore.Video.Thumbnails.MINI_KIND;
+        try {
+            if (Build.VERSION.SDK_INT >=21) {
+                retriever.setDataSource(url, new HashMap<String, String>());
+            } else {
+                retriever.setDataSource(url);
+            }
+            bitmap = retriever.getFrameAtTime();
+        } catch (IllegalArgumentException ex) {
+            // Assume this is a corrupt video file
+        } catch (RuntimeException ex) {
+            // Assume this is a corrupt video file.
+        } finally {
+            try {
+                retriever.release();
+            } catch (RuntimeException ex) {
+                // Ignore failures while cleaning up.
+            }
+        }
+        if (kind == MediaStore.Images.Thumbnails.MICRO_KIND && bitmap != null) {
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height,
+                    ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+        }
+        return bitmap;
     }
 
     public static void loadGif(int resId, final ImageView targetImage) {
@@ -57,20 +121,17 @@ public class Imageloader {
     }
 
     public static void loadImage(Uri path, final ImageView targetImage) {
-        // Glide.with(BaseApplication.mContext).load(path).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).placeholder(R.mipmap.primary).into(targetImage);
 
-        //
-       // setAnimator(targetImage);
         Glide.with(BaseApplication.mContext).load(path).crossFade().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).listener(new RequestListener<Uri, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, Uri model, Target<GlideDrawable> target, boolean isFirstResource) {
-               // anim.cancel();
+
                 return false;
             }
 
             @Override
             public boolean onResourceReady(GlideDrawable resource, Uri model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-               // anim.cancel();
+
                 return false;
             }
         }).into(targetImage);

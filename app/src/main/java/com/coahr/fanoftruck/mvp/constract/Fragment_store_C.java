@@ -3,6 +3,7 @@ package com.coahr.fanoftruck.mvp.constract;
 import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.SearchBean;
+import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 
 import java.util.Map;
@@ -33,6 +34,10 @@ public interface Fragment_store_C {
         void getSearchFailure(String failure);
 
 
+        void getCityListSuccess(CityInfoBean cityInfoBean);
+
+        void getCityListFailure(String failure);
+
     }
 
     interface Presenter extends BaseContract.Presenter {
@@ -62,6 +67,12 @@ public interface Fragment_store_C {
 
         void getSearchFailure(String failure);
 
+
+        void getCityList(Map<String,String> map);
+
+        void getCityListSuccess(CityInfoBean cityInfoBean);
+
+        void getCityListFailure(String failure);
     }
 
     interface Model extends BaseContract.Model {
@@ -71,6 +82,6 @@ public interface Fragment_store_C {
 
         void getSearchMap(Map<String,String> map);
 
-
+        void getCityList(Map<String,String> map);
     }
 }

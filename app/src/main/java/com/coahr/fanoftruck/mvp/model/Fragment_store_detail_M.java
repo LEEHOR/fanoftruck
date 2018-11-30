@@ -3,7 +3,6 @@ package com.coahr.fanoftruck.mvp.model;
 import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.Utils.BaiDuLocation.BaiduLocationHelper;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
-import com.coahr.fanoftruck.mvp.constract.Fragment_business_C;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_detail_C;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
 

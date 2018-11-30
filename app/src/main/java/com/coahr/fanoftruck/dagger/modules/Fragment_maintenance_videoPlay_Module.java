@@ -1,7 +1,6 @@
 package com.coahr.fanoftruck.dagger.modules;
 
-import com.coahr.fanoftruck.mvp.view.Home.Fragment_MaintenanceVideo_viewPage;
-import com.coahr.fanoftruck.mvp.view.Home.Fragment_maintenance_videoPlay;
+import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_maintenance_videoPlay;
 
 import dagger.Module;
 import dagger.Provides;

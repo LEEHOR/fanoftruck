@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.mvp.model.Bean.CityBean;
+import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 
 import java.util.List;
 

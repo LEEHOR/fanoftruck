@@ -2,12 +2,9 @@ package com.coahr.fanoftruck.mvp.presenter;
 
 import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
-import com.coahr.fanoftruck.mvp.constract.Fragment_business_C;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_detail_C;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
-import com.coahr.fanoftruck.mvp.model.Fragment_business_M;
 import com.coahr.fanoftruck.mvp.model.Fragment_store_detail_M;
-import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_store_detail;
 
 import java.util.Map;

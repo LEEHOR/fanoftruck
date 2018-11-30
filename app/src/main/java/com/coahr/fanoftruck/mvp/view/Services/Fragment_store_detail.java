@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -72,6 +73,10 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
     ImageView iv_play_tel;
     @BindView(R.id.store_detail_businessScope)
     RecyclerView store_detail_businessScope;
+    @BindView(R.id.tv_bottom_left)
+    TextView tv_bottom_left;
+    @BindView(R.id.tv_bottom_right)
+    TextView tv_bottom_right;
 
     private String s_id;
     private boolean isLoading;
@@ -79,7 +84,7 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
     private List<String> bannerList =new ArrayList<>();
     private List<StoreDetailBean.JdataEntity.ServiceEntity> service;
     private Store_lable_adapter store_lable_adapter;
-    private StaggeredGridLayoutManager staggeredGridLayoutManager;
+    private GridLayoutManager gridLayoutManager;
     private LinearLayoutManager linearLayoutManager;
     private Store_score_adapter store_score_adapter;
     private List<StoreDetailBean.JdataEntity.StationEntity.SServiceTagEntity> s_service_tag;
@@ -88,6 +93,9 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
     private NavigatorDialogFragment navigatorDialogFragment = NavigatorDialogFragment.newInstance();
     private String s_latitude;
     private String s_longitude;
+    private String s_name;
+    private String s_address;
+    private float distance;
 
     public static Fragment_store_detail newInstance(String id) {
         Fragment_store_detail fragment_store_detail = new Fragment_store_detail();
@@ -162,16 +170,28 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
                 }
             }
         });
+        tv_bottom_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start(Fragment_storeOrder.newInstance(1, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
+            }
+        });
 
+        tv_bottom_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start(Fragment_storeOrder.newInstance(2, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
+            }
+        });
     }
 
     @Override
     public void initData() {
         final ConfirmPopWindow confirmPopWindow=new ConfirmPopWindow(BaseApplication.mContext);
         s_id = getArguments().getString("s_id");
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(4,StaggeredGridLayoutManager.VERTICAL);
+        gridLayoutManager = new GridLayoutManager(BaseApplication.mContext, 4);
         store_lable_adapter = new Store_lable_adapter();
-        store_tag.setLayoutManager(staggeredGridLayoutManager);
+        store_tag.setLayoutManager(gridLayoutManager);
         store_tag.setAdapter(store_lable_adapter);
         store_tag.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(BaseApplication.mContext,4),DensityUtils.dp2px(BaseApplication.mContext,4)),getResources().getColor(R.color.colorWhite));
 
@@ -232,7 +252,9 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
             }
 
             //门店名
-            tv_store_name.setText(storeDetailBean.getJdata().getStation().getS_name());
+            s_name = storeDetailBean.getJdata().getStation().getS_name();
+            distance = storeDetailBean.getJdata().getStation().getDistance();
+            tv_store_name.setText(s_name);
             //门店营业时间
             tv_store_business_hours.setText(storeDetailBean.getJdata().getStation().getS_starttime()+"--"+storeDetailBean.getJdata().getStation().getS_endtime());
             //门店标签
@@ -240,13 +262,15 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
             KLog.d("标签",s_service_tag.size(),s_service_tag.get(0).getTag());
             store_lable_adapter.setNewData(s_service_tag);
             //门店地址
-            tv_store_address.setText(storeDetailBean.getJdata().getStation().getS_address());
+            s_address = storeDetailBean.getJdata().getStation().getS_address();
+            tv_store_address.setText(s_address);
             //门店经纬度
             s_latitude = storeDetailBean.getJdata().getStation().getS_latitude();
             s_longitude = storeDetailBean.getJdata().getStation().getS_longitude();
             //门店电话
             s_phone = storeDetailBean.getJdata().getS_phone();
             tv_tel.setText(s_phone);
+
             //门店经营范围
             service = storeDetailBean.getJdata().getService();
             service.add(0,new StoreDetailBean.JdataEntity.ServiceEntity(null,null,"说明","价","格"));

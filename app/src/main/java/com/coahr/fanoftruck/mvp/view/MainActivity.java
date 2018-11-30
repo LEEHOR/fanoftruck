@@ -1,16 +1,19 @@
 package com.coahr.fanoftruck.mvp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ActivityManagerUtils;
+import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseActivity;
+import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.constract.MainActivityC;
 import com.coahr.fanoftruck.mvp.presenter.MainActivityP;
-import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business;
+import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business_viewPager;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_Myself;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Services;
@@ -48,13 +51,13 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
         if (savedInstanceState != null) {
             mFragments[0] = findFragment(Fragment_Home.class);
             mFragments[1] = findFragment(Fragment_Shopping.class);
-            mFragments[2] = findFragment(Fragment_Business.class);
+            mFragments[2] = findFragment(Fragment_Business_viewPager.class);
             mFragments[3] = findFragment(Fragment_Services.class);
             mFragments[4] = findFragment(Fragment_Myself.class);
         } else {
             mFragments[0] = Fragment_Home.newInstance();
             mFragments[1] = Fragment_Shopping.newInstance();
-            mFragments[2] = Fragment_Business.newInstance();
+            mFragments[2] = Fragment_Business_viewPager.newInstance();
             mFragments[3] = Fragment_Services.newInstance();
             mFragments[4] = Fragment_Myself.newInstance();
         }
@@ -77,7 +80,14 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
         myBottomNavigation.setOnTabPositionListener(new MyBottomNavigation.OnTabPositionListener() {
             @Override
             public void onPositionTab(int position) {
-                showFragment(position);
+                if(position==4 && !PreferenceUtils.contains(BaseApplication.mContext,Constants.sessionId_key)){
+                    Intent intent = new Intent(MainActivity.this,ContainerActivity.class);
+                    intent.putExtra("tofragment",Constants.Fragment_login);
+                    startActivityForResult(intent,1);
+                } else {
+                    showFragment(position);
+                }
+
             }
         });
 
@@ -111,5 +121,10 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
     @Override
     public void onLocationFailure(int failure) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

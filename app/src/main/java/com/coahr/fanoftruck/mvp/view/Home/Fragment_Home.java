@@ -2,7 +2,9 @@ package com.coahr.fanoftruck.mvp.view.Home;
 
 import android.content.Intent;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.R;
@@ -28,8 +30,16 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
     @Inject
     Fragment_home_P p;
 
-    @BindView(R.id.cardview_home)
-    CardView cardview_home;
+    @BindView(R.id.lin_1)
+    LinearLayout lin_1;
+    @BindView(R.id.lin_2)
+    LinearLayout lin_2;
+    @BindView(R.id.lin_3)
+    LinearLayout lin_3;
+    @BindView(R.id.lin_4)
+    LinearLayout lin_4;
+    @BindView(R.id.lin_5)
+    LinearLayout lin_5;
     public static Fragment_Home newInstance() {
         return new Fragment_Home();
     }
@@ -46,7 +56,8 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
 
     @Override
     public void initView() {
-    cardview_home.setOnClickListener(new View.OnClickListener() {
+
+        lin_1.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent intent=new Intent(getActivity(),ContainerActivity.class);
@@ -54,6 +65,39 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
             startActivity(intent);
         }
     });
+        lin_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_help);
+                startActivity(intent);
+            }
+        });
+        lin_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_maintenance);
+                startActivity(intent);
+            }
+        });
+        lin_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_maintenance);
+                startActivity(intent);
+            }
+        });
+        lin_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_maintenance);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

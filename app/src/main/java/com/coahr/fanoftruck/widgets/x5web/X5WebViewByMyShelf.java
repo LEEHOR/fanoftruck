@@ -31,7 +31,7 @@ public class X5WebViewByMyShelf extends WebView {
     public X5WebViewByMyShelf(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         this.setWebViewClient(client);
-        initWebViewSettings();
+
         this.getView().setClickable(true);
         this.getView().setOnTouchListener(new OnTouchListener() {
             @Override
@@ -40,6 +40,7 @@ public class X5WebViewByMyShelf extends WebView {
                 return false;
             }
         });
+        initWebViewSettings();
     }
     private void initWebViewSettings() {
         WebSettings webSetting = this.getSettings();
@@ -64,7 +65,8 @@ public class X5WebViewByMyShelf extends WebView {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
             webSetting.setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
-
+        //getX5WebViewExtension().setScrollBarFadingEnabled(false);
+       // setHorizontalScrollBarEnabled(false);
         // this.getSettingsExtension().setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);//extension
         // settings 的设计
     }
