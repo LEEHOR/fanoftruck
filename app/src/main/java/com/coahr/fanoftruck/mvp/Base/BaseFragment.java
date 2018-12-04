@@ -83,7 +83,7 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
             tittleView.setPadding(tittleView.getPaddingLeft(), ScreenUtils.getStatusBarHeight(BaseApplication.mContext), tittleView.getPaddingRight(), tittleView.getPaddingBottom());
         }
         UpdateUI(view.getRootView());
-        addFooterView = inflater.inflate(R.layout.recyclerview_item_foot, container, false);
+        addFooterView = inflater.inflate(R.layout.recyclerview_item_foot, null, false);
         initView();
         initData();
         return view;

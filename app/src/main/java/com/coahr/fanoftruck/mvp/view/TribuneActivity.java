@@ -3,18 +3,8 @@ package com.coahr.fanoftruck.mvp.view;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.mvp.Base.BaseSupportActivity;
-import com.mob.bbssdk.API;
-import com.mob.bbssdk.APICallback;
-import com.mob.bbssdk.BBSSDK;
-import com.mob.bbssdk.api.ForumAPI;
 import com.mob.bbssdk.gui.views.MainViewInterface;
-import com.mob.bbssdk.model.ForumForum;
 import com.mob.tools.utils.ResHelper;
-import com.socks.library.KLog;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Leehor
  * on 2018/11/21

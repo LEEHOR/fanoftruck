@@ -1,10 +1,13 @@
 package com.coahr.fanoftruck.mvp.presenter;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_addCar_C;
+import com.coahr.fanoftruck.mvp.model.Bean.SaveUserCar;
 import com.coahr.fanoftruck.mvp.model.Fragment_addCar_M;
-import com.coahr.fanoftruck.mvp.view.Myself.Fragment_addCar;
+import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_addCar;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -25,7 +28,7 @@ public class Fragment_addCar_P extends BasePresenter<Fragment_addCar_C.View,Frag
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 
@@ -33,4 +36,26 @@ public class Fragment_addCar_P extends BasePresenter<Fragment_addCar_C.View,Frag
     public void onLocationFailure(int failure) {
 
     }
+
+    @Override
+    public void OnSaveUserCar(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.OnSaveUserCar(map);
+        }
+    }
+
+    @Override
+    public void OnSaveUserCarSuccess(SaveUserCar saveUserCar) {
+        if (getView() != null) {
+            getView().OnSaveUserCarSuccess(saveUserCar);
+        }
+    }
+
+    @Override
+    public void OnSaveUserCarFailure(String failure) {
+        if (getView() != null) {
+            getView().OnSaveUserCarFailure(failure);
+        }
+    }
+
 }

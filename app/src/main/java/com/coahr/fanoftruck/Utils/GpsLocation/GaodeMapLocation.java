@@ -5,6 +5,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
+import com.socks.library.KLog;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +21,7 @@ public class GaodeMapLocation {
     private Set<OnLocationCallBack> locationCallBacks = new HashSet<>();
     private static int LOCATION_COUTNS = 0;
     public GaodeMapLocation() {
-        if (mLocationClient != null) {
+        if (mLocationClient == null) {
             initGaodeMap();
         }
     }
@@ -30,7 +31,6 @@ public class GaodeMapLocation {
         AMapLocationClientOption option = new AMapLocationClientOption();
         //option.setGpsFirst(true);
         option.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        option.setHttpTimeOut(15);
         option.setNeedAddress(true);
         mLocationClient.setLocationOption(option);
 
@@ -66,7 +66,9 @@ public class GaodeMapLocation {
                     for (OnLocationCallBack callBack : locationCallBacks) {
                         callBack.onLocationFailure(aMapLocation.getLocationType());
                     }
+
                 }
+                KLog.d("高德定位",sb.toString()+"\n"+aMapLocation.getErrorCode()+"\n"+aMapLocation.getErrorInfo());
             }
         });
     }

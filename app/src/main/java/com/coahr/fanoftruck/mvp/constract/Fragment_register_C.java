@@ -1,7 +1,6 @@
 package com.coahr.fanoftruck.mvp.constract;
 
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
-import com.coahr.fanoftruck.mvp.model.Bean.LoginBean;
 import com.coahr.fanoftruck.mvp.model.Bean.RegisterBean;
 import com.coahr.fanoftruck.mvp.model.Bean.VerifyCode;
 

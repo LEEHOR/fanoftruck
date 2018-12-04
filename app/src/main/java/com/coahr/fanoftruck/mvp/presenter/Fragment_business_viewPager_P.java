@@ -1,6 +1,6 @@
 package com.coahr.fanoftruck.mvp.presenter;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_business_viewPager_C;
 import com.coahr.fanoftruck.mvp.model.Fragment_business_viewPaget_M;
@@ -28,7 +28,7 @@ public class Fragment_business_viewPager_P extends BasePresenter<Fragment_busine
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
         if (getView() != null) {
             getView().onLocationSuccess(location);
         }

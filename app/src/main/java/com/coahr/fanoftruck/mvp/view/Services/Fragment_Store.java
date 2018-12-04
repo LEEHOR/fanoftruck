@@ -1,10 +1,7 @@
 package com.coahr.fanoftruck.mvp.view.Services;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.KeyBoardUtils;
@@ -26,13 +23,11 @@ import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
-import com.coahr.fanoftruck.mvp.Base.SearchBean;
+import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_C;
-import com.coahr.fanoftruck.mvp.model.Bean.CityBean;
 import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_store_P;
-import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.mvp.view.Services.Adapter.Fragment_store_adapter;
 import com.coahr.fanoftruck.mvp.view.Services.Adapter.OnSearchItemClickListener;
 import com.coahr.fanoftruck.mvp.view.Services.Adapter.SearchAdapter;
@@ -327,11 +322,11 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
-        isLoading=true;
+    public void onLocationSuccess(AMapLocation location) {
         currentPage=0;
         Constants.Latitude=location.getLatitude();
         Constants.Longitude=location.getLongitude();
+        KLog.d("定位成功"+location.getAddress());
         Map map = new HashMap();
         map.put("page", String.valueOf(currentPage));
         map.put("length", String.valueOf(pageLength));
@@ -344,7 +339,7 @@ public class Fragment_Store extends BaseFragment<Fragment_store_C.Presenter> imp
 
     @Override
     public void onLocationFailure(int failure) {
-
+        ToastUtils.showLong(failure+"");
     }
 
     @Override

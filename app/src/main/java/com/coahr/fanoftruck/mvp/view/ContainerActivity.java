@@ -1,25 +1,16 @@
 package com.coahr.fanoftruck.mvp.view;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseSupportActivity;
-import com.coahr.fanoftruck.mvp.Base.EventBusBean;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_RecommendCar;
 import com.coahr.fanoftruck.mvp.view.CallForHelp.CallForHelp_viewPager;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
-import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myCar;
+import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myUerInfo;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_MaintenanceVideo_viewPage;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_ShoppingDetail;
-import com.socks.library.KLog;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by Leehor
@@ -60,7 +51,7 @@ public class ContainerActivity extends BaseSupportActivity {
                 loadRootFragment(R.id.con_fragment, Fragment_RecommendCar.newInstance());
                 break;
             case Constants.Fragment_mycar:
-                loadRootFragment(R.id.con_fragment, Fragment_myCar.newInstance());
+                loadRootFragment(R.id.con_fragment, Fragment_myCar.newInstance(getIntent().getIntExtra("tofragment",0)));
                 break;
         }
     }

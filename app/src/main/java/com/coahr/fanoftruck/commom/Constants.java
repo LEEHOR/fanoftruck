@@ -104,18 +104,18 @@ public class Constants {
     public static final int Fragment_mycar=17;
 
 
-
+    public static final int Fragment_appointment=18;
 
 
     /**
      * PreferenceUtils键
      */
     //sessionId_key
-    public static  String sessionId_key;
+    public static  String sessionId_key="sessionId";
     //user_key
-    public static  String user_key;
+    public static  String user_key="user";
     //token_key
-    public static  String token_key;
+    public static  String token_key="token";
     //uid
-    public static  String uid_key;
+    public static  String uid_key="uid";
 }

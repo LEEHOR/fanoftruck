@@ -2,14 +2,19 @@ package com.coahr.fanoftruck.mvp.model;
 
 import android.support.annotation.Nullable;
 
-import com.coahr.fanoftruck.mvp.Base.SearchBean;
+import com.coahr.fanoftruck.mvp.model.Bean.AppointmentBean;
+import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
+import com.coahr.fanoftruck.mvp.model.Bean.CarDefaultBean;
+import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AddDiscuss;
+import com.coahr.fanoftruck.mvp.model.Bean.CarListBean;
 import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 import com.coahr.fanoftruck.mvp.model.Bean.ForgetPass;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginBean;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoDiscussList;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideo_dz;
 import com.coahr.fanoftruck.mvp.model.Bean.RegisterBean;
+import com.coahr.fanoftruck.mvp.model.Bean.SaveUserCar;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallBean;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
@@ -200,4 +205,68 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(ApiContact.forgertPass_VerifyCode)
     Call<VerifyCode> forgertPass_VerifyCode(@Field("phone") String phone);
+
+
+    /**
+     * 保存我的爱车
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.Save_use_Car)
+    Call<SaveUserCar> Save_use_Car(@Field("token") String token, @Field("car_frameno") String car_frameno, @Field("car_no") String car_no);
+
+
+    /**
+     * 车辆列表
+     * @param token
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.Car_list)
+    Call<CarListBean> car_list(@Field("token") String token);
+
+
+    /**
+     * 设置默认车辆
+     * @param token
+     * @param car_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.set_car_default)
+    Call<CarDefaultBean> set_car_default(@Field("token") String token, @Field("car_id") String car_id);
+
+
+    /**
+     * 删除车辆
+     * @param token
+     * @param car_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.del_car)
+    Call<CarDefaultBean> del_car(@Field("token") String token,@Field("car_id") String car_id);
+
+
+    /**
+     * 预约提交订单
+     * @param token
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.appointment)
+    Call<AppointmentBean> appointment_order(@Field("token") String token, @Field("car_frameno") String car_frameno
+            ,@Field("car_no") String car_no,@Field("username") String username
+            ,@Field("telephone") String telephone,@Field("appoint_time") String appoint_time
+            ,@Field("service_item") String service_item,@Field("description") String description
+            ,@Field("s_type") String s_type);
+
+    /**
+     * 预约默认加载
+     * @param token
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.appointmentDefault)
+    Call<AppointmentDefaultBean> appointmentDefault(@Field("token") String token);
+
 }

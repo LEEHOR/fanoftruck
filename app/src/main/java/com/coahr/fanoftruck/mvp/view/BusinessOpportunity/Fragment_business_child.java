@@ -2,7 +2,7 @@ package com.coahr.fanoftruck.mvp.view.BusinessOpportunity;
 
 import android.os.Bundle;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.mvp.Base.BaseChildFragment;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
@@ -48,7 +48,7 @@ public class Fragment_business_child extends BaseChildFragment<Fragment_business
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 

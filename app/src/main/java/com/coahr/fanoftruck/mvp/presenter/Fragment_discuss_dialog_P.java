@@ -1,15 +1,11 @@
 package com.coahr.fanoftruck.mvp.presenter;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_discuss_dialog_C;
-import com.coahr.fanoftruck.mvp.constract.Fragment_help_C;
 import com.coahr.fanoftruck.mvp.model.Bean.AddDiscuss;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoDiscussList;
-import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.model.Fragment_discuss_dialog_M;
-import com.coahr.fanoftruck.mvp.model.Fragment_help_M;
-import com.coahr.fanoftruck.mvp.view.CallForHelp.Fragment_help;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_discuss;
 
 import java.util.Map;
@@ -36,7 +32,7 @@ public class Fragment_discuss_dialog_P extends BasePresenter<Fragment_discuss_di
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
         if (getView() != null) {
             getView().onLocationSuccess(location);
         }

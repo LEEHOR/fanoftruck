@@ -2,7 +2,6 @@ package com.coahr.fanoftruck.mvp.constract;
 
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.model.Bean.ForgetPass;
-import com.coahr.fanoftruck.mvp.model.Bean.RegisterBean;
 import com.coahr.fanoftruck.mvp.model.Bean.VerifyCode;
 
 import java.util.Map;

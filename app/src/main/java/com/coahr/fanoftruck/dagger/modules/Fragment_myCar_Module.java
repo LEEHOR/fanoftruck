@@ -1,7 +1,6 @@
 package com.coahr.fanoftruck.dagger.modules;
 
-import com.coahr.fanoftruck.mvp.view.CallForHelp.Fragment_help;
-import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myCar;
+import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
 
 import dagger.Module;
 import dagger.Provides;

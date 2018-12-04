@@ -1,9 +1,5 @@
 package com.coahr.fanoftruck.Utils.GpsLocation;
 
-import com.baidu.location.BDAbstractLocationListener;
-import com.baidu.location.BDLocation;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.socks.library.KLog;
 
@@ -14,9 +10,10 @@ import java.util.Set;
  * Created by Leehor
  * on 2018/11/6
  * on 12:44
+ * 弃用
  */
 public class BaiduLocationHelper {
-    // 百度地图获取经纬度
+   /* // 百度地图获取经纬度
     private LocationClient locationClient;
     private static final int UPDATE_TIME = 0;
     private static int LOCATION_COUTNS = 0;
@@ -127,5 +124,5 @@ public class BaiduLocationHelper {
 
         void onLocationFailure(int locType);//返回定位错误码
 
-    }
+    }*/
 }

@@ -4,10 +4,9 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.commom.Constants;
-import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_services_C;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_services_P;
@@ -62,7 +61,7 @@ public class Fragment_Services extends BaseFragment<Fragment_services_C.Presente
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 

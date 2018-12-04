@@ -3,7 +3,7 @@ package com.coahr.fanoftruck.mvp.view.CallForHelp;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_help_C;
@@ -54,7 +54,7 @@ public class Fragment_help extends BaseFragment<Fragment_help_C.Presenter> imple
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 

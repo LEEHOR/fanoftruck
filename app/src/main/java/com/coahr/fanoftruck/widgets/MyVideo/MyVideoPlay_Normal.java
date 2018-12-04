@@ -72,11 +72,6 @@ public class MyVideoPlay_Normal extends JzvdStd {
     @Override
     public void setUp(String url, String title, int screen) {
         super.setUp(url, title, screen);
-        if (currentScreen == SCREEN_WINDOW_FULLSCREEN) {
-            // shareButton.setVisibility(View.VISIBLE);
-        } else {
-            // shareButton.setVisibility(View.INVISIBLE);
-        }
         if (url.startsWith("http")) {
             HttpProxyCacheServer proxy = BaseApplication.getProxy(context);
             String proxyUrl = proxy.getProxyUrl(url);

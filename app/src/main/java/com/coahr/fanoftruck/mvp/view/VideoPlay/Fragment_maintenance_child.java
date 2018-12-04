@@ -4,13 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.LayoutInflater;
 import android.widget.Toast;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
@@ -133,7 +131,7 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 
@@ -169,10 +167,10 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
             maintenanceVideoListJdata.addAll(maintenanceVideoList.getJdata());
             adapter.setNewData(maintenanceVideoListJdata);
         }
-          isLoading = false;
         if (adapter.getFooterLayoutCount() > 0) {
             adapter.removeAllFooterView();
         }
+        isLoading = false;
     }
 
     @Override
@@ -180,11 +178,11 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
         KLog.d("加载更多f"+failure);
         start-=10;
         length-=10;
-        isLoading = false;
         if (adapter.getFooterLayoutCount() > 0) {
             adapter.removeAllFooterView();
         }
         ToastUtils.showLong(failure);
+        isLoading = false;
     }
 
     @Override
@@ -256,7 +254,7 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
                                 length+=10;
                                 getMoreList(status);
                             }
-                        }, 100);
+                        }, 500);
                     }
                 }
             }

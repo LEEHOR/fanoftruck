@@ -1,4 +1,4 @@
-package com.coahr.fanoftruck.mvp.Base;
+package com.coahr.fanoftruck.mvp.model.Bean;
 
 import java.util.List;
 

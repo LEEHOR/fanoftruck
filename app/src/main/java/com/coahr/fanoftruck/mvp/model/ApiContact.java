@@ -57,4 +57,24 @@ public class ApiContact {
 
     //忘记密码
     public static final String forgertPass="/APP/Basic/retrieve_password";
+
+    //保存车辆
+    public static final String Save_use_Car="/APP/User/save_user_car";
+
+    //设置默认车辆
+    public static final String set_car_default="/APP/User/set_user_car_default";
+
+    //获取车辆列表
+    public static final String Car_list="/APP/User/get_user_car_list";
+
+    //删除车辆
+
+    public static final String del_car="/APP/User/del_user_car";
+
+    //预约保养生成订单
+    public static final String  appointment="/APP/User/save_service_order";
+
+    //预约保养默认加载
+    public static final String appointmentDefault="/APP/Query/service_initial_data";
+
 }

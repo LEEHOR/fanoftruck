@@ -1,6 +1,6 @@
 package com.coahr.fanoftruck.mvp.presenter;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.MainActivityC;
 import com.coahr.fanoftruck.mvp.model.MainActivityM;
@@ -28,7 +28,7 @@ public class MainActivityP extends BasePresenter<MainActivityC.View,MainActivity
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
         if (getView() != null) {
             getView().onLocationSuccess(location);
         }

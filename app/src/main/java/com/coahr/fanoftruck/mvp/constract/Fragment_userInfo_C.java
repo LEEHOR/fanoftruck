@@ -1,6 +1,5 @@
 package com.coahr.fanoftruck.mvp.constract;
 
-import com.baidu.location.BDLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 
 /**

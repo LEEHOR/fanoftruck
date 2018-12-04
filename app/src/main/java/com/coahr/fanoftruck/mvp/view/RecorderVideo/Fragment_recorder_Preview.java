@@ -1,7 +1,5 @@
 package com.coahr.fanoftruck.mvp.view.RecorderVideo;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -14,17 +12,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.bumptech.glide.Glide;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
-import com.coahr.fanoftruck.commom.Constants;
-import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recorder_preview_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
@@ -184,7 +179,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 

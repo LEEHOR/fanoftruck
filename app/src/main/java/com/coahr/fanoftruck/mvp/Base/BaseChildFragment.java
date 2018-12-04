@@ -33,14 +33,14 @@ public abstract class BaseChildFragment<P extends BaseContract.Presenter> extend
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(bindLayout(), container, false);
         unbinder = ButterKnife.bind(this, view);
+        child_footView =inflater.inflate(R.layout.recyclerview_item_foot, null, false);
         //由于沉浸式要留白 标题栏，在这里统一设置，支出statusbar的空间，之后每个fragment的头顶第一个子view，都要
         //以一个viewgroup包含要显示tittle的子view形式进行布局，则此代码正确有效
-      //  view.getRootView().setBackgroundColor(getResources().getColor(R.color.app_background_color));
+        //  view.getRootView().setBackgroundColor(getResources().getColor(R.color.app_background_color));
         //UpdateUI(view.getRootView());
 //        initView();
 //        initData();
 //        EventBus.getDefault().register(this);
-        child_footView =inflater.inflate(R.layout.recyclerview_item_foot, container, false);
         return view;
     }
 

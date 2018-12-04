@@ -1,10 +1,14 @@
 package com.coahr.fanoftruck.mvp.presenter;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_appointment_C;
+import com.coahr.fanoftruck.mvp.model.Bean.AppointmentBean;
+import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Fragment_appointment_M;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_appointment;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -27,12 +31,54 @@ public class Fragment_appointment_P extends BasePresenter<Fragment_appointment_C
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 
     @Override
     public void onLocationFailure(int failure) {
 
+    }
+
+    @Override
+    public void saveOrder(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.saveOrder(map);
+        }
+    }
+
+    @Override
+    public void saveOrderSuccess(AppointmentBean appointmentBean) {
+        if (getView() != null) {
+            getView().saveOrderSuccess(appointmentBean);
+        }
+    }
+
+    @Override
+    public void saveOrderFailure(String failure) {
+        if (getView() != null) {
+            getView().saveOrderFailure(failure);
+        }
+    }
+
+    @Override
+    public void getAppointmentDefault(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.getAppointmentDefault(map);
+        }
+    }
+
+    @Override
+    public void getAppointmentDefaultSuccess(AppointmentDefaultBean appointmentDefaultBean) {
+        if (getView() != null) {
+            getView().getAppointmentDefaultSuccess(appointmentDefaultBean);
+        }
+    }
+
+    @Override
+    public void getAppointmentDefaultFailure(String failure) {
+        if (getView() != null) {
+            getView().getAppointmentDefaultFailure(failure);
+        }
     }
 }

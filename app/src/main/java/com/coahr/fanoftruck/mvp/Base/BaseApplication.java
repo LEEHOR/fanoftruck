@@ -8,11 +8,14 @@ import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatImageView;
 
+import com.coahr.fanoftruck.Utils.PreferenceUtils;
+import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.dagger.components.DaggerApplicationComponents;
 import com.coahr.fanoftruck.widgets.MyVideo.MyFileNameGenerator;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.mob.MobSDK;
 import com.mob.bbssdk.theme1.BBSTheme1;
+import com.socks.library.KLog;
 import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixManager;
 import com.taobao.sophix.listener.PatchLoadStatusListener;
@@ -67,6 +70,13 @@ public class BaseApplication extends Application implements HasActivityInjector,
         BBSTheme1.init();
         mContext=getApplicationContext();
         initX5WebView();
+        if (PreferenceUtils.contains(mContext, "token")) {
+            Constants.token = PreferenceUtils.getPrefString(mContext, Constants.token_key, "");
+            KLog.d("token", Constants.token);
+        }
+        if (PreferenceUtils.contains(mContext, "sessionId")) {
+            Constants.sessionId = PreferenceUtils.getPrefString(mContext, Constants.uid_key, "");
+        }
     }
 
     @Override

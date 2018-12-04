@@ -5,10 +5,8 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.coahr.fanoftruck.R;
-import com.coahr.fanoftruck.mvp.Base.SearchBean;
+import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
 import com.socks.library.KLog;
-
-import java.util.List;
 
 /**
  * Created by Leehor

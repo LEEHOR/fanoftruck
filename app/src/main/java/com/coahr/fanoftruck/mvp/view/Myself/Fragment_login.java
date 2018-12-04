@@ -1,40 +1,23 @@
 package com.coahr.fanoftruck.mvp.view.Myself;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.webkit.JavascriptInterface;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
-import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
-import com.coahr.fanoftruck.mvp.Base.EventBusBean;
+import com.coahr.fanoftruck.mvp.model.Bean.EventBusBean;
 import com.coahr.fanoftruck.mvp.constract.Fragment_login_C;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginBean;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_Login_P;
-import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
-import com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf;
-import com.socks.library.KLog;
-import com.tencent.smtt.export.external.extension.interfaces.IX5WebViewExtension;
-import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
 
 import org.greenrobot.eventbus.EventBus;
 

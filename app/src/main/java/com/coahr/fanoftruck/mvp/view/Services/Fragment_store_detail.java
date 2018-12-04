@@ -1,7 +1,6 @@
 package com.coahr.fanoftruck.mvp.view.Services;
 
 import android.content.Intent;
-import android.location.SettingInjectorService;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,14 +8,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.BDLocation;
-import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.MapUtils;
@@ -34,7 +31,6 @@ import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
 import com.coahr.fanoftruck.widgets.PopupWindows.ConfirmPopWindow;
 import com.donkingliang.banner.CustomBanner;
 import com.socks.library.KLog;
-import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -174,7 +170,7 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
             @Override
             public void onClick(View view) {
                // start(Fragment_storeOrder.newInstance(1, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
-                start(Fragment_appointment.newInstance());
+                start(Fragment_appointment.newInstance("2"));
             }
         });
 
@@ -182,7 +178,7 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
             @Override
             public void onClick(View view) {
                 //start(Fragment_storeOrder.newInstance(2, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
-                start(Fragment_appointment.newInstance());
+                start(Fragment_appointment.newInstance("1"));
             }
         });
     }
@@ -223,7 +219,7 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
         isLoading = true;
         Constants.Longitude = location.getLongitude();
         Constants.Latitude = location.getLatitude();
@@ -261,7 +257,6 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
             tv_store_business_hours.setText(storeDetailBean.getJdata().getStation().getS_starttime()+"--"+storeDetailBean.getJdata().getStation().getS_endtime());
             //门店标签
             s_service_tag = storeDetailBean.getJdata().getStation().getS_service_tag();
-            KLog.d("标签",s_service_tag.size(),s_service_tag.get(0).getTag());
             store_lable_adapter.setNewData(s_service_tag);
             //门店地址
             s_address = storeDetailBean.getJdata().getStation().getS_address();

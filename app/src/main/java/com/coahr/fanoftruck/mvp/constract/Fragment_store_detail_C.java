@@ -1,6 +1,6 @@
 package com.coahr.fanoftruck.mvp.constract;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
 
@@ -15,7 +15,7 @@ public interface Fragment_store_detail_C {
 
     interface View extends BaseContract.View {
 
-        void onLocationSuccess(BDLocation location);
+        void onLocationSuccess(AMapLocation location);
 
         void onLocationFailure(int failure);
 
@@ -28,7 +28,7 @@ public interface Fragment_store_detail_C {
     interface Presenter extends BaseContract.Presenter {
         void startLocation();
 
-        void onLocationSuccess(BDLocation location);
+        void onLocationSuccess(AMapLocation location);
 
         void onLocationFailure(int failure);
 

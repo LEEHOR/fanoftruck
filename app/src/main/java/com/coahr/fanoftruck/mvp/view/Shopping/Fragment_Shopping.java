@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.KeyBoardUtils;
@@ -24,7 +24,7 @@ import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
-import com.coahr.fanoftruck.mvp.Base.SearchBean;
+import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
 import com.coahr.fanoftruck.mvp.constract.Fragment_shopping_C;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallBean;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_shopping_P;
@@ -255,7 +255,7 @@ public class Fragment_Shopping extends BaseFragment<Fragment_shopping_C.Presente
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 

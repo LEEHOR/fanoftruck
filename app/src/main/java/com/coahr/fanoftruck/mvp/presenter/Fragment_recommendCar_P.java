@@ -1,6 +1,6 @@
 package com.coahr.fanoftruck.mvp.presenter;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recommendCar_C;
 import com.coahr.fanoftruck.mvp.model.Fragment_recommendCar_M;
@@ -25,7 +25,7 @@ public class Fragment_recommendCar_P extends BasePresenter<Fragment_recommendCar
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 

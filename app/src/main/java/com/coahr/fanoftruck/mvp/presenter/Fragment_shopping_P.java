@@ -1,11 +1,10 @@
 package com.coahr.fanoftruck.mvp.presenter;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
-import com.coahr.fanoftruck.mvp.Base.SearchBean;
+import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
 import com.coahr.fanoftruck.mvp.constract.Fragment_shopping_C;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallBean;
-import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 import com.coahr.fanoftruck.mvp.model.Fragment_shopping_M;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_Shopping;
 
@@ -31,7 +30,7 @@ public class Fragment_shopping_P extends BasePresenter<Fragment_shopping_C.View,
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
         if (getView() != null) {
             getView().onLocationSuccess(location);
         }

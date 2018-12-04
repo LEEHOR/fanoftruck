@@ -1,15 +1,12 @@
 package com.coahr.fanoftruck.mvp.presenter;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
-import com.coahr.fanoftruck.mvp.Base.SearchBean;
-import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
+import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_C;
 import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
-import com.coahr.fanoftruck.mvp.model.Fragment_home_M;
 import com.coahr.fanoftruck.mvp.model.Fragment_store_M;
-import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
 
 import java.util.Map;
@@ -36,7 +33,7 @@ public class Fragment_store_P extends BasePresenter<Fragment_store_C.View,Fragme
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
         if (getView() != null) {
             getView().onLocationSuccess(location);
         }

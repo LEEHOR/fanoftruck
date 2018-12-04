@@ -7,10 +7,10 @@ import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_business_child
 import com.coahr.fanoftruck.mvp.view.CallForHelp.CallForHelp_viewPager;
 import com.coahr.fanoftruck.mvp.view.CallForHelp.Fragment_help;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
-import com.coahr.fanoftruck.mvp.view.Myself.Fragment_addCar;
+import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_addCar;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_forgetPass;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
-import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myCar;
+import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myUerInfo;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_register;
 import com.coahr.fanoftruck.mvp.view.RecorderVideo.Fragment_recorder_Preview;

@@ -1,7 +1,7 @@
 package com.coahr.fanoftruck.mvp.model;
 
-import com.baidu.location.BDLocation;
-import com.coahr.fanoftruck.Utils.GpsLocation.BaiduLocationHelper;
+import com.amap.api.location.AMapLocation;
+import com.coahr.fanoftruck.Utils.GpsLocation.GaodeMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_detail_C;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
@@ -22,13 +22,14 @@ public class Fragment_store_detail_M extends BaseModel<Fragment_store_detail_C.P
         super();
     }
     @Inject
-    BaiduLocationHelper baiduLocationHelper;
-    private BaiduLocationHelper.OnLocationCallBack onLocationCallBack = new BaiduLocationHelper.OnLocationCallBack() {
+    GaodeMapLocation gaodeMapLocation;
+
+    private GaodeMapLocation.OnLocationCallBack locationCallBack=new GaodeMapLocation.OnLocationCallBack() {
         @Override
-        public void onLocationSuccess(BDLocation location) {
+        public void onLocationSuccess(AMapLocation location) {
             if (getPresenter() != null) {
                 getPresenter().onLocationSuccess(location);
-                baiduLocationHelper.stopLocation();
+                gaodeMapLocation.stopLocation();
 
             }
         }
@@ -38,23 +39,24 @@ public class Fragment_store_detail_M extends BaseModel<Fragment_store_detail_C.P
             if (getPresenter() != null) {
                 getPresenter().onLocationFailure(locType);
             }
+            gaodeMapLocation.stopLocation();
         }
     };
 
     @Override
     public void startLocation() {
         initlocation();
-        baiduLocationHelper.startLocation();
+        gaodeMapLocation.startLocation();
     }
 
     private void initlocation() {
-        baiduLocationHelper.registerLocationCallback(onLocationCallBack);
+        gaodeMapLocation.registerLocationCallback(locationCallBack);
     }
 
     @Override
     public void detachPresenter() {
         super.detachPresenter();
-        baiduLocationHelper.unRegisterLocationCallback(onLocationCallBack);
+        gaodeMapLocation.unRegisterLocationCallback(locationCallBack);
     }
 
     @Override

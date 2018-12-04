@@ -3,7 +3,8 @@ package com.coahr.fanoftruck.mvp.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import com.baidu.location.BDLocation;
+
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ActivityManagerUtils;
 import com.coahr.fanoftruck.Utils.PreferenceUtils;
@@ -11,14 +12,12 @@ import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseActivity;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
-import com.coahr.fanoftruck.mvp.Base.EventBusBean;
+import com.coahr.fanoftruck.mvp.model.Bean.EventBusBean;
 import com.coahr.fanoftruck.mvp.constract.MainActivityC;
 import com.coahr.fanoftruck.mvp.presenter.MainActivityP;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business_viewPager;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_Myself;
-import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
-import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myUerInfo;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Services;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_Shopping;
 import com.coahr.fanoftruck.widgets.MyBottomNavigation.MyBottomNavigation;
@@ -123,7 +122,7 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 

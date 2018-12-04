@@ -10,13 +10,11 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseChildFragment;
-import com.coahr.fanoftruck.mvp.Base.BaseContract;
-import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_maintenance_videoPlay_C;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideo_dz;
@@ -24,7 +22,6 @@ import com.coahr.fanoftruck.mvp.presenter.Fragment_maintenance_videoPlay_P;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.adapter.Video_play_adapter;
 import com.coahr.fanoftruck.widgets.AltDialog.Dialog_share;
 import com.coahr.fanoftruck.widgets.MyVideo.MyVideoPlay_Normal;
-import com.coahr.fanoftruck.widgets.MyVideo.MyVideoPlayer_douyin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -125,7 +122,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 

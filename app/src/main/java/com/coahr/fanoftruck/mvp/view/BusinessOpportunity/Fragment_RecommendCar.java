@@ -1,6 +1,6 @@
 package com.coahr.fanoftruck.mvp.view.BusinessOpportunity;
 
-import com.baidu.location.BDLocation;
+import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recommendCar_C;
@@ -44,7 +44,7 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
     }
 
     @Override
-    public void onLocationSuccess(BDLocation location) {
+    public void onLocationSuccess(AMapLocation location) {
 
     }
 

@@ -1,7 +1,5 @@
 package com.coahr.fanoftruck.mvp.model;
 
-import com.baidu.location.BDLocation;
-import com.coahr.fanoftruck.Utils.GpsLocation.BaiduLocationHelper;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_maintenance_videoPlay_C;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
@@ -22,25 +20,6 @@ public class Fragment_maintenance_videoPlay_M extends BaseModel<Fragment_mainten
     public Fragment_maintenance_videoPlay_M() {
         super();
     }
-    @Inject
-    BaiduLocationHelper baiduLocationHelper;
-    private BaiduLocationHelper.OnLocationCallBack onLocationCallBack = new BaiduLocationHelper.OnLocationCallBack() {
-        @Override
-        public void onLocationSuccess(BDLocation location) {
-            if (getPresenter() != null) {
-                getPresenter().onLocationSuccess(location);
-                baiduLocationHelper.stopLocation();
-
-            }
-        }
-
-        @Override
-        public void onLocationFailure(int locType) {
-            if (getPresenter() != null) {
-                getPresenter().onLocationFailure(locType);
-            }
-        }
-    };
 
     @Override
     public void startLocation() {
@@ -82,13 +61,4 @@ public class Fragment_maintenance_videoPlay_M extends BaseModel<Fragment_mainten
                 }));
     }
 
-    private void initlocation() {
-        baiduLocationHelper.registerLocationCallback(onLocationCallBack);
-    }
-
-    @Override
-    public void detachPresenter() {
-        super.detachPresenter();
-        baiduLocationHelper.unRegisterLocationCallback(onLocationCallBack);
-    }
 }
