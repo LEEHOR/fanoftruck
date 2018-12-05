@@ -9,6 +9,7 @@
     <declare-styleable name="SelectTextView">
         <attr name="select_color" format="reference" />
         <attr name="text_checked" format="boolean" />
+        <attr name="select_background" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="MyTittleBar">

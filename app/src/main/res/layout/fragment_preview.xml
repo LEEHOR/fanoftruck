@@ -81,7 +81,6 @@
 
         <TextView
             android:id="@+id/video_submit"
-            android:enabled="false"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
             android:text="上传视频"

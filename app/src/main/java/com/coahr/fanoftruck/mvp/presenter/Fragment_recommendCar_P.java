@@ -3,8 +3,12 @@ package com.coahr.fanoftruck.mvp.presenter;
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recommendCar_C;
+import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
+import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
 import com.coahr.fanoftruck.mvp.model.Fragment_recommendCar_M;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_RecommendCar;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -32,5 +36,48 @@ public class Fragment_recommendCar_P extends BasePresenter<Fragment_recommendCar
     @Override
     public void onLocationFailure(int failure) {
 
+    }
+
+    @Override
+    public void getBusiness_Car(Map<String, String> map) {
+
+        if (mModle != null) {
+            mModle.getBusiness_Car(map);
+        }
+    }
+
+    @Override
+    public void getBusiness_CarSuccess(Business_car business_car) {
+        if (getView() != null) {
+            getView().getBusiness_CarSuccess(business_car);
+        }
+    }
+
+    @Override
+    public void getBusiness_CarFailure(String failure) {
+        if (getView() != null) {
+            getView().getBusiness_CarFailure(failure);
+        }
+    }
+
+    @Override
+    public void getCarCode(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.getCarCode(map);
+        }
+    }
+
+    @Override
+    public void getCarCodeSuccess(getBuyCarCode carCode) {
+        if (getView() != null) {
+            getView().getCarCodeSuccess(carCode);
+        }
+    }
+
+    @Override
+    public void getCarCodeFailure(String failure) {
+        if (getView() != null) {
+            getView().getCarCodeFailure(failure);
+        }
     }
 }

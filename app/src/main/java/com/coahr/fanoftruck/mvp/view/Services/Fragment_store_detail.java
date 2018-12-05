@@ -25,6 +25,7 @@ import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_store_detail_C;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_store_detail_P;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
 import com.coahr.fanoftruck.mvp.view.Services.Adapter.Store_lable_adapter;
 import com.coahr.fanoftruck.mvp.view.Services.Adapter.Store_score_adapter;
 import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
@@ -33,6 +34,7 @@ import com.donkingliang.banner.CustomBanner;
 import com.socks.library.KLog;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,6 +94,7 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
     private String s_name;
     private String s_address;
     private float distance;
+
 
     public static Fragment_store_detail newInstance(String id) {
         Fragment_store_detail fragment_store_detail = new Fragment_store_detail();
@@ -169,16 +172,22 @@ public class Fragment_store_detail extends BaseFragment<Fragment_store_detail_C.
         tv_bottom_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // start(Fragment_storeOrder.newInstance(1, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
-                start(Fragment_appointment.newInstance("2"));
+                if (hasLogin()) {
+                    start(Fragment_appointment.newInstance("2", s_id));
+                } else {
+                    start(Fragment_login.newInstance(Constants.Fragment_Store_Detail));
+                }
             }
         });
 
         tv_bottom_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //start(Fragment_storeOrder.newInstance(2, bannerList.get(0), s_name, s_address, "0",String.valueOf(distance)));
-                start(Fragment_appointment.newInstance("1"));
+                if (hasLogin()){  //判断是否登录
+                    start(Fragment_appointment.newInstance("1",s_id));
+                } else {
+                    start(Fragment_login.newInstance(Constants.Fragment_Store_Detail));
+                }
             }
         });
     }

@@ -3,11 +3,14 @@ package com.coahr.fanoftruck.dagger.modules;
 import com.coahr.fanoftruck.dagger.components.BaseFragmentComponents;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business_viewPager;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_RecommendCar;
-import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_business_child;
 import com.coahr.fanoftruck.mvp.view.CallForHelp.CallForHelp_viewPager;
 import com.coahr.fanoftruck.mvp.view.CallForHelp.Fragment_help;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
+import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_MaintenanceOrder;
+import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_ReservationOrder;
 import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_addCar;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_about_us;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_certification;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_forgetPass;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
 import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
@@ -17,6 +20,8 @@ import com.coahr.fanoftruck.mvp.view.RecorderVideo.Fragment_recorder_Preview;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_appointment;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_MaintenanceVideo_viewPage;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_discuss;
+import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoList;
+import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoPlay;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_maintenance_child;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_maintenance_videoPlay;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_Myself;
@@ -54,9 +59,6 @@ public abstract class AllFragmentModule {
 
     @ContributesAndroidInjector(modules = Fragment_myself_Module.class)
     abstract Fragment_Myself Fragment_MyselfInjector();
-
-    @ContributesAndroidInjector(modules = Fragment_business_child_Module.class)
-    abstract Fragment_business_child Fragment_business_childInjector();
 
     @ContributesAndroidInjector(modules = Fragment_store_Module.class)
     abstract Fragment_Store Fragment_StoreInjector();
@@ -119,4 +121,26 @@ public abstract class AllFragmentModule {
 
     @ContributesAndroidInjector(modules = Fragment_addCar_Module.class)
     abstract Fragment_addCar Fragment_addCarInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_about_us_Module.class)
+    abstract Fragment_about_us Fragment_about_usInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_certification_Module.class)
+    abstract Fragment_certification Fragment_certificationInjector();
+
+
+
+    @ContributesAndroidInjector(modules = Fragment_home_videoList_Module.class)
+    abstract Fragment_home_videoList Fragment_home_videoListInjector();
+
+
+    @ContributesAndroidInjector(modules = Fragment_home_videoplay_Module.class)
+    abstract Fragment_home_videoPlay Fragment_home_videoPlayInjector();
+
+
+    @ContributesAndroidInjector(modules = Fragment_MaintenanceOrder_Module.class)
+    abstract Fragment_MaintenanceOrder Fragment_MaintenanceOrderInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_ReservationOrderr_Module.class)
+    abstract Fragment_ReservationOrder Fragment_ReservationOrderInjector();
 }

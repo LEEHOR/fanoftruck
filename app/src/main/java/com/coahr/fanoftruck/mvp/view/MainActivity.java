@@ -89,13 +89,14 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
             public void onPositionTab(int position) {
                 if (position == 4 && !PreferenceUtils.contains(BaseApplication.mContext, Constants.token_key)) {
                     Intent intent = new Intent(MainActivity.this,ContainerActivity.class);
+                    intent.putExtra("fromfragment",Constants.MainActivity);
                     intent.putExtra("tofragment",Constants.Fragment_login);
                     startActivity(intent);
-                   // start(Fragment_login.newInstance(), 1);
+
                 } else {
                     showFragment(position);
                 }
-                //  showFragment(position);
+
             }
         });
 

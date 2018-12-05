@@ -188,8 +188,8 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
         tv_play_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //openVideoSelectRadioMethod();
-                getPermission();
+                openVideoSelectRadioMethod();
+                //getPermission();
 
                 //WaitingDialog();
             }
@@ -361,6 +361,7 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
     private void openVideoSelectRadioMethod() {
         RxGalleryFinalApi
                 .getInstance(_mActivity)
+                .setCrop()
                 .setType(RxGalleryFinalApi.SelectRXType.TYPE_VIDEO, RxGalleryFinalApi.SelectRXType.TYPE_SELECT_RADIO)
                 .setVDRadioResultEvent(new RxBusResultDisposable<ImageRadioResultEvent>() {
                     @Override

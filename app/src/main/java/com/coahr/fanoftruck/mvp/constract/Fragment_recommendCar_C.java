@@ -2,6 +2,10 @@ package com.coahr.fanoftruck.mvp.constract;
 
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
+import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
+import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
+
+import java.util.Map;
 
 /**
  * Created by Leehor
@@ -16,7 +20,13 @@ public interface Fragment_recommendCar_C {
 
         void onLocationFailure(int failure);
 
+        void getBusiness_CarSuccess(Business_car business_car);
 
+        void getBusiness_CarFailure(String failure);
+
+        void getCarCodeSuccess(getBuyCarCode carCode);
+
+        void getCarCodeFailure(String failure);
     }
 
     interface Presenter extends BaseContract.Presenter {
@@ -26,11 +36,24 @@ public interface Fragment_recommendCar_C {
 
         void onLocationFailure(int failure);
 
+        void getBusiness_Car(Map<String,String> map);
+
+        void getBusiness_CarSuccess(Business_car business_car);
+
+        void getBusiness_CarFailure(String failure);
+
+        void getCarCode(Map<String,String> map);
+
+        void getCarCodeSuccess(getBuyCarCode carCode);
+
+        void getCarCodeFailure(String failure);
     }
 
     interface Model extends BaseContract.Model {
         void startLocation();
 
+        void getBusiness_Car(Map<String,String> map);
 
+        void getCarCode(Map<String,String> map);
     }
 }

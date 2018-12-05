@@ -815,7 +815,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
             mediaRecorder.setVideoEncodingBitRate(1024 * 1024);
         }*/
         // mediaRecorder.setVideoFrameRate(mProfile.videoFrameRate);
-        mediaRecorder.setVideoEncodingBitRate(40000);
+        mediaRecorder.setVideoEncodingBitRate(1000000);
         //设置选择角度，顺时针方向，因为默认是逆向90度的，这样图像就是正常显示了,这里设置的是观看保存后的视频的角度
         mediaRecorder.setOrientationHint(90);
         mediaRecorder.setVideoFrameRate(30);

@@ -29,6 +29,12 @@ Fragment_myself_P p;
     RelativeLayout my_userInfo;
     @BindView(R.id.mycar)
     ImageView mycar;
+    @BindView(R.id.iv_about_us)
+    ImageView iv_about_us;
+    @BindView(R.id.iv_by_order)
+    ImageView iv_by_order;
+    @BindView(R.id.tv_wxyy_order)
+    ImageView tv_wxyy_order;
 
     public static Fragment_Myself newInstance() {
         return new Fragment_Myself();
@@ -57,6 +63,9 @@ Fragment_myself_P p;
         });*/
         my_userInfo.setOnClickListener(this);
         mycar.setOnClickListener(this);
+        iv_about_us.setOnClickListener(this);
+        iv_by_order.setOnClickListener(this);
+        tv_wxyy_order.setOnClickListener(this);
     }
 
     @Override
@@ -84,6 +93,18 @@ Fragment_myself_P p;
             case R.id.mycar:
                 intent.setClass(_mActivity,ContainerActivity.class);
                 intent.putExtra("tofragment",Constants.Fragment_mycar);
+                break;
+            case R.id.iv_about_us:
+                intent.setClass(_mActivity,ContainerActivity.class);
+                intent.putExtra("tofragment",Constants.Fragment_about_us);
+                break;
+            case R.id.iv_by_order:
+                intent.setClass(_mActivity,ContainerActivity.class);
+                intent.putExtra("tofragment",Constants.Fragment_MaintenanceOder);
+                break;
+            case R.id.tv_wxyy_order:
+                intent.setClass(_mActivity,ContainerActivity.class);
+                intent.putExtra("tofragment",Constants.Fragment_ReservationOrder);
                 break;
         }
 

@@ -13,6 +13,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
+import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseChildFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_maintenance_videoPlay_C;
@@ -22,6 +23,7 @@ import com.coahr.fanoftruck.mvp.presenter.Fragment_maintenance_videoPlay_P;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.adapter.Video_play_adapter;
 import com.coahr.fanoftruck.widgets.AltDialog.Dialog_share;
 import com.coahr.fanoftruck.widgets.MyVideo.MyVideoPlay_Normal;
+import com.coahr.fanoftruck.widgets.ShareUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +34,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import cn.jzvd.JzvdStd;
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.wechat.friends.Wechat;
 
 /**
  * Created by Leehor
@@ -107,12 +111,12 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
                 dialog_share.setShareListener(new Dialog_share.shareListener() {
                     @Override
                     public void share_wx() {
-
+                        ShareUtils.setQQShare(QQ.NAME);
                     }
 
                     @Override
                     public void share_pyq() {
-
+                        ShareUtils.setQQShare(Wechat.NAME);
                     }
                 });
                 dialog_share.show(getChildFragmentManager(), TAG);
@@ -316,7 +320,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     private void getVideoDiscuss(String video_id){
         Map map=new HashMap();
         map.put("video_id",video_id);
-        map.put("token","");
+        map.put("token",Constants.token);
         p.getVideo_dz(map);
     }
 }

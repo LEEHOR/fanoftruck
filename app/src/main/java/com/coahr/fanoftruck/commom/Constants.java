@@ -73,6 +73,8 @@ public class Constants {
 
     public  static final int Fragment_business=2;
 
+
+
     public  static final int Fragment_shopping=3;
 
     public  static final int Fragment_services=4;
@@ -105,6 +107,20 @@ public class Constants {
 
 
     public static final int Fragment_appointment=18;
+
+
+    public static final int MainActivity=19;
+
+    public static final int Fragment_about_us=20;
+
+    public static final int Fragment_videoPlay=21;
+
+    public static final int Fragment_videoList=22;
+
+    public static final int Fragment_MaintenanceOder=23;
+
+    public static final  int Fragment_ReservationOrder=24;
+
 
 
     /**

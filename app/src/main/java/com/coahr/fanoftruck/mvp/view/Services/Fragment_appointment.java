@@ -2,7 +2,6 @@ package com.coahr.fanoftruck.mvp.view.Services;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -14,7 +13,6 @@ import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
-import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
@@ -22,6 +20,8 @@ import com.coahr.fanoftruck.mvp.model.Bean.EventBusUserCar;
 import com.coahr.fanoftruck.mvp.constract.Fragment_appointment_C;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_appointment_P;
 import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
+import com.coahr.fanoftruck.widgets.SelectTextView;
+import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
@@ -46,10 +46,14 @@ import butterknife.BindView;
  * on 16:13
  * 预约保养
  */
-public class Fragment_appointment extends BaseFragment<Fragment_appointment_C.Presenter> implements Fragment_appointment_C.View, OnDateSetListener {
+public class Fragment_appointment extends BaseFragment<Fragment_appointment_C.Presenter> implements Fragment_appointment_C.View, OnDateSetListener, View.OnClickListener {
 
 @Inject
     Fragment_appointment_P p;
+    @BindView(R.id.mytitle)
+    MyTittleBar myTittleBar;
+    @BindView(R.id.tv_type)
+    TextView tv_type;
     @BindView(R.id.service_car_frameno)
     EditText service_car_frameno;
     @BindView(R.id.select_car_no)
@@ -64,20 +68,33 @@ public class Fragment_appointment extends BaseFragment<Fragment_appointment_C.Pr
     TextView select_time;
     @BindView(R.id.appoint_time)
     TextView appoint_time;
-    @BindView(R.id.re_service_tag)
-    RecyclerView re_service_tag;
     @BindView(R.id.input_describe)
     EditText input_describe;
     @BindView(R.id.tv_submit)
     TextView tv_submit;
+    @BindView(R.id.service_tag1)
+    SelectTextView service_tag1;
+    @BindView(R.id.service_tag2)
+    SelectTextView service_tag2;
+    @BindView(R.id.service_tag3)
+    SelectTextView service_tag3;
+    @BindView(R.id.service_tag4)
+    SelectTextView service_tag4;
+    @BindView(R.id.service_tag5)
+    SelectTextView service_tag5;
+    @BindView(R.id.service_tag6)
+    SelectTextView service_tag6;
     private TimePickerDialog datePickerDialog;
     SimpleDateFormat sfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private String service_item;
     private String type;
+    private String s_id;
 
-    public static Fragment_appointment newInstance(String type) {
+    public static Fragment_appointment newInstance(String type, String s_id) {
         Fragment_appointment appointment = new Fragment_appointment();
         Bundle bundle = new Bundle();
         bundle.putString("type", type);
+        bundle.putString("s_id", s_id);
         appointment.setArguments(bundle);
         return appointment;
     }
@@ -101,6 +118,12 @@ public class Fragment_appointment extends BaseFragment<Fragment_appointment_C.Pr
     @Override
     public void initView() {
         initTimePickerDialog();
+        myTittleBar.getLeftIcon().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                _mActivity.onBackPressed();
+            }
+        });
         select_car_no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,12 +181,28 @@ public class Fragment_appointment extends BaseFragment<Fragment_appointment_C.Pr
                 saveAppointmentOrder();
             }
         });
-
+        service_tag1.setOnClickListener(this);
+        service_tag2.setOnClickListener(this);
+        service_tag3.setOnClickListener(this);
+        service_tag4.setOnClickListener(this);
+        service_tag5.setOnClickListener(this);
+        service_tag6.setOnClickListener(this);
     }
 
     @Override
     public void initData() {
-        type = getArguments().getString("type");
+        if (getArguments() != null) {
+            type = getArguments().getString("type");
+            s_id = getArguments().getString("s_id");
+        }
+        if (type.equals("1")){
+            myTittleBar.getTvTittle().setText("保养预约");
+            tv_type.setText("保养服务");
+        }
+        if (type.equals("2")){
+            myTittleBar.getTvTittle().setText("维修预约");
+            tv_type.setText("维修服务");
+        }
         getAppointmentDefault();
     }
 
@@ -266,9 +305,10 @@ public class Fragment_appointment extends BaseFragment<Fragment_appointment_C.Pr
         map.put("username", user_name.getText().toString());
         map.put("telephone", user_phone.getText().toString());
         map.put("appoint_time", appoint_time.getText().toString());
-        map.put("service_item", "");
+        map.put("service_item", service_item);
         map.put("description", input_describe.getText().toString());
         map.put("s_type", type);
+        map.put("s_id", s_id);
         p.saveOrder(map);
     }
 
@@ -278,5 +318,45 @@ public class Fragment_appointment extends BaseFragment<Fragment_appointment_C.Pr
         Map map = new HashMap();
         map.put("token", Constants.token);
         p.getAppointmentDefault(map);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.service_tag1:
+                chanceMode(service_tag1);
+                service_item = service_tag1.getText().toString();
+                break;
+            case R.id.service_tag2:
+                chanceMode(service_tag2);
+                service_item = service_tag2.getText().toString();
+                break;
+            case R.id.service_tag3:
+                chanceMode(service_tag3);
+                service_item = service_tag3.getText().toString();
+                break;
+            case R.id.service_tag4:
+                chanceMode(service_tag4);
+                service_item = service_tag4.getText().toString();
+                break;
+            case R.id.service_tag5:
+                chanceMode(service_tag5);
+                service_item = service_tag5.getText().toString();
+                break;
+            case R.id.service_tag6:
+                chanceMode(service_tag6);
+                service_item = service_tag6.getText().toString();
+                break;
+        }
+    }
+
+    private void chanceMode(SelectTextView view) {
+        if (view.getTag() == null || String.valueOf(view.getTag()).equals("1")) {
+            view.toggle(false);
+            view.setTag("2");
+        } else {
+            view.toggle(true);
+            view.setTag("1");
+        }
     }
 }

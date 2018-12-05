@@ -51,16 +51,7 @@ android {
             url "http://maven.aliyun.com/nexus/content/repositories/releases"
         }
     }
-    packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/ASL2.0'
-    }
+
 }
 
 
@@ -171,6 +162,8 @@ dependencies {
     //视频缓存
     implementation 'com.danikula:videocache:2.7.1'
     androidTestImplementation 'junit:junit:4.12'
+    //仿ios
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
 }
 
 // 在MobSDK的扩展中注册BBSSDK的相关信息
@@ -192,12 +185,6 @@ MobSDK {
     // BBSSDK依赖于ShareSDK和MobLink，故还需要引入这两个SDK
     ShareSDK {
         devInfo {
-            SinaWeibo {
-                appKey "568898243"
-                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
-                callbackUri "http://www.sharesdk.cn"
-                shareByAppClient false
-            }
             Wechat {
                 appId "wx4868b35061f87885"
                 appSecret "64020361b8ec4c99936c0e3999a9f249"

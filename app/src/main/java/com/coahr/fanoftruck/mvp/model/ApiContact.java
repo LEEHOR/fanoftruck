@@ -77,4 +77,13 @@ public class ApiContact {
     //预约保养默认加载
     public static final String appointmentDefault="/APP/Query/service_initial_data";
 
+    //推荐购车初始化
+    public static final String  buyCar_initial_data="/APP/Query/buyCar_initial_data";
+
+    //推荐购车获取验证码
+    public static final String  get_buyCar_code="/APP/Basic/get_buyCar_code";
+
+    //推荐购车订单提交
+    public static final String save_business_order="/APP/User/save_business_order";
+
 }

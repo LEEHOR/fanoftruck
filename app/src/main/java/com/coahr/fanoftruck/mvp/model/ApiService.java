@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
+import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
 import com.coahr.fanoftruck.mvp.model.Bean.CarDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AddDiscuss;
@@ -22,6 +23,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.model.Bean.VerifyCode;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
+import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
 
 
 import java.util.List;
@@ -31,6 +33,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -155,7 +158,7 @@ public interface ApiService {
      */
     @Multipart
     @POST(ApiContact.getSaveVideo)
-    Call<Video_upload> getSaveSuggest(@PartMap Map<String, RequestBody> map, @Part() List<MultipartBody.Part> parts);
+    Call<Video_upload> getSaveSuggest(@FieldMap Map<String, RequestBody> map, @Part() List<MultipartBody.Part> parts);
 
     /**
      * 视频评论
@@ -258,7 +261,7 @@ public interface ApiService {
             ,@Field("car_no") String car_no,@Field("username") String username
             ,@Field("telephone") String telephone,@Field("appoint_time") String appoint_time
             ,@Field("service_item") String service_item,@Field("description") String description
-            ,@Field("s_type") String s_type);
+            ,@Field("s_type") String s_type,@Field("s_id") String s_id);
 
     /**
      * 预约默认加载
@@ -269,4 +272,20 @@ public interface ApiService {
     @POST(ApiContact.appointmentDefault)
     Call<AppointmentDefaultBean> appointmentDefault(@Field("token") String token);
 
+
+    /**
+     * 推荐购车默认数据
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.buyCar_initial_data)
+    Call<Business_car> buyCar_initial_data(@Field("token") String token);
+
+    /**
+     * 推荐购车默认数据
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.get_buyCar_code)
+    Call<getBuyCarCode> get_buyCar_code(@Field("phone") String phone);
 }

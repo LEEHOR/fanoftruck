@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+        android:id="@+id/mytittle"
+        app:tittle="保养预约订单"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf
+        android:id="@+id/my_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

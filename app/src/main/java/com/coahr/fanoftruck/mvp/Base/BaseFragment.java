@@ -18,8 +18,10 @@ import android.widget.TextView;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.KeyBoardUtils;
+import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.Utils.ScreenUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
+import com.coahr.fanoftruck.commom.Constants;
 
 
 import butterknife.ButterKnife;
@@ -243,4 +245,15 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
         }
     }
 
+    //判断是否登录
+    public boolean hasLogin() {
+        if (PreferenceUtils.contains(BaseApplication.mContext, "token")) {
+            if (Constants.token.equals("")) {
+                Constants.token = PreferenceUtils.getPrefString(_mActivity, "token", "");
+                Constants.uid = PreferenceUtils.getPrefString(_mActivity, "uid", "");
+            }
+            return true;
+        }
+        return false;
+    }
 }

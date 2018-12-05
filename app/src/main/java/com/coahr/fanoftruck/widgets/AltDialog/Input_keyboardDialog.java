@@ -53,6 +53,7 @@ public class Input_keyboardDialog extends AppCompatDialogFragment implements Tex
     TextView tv_count;
     private videoSendDiscuss videoSendDiscussListener;
     private KeyboardChangeListener keyboardChangeListener;
+    private Dialog dialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class Input_keyboardDialog extends AppCompatDialogFragment implements Tex
             public void onClick(View view) {
                 if (input_ediText.getText().toString().length()>0 && input_ediText.getText().toString().length()<=50){
                     if (videoSendDiscussListener != null) {
-                        videoSendDiscussListener.sendVideoDiscuss(input_ediText.getText().toString(),getDialog());
+                        videoSendDiscussListener.sendVideoDiscuss(input_ediText.getText().toString(),dialog);
                     }
                 } else {
                     ToastUtils.showLong("请控制在1～50个字符");
@@ -122,7 +123,7 @@ public class Input_keyboardDialog extends AppCompatDialogFragment implements Tex
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog = super.onCreateDialog(savedInstanceState);
         Window window = dialog.getWindow();
         if (window != null) {
             window.getDecorView().setPadding(0, 0, 0, 0);

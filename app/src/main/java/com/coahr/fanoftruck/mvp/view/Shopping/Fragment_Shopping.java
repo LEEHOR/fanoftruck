@@ -57,8 +57,8 @@ public class Fragment_Shopping extends BaseFragment<Fragment_shopping_C.Presente
     Fragment_shopping_P p;
     @BindView(R.id.rl_store_condition)
     ConditionSelectView rl_store_condition;
-    @BindView(R.id.mytitle)
-    MyTittleBar myTittleBar;
+    /* @BindView(R.id.mytitle)
+     MyTittleBar myTittleBar;*/
     @BindView(R.id.shopping_recycler)
     RecyclerView shopping_recycler;
     @BindView(R.id.search_re)
@@ -71,6 +71,11 @@ public class Fragment_Shopping extends BaseFragment<Fragment_shopping_C.Presente
     TextView tv_mall_class;
     @BindView(R.id.tv_mall_sort)
     TextView tv_mall_sort;
+
+    @BindView(R.id.tv_chanels)
+    TextView tv_chanels;
+    @BindView(R.id.ed_search)
+    EditText ed_search;
     PopupWindows_city popupWindows_city = new PopupWindows_city();
     private TextView tvTittle;
     private EditText editSearch;
@@ -114,12 +119,11 @@ public class Fragment_Shopping extends BaseFragment<Fragment_shopping_C.Presente
         sortStringArray = _mActivity.getResources().getStringArray(R.array.shoppingmall_ssortStringArray);
         sortlist = Arrays.asList(sortStringArray);
         popupWindows_city.showPopupWindows(rl_store_condition, 0, 0);
-        addMyTitleListener();
         adapter = new ShoppingMallListAdapter();
         searchAdapter = new SearchAdapter();
         search_lin = new LinearLayoutManager(BaseApplication.mContext);
         linearLayoutManager = new LinearLayoutManager(BaseApplication.mContext);
-
+        searchListener();
         shopping_recycler.setLayoutManager(linearLayoutManager);
         shopping_recycler.setAdapter(adapter);
         shopping_recycler.addItemDecoration(new SpacesItemDecoration(0, DensityUtils.dp2px(BaseApplication.mContext, 1), getResources().getColor(R.color.material_grey_200)));
@@ -334,7 +338,7 @@ public class Fragment_Shopping extends BaseFragment<Fragment_shopping_C.Presente
         ToastUtils.showLong(failure);
     }
 
-    private void addMyTitleListener() {
+/*    private void addMyTitleListener() {
         tvTittle = myTittleBar.getTvTittle();
         editSearch = myTittleBar.getEditSearch();
         editSearch.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
@@ -404,16 +408,60 @@ public class Fragment_Shopping extends BaseFragment<Fragment_shopping_C.Presente
 
             }
         });
-    }
+    }*/
+private void searchListener(){
+    ed_search.setOnEditorActionListener(this);
+    tv_chanels.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            isSearch = false;
+            ed_search.setFocusable(false);
+            ed_search.setFocusableInTouchMode(false);
+            editSearch.setText(null);
+            editSearch.setHint("请输入要查询的内容");
+            shopping_recycler.setVisibility(View.VISIBLE);
+            search_re.setVisibility(View.GONE);
+            tv_chanels.setVisibility(View.INVISIBLE);
+        }
+    });
 
+    ed_search.setOnTouchListener(new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            tv_chanels.setVisibility(View.VISIBLE);
+            ed_search.setFocusable(true);
+            ed_search.setFocusableInTouchMode(true);
+            return false;
+        }
+    });
+    ed_search.addTextChangedListener(new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            shopping_recycler.setVisibility(View.GONE);
+            search_re.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    });
+
+}
     @Override
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
         if (i == EditorInfo.IME_ACTION_SEARCH) {
             KeyBoardUtils.hideKeybord(textView, getActivity());
             if (!isSearch) {
-                if (editSearch.getText() != null && !editSearch.getText().equals("")) {
+                if (ed_search.getText() != null && !ed_search.getText().equals("")) {
                     Map map = new HashMap();
-                    map.put("search_key", editSearch.getText().toString());
+                    map.put("search_key", ed_search.getText().toString());
                     p.getSearchMap(map);
                     isSearch = true;
                 } else {

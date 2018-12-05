@@ -1,8 +1,10 @@
 package com.coahr.fanoftruck.mvp.view.Home;
 
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
@@ -11,6 +13,7 @@ import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_home_P;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
+import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoPlay;
 
 import javax.inject.Inject;
 
@@ -36,6 +39,12 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
     LinearLayout lin_4;
     @BindView(R.id.lin_5)
     LinearLayout lin_5;
+
+    @BindView(R.id.to_video_play)
+    CardView to_video_play;
+
+    @BindView(R.id.tv_more_videos)
+    TextView tv_more_videos;
     public static Fragment_Home newInstance() {
         return new Fragment_Home();
     }
@@ -93,7 +102,23 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
                 startActivity(intent);
             }
         });
+        to_video_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_videoPlay);
+                startActivity(intent);
+            }
+        });
 
+        tv_more_videos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_videoList);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

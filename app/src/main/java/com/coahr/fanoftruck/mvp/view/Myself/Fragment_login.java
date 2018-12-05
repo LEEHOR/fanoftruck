@@ -1,5 +1,6 @@
 package com.coahr.fanoftruck.mvp.view.Myself;
 
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -49,9 +50,20 @@ public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> imp
     TextView forget_pass;
     @BindView(R.id.login_title)
     MyTittleBar login_title;
+    private int toFragment;
 
-    public static Fragment_login newInstance() {
-        return new Fragment_login();
+    /**
+     *
+     * @param toFragment
+     *          来自哪个页面
+     * @return
+     */
+    public static Fragment_login newInstance(int toFragment) {
+        Fragment_login login=new Fragment_login();
+        Bundle bundle=new Bundle();
+        bundle.putInt("toFragment",toFragment);
+        login.setArguments(bundle);
+        return login;
 
     }
 
@@ -154,6 +166,9 @@ public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> imp
 
     @Override
     public void initData() {
+        if (getArguments() != null) {
+            toFragment = getArguments().getInt("toFragment");
+        }
     }
 
 
@@ -164,8 +179,14 @@ public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> imp
         Constants.token = loginBean.getJdata().getToken();
         Constants.uid = loginBean.getJdata().getUid();
         ToastUtils.showLong(loginBean.getMsg());
-        EventBus.getDefault().postSticky(new EventBusBean(1, "success"));
-        _mActivity.onBackPressed();
+        if (toFragment==Constants.MainActivity) {
+            EventBus.getDefault().postSticky(new EventBusBean(1, "success"));
+            _mActivity.onBackPressed();
+        }
+        if (toFragment==Constants.Fragment_Store_Detail){
+            _mActivity.onBackPressed();
+        }
+
     }
 
     @Override

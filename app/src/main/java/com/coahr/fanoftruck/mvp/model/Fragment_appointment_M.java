@@ -30,8 +30,10 @@ public class Fragment_appointment_M extends BaseModel<Fragment_appointment_C.Pre
 
     @Override
     public void saveOrder(Map<String, String> map) {
-        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<AppointmentBean>(getApiService().appointment_order(map.get("token"),map.get("car_frameno"),
-                map.get("car_no"),map.get("username"),map.get("telephone"),map.get("appoint_time"),map.get("service_item"),map.get("description"),map.get("s_type"))))
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<AppointmentBean>(
+                getApiService().appointment_order(map.get("token"),map.get("car_frameno"),
+                map.get("car_no"),map.get("username"),map.get("telephone"),map.get("appoint_time")
+                ,map.get("service_item"),map.get("description"),map.get("s_type"),map.get("s_id"))))
                 .subscribeWith(new SimpleDisposableSubscriber<AppointmentBean>() {
                     @Override
                     public void _onNext(AppointmentBean appointmentBean) {

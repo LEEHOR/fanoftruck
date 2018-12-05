@@ -1,7 +1,5 @@
 package com.coahr.fanoftruck.dagger.modules;
 
-import com.coahr.fanoftruck.mvp.constract.Fragment_store_C;
-import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_business_child;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
 
 import dagger.Module;

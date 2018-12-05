@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
+import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recorder_preview_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
@@ -106,8 +107,8 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
 
     @Override
     public void initData() {
-        video_submit.setBackgroundColor(getResources().getColor(R.color.material_grey_550));
-        video_submit.setEnabled(false);
+      //  video_submit.setBackgroundColor(getResources().getColor(R.color.material_grey_550));
+       // video_submit.setEnabled(false);
         preview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,7 +124,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                 return false;
             }
         });
-        video_describe.addTextChangedListener(new TextWatcher() {
+ /*       video_describe.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -147,16 +148,20 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                     video_submit.setBackgroundColor(getResources().getColor(R.color.material_grey_550));
                 }
             }
-        });
+        });*/
 
 
         video_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!isUpload) {  //防止重复上传
-
+                    if (TextUtils.isEmpty(video_describe.getText()) || video_describe.getText().toString().equals("")
+                            || (video_describe.getText().toString().length() > 50)) {
+                        ToastUtils.showLong("请填写1～50字的描述");
+                        return;
+                    }
                     isUpload = true;
-                    video_submit.setEnabled(false);
+                    //video_submit.setEnabled(false);
                     pathList.clear();
                     map = new HashMap();
                     map.put("video_describe", video_describe.getText().toString());
@@ -165,8 +170,10 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                     } else {
                         map.put("video_type", String.valueOf(video_type));
                     }
-                    map.put("token", "9a99788a604f85782dc5f625966205cb");
+                    map.put("token", Constants.token);
+                   KLog.d("token",Constants.token);
                     pathList.add(0, videoPath);
+                    WaitingDialog();
                     getCoverImage(videoPath);
                    // zipVideo(videoPath);
                 } else {
@@ -192,16 +199,17 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     public void uploadVideoSuccess(Video_upload video_upload) {
         dismissWaitDialog();
         FileUtils.deleteFile(saveImagePath);
-        video_submit.setEnabled(false);
         ToastUtils.showLong(video_upload.getMsg());
+        video_submit.setEnabled(false);
     }
 
     @Override
     public void uploadVideoFailure(String failure) {
         dismissWaitDialog();
         isUpload = false;
-        video_submit.setEnabled(true);
+        FileUtils.deleteFile(saveImagePath);
         ToastUtils.showLong(failure);
+        video_submit.setEnabled(true);
     }
 
 
@@ -235,6 +243,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                         pathList.add(1, saveImagePath);
                         // p.uploadVideo(map, pathList);
                         setWait_dialog_text("正在上传...");
+                        p.uploadVideo(map,pathList);
                     }
                 }
             }

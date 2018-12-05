@@ -1,5 +1,6 @@
 package com.coahr.fanoftruck.mvp.model;
 
+import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recorder_preview_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
@@ -37,10 +38,11 @@ public class Fragment_recorder_preview_M extends BaseModel<Fragment_recorder_pre
 
     @Override
     public void uploadVideo(Map<String, String> map, List<String> FilePath) {
+        ToastUtils.showLong(map.get("token"));
         Map<String, RequestBody> map1 = new HashMap<>();
-        map1.put("token", RequestBody.create(null, map.get("token")));
         map1.put("video_describe", RequestBody.create(null, map.get("video_describe")));
         map1.put("video_type",RequestBody.create(null,map.get("video_type")));
+        map1.put("token", RequestBody.create(null, map.get("token")));
         List<MultipartBody.Part> parts = new ArrayList<>();
         for (int i = 0; i < FilePath.size(); i++) {
             if (i==0) {  //视频

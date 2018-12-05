@@ -18,6 +18,7 @@ import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
+import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseDialogFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_discuss_dialog_C;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.Condition;
 
 import javax.inject.Inject;
 
@@ -158,6 +160,7 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
                     } else {
                         adapter.setNewData(jdataBeanList.subList(0, ALL_DEALER_COUNT));
                     }
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -252,14 +255,14 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
     void getDiscussList() {
         Map map = new HashMap();
         map.put("video_id", video_id);
-        map.put("token", "");
+        map.put("token", Constants.token);
         p.getVideoDiscussList(map);
     }
 
     void  getAddDiscuss(String describe){
         Map map = new HashMap();
         map.put("video_id", video_id);
-        map.put("token", "");
+        map.put("token", Constants.token);
         map.put("discuss_content",describe);
         p.getAddDiscuss(map);
     }
