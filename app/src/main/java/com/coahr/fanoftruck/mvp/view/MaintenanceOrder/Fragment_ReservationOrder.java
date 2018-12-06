@@ -46,7 +46,7 @@ public class Fragment_ReservationOrder extends BaseFragment {
 
     @Override
     public void initData() {
-        initX5WebView("http://app.cvfans.net/H5/maintenance_order.html?token="+Constants.token);
+        initX5WebView("http://app.cvfans.net/H5/repair_order.html?token="+Constants.token);
     }
 
     /**

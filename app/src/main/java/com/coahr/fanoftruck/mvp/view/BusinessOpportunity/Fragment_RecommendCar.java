@@ -23,6 +23,7 @@ import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recommendCar_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
+import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
 import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_recommendCar_P;
 import com.coahr.fanoftruck.widgets.BlockTextView;
@@ -50,6 +51,10 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
 
     @Inject
     Fragment_recommendCar_P p;
+    @BindView(R.id.business_name)
+    EditText business_name;
+    @BindView(R.id.business_code)
+    EditText business_code;
     @BindView(R.id.tv_select_city)
     TextView tv_select_city;
     @BindView(R.id.tv_address)
@@ -62,6 +67,8 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
     TextView tv_slected_car;
     @BindView(R.id.tv_select_car)
     TextView tv_select_car;
+    @BindView(R.id.tv_submit)
+    TextView tv_submit;
     private ArrayList<JsonBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
@@ -101,6 +108,8 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
             }
         }
     };
+    private String c_id;
+
     public static  Fragment_RecommendCar newInstance() {
         return new Fragment_RecommendCar();
     }
@@ -120,6 +129,7 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
         tv_select_city.setOnClickListener(this);
         getCode.setOnClickListener(this);
         tv_select_car.setOnClickListener(this);
+        tv_submit.setOnClickListener(this);
     }
 
     @Override
@@ -139,6 +149,7 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
 
     @Override
     public void getBusiness_CarSuccess(Business_car business_car) {
+        ToastUtils.showLong(business_car.getMsg());
         if (business_car != null) {
             showCarPickerView( business_car.getJdata().getCars());
         }
@@ -146,17 +157,28 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
 
     @Override
     public void getBusiness_CarFailure(String failure) {
-
+        ToastUtils.showLong(failure);
     }
 
     @Override
     public void getCarCodeSuccess(getBuyCarCode carCode) {
 
+        ToastUtils.showLong(carCode.getMsg());
     }
 
     @Override
     public void getCarCodeFailure(String failure) {
+        ToastUtils.showLong(failure);
+    }
 
+    @Override
+    public void SaveBusinessCarSuccess(SaveBusinessCarBean saveBusinessCarBean) {
+            ToastUtils.showLong(saveBusinessCarBean.getMsg());
+    }
+
+    @Override
+    public void SaveBusinessCarFailure(String failure) {
+        ToastUtils.showLong(failure);
     }
 
     /**
@@ -255,6 +277,7 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 String tx = list.get(options1).getC_name();
+                c_id = list.get(options1).getC_id();
                 KLog.d("车辆", tx);
                 tv_slected_car.setText(tx);
             }
@@ -265,10 +288,7 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
                 .setTextColorCenter(Color.BLACK) //设置选中项文字颜色
                 .setContentTextSize(20)
                 .build();
-
-        /*pvOptions.setPicker(options1Items);//一级选择器
-        pvOptions.setPicker(options1Items, options2Items);//二级选择器*/
-        pvOptions.setPicker(list);//三级选择器
+        pvOptions.setPicker(list);//一级选择器
         pvOptions.show();
     }
     @Override
@@ -287,6 +307,33 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
                 break;
             case R.id.tv_select_car:
                 getCarList();
+                break;
+            case R.id.tv_submit:
+
+                if (TextUtils.isEmpty(business_name.getText()) || business_name.getText().toString().equals("")){
+                    ToastUtils.showLong("请填写预约人姓名");
+                    return;
+                }
+                if (!ValidateUtils.isMobile(business_phone.getText().toString())){
+                    ToastUtils.showLong("请填写正确的手机号");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(business_code.getText()) || business_code.getText().toString().equals("") || business_code.getText().toString().length()!=6){
+                    ToastUtils.showLong("请填写正确的验证码");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(tv_address.getText()) || tv_address.getText().toString().equals("") ){
+                    ToastUtils.showLong("请选择预约地区");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(tv_slected_car.getText()) || tv_slected_car.getText().toString().equals("") ){
+                    ToastUtils.showLong("请选择预约车辆");
+                    return;
+                }
+                saveBusinessCar();
                 break;
 
         }
@@ -311,7 +358,7 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
     //短信
     private void getCarCode() {
         Map map = new HashMap();
-        map.put("phone", null);
+        map.put("phone", business_phone.getText().toString());
         p.getCarCode(map);
     }
 
@@ -320,5 +367,18 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
         Map map = new HashMap();
         map.put("token",Constants.token);
         p.getBusiness_Car(map);
+    }
+
+    //保存订单
+    private void saveBusinessCar(){
+        Map map = new HashMap();
+        map.put("token",Constants.token);
+        map.put("verify_code",business_code.getText().toString());
+        map.put("username",business_name.getText().toString());
+        map.put("phone",business_phone.getText().toString());
+        map.put("proid",c_id);
+        map.put("num","2");
+        map.put("address",tv_address.getText().toString());
+        p.SaveBusinessCar(map);
     }
 }

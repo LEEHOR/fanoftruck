@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
@@ -34,6 +35,7 @@ import com.coahr.fanoftruck.mvp.constract.Fragment_maintenance_viewp_C;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_maintenance_viewp_P;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
 import com.coahr.fanoftruck.mvp.view.RecorderVideo.FragmentRecorder;
 import com.coahr.fanoftruck.mvp.view.RecorderVideo.Fragment_recorder_Preview;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.adapter.Fragment_maintenance_child_adapter;
@@ -188,7 +190,29 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
         tv_play_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openVideoSelectRadioMethod();
+                if (hasLogin()){
+                   // start(Fragment_login.newInstance(Constants.Fragment_MaintenanceVideo_viewPage));
+                    openVideoSelectRadioMethod();
+                }else {
+                    new MaterialDialog.Builder(BaseApplication.mContext)
+                            .content("需要登陆")
+                            .positiveText("登录")
+                            .negativeText("取消")
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    dialog.dismiss();
+                                    start(Fragment_login.newInstance(Constants.Fragment_MaintenanceVideo_viewPage));
+                                }
+                            })
+                            .onNegative(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    dialog.dismiss();
+                                }
+                            }).build().show();
+
+                }
                 //getPermission();
 
                 //WaitingDialog();
@@ -369,7 +393,6 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
                         KLog.d("视频回调" ,imageRadioResultEvent.getResult().getOriginalPath(), imageRadioResultEvent.getResult().getThumbnailSmallPath());
                         Toast.makeText(_mActivity, imageRadioResultEvent.getResult().getOriginalPath(), Toast.LENGTH_SHORT).show();
                         start(Fragment_recorder_Preview.newInstance(imageRadioResultEvent.getResult().getOriginalPath()
-                                ,viewPager.getCurrentItem()
                                 ,imageRadioResultEvent.getResult().getThumbnailBigPath()));
                     }
                 })
@@ -384,7 +407,7 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
             RequestPermissionUtils.requestPermission(_mActivity, new OnRequestPermissionListener() {
                         @Override
                         public void PermissionSuccess(List<String> permissions) {
-                            start(FragmentRecorder.newInstance(viewPager.getCurrentItem()));
+                            start(FragmentRecorder.newInstance());
                         }
 
                         @Override
@@ -394,12 +417,12 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
 
                         @Override
                         public void PermissionHave() {
-                            start(FragmentRecorder.newInstance(viewPager.getCurrentItem()));
+                            start(FragmentRecorder.newInstance());
                         }
                     }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
                     , Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO);
         } else {
-            start(FragmentRecorder.newInstance(viewPager.getCurrentItem()));
+            start(FragmentRecorder.newInstance());
 
         }
     }

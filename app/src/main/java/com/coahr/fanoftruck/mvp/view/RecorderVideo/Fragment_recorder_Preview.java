@@ -1,5 +1,6 @@
 package com.coahr.fanoftruck.mvp.view.RecorderVideo;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -22,9 +23,11 @@ import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
+import com.coahr.fanoftruck.mvp.Base.BaseRecAdapter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recorder_preview_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_recorder_preview_P;
+import com.coahr.fanoftruck.widgets.SelectTextView;
 import com.socks.library.KLog;
 
 import java.util.ArrayList;
@@ -43,39 +46,98 @@ import cn.jzvd.JzvdStd;
  * on 2018/11/25
  * on 22:21
  */
-public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_preview_C.Presenter> implements Fragment_recorder_preview_C.View {
+public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_preview_C.Presenter> implements Fragment_recorder_preview_C.View, View.OnClickListener {
 
 
     @Inject
     Fragment_recorder_preview_P p;
     @BindView(R.id.preview_video)
     JzvdStd playerStandard;
-    @BindView(R.id.preview)
-    LinearLayout preview;
     @BindView(R.id.video_describe)
     EditText video_describe;
     @BindView(R.id.video_submit)
     TextView video_submit;
     @BindView(R.id.text_count)
     TextView text_count;
+    @BindView(R.id.service_tag1)
+    SelectTextView service_tag1;
+
+    @BindView(R.id.service_tag2)
+    SelectTextView service_tag2;
+
+    @BindView(R.id.service_tag3)
+    SelectTextView service_tag3;
+
     private String videoPath;
-    private Bitmap netVideoBitmap;
     List<String> pathList = new ArrayList<>();
-    private int video_type;
-    private Map map;
-    private String videoThumbnail;
-    private MaterialDialog.Builder builder;
+    private String video_type;
     private String saveImagePath;
     private boolean isUpload; //是否上传成功
-    private String zipVideoPath;
 
-    public static Fragment_recorder_Preview newInstance(String videoPath, int video_type, String videoThumbnail) {
+    private Thread thread;
+    private static final int MSG_LOAD_DATA = 0x0001;
+    private static final int MSG_LOAD_SUCCESS = 0x0002;
+    private static final int MSG_LOAD_FAILED = 0x0003;
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_LOAD_DATA:
+                    if (videoPath != null) {
+                        if (thread == null) {//如果已创建就不再重新创建子线程了
+                            thread = new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Bitmap netVideoBitmap = Imageloader.getNetVideoBitmap(videoPath);
+                                    saveImagePath = FileUtils.saveImage(netVideoBitmap);
+                                    if (saveImagePath != null) {
+                                        mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
+                                    } else {
+                                        mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
+                                    }
+                                }
+                            });
+                            thread.start();
+                        } else {
+                            if (saveImagePath != null) {
+                                mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
+                            } else {
+                                mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
+                            }
+                        }
+
+                    } else {
+                        mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
+                    }
+                    break;
+                case MSG_LOAD_SUCCESS:
+                    if (saveImagePath != null) {
+                        Map map = new HashMap();
+                        map.put("video_describe", video_describe.getText().toString());
+                        map.put("video_type", video_type);
+                        map.put("token", Constants.token);
+                        pathList.add(0, videoPath);
+                        pathList.add(1, saveImagePath);
+                        // p.uploadVideo(map, pathList);
+                        setWait_dialog_text("正在上传...");
+                        p.uploadVideo(map, pathList);
+                    }
+                    break;
+                case MSG_LOAD_FAILED:
+                    ToastUtils.showLong("加载失败");
+                    break;
+            }
+        }
+    };
+
+    public static Fragment_recorder_Preview newInstance(String videoPath, String videoThumbnail) {
         Fragment_recorder_Preview fragment_recorder_preview = new Fragment_recorder_Preview();
 
         Bundle bundle = new Bundle();
 
         bundle.putString("videoPath", videoPath);
-        bundle.putInt("video_type", video_type);
         bundle.putString("videoThumbnail", videoThumbnail);
 
         fragment_recorder_preview.setArguments(bundle);
@@ -96,26 +158,19 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     @Override
     public void initView() {
         videoPath = getArguments().getString("videoPath");
-        video_type = getArguments().getInt("video_type");
-        videoThumbnail = getArguments().getString("videoThumbnail");
         playerStandard.setUp(videoPath, null, Jzvd.SCREEN_WINDOW_NORMAL);
         Glide.with(this).load(videoPath).into(playerStandard.thumbImageView);
         Jzvd.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         Jzvd.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        service_tag1.setOnClickListener(this);
+        service_tag2.setOnClickListener(this);
+        service_tag3.setOnClickListener(this);
 
     }
 
     @Override
     public void initData() {
-      //  video_submit.setBackgroundColor(getResources().getColor(R.color.material_grey_550));
-       // video_submit.setEnabled(false);
-        preview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                video_describe.setFocusable(false);
-                video_describe.setFocusableInTouchMode(false);
-            }
-        });
+
         video_describe.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -124,7 +179,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                 return false;
             }
         });
- /*       video_describe.addTextChangedListener(new TextWatcher() {
+        video_describe.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -138,17 +193,9 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
 
             @Override
             public void afterTextChanged(Editable editable) {
-                KLog.d(editable.length());
-                if (!TextUtils.isEmpty(editable) && !editable.toString().equals("")
-                        && editable.toString().length() > 0 && editable.toString().length() <= 50) {
-                    video_submit.setEnabled(true);
-                    video_submit.setBackgroundColor(getResources().getColor(R.color.material_blue_700));
-                } else {
-                    video_submit.setEnabled(false);
-                    video_submit.setBackgroundColor(getResources().getColor(R.color.material_grey_550));
-                }
+
             }
-        });*/
+        });
 
 
         video_submit.setOnClickListener(new View.OnClickListener() {
@@ -160,22 +207,14 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                         ToastUtils.showLong("请填写1～50字的描述");
                         return;
                     }
-                    isUpload = true;
-                    //video_submit.setEnabled(false);
-                    pathList.clear();
-                    map = new HashMap();
-                    map.put("video_describe", video_describe.getText().toString());
-                    if (video_type == 0) {
-                        map.put("video_type", "1");
-                    } else {
-                        map.put("video_type", String.valueOf(video_type));
+                    if (video_type == null && video_type.equals("")) {
+                        ToastUtils.showLong("请选择分类");
+                        return;
                     }
-                    map.put("token", Constants.token);
-                   KLog.d("token",Constants.token);
-                    pathList.add(0, videoPath);
+                    isUpload = true;
+                    pathList.clear();
                     WaitingDialog();
-                    getCoverImage(videoPath);
-                   // zipVideo(videoPath);
+                    mHandler.sendEmptyMessage(MSG_LOAD_DATA);
                 } else {
                     ToastUtils.showLong("已上传，无需重复上传");
                 }
@@ -197,18 +236,20 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
 
     @Override
     public void uploadVideoSuccess(Video_upload video_upload) {
+        KLog.d("上传成功", video_upload.getMsg());
         dismissWaitDialog();
         FileUtils.deleteFile(saveImagePath);
-        ToastUtils.showLong(video_upload.getMsg());
+        ToastUtils.showLong("上传成功"+video_upload.getMsg());
         video_submit.setEnabled(false);
     }
 
     @Override
     public void uploadVideoFailure(String failure) {
+        KLog.d("上传失败", failure);
         dismissWaitDialog();
         isUpload = false;
         FileUtils.deleteFile(saveImagePath);
-        ToastUtils.showLong(failure);
+        ToastUtils.showLong("上传失败"+failure);
         video_submit.setEnabled(true);
     }
 
@@ -230,74 +271,57 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         return super.onBackPressedSupport();
     }
 
-    // 子线程，开启子线程去获取视频封面
-    private void getCoverImage(String videoPath_s) {
-
-        final Handler mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (msg.what == 1) {
-                    saveImagePath = (String) msg.obj;
-                    if (saveImagePath != null) {
-                        pathList.add(1, saveImagePath);
-                        // p.uploadVideo(map, pathList);
-                        setWait_dialog_text("正在上传...");
-                        p.uploadVideo(map,pathList);
-                    }
-                }
-            }
-        };
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    //这个URI是图片下载到本地后的缓存目录中的URI
-                    if (videoPath_s != null) {
-                        Bitmap netVideoBitmap = Imageloader.getNetVideoBitmap(videoPath_s);
-                        String saveImage = FileUtils.saveImage(netVideoBitmap);
-                        Message msg = new Message();
-                        msg.what = 1;
-                        msg.obj = saveImage;
-                        mHandler.sendMessage(msg);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        new Thread(runnable).start();
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.service_tag1:
+                video_type = "1";
+                chanceMode(service_tag1,service_tag2,service_tag3);
+                break;
+            case R.id.service_tag2:
+                video_type = "2";
+                chanceMode(service_tag2,service_tag1,service_tag3);
+                break;
+            case R.id.service_tag3:
+                video_type = "3";
+                chanceMode(service_tag3,service_tag1,service_tag2);
+                break;
+        }
     }
 
-    /**
-     * 压缩视频
-     *
-     * @param intVideoPath    源文件
-     */
-    private void zipVideo(String intVideoPath) {
-
-        zipVideoPath = FileUtils.getSDVideoPath(FileUtils.getVideoName());
-           /* VideoCompress.compressVideoLow(intVideoPath, zipVideoPath, new VideoCompress.CompressListener() {
-                @Override
-                public void onStart() {
-                    WaitingDialog();
-                }
-
-                @Override
-                public void onSuccess() {
-                    setWait_dialog_text("压缩成功...");
-                }
-
-                @Override
-                public void onFail() {
-                    setWait_dialog_text("压缩失败...");
-                }
-
-                @Override
-                public void onProgress(float percent) {
-                        KLog.d("压缩进度",percent);
-                }
-            });*/
+    private void chanceMode(SelectTextView view1,SelectTextView view2,SelectTextView view3) {
+        if (view1.getTag() == null || String.valueOf(view1.getTag()).equals("1")) {
+            view1.toggle(false);
+            view1.setTag("2");
+        } else {
+            video_type ="";
+            view1.toggle(true);
+            view1.setTag("1");
+        }
+        if (view2.getTag() == null || String.valueOf(view2.getTag()).equals("1")) {
+            view2.toggle(true);
+            view2.setTag("1");
+        } else {
+            video_type ="";
+            view2.toggle(true);
+            view2.setTag("1");
         }
 
+        if (view3.getTag() == null || String.valueOf(view3.getTag()).equals("1")) {
+            view3.toggle(true);
+            view3.setTag("1");
+        } else {
+            video_type ="";
+            view3.toggle(true);
+            view3.setTag("1");
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mHandler != null) {
+            mHandler.removeCallbacksAndMessages(null);
+        }
+    }
 }

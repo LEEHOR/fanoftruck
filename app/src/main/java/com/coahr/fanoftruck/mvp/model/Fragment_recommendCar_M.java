@@ -3,6 +3,7 @@ package com.coahr.fanoftruck.mvp.model;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recommendCar_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
+import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
 import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
 
 import java.util.Map;
@@ -53,6 +54,24 @@ public class Fragment_recommendCar_M extends BaseModel<Fragment_recommendCar_C.P
                                 getPresenter().getCarCodeSuccess(carCode);
                             } else {
                                 getPresenter().getCarCodeFailure(carCode.getMsg());
+                            }
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void SaveBusinessCar(Map<String, String> map) {
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<SaveBusinessCarBean>(getApiService().save_business_order(map.get("phone")
+        ,map.get("token"),map.get("verify_code"),map.get("username"),map.get("proid"),map.get("num"),map.get("address"))))
+                .subscribeWith(new SimpleDisposableSubscriber<SaveBusinessCarBean>() {
+                    @Override
+                    public void _onNext(SaveBusinessCarBean saveBusinessCarBean) {
+                        if (getPresenter() != null) {
+                            if (saveBusinessCarBean.getCode()==0) {
+                                getPresenter().SaveBusinessCarSuccess(saveBusinessCarBean);
+                            } else {
+                                getPresenter().SaveBusinessCarFailure(saveBusinessCarBean.getMsg());
                             }
                         }
                     }

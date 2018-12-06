@@ -4,6 +4,7 @@ import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recommendCar_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
+import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
 import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
 import com.coahr.fanoftruck.mvp.model.Fragment_recommendCar_M;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_RecommendCar;
@@ -78,6 +79,27 @@ public class Fragment_recommendCar_P extends BasePresenter<Fragment_recommendCar
     public void getCarCodeFailure(String failure) {
         if (getView() != null) {
             getView().getCarCodeFailure(failure);
+        }
+    }
+
+    @Override
+    public void SaveBusinessCar(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.SaveBusinessCar(map);
+        }
+    }
+
+    @Override
+    public void SaveBusinessCarSuccess(SaveBusinessCarBean saveBusinessCarBean) {
+        if (getView() != null) {
+            getView().SaveBusinessCarSuccess(saveBusinessCarBean);
+        }
+    }
+
+    @Override
+    public void SaveBusinessCarFailure(String failure) {
+        if (getView() != null) {
+            getView().SaveBusinessCarFailure(failure);
         }
     }
 }

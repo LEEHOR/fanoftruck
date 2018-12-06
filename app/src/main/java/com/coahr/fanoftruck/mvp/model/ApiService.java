@@ -6,6 +6,10 @@ import com.coahr.fanoftruck.mvp.model.Bean.AppointmentBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
 import com.coahr.fanoftruck.mvp.model.Bean.CarDefaultBean;
+import com.coahr.fanoftruck.mvp.model.Bean.Center_Initial_Data;
+import com.coahr.fanoftruck.mvp.model.Bean.LoginOutBean;
+import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
+import com.coahr.fanoftruck.mvp.model.Bean.Save_Identity_Info;
 import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AddDiscuss;
 import com.coahr.fanoftruck.mvp.model.Bean.CarListBean;
@@ -24,6 +28,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.model.Bean.VerifyCode;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
 import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
+import com.coahr.fanoftruck.mvp.model.Bean.save_identity_pic;
 
 
 import java.util.List;
@@ -32,6 +37,7 @@ import java.util.Map;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -156,9 +162,18 @@ public interface ApiService {
      * @param parts
      * @return
      */
-    @Multipart
+    // @Multipart
+    //  @POST(ApiContact.getSaveVideo)
+    //  Call<Video_upload> getSaveSuggest(@PartMap Map<String, RequestBody> map, @Part() List<MultipartBody.Part> parts);
+
+
+    /**
+     * 视频上传
+     *
+     * @return
+     */
     @POST(ApiContact.getSaveVideo)
-    Call<Video_upload> getSaveSuggest(@FieldMap Map<String, RequestBody> map, @Part() List<MultipartBody.Part> parts);
+    Call<Video_upload> getSaveSuggest(@Body RequestBody body);
 
     /**
      * 视频评论
@@ -288,4 +303,55 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(ApiContact.get_buyCar_code)
     Call<getBuyCarCode> get_buyCar_code(@Field("phone") String phone);
+
+
+    /**
+     * 推荐购车订单提交
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.save_business_order)
+    Call<SaveBusinessCarBean> save_business_order(@Field("phone") String phone, @Field("token") String token, @Field("verify_code") String verify_code
+            , @Field("username") String username, @Field("proid") String proid, @Field("num") String num
+            , @Field("address") String address);
+
+
+    /**
+     * 个人中心初始化
+     * @param token
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.center_initial_data)
+    Call<Center_Initial_Data> Center_Initial_Data(@Field("token") String token);
+
+
+    /**
+     * 个人中心数据保存
+     * @return
+     */
+    @Multipart
+    @POST(ApiContact.save_identity_info)
+    Call<Save_Identity_Info>  Save_Identity_Info(@PartMap Map<String,RequestBody> map,@Part MultipartBody.Part part);
+
+    /**
+     * 登出
+     * @param token
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.logout)
+    Call<LoginOutBean> LoginOut(@Field("token") String token);
+
+
+    /**
+     * 实名认证
+     * @param map
+     * @param parts
+     * @return
+     */
+      @Multipart
+      @POST(ApiContact.save_identity_pic)
+      Call<save_identity_pic> save_identity_pic(@PartMap Map<String, RequestBody> map, @Part() List<MultipartBody.Part> parts);
 }

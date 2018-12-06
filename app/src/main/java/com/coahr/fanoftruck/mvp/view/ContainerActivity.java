@@ -66,10 +66,13 @@ public class ContainerActivity extends BaseSupportActivity {
             case Constants.Fragment_videoPlay: //视频播放
                 loadRootFragment(R.id.con_fragment, Fragment_home_videoPlay.newInstance());
                 break;
-            case Constants.Fragment_MaintenanceOder: //保养订单
+            case Constants.Fragment_videoList: //视频列表
+                loadRootFragment(R.id.con_fragment, Fragment_home_videoList.newInstance());
+                break;
+            case Constants.Fragment_MaintenanceOder: //维修订单
                 loadRootFragment(R.id.con_fragment, Fragment_MaintenanceOrder.newInstance());
                 break;
-            case Constants.Fragment_ReservationOrder: //维修订单
+            case Constants.Fragment_ReservationOrder: //保养订单
                 loadRootFragment(R.id.con_fragment, Fragment_ReservationOrder.newInstance());
                 break;
         }

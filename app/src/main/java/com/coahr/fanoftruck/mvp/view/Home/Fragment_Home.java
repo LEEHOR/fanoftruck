@@ -14,6 +14,7 @@ import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_home_P;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoPlay;
+import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 
 import javax.inject.Inject;
 
@@ -28,7 +29,8 @@ import butterknife.BindView;
 public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> implements Fragment_home_C.View {
     @Inject
     Fragment_home_P p;
-
+    @BindView(R.id.mytittle)
+    MyTittleBar mytittle;
     @BindView(R.id.lin_1)
     LinearLayout lin_1;
     @BindView(R.id.lin_2)
@@ -61,7 +63,7 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
 
     @Override
     public void initView() {
-
+        mytittle.getLeftIcon().setVisibility(View.INVISIBLE);
         lin_1.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {

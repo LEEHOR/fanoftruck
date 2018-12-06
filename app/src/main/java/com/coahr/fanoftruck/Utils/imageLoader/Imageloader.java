@@ -144,7 +144,7 @@ public class Imageloader {
      * @param targetImage
      */
     public static void loadCircularImage(Uri path, final ImageView targetImage) {
-        Glide.with(BaseApplication.mContext).load(path).asBitmap().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).override(500,500).into(new BitmapImageViewTarget(targetImage){
+        Glide.with(BaseApplication.mContext).load(path).asBitmap().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).into(new BitmapImageViewTarget(targetImage){
             @Override
             protected void setResource(Bitmap resource) {
                 super.setResource(resource);
@@ -162,7 +162,7 @@ public class Imageloader {
      * @param targetImage
      */
     public static void loadCircularImage(String path, final ImageView targetImage) {
-        Glide.with(BaseApplication.mContext).load(path).asBitmap().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).override(500,500).into(new BitmapImageViewTarget(targetImage){
+        Glide.with(BaseApplication.mContext).load(path).asBitmap().diskCacheStrategy(DiskCacheStrategy.RESULT).thumbnail(0.1f).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).into(new BitmapImageViewTarget(targetImage){
             @Override
             protected void setResource(Bitmap resource) {
                 super.setResource(resource);

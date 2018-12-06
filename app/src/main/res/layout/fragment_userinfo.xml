@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_grey_100"
+    android:background="@color/material_grey_50"
     android:orientation="vertical">
 
     <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
@@ -43,6 +43,7 @@
                         android:textSize="14dp" />
 
                     <ImageView
+                        android:id="@+id/iv_user_head"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_alignParentRight="true"
@@ -64,6 +65,7 @@
                     android:padding="@dimen/edge_margin">
 
                     <TextView
+                        android:id="@+id/tv_nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -73,13 +75,13 @@
                         android:textSize="14dp" />
 
                     <EditText
+                        android:id="@+id/ed_user_nickname"
                         style="@style/normal_edittext_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                       android:layout_toRightOf="@+id/tv_nickname"
+                        android:layout_marginLeft="@dimen/dp_36"
                         android:layout_centerVertical="true"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
                         android:text="我是哈急啊急啊就"
                         android:textSize="@dimen/dp_14" />
                 </RelativeLayout>
@@ -113,7 +115,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
+                        android:layout_toRightOf="@+id/text1"
+                        android:layout_marginLeft="@dimen/dp_10"
                         android:hint="暂时未实名认证"
                         android:textSize="@dimen/dp_14" />
 
@@ -152,6 +155,7 @@
                     android:padding="@dimen/edge_margin">
 
                     <TextView
+                        android:id="@+id/tv_sex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -161,13 +165,16 @@
                         android:textSize="@dimen/dp_14" />
 
                     <RadioGroup
+                        android:id="@+id/rg_radioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                     android:layout_toRightOf="@+id/tv_sex"
+                        android:layout_marginLeft="@dimen/dp_36"
                         android:layout_centerVertical="true"
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/rb_sex_man"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="男"
@@ -175,6 +182,7 @@
                             android:textSize="@dimen/dp_14" />
 
                         <RadioButton
+                            android:id="@+id/rb_sex_woman"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_40"
@@ -198,6 +206,7 @@
                     android:padding="@dimen/edge_margin">
 
                     <TextView
+                        android:id="@+id/tv_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -207,13 +216,14 @@
                         android:textSize="14dp" />
 
                     <EditText
+                        android:id="@+id/ed_user_phone"
                         style="@style/normal_edittext_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        android:minWidth="100dp"
+                       android:layout_toRightOf="@+id/tv_3"
+                        android:layout_marginLeft="@dimen/dp_10"
                         android:layout_centerVertical="true"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
                         android:hint="电话号码"
                         android:textSize="@dimen/dp_14" />
                 </RelativeLayout>
@@ -232,6 +242,7 @@
                     android:padding="@dimen/edge_margin">
 
                     <TextView
+                        android:id="@+id/tv_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -241,12 +252,27 @@
                         android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_postal_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        android:layout_toRightOf="@+id/tv_2"
+                        android:layout_toLeftOf="@+id/tv_select_address"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:lines="1"
+                        android:ellipsize="end"
                         android:hint="请选择通讯地址"
                         android:textSize="@dimen/dp_14" />
+                    <TextView
+                        android:id="@+id/tv_select_address"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="选择地址"
+                        android:textSize="@dimen/dp_14"
+                        android:textColor="@color/text_686868"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
@@ -263,28 +289,35 @@
                     android:padding="@dimen/edge_margin">
 
                     <TextView
+                        android:id="@+id/tv_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
+                        android:layout_alignParentTop="true"
                         android:text="详细地址"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
 
                     <EditText
+                        android:id="@+id/ed_detail_address"
                         style="@style/normal_edittext_style"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
+                       android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/tv_1"
+                        android:gravity="top"
+                        android:lines="3"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:paddingRight="@dimen/dp_5"
+                        android:paddingBottom="@dimen/dp_5"
                         android:hint="请填写详细地址"
                         android:textSize="@dimen/dp_14" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
             <TextView
+                android:id="@+id/tv_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_30"

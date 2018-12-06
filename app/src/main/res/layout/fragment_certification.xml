@@ -82,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <FrameLayout
-                        android:id="@+id/iv_fragment"
+                        android:id="@+id/iv_fragment_z"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/dp_10"
                         android:layout_below="@+id/tv_3"
@@ -105,7 +105,7 @@
 
 
                     <FrameLayout
-                        android:id="@+id/tv_fragment"
+                        android:id="@+id/tv_fragment_z"
                         android:layout_marginTop="@dimen/dp_60"
                         android:layout_centerHorizontal="true"
                         android:layout_below="@+id/tv_3"
@@ -145,6 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <FrameLayout
+                        android:id="@+id/iv_fragment_f"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/dp_10"
                         android:layout_below="@+id/tv_4"
@@ -158,6 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:id="@+id/iv_image_f"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_width="250dp"
                                 android:layout_height="120dp" />
@@ -166,6 +168,7 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/tv_fragment_f"
                         android:layout_marginTop="@dimen/dp_60"
                         android:layout_centerHorizontal="true"
                         android:layout_below="@+id/tv_4"
@@ -186,6 +189,7 @@
             </android.support.v7.widget.CardView>
 
             <TextView
+                android:id="@+id/tv_submit"
                 android:layout_marginTop="@dimen/dp_30"
                 android:padding="@dimen/dp_10"
                 android:textSize="@dimen/dp_14"

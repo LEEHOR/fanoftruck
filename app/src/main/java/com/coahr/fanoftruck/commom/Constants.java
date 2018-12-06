@@ -121,6 +121,10 @@ public class Constants {
 
     public static final  int Fragment_ReservationOrder=24;
 
+    public static final int Fragment_MaintenanceVideo_viewPage=25;
+
+    public static final int Fragment_myUserInfo=26;
+
 
 
     /**

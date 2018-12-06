@@ -86,4 +86,16 @@ public class ApiContact {
     //推荐购车订单提交
     public static final String save_business_order="/APP/User/save_business_order";
 
+    //个人中心初始化数据
+    public static final String center_initial_data="/APP/Query/center_initial_data";
+
+    //个人中心数据保存
+    public static final String save_identity_info="/APP/User/save_identity_info";
+
+    //实名认证照片上传
+    public static final String save_identity_pic="/APP/User/save_identity_pic";
+
+    //用户登出
+    public  static final String logout="/APP/Basic/logout";
+
 }

@@ -23,6 +23,12 @@ import okhttp3.RequestBody;
  * on 17:53
  */
 public class Fragment_recorder_preview_M extends BaseModel<Fragment_recorder_preview_C.Presenter> implements Fragment_recorder_preview_C.Model {
+
+    private File image_file;
+    private RequestBody image_requestFile;
+    private File video_file;
+    private RequestBody video_requestFile;
+
     @Inject
     public Fragment_recorder_preview_M() {
         super();
@@ -40,24 +46,31 @@ public class Fragment_recorder_preview_M extends BaseModel<Fragment_recorder_pre
     public void uploadVideo(Map<String, String> map, List<String> FilePath) {
         ToastUtils.showLong(map.get("token"));
         Map<String, RequestBody> map1 = new HashMap<>();
-        map1.put("video_describe", RequestBody.create(null, map.get("video_describe")));
-        map1.put("video_type",RequestBody.create(null,map.get("video_type")));
-        map1.put("token", RequestBody.create(null, map.get("token")));
-        List<MultipartBody.Part> parts = new ArrayList<>();
+       // map1.put("video_describe", RequestBody.create(null, map.get("video_describe")));
+       // map1.put("video_type",RequestBody.create(null,map.get("video_type")));
+       // map1.put("token", RequestBody.create(null, map.get("token")));
+     //   List<MultipartBody.Part> parts = new ArrayList<>();
         for (int i = 0; i < FilePath.size(); i++) {
             if (i==0) {  //视频
-                File file = new File(FilePath.get(i));
-                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                MultipartBody.Part part = MultipartBody.Part.createFormData("video", file.getName(), requestFile);
-                parts.add(part);
-            } else {
-                File file = new File(FilePath.get(i));
-                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                MultipartBody.Part part = MultipartBody.Part.createFormData("video_cover", file.getName(), requestFile);
-                parts.add(part);
+                video_file = new File(FilePath.get(i));
+                video_requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), video_file);
+              //  MultipartBody.Part part = MultipartBody.Part.createFormData("video", video_file.getName(), video_requestFile);
+               // parts.add(part);
+            } else {  //图片
+                image_file = new File(FilePath.get(i));
+                image_requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image_file);
+              //  MultipartBody.Part part = MultipartBody.Part.createFormData("video_cover", image_file.getName(), image_requestFile);
+               // parts.add(part);
             }
         }
-        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<Video_upload>(getApiService().getSaveSuggest(map1,parts)))
+        RequestBody body=new MultipartBody.Builder()
+                .addFormDataPart("video_describe",map.get("video_describe"))
+                .addFormDataPart("video_type",map.get("video_type"))
+                .addFormDataPart("token",map.get("token"))
+                .addFormDataPart("video",video_file.getName(),video_requestFile)
+                .addFormDataPart("video_cover",image_file.getName(),image_requestFile)
+                .build();
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<Video_upload>(getApiService().getSaveSuggest(body)))
         .subscribeWith(new SimpleDisposableSubscriber<Video_upload>() {
             @Override
             public void _onNext(Video_upload video_upload) {

@@ -154,7 +154,6 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
     private static final int MAX_PREVIEW_HEIGHT = 1080;
     private String saveVideoPath = "";
     private CopyOnWriteArrayList<String> oldVideoPath;
-    private int video_type;  //录制视频类型 （上传使用）
 
 
     /**
@@ -290,11 +289,9 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
 
     }
 
-    public static FragmentRecorder newInstance(int video_type) {
+    public static FragmentRecorder newInstance() {
         FragmentRecorder recorder=new FragmentRecorder();
-        Bundle bundle=new Bundle();
-        bundle.putInt("video_type",video_type);
-        recorder.setArguments(bundle);
+
         return recorder;
     }
 
@@ -318,9 +315,6 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
 
     @Override
     public void initData() {
-        if (getArguments() != null) {
-            video_type = getArguments().getInt("video_type");
-        }
 
     }
 
@@ -410,9 +404,9 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
                     if (isMerge) {  //是否合并过
                         Log.d("暂停状态 --停止--1", "onClick: " + oldVideoPath.get(0));
                         //start(Fragment_recorder_Preview.newInstance());
-                        startWithPop(Fragment_recorder_Preview.newInstance(oldVideoPath.get(0),video_type,null));
+                        startWithPop(Fragment_recorder_Preview.newInstance(oldVideoPath.get(0),null));
                     } else {
-                        startWithPop(Fragment_recorder_Preview.newInstance(mNextVideoAbsolutePath,video_type,null));
+                        startWithPop(Fragment_recorder_Preview.newInstance(mNextVideoAbsolutePath,null));
                         Log.d("暂停状态 --停止--2", "onClick:暂停状态 --停止 " + mNextVideoAbsolutePath);
                      //   start(Fragment_recorder_Preview.newInstance(mNextVideoAbsolutePath));
                     }
@@ -1077,7 +1071,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
                         public void onNext(String s) {
                             Log.d("结果", s);
                             closeCamera();
-                            startWithPop(Fragment_recorder_Preview.newInstance(s,video_type,null));
+                            startWithPop(Fragment_recorder_Preview.newInstance(s,null));
 
 
                         }
@@ -1096,7 +1090,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
             record_control.setEnabled(true);
             Log.d("结果", lastFile);
             closeCamera();
-            startWithPop(Fragment_recorder_Preview.newInstance(lastFile,video_type,null));
+            startWithPop(Fragment_recorder_Preview.newInstance(lastFile,null));
         }
     }
 

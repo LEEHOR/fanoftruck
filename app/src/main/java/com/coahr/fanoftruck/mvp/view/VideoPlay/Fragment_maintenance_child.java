@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
@@ -49,10 +50,12 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
     private int start = 0;
     private int length = 9;
     private int status;
-    private StaggeredGridLayoutManager staggeredGridLayoutManager;
     private int max;
     private boolean isLoading;
     private List<MaintenanceVideoList.JdataBean> maintenanceVideoListJdata = new ArrayList<>();
+    private GridLayoutManager gridLayoutManager;
+    private int lastVisibleItemPosition;
+
     public static Fragment_maintenance_child newInstance(int status){
         Fragment_maintenance_child child=new Fragment_maintenance_child();
         Bundle bundle=new Bundle();
@@ -75,8 +78,8 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
     public void initView() {
 
         adapter = new Fragment_maintenance_child_adapter();
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        gridLayoutManager = new GridLayoutManager(BaseApplication.mContext, 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(BaseApplication.mContext, 8), DensityUtils.dp2px(BaseApplication.mContext, 5), getResources().getColor(R.color.material_grey_200)));
         for (int i = 0; i <recyclerView.getItemDecorationCount() ; i++) {
             if (i !=0){
@@ -232,10 +235,10 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (adapter.getFooterLayoutCount() == 0 && adapter.getData().size() >= 10) {
+                if (adapter.getFooterLayoutCount() == 0 && adapter.getData().size() > 10) {
                     adapter.addFooterView(child_footView);
                 }
-                StaggeredGridLayoutManager layoutManager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
+                GridLayoutManager layoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
                 //屏幕中最后一个可见子项的position
                 // int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
                 //当前屏幕所看到的子项个数
@@ -244,7 +247,7 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
                 int totalItemCount = layoutManager.getItemCount();
                 //RecyclerView的滑动状态
                 int state = recyclerView.getScrollState();
-                if (visibleItemCount > 0 && max == totalItemCount - 1 && state == RecyclerView.SCROLL_STATE_IDLE) {
+                if (visibleItemCount > 0 && lastVisibleItemPosition == totalItemCount - 1 && state == RecyclerView.SCROLL_STATE_IDLE) {
                     if (!isLoading) {
                         recyclerView.postDelayed(new Runnable() {
                             @Override
@@ -262,8 +265,9 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                int[] lastVisibleItemPositions = staggeredGridLayoutManager.findLastVisibleItemPositions(new int[staggeredGridLayoutManager.getSpanCount()]);
-                max = findMax(lastVisibleItemPositions);
+             //   int[] lastVisibleItemPositions = staggeredGridLayoutManager.findLastVisibleItemPositions(new int[staggeredGridLayoutManager.getSpanCount()]);
+               // max = findMax(lastVisibleItemPositions);
+                lastVisibleItemPosition = gridLayoutManager.findLastVisibleItemPosition();
             }
         });
     }

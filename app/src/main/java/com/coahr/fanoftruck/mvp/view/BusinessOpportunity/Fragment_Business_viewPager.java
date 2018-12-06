@@ -82,6 +82,7 @@ public class Fragment_Business_viewPager extends BaseFragment {
 
     private void initX5WebView(String url) {
         webView.getSettings().setDisplayZoomControls(false);
+        webView.clearCache(true);
         IX5WebViewExtension ix5 = webView.getX5WebViewExtension();
         if (null != ix5) {
             ix5.setScrollBarFadingEnabled(false);
@@ -101,8 +102,10 @@ public class Fragment_Business_viewPager extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         //释放资源
-        if (webView != null)
+        if (webView != null) {
             webView.destroy();
+            webView.clearCache(true);
+        }
     }
 
     @Override

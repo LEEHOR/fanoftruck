@@ -77,11 +77,6 @@ public class Fragment_Shopping extends BaseFragment<Fragment_shopping_C.Presente
     @BindView(R.id.ed_search)
     EditText ed_search;
     PopupWindows_city popupWindows_city = new PopupWindows_city();
-    private TextView tvTittle;
-    private EditText editSearch;
-    private ImageView rightIcon;
-    private ImageView imageView;
-    private TextView rightText;
     private boolean isSearch;
     private boolean isLoading;
     private ShoppingMallListAdapter adapter;
@@ -417,8 +412,8 @@ private void searchListener(){
             isSearch = false;
             ed_search.setFocusable(false);
             ed_search.setFocusableInTouchMode(false);
-            editSearch.setText(null);
-            editSearch.setHint("请输入要查询的内容");
+            ed_search.setText(null);
+            ed_search.setHint("请输入要查询的内容");
             shopping_recycler.setVisibility(View.VISIBLE);
             search_re.setVisibility(View.GONE);
             tv_chanels.setVisibility(View.INVISIBLE);

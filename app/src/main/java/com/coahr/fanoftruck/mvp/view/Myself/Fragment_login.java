@@ -186,6 +186,12 @@ public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> imp
         if (toFragment==Constants.Fragment_Store_Detail){
             _mActivity.onBackPressed();
         }
+        if (toFragment==Constants.Fragment_MaintenanceVideo_viewPage){
+            _mActivity.onBackPressed();
+        }
+        if (toFragment ==Constants.Fragment_myUserInfo){
+            _mActivity.onBackPressed();
+        }
 
     }
 
