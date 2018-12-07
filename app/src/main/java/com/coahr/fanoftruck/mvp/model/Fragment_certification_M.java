@@ -33,9 +33,11 @@ public class Fragment_certification_M extends BaseModel<Fragment_certification_C
 
     @Override
     public void Save_identity_pic(Map<String, String> map, List<String> list) {
-        Map<String, RequestBody> map1 = new HashMap<>();
+
+     /*   Map<String, RequestBody> map1 = new HashMap<>();
         map1.put("token", RequestBody.create(null, map.get("token")));
         map1.put("realname", RequestBody.create(null, map.get("realname")));
+
         List<MultipartBody.Part> parts = new ArrayList<>();
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
@@ -58,8 +60,8 @@ public class Fragment_certification_M extends BaseModel<Fragment_certification_C
                     }
                 }
             }
-        }
-        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<save_identity_pic>(getApiService().save_identity_pic(map1,parts)))
+        }*/
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<save_identity_pic>(getApiService().save_identity_pic(map)))
                 .subscribeWith(new SimpleDisposableSubscriber<save_identity_pic>() {
                     @Override
                     public void _onNext(save_identity_pic save_identity_pic) {

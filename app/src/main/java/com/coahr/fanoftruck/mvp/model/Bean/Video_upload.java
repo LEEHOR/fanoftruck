@@ -7,9 +7,10 @@ package com.coahr.fanoftruck.mvp.model.Bean;
  */
 public class Video_upload {
 
+
     /**
-     * code : 10103
-     * msg : token不存在或已过期，请重新登录
+     * code : 10301
+     * msg : 视频上传文件后缀不允许
      * jdata : {}
      */
 
@@ -42,6 +43,14 @@ public class Video_upload {
     }
 
     public static class JdataBean {
+        private  String msg;
 
+        public String getMsg() {
+            return msg;
+        }
+
+        public void setMsg(String msg) {
+            this.msg = msg;
+        }
     }
 }

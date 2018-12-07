@@ -52,7 +52,7 @@ public class Fragment_UserInfo_M extends BaseModel<Fragment_userInfo_C.Presenter
 
     @Override
     public void Save_Identity_Info(Map<String, String> map) {
-       Map<String,RequestBody> map1=new HashMap<>();
+    /*   Map<String,RequestBody> map1=new HashMap<>();
         map1.put("token",RequestBody.create(null,map.get("token")));
         map1.put("nickname",RequestBody.create(null,map.get("nickname")));
         map1.put("sex",RequestBody.create(null,map.get("sex")));
@@ -64,7 +64,7 @@ public class Fragment_UserInfo_M extends BaseModel<Fragment_userInfo_C.Presenter
            part = MultipartBody.Part.createFormData("userheadimg", headImg_file.getName(), requestBody);
        } else {
            part=null;
-       }
+       }*/
 //        RequestBody body=new MultipartBody.Builder()
 //                .addFormDataPart("token",map.get("token"))
 //                .addFormDataPart("nickname",map.get("nickname"))
@@ -73,7 +73,7 @@ public class Fragment_UserInfo_M extends BaseModel<Fragment_userInfo_C.Presenter
 //                .addFormDataPart("detail_address",map.get("detail_address"))
 //                .addFormDataPart("userheadimg",headImg_file.getName(),requestBody)
 //                .build();
-        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<Save_Identity_Info>(getApiService().Save_Identity_Info(map1,part)))
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<Save_Identity_Info>(getApiService().Save_Identity_Info(map)))
                 .subscribeWith(new SimpleDisposableSubscriber<Save_Identity_Info>() {
                     @Override
                     public void _onNext(Save_Identity_Info save_identity_info) {

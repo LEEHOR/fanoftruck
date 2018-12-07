@@ -95,6 +95,7 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
     private Dialog dialog;
     private View inflate;
     private MaterialDialog.Builder builder;
+    private int firstVisibleItemPosition;
 
     public static Fragment_MaintenanceVideo_viewPage newInstance() {
         return  new Fragment_MaintenanceVideo_viewPage();
@@ -194,7 +195,8 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
                    // start(Fragment_login.newInstance(Constants.Fragment_MaintenanceVideo_viewPage));
                     openVideoSelectRadioMethod();
                 }else {
-                    new MaterialDialog.Builder(BaseApplication.mContext)
+                    new MaterialDialog.Builder(_mActivity)
+                            .title("提示")
                             .content("需要登陆")
                             .positiveText("登录")
                             .negativeText("取消")
@@ -213,9 +215,6 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
                             }).build().show();
 
                 }
-                //getPermission();
-
-                //WaitingDialog();
             }
         });
     }
@@ -229,8 +228,8 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
         tabLayout.setupWithViewPager(viewPager);
         fragment_maintenance_child_adapter = new Fragment_maintenance_child_adapter();
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        //gridLayoutManager = new GridLayoutManager(BaseApplication.mContext, 2);
-        search_recycler.setLayoutManager(staggeredGridLayoutManager);
+        gridLayoutManager = new GridLayoutManager(BaseApplication.mContext, 2);
+        search_recycler.setLayoutManager(gridLayoutManager);
         search_recycler.setAdapter(fragment_maintenance_child_adapter);
         search_recycler.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(BaseApplication.mContext, 8), DensityUtils.dp2px(BaseApplication.mContext, 5), getResources().getColor(R.color.material_grey_200)));
         for (int i = 0; i < search_recycler.getItemDecorationCount(); i++) {
@@ -245,7 +244,7 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
                 if (fragment_maintenance_child_adapter.getFooterLayoutCount() == 0 && fragment_maintenance_child_adapter.getData().size() >= 10) {
                     fragment_maintenance_child_adapter.addFooterView(addFooterView);
                 }
-                StaggeredGridLayoutManager layoutManager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
+                GridLayoutManager layoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
                 //屏幕中最后一个可见子项的position
                 // int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
                 //当前屏幕所看到的子项个数
@@ -254,7 +253,7 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
                 int totalItemCount = layoutManager.getItemCount();
                 //RecyclerView的滑动状态
                 int state = recyclerView.getScrollState();
-                if (visibleItemCount > 0 && max == totalItemCount - 1 && state == RecyclerView.SCROLL_STATE_IDLE) {
+                if (visibleItemCount > 0 && firstVisibleItemPosition == totalItemCount - 1 && state == RecyclerView.SCROLL_STATE_IDLE) {
                     if (!isLoading) {
                         search_recycler.postDelayed(new Runnable() {
                             @Override
@@ -272,8 +271,9 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                int[] lastVisibleItemPositions = staggeredGridLayoutManager.findLastVisibleItemPositions(new int[staggeredGridLayoutManager.getSpanCount()]);
-                max = findMax(lastVisibleItemPositions);
+              //  int[] lastVisibleItemPositions = staggeredGridLayoutManager.findLastVisibleItemPositions(new int[staggeredGridLayoutManager.getSpanCount()]);
+              //  max = findMax(lastVisibleItemPositions);
+                firstVisibleItemPosition = gridLayoutManager.findFirstVisibleItemPosition();
                 KLog.d("max", max);
             }
         });
@@ -426,4 +426,6 @@ public class Fragment_MaintenanceVideo_viewPage extends BaseFragment<Fragment_ma
 
         }
     }
+
+
 }

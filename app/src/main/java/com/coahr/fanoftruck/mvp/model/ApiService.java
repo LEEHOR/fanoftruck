@@ -159,22 +159,28 @@ public interface ApiService {
     /**
      * 视频上传
      * @param map
-     * @param parts
      * @return
      */
-    // @Multipart
-    //  @POST(ApiContact.getSaveVideo)
-    //  Call<Video_upload> getSaveSuggest(@PartMap Map<String, RequestBody> map, @Part() List<MultipartBody.Part> parts);
+     @Multipart
+      @POST(ApiContact.video_add)
+      Call<Video_upload> video_add(@PartMap Map<String, RequestBody> map, @Body MultipartBody multipartBody);
 
+
+    @Multipart
+    @POST(ApiContact.video_add)
+    Call<Video_upload> video_add(@Part("token") RequestBody token ,@Part("video_type") RequestBody  video_type,@Part("video_describe") RequestBody video_describe
+           ,@Part MultipartBody.Part videoFile,@Part MultipartBody.Part imgFile);
 
     /**
      * 视频上传
      *
      * @return
      */
-    @POST(ApiContact.getSaveVideo)
-    Call<Video_upload> getSaveSuggest(@Body RequestBody body);
+    @POST(ApiContact.video_add)
+    Call<Video_upload> video_add(@Body RequestBody body);
 
+    @POST(ApiContact.video_add)
+    Call<Video_upload> video_add(@Body MultipartBody multipartBody);
     /**
      * 视频评论
      */
@@ -331,9 +337,9 @@ public interface ApiService {
      * 个人中心数据保存
      * @return
      */
-    @Multipart
+    @FormUrlEncoded
     @POST(ApiContact.save_identity_info)
-    Call<Save_Identity_Info>  Save_Identity_Info(@PartMap Map<String,RequestBody> map,@Part MultipartBody.Part part);
+    Call<Save_Identity_Info>  Save_Identity_Info(@FieldMap Map<String,String> map);
 
     /**
      * 登出
@@ -348,10 +354,9 @@ public interface ApiService {
     /**
      * 实名认证
      * @param map
-     * @param parts
      * @return
      */
-      @Multipart
+    @FormUrlEncoded
       @POST(ApiContact.save_identity_pic)
-      Call<save_identity_pic> save_identity_pic(@PartMap Map<String, RequestBody> map, @Part() List<MultipartBody.Part> parts);
+      Call<save_identity_pic> save_identity_pic(@FieldMap Map<String, String> map);
 }

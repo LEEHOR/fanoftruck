@@ -1,6 +1,9 @@
 package com.coahr.fanoftruck.mvp.view.MaintenanceOrder;
 
+import android.graphics.Bitmap;
 import android.os.Build;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.commom.Constants;
@@ -10,6 +13,8 @@ import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf;
 import com.tencent.smtt.export.external.extension.interfaces.IX5WebViewExtension;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import butterknife.BindView;
 
@@ -24,6 +29,9 @@ public class Fragment_MaintenanceOrder extends BaseFragment {
     MyTittleBar myTittleBar;
     @BindView(R.id.my_webView)
     X5WebViewByMyShelf webView;
+    @BindView(R.id.mySwipe)
+    SwipeRefreshLayout mySwipe;
+    private boolean isLoading;
 
     public static Fragment_MaintenanceOrder newInstance() {
         return new Fragment_MaintenanceOrder();
@@ -42,12 +50,41 @@ public class Fragment_MaintenanceOrder extends BaseFragment {
     @Override
     public void initView() {
         initHardwareAccelerate();
+        mySwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (!isLoading) {
+                    webView.reload();
+                    isLoading=true;
+                }
+
+            }
+        });
+        myTittleBar.getLeftIcon().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                _mActivity.onBackPressed();
+            }
+        });
     }
 
     @Override
     public void initData() {
         //
         initX5WebView("http://app.cvfans.net/H5/maintenance_order.html?token="+Constants.token);
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView webView, String s) {
+                super.onPageFinished(webView, s);
+                mySwipe.setRefreshing(false);
+                isLoading=false;
+            }
+
+            @Override
+            public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+                super.onPageStarted(webView, s, bitmap);
+            }
+        });
     }
 
     /**

@@ -13,8 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/material_grey_200"/>
- <com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf
-     android:id="@+id/x5_web"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/mywebview_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf
+            android:id="@+id/x5_web"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </LinearLayout>

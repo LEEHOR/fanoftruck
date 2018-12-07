@@ -38,7 +38,7 @@ public class ApiContact {
     public static final  String getVideo_discuss_list="APP/Video/video_discuss_list";
 
     //视频上传
-    public static final String getSaveVideo="/APP/User/save_suggest";
+    public static final String video_add="/APP/Video/video_add";
 
     //视频评论
     public  static final String getAdddiscuss="/APP/Video/video_discuss_add";

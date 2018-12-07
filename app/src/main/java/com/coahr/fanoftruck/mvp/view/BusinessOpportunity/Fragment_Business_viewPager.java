@@ -1,18 +1,28 @@
 package com.coahr.fanoftruck.mvp.view.BusinessOpportunity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.coahr.fanoftruck.R;
+import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf;
 import com.tencent.smtt.export.external.extension.interfaces.IX5WebViewExtension;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 
 import butterknife.BindView;
@@ -28,6 +38,9 @@ public class Fragment_Business_viewPager extends BaseFragment {
     X5WebViewByMyShelf webView;
     @BindView(R.id.mytitle_business)
     MyTittleBar myTittleBar;
+    @BindView(R.id.mywebview_swipe)
+    SwipeRefreshLayout mywebview_swipe;
+    private boolean isLoading;
     public static Fragment_Business_viewPager newInstance() {
         return new Fragment_Business_viewPager();
     }
@@ -53,12 +66,66 @@ public class Fragment_Business_viewPager extends BaseFragment {
         myTittleBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(_mActivity, ContainerActivity.class);
-                intent.putExtra("tofragment", Constants.Fragment_recommendCar);
-                startActivity(intent);
+                if (hasLogin()) {
+                    Intent intent = new Intent(_mActivity, ContainerActivity.class);
+                    intent.putExtra("tofragment", Constants.Fragment_recommendCar);
+                    startActivity(intent);
+                } else {
+                    new MaterialDialog.Builder(_mActivity)
+                            .title("提示")
+                            .content("您当前未登录")
+                            .negativeText("取消")
+                            .positiveText("去登陆")
+                            .onNegative(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    dialog.dismiss();
+                                }
+                            }).onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            dialog.dismiss();
+                            start(Fragment_login.newInstance(Constants.Fragment_myUserInfo));
+                        }
+                    }).build().show();
+                }
+
+
             }
         });
         initHardwareAccelerate();
+        mywebview_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (!isLoading) {
+                    mywebview_swipe.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            webView.reload();
+                        }
+                    });
+                } else {
+                    ToastUtils.showLong("加载中");
+                }
+            }
+        });
+        //webView.setOnClickListener();
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView webView, String s) {
+                super.onPageFinished(webView, s);
+                mywebview_swipe.setRefreshing(false);
+                ToastUtils.showLong("加载完成");
+
+            }
+
+            @Override
+            public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+                super.onPageStarted(webView, s, bitmap);
+                ToastUtils.showLong("正在加载页面");
+            }
+
+        });
     }
 
     @Override

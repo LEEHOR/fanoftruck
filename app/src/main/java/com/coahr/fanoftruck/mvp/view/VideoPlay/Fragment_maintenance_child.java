@@ -178,7 +178,7 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
 
     @Override
     public void getVideoMoreFailure(String failure) {
-        KLog.d("加载更多f"+failure);
+        KLog.d("加载更多"+failure);
         start-=10;
         length-=10;
         if (adapter.getFooterLayoutCount() > 0) {
@@ -247,7 +247,7 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
                 int totalItemCount = layoutManager.getItemCount();
                 //RecyclerView的滑动状态
                 int state = recyclerView.getScrollState();
-                if (visibleItemCount > 0 && lastVisibleItemPosition == totalItemCount - 1 && state == RecyclerView.SCROLL_STATE_IDLE) {
+                if (visibleItemCount > 0 && lastVisibleItemPosition == totalItemCount - 1 && state == RecyclerView.SCROLL_STATE_IDLE &&maintenanceVideoListJdata.size()>=2 ) {
                     if (!isLoading) {
                         recyclerView.postDelayed(new Runnable() {
                             @Override

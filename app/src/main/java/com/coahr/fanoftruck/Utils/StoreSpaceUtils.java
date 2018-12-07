@@ -2,6 +2,7 @@ package com.coahr.fanoftruck.Utils;
 
 import android.os.Environment;
 import android.os.StatFs;
+import android.util.Base64;
 
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
@@ -373,4 +374,36 @@ public class StoreSpaceUtils {
 		String substring_name = path.substring(i);
 		return substring_name;
 	}
+
+	public static String getLogFile() {
+
+		File eis = new File(Constants.LOG_DIR_CRASH);
+		if (!eis.exists()) {
+			eis.mkdir();
+		}
+		return eis.toString() + "/" +"log";
+	}
+
+	/**
+	 * @Description: 根据图片地址转换为base64编码字符串
+	 * @Author:
+	 * @CreateTime:
+	 * @return
+	 */
+	public static String getImageStr(String imgFile) {
+		InputStream inputStream = null;
+		byte[] data = null;
+		try {
+			inputStream = new FileInputStream(imgFile);
+			data = new byte[inputStream.available()];
+			inputStream.read(data);
+			inputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// 加密
+
+		return new String(Base64.encodeToString(data,1));
+	}
+
 }

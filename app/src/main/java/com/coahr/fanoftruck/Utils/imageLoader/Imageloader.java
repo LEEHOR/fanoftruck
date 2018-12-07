@@ -92,7 +92,7 @@ public class Imageloader {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         int kind = MediaStore.Video.Thumbnails.MINI_KIND;
         try {
-            if (Build.VERSION.SDK_INT >=21) {
+            if (url.startsWith("http")) {
                 retriever.setDataSource(url, new HashMap<String, String>());
             } else {
                 retriever.setDataSource(url);
@@ -193,8 +193,8 @@ public class Imageloader {
      * 根据图片的url路径获得Bitmap对象
      */
     public static Bitmap getBitMap(String path) {
-        //  final Bitmap[] bitmap = new Bitmap[1];
-        Glide.with(BaseApplication.mContext).load(path).asBitmap().override(500, 500).diskCacheStrategy(DiskCacheStrategy.RESULT).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).into(new SimpleTarget<Bitmap>() {
+
+        Glide.with(BaseApplication.mContext).load(path).asBitmap().diskCacheStrategy(DiskCacheStrategy.RESULT).into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                 //final Bitmap bitmap1=resource;
@@ -206,7 +206,7 @@ public class Imageloader {
     }
 
     public static Bitmap getBitMap(int res) {
-        Glide.with(BaseApplication.mContext).load(res).asBitmap().override(500,500).diskCacheStrategy(DiskCacheStrategy.RESULT).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).into(new SimpleTarget<Bitmap>() {
+        Glide.with(BaseApplication.mContext).load(res).asBitmap().diskCacheStrategy(DiskCacheStrategy.RESULT).placeholder(R.mipmap.loading).error(R.mipmap.loadimage_err).into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                 //final Bitmap bitmap1=resource;

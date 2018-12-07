@@ -4,8 +4,10 @@ import android.text.TextUtils;
 
 import com.coahr.fanoftruck.BuildConfig;
 import com.coahr.fanoftruck.Utils.HttpLogging.MyHttpLogging;
+import com.coahr.fanoftruck.Utils.StoreSpaceUtils;
 import com.coahr.fanoftruck.commom.Constants;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +16,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

@@ -1,6 +1,8 @@
 package com.coahr.fanoftruck.mvp.view.MaintenanceOrder;
 
+import android.graphics.Bitmap;
 import android.os.Build;
+import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.commom.Constants;
@@ -9,6 +11,8 @@ import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf;
 import com.tencent.smtt.export.external.extension.interfaces.IX5WebViewExtension;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import butterknife.BindView;
 
@@ -23,7 +27,9 @@ public class Fragment_ReservationOrder extends BaseFragment {
     MyTittleBar myTittleBar;
     @BindView(R.id.my_webView)
     X5WebViewByMyShelf webView;
-
+    @BindView(R.id.mySwipe)
+    SwipeRefreshLayout swipeRefreshLayout;
+    private boolean isLoading;
     public static Fragment_ReservationOrder newInstance() {
         return new Fragment_ReservationOrder();
     }
@@ -36,17 +42,42 @@ public class Fragment_ReservationOrder extends BaseFragment {
 
     @Override
     public int bindLayout() {
-        return R.layout.fragment_maintenance_order;
+        return R.layout.fragment_reservation_order;
     }
 
     @Override
     public void initView() {
         initHardwareAccelerate();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (!isLoading) {
+                    webView.reload();
+                }
+            }
+        });
     }
 
     @Override
     public void initData() {
         initX5WebView("http://app.cvfans.net/H5/repair_order.html?token="+Constants.token);
+
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+                super.onPageStarted(webView, s, bitmap);
+            }
+
+            @Override
+            public void onPageFinished(WebView webView, String s) {
+                super.onPageFinished(webView, s);
+            }
+
+            @Override
+            public void onReceivedError(WebView webView, int i, String s, String s1) {
+                super.onReceivedError(webView, i, s, s1);
+            }
+        });
     }
 
     /**

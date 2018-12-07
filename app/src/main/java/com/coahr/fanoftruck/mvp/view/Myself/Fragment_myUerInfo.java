@@ -21,6 +21,7 @@ import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.LoadCity.JsonBean;
 import com.coahr.fanoftruck.Utils.LoadCity.JsonFileReader;
 import com.coahr.fanoftruck.Utils.PreferenceUtils;
+import com.coahr.fanoftruck.Utils.StoreSpaceUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
@@ -411,7 +412,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     private void saveInfoMassage() {
         Map map = new HashMap();
         map.put("token", Constants.token);
-        map.put("userheadimg", originalPath);
+        map.put("userheadimg", StoreSpaceUtils.getImageStr(originalPath));
         map.put("nickname", ed_user_nickname.getText().toString());
         map.put("sex", sex);
         map.put("postal_address", tv_postal_address.getText().toString());

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.Permission.OnRequestPermissionListener;
 import com.coahr.fanoftruck.Utils.Permission.RequestPermissionUtils;
+import com.coahr.fanoftruck.Utils.StoreSpaceUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
@@ -185,9 +186,8 @@ public class Fragment_certification extends BaseFragment<Fragment_certification_
         Map map=new HashMap();
         map.put("token",Constants.token);
         map.put("realname",ed_ID_name.getText().toString());
-        picList.clear();
-        picList.add(0,imgIdZ);
-        picList.add(1,imgIdF);
+        map.put("pic1",StoreSpaceUtils.getImageStr(imgIdZ));
+        map.put("pic2",StoreSpaceUtils.getImageStr(imgIdF));
         p.Save_identity_pic(map,picList);
     }
 }

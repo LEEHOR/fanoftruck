@@ -3,9 +3,11 @@ package com.coahr.fanoftruck.mvp.view.RecorderVideo;
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -20,6 +22,7 @@ import com.amap.api.location.AMapLocation;
 import com.bumptech.glide.Glide;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
+import com.coahr.fanoftruck.Utils.imageLoader.BitmapUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
@@ -78,6 +81,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     private static final int MSG_LOAD_DATA = 0x0001;
     private static final int MSG_LOAD_SUCCESS = 0x0002;
     private static final int MSG_LOAD_FAILED = 0x0003;
+    private String zipPath;
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @Override
@@ -85,7 +89,6 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
             super.handleMessage(msg);
             switch (msg.what) {
                 case MSG_LOAD_DATA:
-                    if (videoPath != null) {
                         if (thread == null) {//如果已创建就不再重新创建子线程了
                             thread = new Thread(new Runnable() {
                                 @Override
@@ -93,7 +96,15 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                                     Bitmap netVideoBitmap = Imageloader.getNetVideoBitmap(videoPath);
                                     saveImagePath = FileUtils.saveImage(netVideoBitmap);
                                     if (saveImagePath != null) {
-                                        mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
+                                        Bitmap bitmap=BitmapFactory.decodeFile(saveImagePath);
+                                        Bitmap zipBitmap = BitmapUtils.ImageCompress(bitmap, 1024);
+                                        zipPath=  BitmapUtils.saveBitmapFile(zipBitmap);
+                                        if (zipPath != null) {
+                                            FileUtils.deleteFile(saveImagePath);
+                                            mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
+                                        } else {
+                                            mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
+                                        }
                                     } else {
                                         mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
                                     }
@@ -101,31 +112,31 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                             });
                             thread.start();
                         } else {
-                            if (saveImagePath != null) {
+                            if (zipPath != null) {
                                 mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
                             } else {
                                 mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
                             }
                         }
 
-                    } else {
-                        mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
-                    }
                     break;
                 case MSG_LOAD_SUCCESS:
-                    if (saveImagePath != null) {
+                    if (zipPath != null) {
                         Map map = new HashMap();
                         map.put("video_describe", video_describe.getText().toString());
                         map.put("video_type", video_type);
                         map.put("token", Constants.token);
+                        pathList.clear();
                         pathList.add(0, videoPath);
-                        pathList.add(1, saveImagePath);
+                        pathList.add(1, zipPath);
+                        KLog.d("videoPath",videoPath,"zipPath",zipPath);
                         // p.uploadVideo(map, pathList);
                         setWait_dialog_text("正在上传...");
                         p.uploadVideo(map, pathList);
                     }
                     break;
                 case MSG_LOAD_FAILED:
+                    dismissWaitDialog();
                     ToastUtils.showLong("加载失败");
                     break;
             }
@@ -238,7 +249,8 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     public void uploadVideoSuccess(Video_upload video_upload) {
         KLog.d("上传成功", video_upload.getMsg());
         dismissWaitDialog();
-        FileUtils.deleteFile(saveImagePath);
+
+        FileUtils.deleteFile(zipPath);
         ToastUtils.showLong("上传成功"+video_upload.getMsg());
         video_submit.setEnabled(false);
     }
@@ -248,7 +260,6 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         KLog.d("上传失败", failure);
         dismissWaitDialog();
         isUpload = false;
-        FileUtils.deleteFile(saveImagePath);
         ToastUtils.showLong("上传失败"+failure);
         video_submit.setEnabled(true);
     }
@@ -323,5 +334,15 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         if (mHandler != null) {
             mHandler.removeCallbacksAndMessages(null);
         }
+    }
+
+    @Override
+    public void showError(@Nullable Throwable e) {
+        super.showError(e);
+        ToastUtils.showLong(e.toString());
+        isUpload = false;
+        dismissWaitDialog();
+        dismissLoading();
+        video_submit.setEnabled(true);
     }
 }

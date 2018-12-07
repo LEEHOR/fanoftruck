@@ -66,7 +66,9 @@ public class Constants {
     /**
      * 奔溃存储路径
      */
-    public static String SAVE_DIR_CRASH = SAVE_DIR_BASE.concat("crash/");
+    public static String SAVE_DIR_CRASH = SAVE_DIR_BASE.concat("DebugCrash/");
+
+    public static  String LOG_DIR_CRASH=SAVE_DIR_BASE.concat("LogCrash");
 
     //跳转常数
     public  static final int Fragment_home=1;
