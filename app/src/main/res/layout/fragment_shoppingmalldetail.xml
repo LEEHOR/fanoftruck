@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/material_grey_200"
     android:orientation="vertical">
 
+    <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tittle="商品详情" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/material_grey_250" />
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/shopping_swipe"
         android:layout_width="match_parent"
@@ -22,23 +31,11 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/dp_36"
                     android:orientation="vertical">
-
-                    <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:tittle="商品详情" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/material_grey_250" />
-
                     <com.donkingliang.banner.CustomBanner
                         android:id="@+id/custom_banner"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="@color/colorPrimary" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -125,7 +122,7 @@
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/mall_recycler"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:background="@color/colorPrimary" />
                     </LinearLayout>
                 </LinearLayout>
@@ -174,4 +171,4 @@
             </LinearLayout>
         </FrameLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
-</FrameLayout>
+</LinearLayout>

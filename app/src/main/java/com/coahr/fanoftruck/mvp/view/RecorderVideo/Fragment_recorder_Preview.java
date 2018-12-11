@@ -249,10 +249,8 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     public void uploadVideoSuccess(Video_upload video_upload) {
         KLog.d("上传成功", video_upload.getMsg());
         dismissWaitDialog();
-
         FileUtils.deleteFile(zipPath);
         ToastUtils.showLong("上传成功"+video_upload.getMsg());
-        video_submit.setEnabled(false);
     }
 
     @Override
@@ -261,7 +259,6 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         dismissWaitDialog();
         isUpload = false;
         ToastUtils.showLong("上传失败"+failure);
-        video_submit.setEnabled(true);
     }
 
 

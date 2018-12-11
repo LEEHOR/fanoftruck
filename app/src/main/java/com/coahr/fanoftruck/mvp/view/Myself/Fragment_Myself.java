@@ -35,6 +35,8 @@ Fragment_myself_P p;
     ImageView iv_by_order;
     @BindView(R.id.tv_wxyy_order)
     ImageView tv_wxyy_order;
+    @BindView(R.id.rel_shoppingCart)
+    RelativeLayout rel_shoppingCart;
 
     public static Fragment_Myself newInstance() {
         return new Fragment_Myself();
@@ -66,6 +68,7 @@ Fragment_myself_P p;
         iv_about_us.setOnClickListener(this);
         iv_by_order.setOnClickListener(this);
         tv_wxyy_order.setOnClickListener(this);
+        rel_shoppingCart.setOnClickListener(this);
     }
 
     @Override
@@ -90,11 +93,11 @@ Fragment_myself_P p;
                 intent.setClass(_mActivity,ContainerActivity.class);
                 intent.putExtra("tofragment",Constants.Fragment_userInfo);
                 break;
-            case R.id.mycar:
+            case R.id.mycar: //我的爱车
                 intent.setClass(_mActivity,ContainerActivity.class);
                 intent.putExtra("tofragment",Constants.Fragment_mycar);
                 break;
-            case R.id.iv_about_us:
+            case R.id.iv_about_us: //关于我们
                 intent.setClass(_mActivity,ContainerActivity.class);
                 intent.putExtra("tofragment",Constants.Fragment_about_us);
                 break;
@@ -105,6 +108,10 @@ Fragment_myself_P p;
             case R.id.tv_wxyy_order:
                 intent.setClass(_mActivity,ContainerActivity.class);
                 intent.putExtra("tofragment",Constants.Fragment_ReservationOrder);
+                break;
+            case R.id.rel_shoppingCart: //购物车
+                intent.setClass(_mActivity,ContainerActivity.class);
+                intent.putExtra("tofragment",Constants.Fragment_ShoppingCart);
                 break;
         }
 

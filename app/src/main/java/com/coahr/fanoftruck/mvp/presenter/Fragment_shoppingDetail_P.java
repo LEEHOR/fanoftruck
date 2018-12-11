@@ -3,6 +3,7 @@ package com.coahr.fanoftruck.mvp.presenter;
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_shoppingDetail_C;
+import com.coahr.fanoftruck.mvp.model.Bean.AddShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 import com.coahr.fanoftruck.mvp.model.Fragment_ShoppingDetail_M;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_ShoppingDetail;
@@ -60,6 +61,27 @@ public class Fragment_shoppingDetail_P extends BasePresenter<Fragment_shoppingDe
     public void getShoppingDetailFailure(String failure) {
         if (getView() != null) {
             getView().getShoppingDetailFailure(failure);
+        }
+    }
+
+    @Override
+    public void AddShoppingCar(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.AddShoppingCar(map);
+        }
+    }
+
+    @Override
+    public void AddShoppingCarSuccess(AddShoppingCart addShoppingCart) {
+        if (getView() != null) {
+            getView().AddShoppingCarSuccess(addShoppingCart);
+        }
+    }
+
+    @Override
+    public void AddShoppingCarFailure(String failure) {
+        if (getView() != null) {
+            getView().AddShoppingCarFailure(failure);
         }
     }
 

@@ -2,21 +2,13 @@ package com.coahr.fanoftruck.mvp.model.Bean;
 
 /**
  * Created by Leehor
- * on 2018/11/28
- * on 14:09
+ * on 2018/12/11
+ * on 9:29
  */
-public class Video_upload {
-
-
-    /**
-     * code : 0
-     * msg : success
-     * jdata : 70
-     */
-
+public class DelFormShoppingCart {
     private int code;
     private String msg;
-    private String jdata;
+    private getBuyCarCode.JdataBean jdata;
 
     public int getCode() {
         return code;
@@ -34,11 +26,14 @@ public class Video_upload {
         this.msg = msg;
     }
 
-    public String getJdata() {
+    public getBuyCarCode.JdataBean getJdata() {
         return jdata;
     }
 
-    public void setJdata(String jdata) {
+    public void setJdata(getBuyCarCode.JdataBean jdata) {
         this.jdata = jdata;
+    }
+
+    public static class JdataBean {
     }
 }

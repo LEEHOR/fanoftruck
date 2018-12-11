@@ -2,6 +2,7 @@ package com.coahr.fanoftruck.mvp.view.Myself;
 
 import android.Manifest;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.TouchDelegate;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.coahr.fanoftruck.Utils.StoreSpaceUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
+import com.coahr.fanoftruck.dagger.components.BaseActivityComponents;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_certification_C;
@@ -61,9 +63,9 @@ public class Fragment_certification extends BaseFragment<Fragment_certification_
     @BindView(R.id.tv_fragment_f)
     FrameLayout tv_fragment_f;
     @BindView(R.id.iv_ID_z)
-    ImageView iv_ID_z;
+    ImageView iv_IDImage_z;
     @BindView(R.id.iv_image_f)
-    ImageView iv_image_f;
+    ImageView iv_IDImage_f;
     @BindView(R.id.tv_submit)
     TextView tv_submit;
     @BindView(R.id.mytittle)
@@ -71,8 +73,16 @@ public class Fragment_certification extends BaseFragment<Fragment_certification_
     private String imgIdZ,imgIdF;
 
     private List<String> picList=new ArrayList<>();
-    public static Fragment_certification newInstance() {
-        return new Fragment_certification();
+    private String pic1;
+    private String pic2;
+
+    public static Fragment_certification newInstance(String pic1,String pic2) {
+        Fragment_certification certification=new Fragment_certification();
+        Bundle bundle=new Bundle();
+        bundle.putString("pic1",pic1);
+        bundle.putString("pic2",pic2);
+        certification.setArguments(bundle);
+        return certification;
     }
 
     @Override
@@ -122,7 +132,16 @@ public class Fragment_certification extends BaseFragment<Fragment_certification_
 
     @Override
     public void initData() {
-
+        if (getArguments() != null) {
+            pic1 = getArguments().getString("pic1");
+            pic2 = getArguments().getString("pic2");
+        }
+        if (pic1 !=null && pic2 !=null){
+            tv_fragment_z.setVisibility(View.INVISIBLE);
+            tv_fragment_f.setVisibility(View.INVISIBLE);
+            Imageloader.loadImage(pic1,iv_IDImage_z);
+            Imageloader.loadImage(pic2,iv_IDImage_f);
+        }
     }
 
     /**
@@ -139,14 +158,14 @@ public class Fragment_certification extends BaseFragment<Fragment_certification_
                         if (type == 1) {  //身份证正面
                             // iv_ID_z.setImageBitmap();
                             imgIdZ = o.getResult().getOriginalPath();
-                            Imageloader.loadImage(imgIdZ,iv_ID_z);
+                            Imageloader.loadImage(imgIdZ,iv_IDImage_z);
                             tv_fragment_z.setVisibility(View.INVISIBLE);
                         }
 
                         if (type == 2) {  //身份证正面
                             // iv_ID_z.setImageBitmap();
                             imgIdF = o.getResult().getOriginalPath();
-                            Imageloader.loadImage(imgIdF,iv_image_f);
+                            Imageloader.loadImage(imgIdF,iv_IDImage_f);
                             tv_fragment_f.setVisibility(View.INVISIBLE);
                         }
 

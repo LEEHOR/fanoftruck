@@ -1,6 +1,7 @@
 <resources>
 
     <string name="carsuper_exit">再按一次退出程序</string>
+    <string name="tribuneActivity_exit">再按一次退出论坛</string>
     <string name="app_name">卡车之友2.0</string>
     <string name="recyclerview_item_foot">正在加载</string>
     <string name="home">首页</string>

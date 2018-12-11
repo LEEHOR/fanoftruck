@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.coahr.fanoftruck.R;
+import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
@@ -52,7 +53,9 @@ public class Fragment_ReservationOrder extends BaseFragment {
             @Override
             public void onRefresh() {
                 if (!isLoading) {
+                    isLoading=true;
                     webView.reload();
+
                 }
             }
         });
@@ -66,16 +69,21 @@ public class Fragment_ReservationOrder extends BaseFragment {
             @Override
             public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
                 super.onPageStarted(webView, s, bitmap);
+                ToastUtils.showLong("正在加载");
             }
 
             @Override
             public void onPageFinished(WebView webView, String s) {
                 super.onPageFinished(webView, s);
+                isLoading=false;
+                ToastUtils.showLong("加载完成");
             }
 
             @Override
             public void onReceivedError(WebView webView, int i, String s, String s1) {
                 super.onReceivedError(webView, i, s, s1);
+                ToastUtils.showLong("加载失败请重试");
+                isLoading=false;
             }
         });
     }
@@ -85,8 +93,8 @@ public class Fragment_ReservationOrder extends BaseFragment {
      */
     private void initHardwareAccelerate() {
         try {
-            if (Build.VERSION.SDK_INT >= 16) {
-                getActivity().getWindow().setFlags(
+            if (Build.VERSION.SDK_INT >= 21) {
+                _mActivity.getWindow().setFlags(
                         android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
                         android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
             }
@@ -124,5 +132,15 @@ public class Fragment_ReservationOrder extends BaseFragment {
         super.onResume();
         if (webView != null)
             webView.onResume();
+    }
+    @Override
+    public boolean onBackPressedSupport() {
+
+        if (webView.canGoBack()){
+            webView.goBack();
+            return true;
+        }
+
+        return super.onBackPressedSupport();
     }
 }

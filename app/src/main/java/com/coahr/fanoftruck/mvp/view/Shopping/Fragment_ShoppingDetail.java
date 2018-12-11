@@ -13,9 +13,12 @@ import android.widget.TextView;
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.SetCustomBannerUtils;
+import com.coahr.fanoftruck.Utils.ToastUtils;
+import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_shoppingDetail_C;
+import com.coahr.fanoftruck.mvp.model.Bean.AddShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_shoppingDetail_P;
 import com.coahr.fanoftruck.mvp.view.Shopping.adapter.ShoppingDetailAdapter;
@@ -28,6 +31,9 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+
+import static com.coahr.fanoftruck.mvp.view.Shopping.Fragment_dialog_shopping.TO_ADD_CART;
+import static com.coahr.fanoftruck.mvp.view.Shopping.Fragment_dialog_shopping.TO_BUY;
 
 /**
  * Created by Leehor
@@ -60,6 +66,8 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
     private String c_id;
     private ShoppingDetailAdapter shoppingDetailAdapter;
     private LinearLayoutManager linearLayoutManager;
+    private String c_thumbnail;
+    private String c_price;
 
 
     public static Fragment_ShoppingDetail newInstance(String c_id) {
@@ -85,14 +93,28 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
         shopping_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Fragment_dialog_shopping fragment_dialog_shopping = Fragment_dialog_shopping.newInstance(Float.parseFloat(c_price), c_thumbnail, TO_BUY);
+                fragment_dialog_shopping.setListener(new Fragment_dialog_shopping.getShoppingDialog() {
+                    @Override
+                    public void getShoppingCount(String count) {
 
+                    }
+                });
+                fragment_dialog_shopping.show(getChildFragmentManager(), TAG);
             }
         });
 
         append_shoppingCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Fragment_dialog_shopping fragment_dialog_shopping = Fragment_dialog_shopping.newInstance(Float.parseFloat(c_price), c_thumbnail, TO_ADD_CART);
+                fragment_dialog_shopping.setListener(new Fragment_dialog_shopping.getShoppingDialog() {
+                    @Override
+                    public void getShoppingCount(String count) {
+                        add_to_Shopping(count);
+                    }
+                });
+                fragment_dialog_shopping.show(getChildFragmentManager(), TAG);
             }
         });
 
@@ -142,8 +164,10 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
                 SetCustomBannerUtils.setCustomBanner(custom_Banner,cp_path,ImageView.ScaleType.FIT_CENTER);
 
             }
+            c_price = commodity.getC_price();
             mall_name.setText(commodity.getC_name());
             mall_price.setText(commodity.getC_price());
+            c_thumbnail = commodity.getC_thumbnail();
 
         }
         ShoppingMallDetailBean.JdataEntity.AddressEntity address = shoppingMallDetailBean.getJdata().getAddress();
@@ -166,10 +190,28 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
         shopping_swipe.setRefreshing(false);
     }
 
+    @Override
+    public void AddShoppingCarSuccess(AddShoppingCart addShoppingCart) {
+        ToastUtils.showLong("加入购物车成功");
+    }
+
+    @Override
+    public void AddShoppingCarFailure(String failure) {
+        ToastUtils.showLong(failure);
+    }
+
     private void getShoppingMallDetail() {
         Map map = new HashMap();
         map.put("c_id", c_id);
-        map.put("token", "9a99788a604f85782dc5f625966205cb");
+        map.put("token", Constants.token);
         p.getShoppingDetail(map);
+    }
+
+    private void add_to_Shopping(String num) {
+        Map map = new HashMap();
+        map.put("token", Constants.token);
+        map.put("c_id", c_id);
+        map.put("c_num", num);
+        p.AddShoppingCar(map);
     }
 }

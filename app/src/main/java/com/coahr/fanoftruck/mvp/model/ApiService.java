@@ -2,11 +2,13 @@ package com.coahr.fanoftruck.mvp.model;
 
 import android.support.annotation.Nullable;
 
+import com.coahr.fanoftruck.mvp.model.Bean.AddShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
 import com.coahr.fanoftruck.mvp.model.Bean.CarDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Center_Initial_Data;
+import com.coahr.fanoftruck.mvp.model.Bean.DelFormShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginOutBean;
 import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Save_Identity_Info;
@@ -20,6 +22,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoDiscussList;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideo_dz;
 import com.coahr.fanoftruck.mvp.model.Bean.RegisterBean;
 import com.coahr.fanoftruck.mvp.model.Bean.SaveUserCar;
+import com.coahr.fanoftruck.mvp.model.Bean.ShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallBean;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
@@ -31,7 +34,6 @@ import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
 import com.coahr.fanoftruck.mvp.model.Bean.save_identity_pic;
 
 
-import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -43,7 +45,6 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 
 /**
@@ -157,7 +158,7 @@ public interface ApiService {
     Call<MaintenanceVideoDiscussList> getMaintenanceVideo_discuss_list(@Field("video_id") String video_id, @Field("token")String token);
 
     /**
-     * 视频上传
+     * 视频上传0
      * @param map
      * @return
      */
@@ -165,20 +166,20 @@ public interface ApiService {
       @POST(ApiContact.video_add)
       Call<Video_upload> video_add(@PartMap Map<String, RequestBody> map, @Body MultipartBody multipartBody);
 
-
-    @Multipart
-    @POST(ApiContact.video_add)
-    Call<Video_upload> video_add(@Part("token") RequestBody token ,@Part("video_type") RequestBody  video_type,@Part("video_describe") RequestBody video_describe
-           ,@Part MultipartBody.Part videoFile,@Part MultipartBody.Part imgFile);
-
     /**
-     * 视频上传
+     * 视频上传1
      *
      * @return
      */
     @POST(ApiContact.video_add)
     Call<Video_upload> video_add(@Body RequestBody body);
 
+    /**
+     * 视频上传2
+     *
+     * @param multipartBody
+     * @return
+     */
     @POST(ApiContact.video_add)
     Call<Video_upload> video_add(@Body MultipartBody multipartBody);
     /**
@@ -359,4 +360,32 @@ public interface ApiService {
     @FormUrlEncoded
       @POST(ApiContact.save_identity_pic)
       Call<save_identity_pic> save_identity_pic(@FieldMap Map<String, String> map);
+
+    /**
+     * 加入购物车
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.addShoppingCar)
+    Call<AddShoppingCart> addShoppingCar(@FieldMap Map<String, String> map);
+
+    /**
+     * 从购物车中删除
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.delFormShoppingCar)
+    Call<DelFormShoppingCart> delFromShoppingCar(@FieldMap Map<String, String> map);
+
+
+    /**
+     * 购物车
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.MyShoppingCar)
+    Call<ShoppingCart> getShoppingCarList(@FieldMap Map<String,String> map);
 }

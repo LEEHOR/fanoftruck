@@ -65,7 +65,7 @@ public class Input_keyboardDialog extends AppCompatDialogFragment implements Tex
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_input_keyboard, container, false);
         unbinder = ButterKnife.bind(this, view);
-        KeyBoardUtils.UpdateUI(view.getRootView(), getActivity());
+        KeyBoardUtils.UpdateUI(view,getActivity());
         init();
         return view;
     }
@@ -73,19 +73,11 @@ public class Input_keyboardDialog extends AppCompatDialogFragment implements Tex
     private void init(){
         input_ediText.setImeOptions(EditorInfo.IME_ACTION_SEND);
         KeyBoardUtils.showKeybord(input_ediText, getActivity());
-    /*    keyboardChangeListener = new KeyboardChangeListener(getDialog().getWindow());
-        keyboardChangeListener.setKeyBoardListener(new KeyboardChangeListener.KeyBoardListener() {
-            @Override
-            public void onKeyboardChange(boolean isShow, int keyboardHeight) {
-                if (!isShow) {
-                   // dismiss();
-                }
-            }
-        });*/
         out_empty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+              //  KeyBoardUtils.hideKeybord(input_ediText, getActivity());
+                Input_keyboardDialog.this.dismiss();
             }
         });
         tv_submit.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +85,8 @@ public class Input_keyboardDialog extends AppCompatDialogFragment implements Tex
             public void onClick(View view) {
                 if (input_ediText.getText().toString().length()>0 && input_ediText.getText().toString().length()<=50){
                     if (videoSendDiscussListener != null) {
-                        videoSendDiscussListener.sendVideoDiscuss(input_ediText.getText().toString(),dialog);
+                        videoSendDiscussListener.sendVideoDiscuss(input_ediText.getText().toString(), dialog);
+                        KeyBoardUtils.hideKeybord(input_ediText, getActivity());
                     }
                 } else {
                     ToastUtils.showLong("请控制在1～50个字符");
@@ -103,7 +96,7 @@ public class Input_keyboardDialog extends AppCompatDialogFragment implements Tex
         input_ediText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                input_ediText.setImeOptions(EditorInfo.IME_ACTION_SEND);
+
             }
 
             @Override
@@ -157,4 +150,6 @@ public class Input_keyboardDialog extends AppCompatDialogFragment implements Tex
     public void setVideoSendDiscussListener(videoSendDiscuss videoSendDiscussListener) {
         this.videoSendDiscussListener = videoSendDiscussListener;
     }
+
+
 }

@@ -33,7 +33,7 @@ public class MyCarAdapter extends BaseQuickAdapter<CarListBean.JdataBean.MycarBe
                     if (item.getDefault_check().equals("1")) {
                         tv_pre = ((TextView) helper.getView(R.id.tv_primary_car));
                         primaryPostion = helper.getAdapterPosition();
-                        setDrawLeft(tv_pre,R.mipmap.settle_on);
+                        setDrawLeft(tv_pre,R.mipmap.select_on);
                         tv_pre.setText("已设为默认车型");
                         primary_carEntity =item;
                     }else {
@@ -54,7 +54,7 @@ public class MyCarAdapter extends BaseQuickAdapter<CarListBean.JdataBean.MycarBe
                                 }
                                 primaryPostion = helper.getAdapterPosition();
                                 tv_pre = ((TextView) helper.getView(R.id.tv_primary_car));
-                                setDrawLeft(tv_pre,R.mipmap.settle_on);
+                                setDrawLeft(tv_pre,R.mipmap.select_on);
                                 tv_pre.setText("已设为默认车型");
                                 primary_carEntity = item;
                                 primary_carEntity.setDefault_check("1");
@@ -84,7 +84,7 @@ public class MyCarAdapter extends BaseQuickAdapter<CarListBean.JdataBean.MycarBe
                             }
                             primaryPostion = helper.getAdapterPosition();
                             tv_pre = ((TextView) helper.getView(R.id.tv_primary_car));
-                            setDrawLeft(tv_pre,R.mipmap.settle_on);
+                            setDrawLeft(tv_pre,R.mipmap.select_on);
                             tv_pre.setText("已设为默认车型");
                             primary_carEntity = item;
                             primary_carEntity.setDefault_check("1");

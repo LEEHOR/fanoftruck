@@ -26,6 +26,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
 import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
 import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_recommendCar_P;
+import com.coahr.fanoftruck.widgets.AddAndSunText;
 import com.coahr.fanoftruck.widgets.BlockTextView;
 import com.google.gson.Gson;
 import com.socks.library.KLog;
@@ -69,6 +70,8 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
     TextView tv_select_car;
     @BindView(R.id.tv_submit)
     TextView tv_submit;
+    @BindView(R.id.addText)
+    AddAndSunText andSunText;
     private ArrayList<JsonBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
@@ -77,6 +80,8 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
     private static final int MSG_LOAD_SUCCESS = 0x0002;
     private static final int MSG_LOAD_FAILED = 0x0003;
     private boolean isLoaded;
+    private String getSuns;
+    private int mins,maxs;
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -130,6 +135,16 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
         getCode.setOnClickListener(this);
         tv_select_car.setOnClickListener(this);
         tv_submit.setOnClickListener(this);
+        andSunText.setListener(new AddAndSunText.InterFaceMakes() {
+            @Override
+            public void getEd_makes(String ed_makes,int min,int max) {
+                mins=min;
+                maxs=max;
+                getSuns=ed_makes;
+                KLog.d("购买数量",getSuns);
+            }
+        });
+        andSunText.setEd_makes("1");
     }
 
     @Override
@@ -333,6 +348,18 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
                     ToastUtils.showLong("请选择预约车辆");
                     return;
                 }
+                if (TextUtils.isEmpty(getSuns) || getSuns==null){
+                    ToastUtils.showLong("商品数目不能为空");
+                    return;
+                }
+                if (Integer.parseInt(getSuns) >maxs){
+                    ToastUtils.showLong("商品数目超出最大范围");
+                    return;
+                }
+                if (Integer.parseInt(getSuns) <mins){
+                    ToastUtils.showLong("商品数目超出最小范围");
+                    return;
+                }
                 saveBusinessCar();
                 break;
 
@@ -377,7 +404,7 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
         map.put("username",business_name.getText().toString());
         map.put("phone",business_phone.getText().toString());
         map.put("proid",c_id);
-        map.put("num","2");
+        map.put("num",getSuns);
         map.put("address",tv_address.getText().toString());
         p.SaveBusinessCar(map);
     }

@@ -3,9 +3,6 @@ package com.coahr.fanoftruck.widgets;
 
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by Leehor
@@ -15,7 +12,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 public class ShareUtils {
 
     public static void setQQShare(String platform){
-        final OnekeyShare oks = new OnekeyShare();
+    /*    final OnekeyShare oks = new OnekeyShare();
         //指定分享的平台，如果为空，还是会调用九宫格的平台列表界面
         if (platform != null) {
             oks.setPlatform(platform);
@@ -42,6 +39,6 @@ public class ShareUtils {
         oks.setSiteUrl("http://sharesdk.cn");
 
         //启动分享
-        oks.show(BaseApplication.mContext);
+        oks.show(BaseApplication.mContext);*/
     }
 }

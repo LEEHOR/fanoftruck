@@ -150,6 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RelativeLayout
+                    android:id="@+id/rel_shoppingCart"
                     android:padding="@dimen/edge_margin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

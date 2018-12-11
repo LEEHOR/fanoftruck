@@ -63,7 +63,7 @@ public class Fragment_Business_viewPager extends BaseFragment {
         myTittleBar.getRightText().setVisibility(View.VISIBLE);
         myTittleBar.getRightText().setText("推荐购车");
         myTittleBar.getRightText().setTextColor(getResources().getColor(R.color.material_blue_550));
-        myTittleBar.setOnClickListener(new View.OnClickListener() {
+        myTittleBar.getRightText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (hasLogin()) {
@@ -124,7 +124,12 @@ public class Fragment_Business_viewPager extends BaseFragment {
                 super.onPageStarted(webView, s, bitmap);
                 ToastUtils.showLong("正在加载页面");
             }
-
+            @Override
+            public void onReceivedError(WebView webView, int i, String s, String s1) {
+                super.onReceivedError(webView, i, s, s1);
+                ToastUtils.showLong("加载失败请重试");
+                isLoading=false;
+            }
         });
     }
 
@@ -138,8 +143,8 @@ public class Fragment_Business_viewPager extends BaseFragment {
      */
     private void initHardwareAccelerate() {
         try {
-            if (Build.VERSION.SDK_INT >= 16) {
-                getActivity().getWindow().setFlags(
+            if (Build.VERSION.SDK_INT >= 21) {
+                _mActivity.getWindow().setFlags(
                         android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
                         android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
             }
@@ -180,5 +185,15 @@ public class Fragment_Business_viewPager extends BaseFragment {
         super.onResume();
         if (webView != null)
             webView.onResume();
+    }
+    @Override
+    public boolean onBackPressedSupport() {
+
+        if (webView.canGoBack()){
+            webView.goBack();
+            return true;
+        }
+
+        return super.onBackPressedSupport();
     }
 }

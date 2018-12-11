@@ -24,6 +24,7 @@ import com.coahr.fanoftruck.mvp.view.VideoPlay.adapter.Video_play_adapter;
 import com.coahr.fanoftruck.widgets.AltDialog.Dialog_share;
 import com.coahr.fanoftruck.widgets.MyVideo.MyVideoPlay_Normal;
 import com.coahr.fanoftruck.widgets.ShareUtils;
+import com.mob.bbssdk.gui.GUIManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,8 +35,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import cn.jzvd.JzvdStd;
-import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.wechat.friends.Wechat;
+import okhttp3.internal.platform.Platform;
 
 /**
  * Created by Leehor
@@ -111,12 +111,11 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
                 dialog_share.setShareListener(new Dialog_share.shareListener() {
                     @Override
                     public void share_wx() {
-                        ShareUtils.setQQShare(QQ.NAME);
+
                     }
 
                     @Override
                     public void share_pyq() {
-                        ShareUtils.setQQShare(Wechat.NAME);
                     }
                 });
                 dialog_share.show(getChildFragmentManager(), TAG);
@@ -323,4 +322,6 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
         map.put("token",Constants.token);
         p.getVideo_dz(map);
     }
+
+
 }

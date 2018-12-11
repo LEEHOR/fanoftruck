@@ -13,6 +13,7 @@ import com.coahr.fanoftruck.mvp.view.Myself.Fragment_about_us;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
 import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myUerInfo;
+import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_shoppingCart;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_MaintenanceVideo_viewPage;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_ShoppingDetail;
@@ -74,6 +75,9 @@ public class ContainerActivity extends BaseSupportActivity {
                 break;
             case Constants.Fragment_ReservationOrder: //保养订单
                 loadRootFragment(R.id.con_fragment, Fragment_ReservationOrder.newInstance());
+                break;
+            case Constants.Fragment_ShoppingCart: //购物车
+                loadRootFragment(R.id.con_fragment, Fragment_shoppingCart.newInstance());
                 break;
         }
     }

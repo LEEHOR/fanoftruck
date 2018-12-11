@@ -266,4 +266,5 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
         map.put("discuss_content",describe);
         p.getAddDiscuss(map);
     }
+
 }

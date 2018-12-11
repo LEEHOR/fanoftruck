@@ -13,6 +13,7 @@ import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_home_P;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
+import com.coahr.fanoftruck.mvp.view.TribuneActivity;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoPlay;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 
@@ -91,8 +92,7 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
         lin_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ContainerActivity.class);
-                intent.putExtra("tofragment", Constants.Fragment_maintenance);
+                Intent intent = new Intent(getActivity(), TribuneActivity.class);
                 startActivity(intent);
             }
         });

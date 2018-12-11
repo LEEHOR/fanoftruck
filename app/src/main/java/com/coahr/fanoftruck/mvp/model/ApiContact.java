@@ -98,4 +98,12 @@ public class ApiContact {
     //用户登出
     public  static final String logout="/APP/Basic/logout";
 
+    //加入购物车
+    public  static final String addShoppingCar="/APP/User/add_to_shopping_cart";
+
+    //从购物车中删除
+    public static final String delFormShoppingCar="/APP/User/del_from_shopping_cart";
+
+    //购物车数据
+    public static final String MyShoppingCar="/APP/User/shopping_cart";
 }

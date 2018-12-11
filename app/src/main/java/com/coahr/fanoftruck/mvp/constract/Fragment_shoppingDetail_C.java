@@ -2,6 +2,7 @@ package com.coahr.fanoftruck.mvp.constract;
 
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
+import com.coahr.fanoftruck.mvp.model.Bean.AddShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 
 import java.util.Map;
@@ -23,6 +24,12 @@ public interface Fragment_shoppingDetail_C {
 
         void getShoppingDetailFailure(String failure);
 
+        void AddShoppingCarSuccess(AddShoppingCart addShoppingCart);
+
+        void AddShoppingCarFailure(String failure);
+
+
+
     }
 
     interface Presenter extends BaseContract.Presenter {
@@ -38,6 +45,11 @@ public interface Fragment_shoppingDetail_C {
 
         void getShoppingDetailFailure(String failure);
 
+        void AddShoppingCar(Map<String,String> map);
+
+        void AddShoppingCarSuccess(AddShoppingCart addShoppingCart);
+
+        void AddShoppingCarFailure(String failure);
 
     }
 
@@ -46,5 +58,6 @@ public interface Fragment_shoppingDetail_C {
 
         void getShoppingDetail(Map<String, String> map);
 
+        void AddShoppingCar(Map<String,String> map);
     }
 }

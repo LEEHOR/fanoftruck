@@ -76,8 +76,6 @@ public class Fragment_recorder_preview_M extends BaseModel<Fragment_recorder_pre
             builder.setType(MultipartBody.FORM);
             multipartBody = builder.build();
         }
-      //  map1.put("video\";filename=\""+video_file.getName(),video_requestFile);
-       // map1.put("video_cover\";filename=\""+image_file.getName(),image_requestFile);
       /*  RequestBody body=new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("video_describe",map.get("video_describe"))
                 .addFormDataPart("video_type",map.get("video_type"))

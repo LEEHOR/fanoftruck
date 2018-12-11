@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BBSSDKGUI/BBSSDKGUI.iml" filepath="$PROJECT_DIR$/BBSSDKGUI/BBSSDKGUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BBSSDKTHEME0/BBSSDKTHEME0.iml" filepath="$PROJECT_DIR$/BBSSDKTHEME0/BBSSDKTHEME0.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/fanoftruck.iml" filepath="$PROJECT_DIR$/fanoftruck.iml" />
     </modules>

@@ -4,6 +4,7 @@ import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.Utils.GpsLocation.GaodeMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_shoppingDetail_C;
+import com.coahr.fanoftruck.mvp.model.Bean.AddShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 
 import java.util.Map;
@@ -70,6 +71,23 @@ public class Fragment_ShoppingDetail_M extends BaseModel<Fragment_shoppingDetail
                                 getPresenter().getShoppingDetailSuccess(shoppingMallDetailBean);
                             }else {
                                 getPresenter().getShoppingDetailFailure(shoppingMallDetailBean.getMsg());
+                            }
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void AddShoppingCar(Map<String, String> map) {
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<AddShoppingCart>(getApiService().addShoppingCar(map)))
+                .subscribeWith(new SimpleDisposableSubscriber<AddShoppingCart>() {
+                    @Override
+                    public void _onNext(AddShoppingCart addShoppingCart) {
+                        if (getPresenter() != null) {
+                            if (addShoppingCart.getCode()==0) {
+                                getPresenter().AddShoppingCarSuccess(addShoppingCart);
+                            }else {
+                                getPresenter().AddShoppingCarFailure(addShoppingCart.getMsg());
                             }
                         }
                     }

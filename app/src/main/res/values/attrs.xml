@@ -43,4 +43,11 @@
         <attr name="mostCount" format="integer" />
         <attr name="hint" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="AddAndSunText">
+        <attr name="bgColor" format="color"/>
+        <attr name="AddTextSize" format="float"/>
+        <attr name="add_min" format="integer"/>
+        <attr name="add_max" format="integer"/>
+    </declare-styleable>
 </resources>

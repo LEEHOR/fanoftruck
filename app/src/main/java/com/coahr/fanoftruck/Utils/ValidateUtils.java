@@ -2,6 +2,7 @@ package com.coahr.fanoftruck.Utils;
 
 import android.text.TextUtils;
 
+import java.text.NumberFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,4 +65,15 @@ public class ValidateUtils {
             }
     }
 
+    /**
+     * 保留两位小数
+     * @param f
+     * @return
+     */
+    public static String getDouble(float f){
+        NumberFormat ddf1=NumberFormat.getNumberInstance() ;
+        ddf1.setMaximumFractionDigits(2);
+        String s= ddf1.format(f) ;
+        return s;
+    }
 }

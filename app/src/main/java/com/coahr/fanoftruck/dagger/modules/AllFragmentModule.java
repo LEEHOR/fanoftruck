@@ -18,6 +18,8 @@ import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myUerInfo;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_register;
 import com.coahr.fanoftruck.mvp.view.RecorderVideo.Fragment_recorder_Preview;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_appointment;
+import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_dialog_shopping;
+import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_shoppingCart;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_MaintenanceVideo_viewPage;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_discuss;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoList;
@@ -143,4 +145,10 @@ public abstract class AllFragmentModule {
 
     @ContributesAndroidInjector(modules = Fragment_ReservationOrderr_Module.class)
     abstract Fragment_ReservationOrder Fragment_ReservationOrderInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_dialog_Shoping_Module.class)
+    abstract Fragment_dialog_shopping  Fragment_dialog_shoppingInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_shoppingCart_Module.class)
+    abstract Fragment_shoppingCart Fragment_shoppingCarInjector();
 }

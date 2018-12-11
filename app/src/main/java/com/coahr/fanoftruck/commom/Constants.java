@@ -127,6 +127,8 @@ public class Constants {
 
     public static final int Fragment_myUserInfo=26;
 
+    public static final int Fragment_ShoppingCart=27;
+
 
 
     /**

@@ -95,6 +95,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     private static final int MSG_LOAD_FAILED = 0x0003;
     private boolean isLoaded;
     private String sex = "1";
+    private String pic1, pic2;
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -205,7 +206,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_certification:
-                start(Fragment_certification.newInstance());
+                start(Fragment_certification.newInstance(pic1,pic2));
                 break;
             case R.id.tv_select_address:
                 mHandler.sendEmptyMessage(MSG_LOAD_DATA);
@@ -259,6 +260,14 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
                 String detail_address = user.getDetail_address();
                 if (detail_address != null) {
                     ed_detail_address.setText(detail_address);
+                }
+
+                pic1 = user.getPic1();
+
+                pic2 = user.getPic2();
+
+                if (pic1 !=null && pic2 !=null){
+                    tv_certification.setVisibility(View.GONE);
                 }
             }
 
