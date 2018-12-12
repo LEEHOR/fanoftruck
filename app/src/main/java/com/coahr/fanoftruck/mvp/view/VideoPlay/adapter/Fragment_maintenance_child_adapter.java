@@ -43,7 +43,7 @@ public class Fragment_maintenance_child_adapter extends BaseQuickAdapter<Mainten
                 @Override
                 public void onClick(View view) {
                     if (videoOnClick != null) {
-                        videoOnClick.OnClick(helper.getAdapterPosition());
+                        videoOnClick.OnClick(helper.getAdapterPosition(),item.getId());
                     }
                 }
             });
@@ -55,7 +55,7 @@ public class Fragment_maintenance_child_adapter extends BaseQuickAdapter<Mainten
     }
 
     public interface VideoOnClick {
-        void OnClick(int position);
+        void OnClick(int position,String video_id);
     }
 
 /*   开启子线程加载图片

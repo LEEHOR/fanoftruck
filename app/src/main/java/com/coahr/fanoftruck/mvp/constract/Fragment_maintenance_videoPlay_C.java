@@ -4,6 +4,7 @@ import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideo_dz;
+import com.coahr.fanoftruck.mvp.model.Bean.View_videoBean;
 
 import java.util.Map;
 
@@ -28,7 +29,9 @@ public interface Fragment_maintenance_videoPlay_C {
 
         void getVideo_dzFailure(String failure);
 
+        void getVideo_oneSuccess(View_videoBean view_videoBean);
 
+        void getVideo_oneFailure(String failure);
     }
 
     interface Presenter extends BaseContract.Presenter {
@@ -50,6 +53,12 @@ public interface Fragment_maintenance_videoPlay_C {
         void getVideo_dzSuccess(MaintenanceVideo_dz maintenanceVideo_dz);
 
         void getVideo_dzFailure(String failure);
+
+        void getVideo_one(Map<String,String> map);
+
+        void getVideo_oneSuccess(View_videoBean view_videoBean);
+
+        void getVideo_oneFailure(String failure);
     }
 
     interface Model extends BaseContract.Model {
@@ -58,5 +67,7 @@ public interface Fragment_maintenance_videoPlay_C {
         void getVideoList(Map<String, String> map);
 
         void getVideo_dz(Map<String, String> map);
+
+        void getVideo_one(Map<String,String> map);
     }
 }

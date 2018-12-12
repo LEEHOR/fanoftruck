@@ -1,0 +1,196 @@
+package com.coahr.fanoftruck.mvp.view.ConfirmCommodityOrder;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.coahr.fanoftruck.R;
+import com.coahr.fanoftruck.Utils.DensityUtils;
+import com.coahr.fanoftruck.Utils.ValidateUtils;
+import com.coahr.fanoftruck.commom.Constants;
+import com.coahr.fanoftruck.mvp.Base.BaseApplication;
+import com.coahr.fanoftruck.mvp.Base.BaseFragment;
+import com.coahr.fanoftruck.mvp.constract.Fragment_confirmCommodityOrder_C;
+import com.coahr.fanoftruck.mvp.model.Bean.Confirm_order;
+import com.coahr.fanoftruck.mvp.model.Bean.MessageEvent_confirmCommodityOrder;
+import com.coahr.fanoftruck.mvp.presenter.Fragment_confirmCommodityOrder_P;
+import com.coahr.fanoftruck.mvp.view.ConfirmCommodityOrder.adapter.ConfirmCommodityOrderAdapter;
+import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_address_list;
+import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
+import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+
+/**
+ * Created by Leehor
+ * on 2018/12/12
+ * on 17:13
+ * 商品订单确认页
+ */
+public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confirmCommodityOrder_C.Presenter> implements Fragment_confirmCommodityOrder_C.View {
+    @Inject
+    Fragment_confirmCommodityOrder_P p;
+    @BindView(R.id.mytittle)
+    MyTittleBar mytittle;
+    @BindView(R.id.rl_reciever_address)
+    RelativeLayout rl_reciever_address; //地址
+    @BindView(R.id.tv_receiver_name)
+    TextView tv_receiver_name;  //收货人
+    @BindView(R.id.tv_receiver_phone)
+    TextView tv_receiver_phone; //收货人号码
+    @BindView(R.id.tv_receiver_address)
+    TextView tv_receiver_address; //收货人地址
+    @BindView(R.id.rv_order_list)
+    RecyclerView rv_order_list;  //列表
+    @BindView(R.id.rl_coupon)
+    RelativeLayout rl_coupon; //优惠券
+    @BindView(R.id.tv_coupon_money)
+    TextView tv_coupon_money;  //优惠金额
+    @BindView(R.id.tv_totalprice)
+    TextView tv_totalprice;  //底部合计金额
+    @BindView(R.id.tv_submit_order)
+    TextView tv_submit_order;  //提交订单
+    private LinearLayoutManager linearLayoutManager;
+    private ConfirmCommodityOrderAdapter commodityOrderAdapter;
+    private String commodity;
+    private String ua_id;
+    private float parseFloat;
+    private String total_price;  //保留两位小数的总价
+    private String address_id;
+
+    public static Fragment_confirmCommodityOrder newInstance(String commodity, String ua_id) {
+        Fragment_confirmCommodityOrder confirmCommodityOrder = new Fragment_confirmCommodityOrder();
+        Bundle bundle = new Bundle();
+        bundle.putString("commodity", commodity);
+        bundle.putString("ua_id", ua_id);
+        confirmCommodityOrder.setArguments(bundle);
+        return confirmCommodityOrder;
+    }
+
+    @Override
+    public Fragment_confirmCommodityOrder_C.Presenter getPresenter() {
+        return p;
+    }
+
+    @Override
+    public int bindLayout() {
+        return R.layout.fragment_confirm_commodity_order;
+    }
+
+    @Override
+    public void initView() {
+        rl_reciever_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startForResult(Fragment_address_list.newInstance(Constants.Fragment_confirmCommodityOrder), 11);
+            }
+        });
+        linearLayoutManager = new LinearLayoutManager(BaseApplication.mContext);
+        commodityOrderAdapter = new ConfirmCommodityOrderAdapter();
+        rv_order_list.setLayoutManager(linearLayoutManager);
+        rv_order_list.setAdapter(commodityOrderAdapter);
+        rv_order_list.addItemDecoration(new SpacesItemDecoration(0, DensityUtils.dp2px(BaseApplication.mContext, 4), getResources().getColor(R.color.material_grey_250)));
+        for (int i = 0; i < rv_order_list.getItemDecorationCount(); i++) {
+            if (i != 0) {
+                rv_order_list.removeItemDecorationAt(i);
+            }
+        }
+
+    }
+
+    @Override
+    public void initData() {
+        if (getArguments() != null) {
+            commodity = getArguments().getString("commodity");
+            ua_id = getArguments().getString("ua_id");
+        }
+        getOrderList();
+    }
+
+    @Override
+    public void getCommodityOrderSuccess(Confirm_order confirmOrder) {
+        List<Confirm_order.JdataBean.CommodityBean> commodity = confirmOrder.getJdata().getCommodity();
+        if (commodity != null && commodity.size() > 0) {
+            commodityOrderAdapter.setNewData(commodity);
+
+            for (int i = 0; i < commodity.size(); i++) {
+                String c_price = commodity.get(i).getC_price();
+                parseFloat = +Float.parseFloat(c_price);
+            }
+            total_price = ValidateUtils.getDouble(parseFloat);
+
+            tv_totalprice.setText(total_price);
+        }
+
+        Confirm_order.JdataBean.UserinfoBean userinfo = confirmOrder.getJdata().getUserinfo();
+        if (userinfo != null) {
+            tv_receiver_address.setText(userinfo.getAddress());
+            address_id = userinfo.getUa_id();
+            tv_receiver_name.setText(userinfo.getUsername());
+            tv_receiver_phone.setText(userinfo.getTelephone());
+        }
+
+
+    }
+
+    @Override
+    public void getCommodityOrderFailure(String failure) {
+
+    }
+
+    /**
+     * 获取列表
+     */
+    private void getOrderList() {
+        Map map = new HashMap();
+        map.put("token", Constants.token);
+        map.put("commodity", commodity);
+        map.put("ua_id", ua_id);
+        p.getCommodityOrderList(map);
+    }
+
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+        super.onFragmentResult(requestCode, resultCode, data);
+        if (requestCode == 11 && resultCode == 11) {
+            if (data != null) {
+                tv_receiver_address.setText((String) data.get("address"));
+                address_id = (String) data.get("address_id");
+                tv_receiver_name.setText((String) data.get("address_user"));
+                tv_receiver_phone.setText((String) data.get("address_phone"));
+            }
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void Event(MessageEvent_confirmCommodityOrder messageEvent) {
+
+    }
+}

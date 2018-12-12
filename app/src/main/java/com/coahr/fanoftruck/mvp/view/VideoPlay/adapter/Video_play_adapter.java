@@ -12,6 +12,7 @@ import com.coahr.fanoftruck.mvp.model.ApiContact;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.widgets.MyVideo.MyVideoPlay_Normal;
 import com.coahr.fanoftruck.widgets.MyVideo.MyVideoPlayer_douyin;
+import com.socks.library.KLog;
 
 import cn.jzvd.JzvdStd;
 
@@ -34,7 +35,13 @@ public class Video_play_adapter extends BaseQuickAdapter<MaintenanceVideoList.Jd
              if (helper.getAdapterPosition() == 0 || isscrolling) {
             ((MyVideoPlay_Normal) helper.getView(R.id.myVideo)).startVideo();
             isscrolling=false;
-        }
+                 int layoutPosition = helper.getLayoutPosition();
+                 int adapterPosition = helper.getAdapterPosition();
+                 int oldPosition = helper.getOldPosition();
+                 KLog.d("position",layoutPosition,adapterPosition,oldPosition);
+
+
+             }
        Glide.with(BaseApplication.mContext).load(ApiContact.baseUrl+item.getVideo_link()).into(((MyVideoPlay_Normal)helper.getView(R.id.myVideo)).thumbImageView);
            helper.setText(R.id.video_view_num,item.getVideo_view_num())
                    .setText(R.id.video_discuss_num,item.getDiscuss_num())

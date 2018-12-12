@@ -129,6 +129,8 @@ public class Constants {
 
     public static final int Fragment_ShoppingCart=27;
 
+    public static final int Fragment_confirmCommodityOrder=28; //订单确认面
+
 
 
     /**

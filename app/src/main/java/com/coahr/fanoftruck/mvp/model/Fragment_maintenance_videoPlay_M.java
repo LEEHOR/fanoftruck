@@ -4,6 +4,8 @@ import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_maintenance_videoPlay_C;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideo_dz;
+import com.coahr.fanoftruck.mvp.model.Bean.View_videoBean;
+import com.socks.library.KLog;
 
 import java.util.Map;
 
@@ -55,6 +57,24 @@ public class Fragment_maintenance_videoPlay_M extends BaseModel<Fragment_mainten
                                 getPresenter().getVideo_dzSuccess(maintenanceVideo_dz);
                             }else {
                                 getPresenter().getVideo_dzFailure(maintenanceVideo_dz.getMsg());
+                            }
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void getVideo_one(Map<String, String> map) {
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<View_videoBean>(getApiService().getOneVideo(map.get("video_id"))))
+                .subscribeWith(new SimpleDisposableSubscriber<View_videoBean>() {
+                    @Override
+                    public void _onNext(View_videoBean view_videoBean) {
+                        if (getPresenter() != null) {
+                            if (view_videoBean.getCode()==0) {
+                                KLog.d("请求","成功1");
+                                getPresenter().getVideo_oneSuccess(view_videoBean);
+                            }else {
+                                getPresenter().getVideo_oneFailure(view_videoBean.getMsg());
                             }
                         }
                     }

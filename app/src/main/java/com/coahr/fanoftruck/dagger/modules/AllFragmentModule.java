@@ -5,10 +5,15 @@ import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business_viewP
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_RecommendCar;
 import com.coahr.fanoftruck.mvp.view.CallForHelp.CallForHelp_viewPager;
 import com.coahr.fanoftruck.mvp.view.CallForHelp.Fragment_help;
+import com.coahr.fanoftruck.mvp.view.ConfirmCommodityOrder.Fragment_confirmCommodityOrder;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
 import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_MaintenanceOrder;
 import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_ReservationOrder;
+import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_add_address;
+import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_address_list;
 import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_addCar;
+import com.coahr.fanoftruck.mvp.view.Mycoupon.Fragment_CouponViewPager;
+import com.coahr.fanoftruck.mvp.view.Mycoupon.Fragment_coupon_main;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_about_us;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_certification;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_forgetPass;
@@ -68,7 +73,6 @@ public abstract class AllFragmentModule {
     @ContributesAndroidInjector(modules = Fragment_store_detail_Module.class)
     abstract Fragment_store_detail Fragment_store_detailInjector();
 
-
     @ContributesAndroidInjector(modules = Fragment_maintenance_viewp_Module.class)
     abstract Fragment_MaintenanceVideo_viewPage Fragment_MaintenanceVideo_viewPageInjector();
 
@@ -102,7 +106,6 @@ public abstract class AllFragmentModule {
     @ContributesAndroidInjector(modules = Fragment_discuss_Module.class)
     abstract Fragment_discuss Fragment_discussInjector();
 
-
     @ContributesAndroidInjector(modules = Fragment_UserInfo_Module.class)
     abstract Fragment_myUerInfo Fragment_myUerInfoInjector();
 
@@ -130,15 +133,11 @@ public abstract class AllFragmentModule {
     @ContributesAndroidInjector(modules = Fragment_certification_Module.class)
     abstract Fragment_certification Fragment_certificationInjector();
 
-
-
     @ContributesAndroidInjector(modules = Fragment_home_videoList_Module.class)
     abstract Fragment_home_videoList Fragment_home_videoListInjector();
 
-
     @ContributesAndroidInjector(modules = Fragment_home_videoplay_Module.class)
     abstract Fragment_home_videoPlay Fragment_home_videoPlayInjector();
-
 
     @ContributesAndroidInjector(modules = Fragment_MaintenanceOrder_Module.class)
     abstract Fragment_MaintenanceOrder Fragment_MaintenanceOrderInjector();
@@ -151,4 +150,19 @@ public abstract class AllFragmentModule {
 
     @ContributesAndroidInjector(modules = Fragment_shoppingCart_Module.class)
     abstract Fragment_shoppingCart Fragment_shoppingCarInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_address_list_module.class)
+    abstract Fragment_address_list Fragment_address_listInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_add_address_Module.class)
+    abstract Fragment_add_address Fragment_addressInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_confirmCommoityOrder_Module.class)
+    abstract Fragment_confirmCommodityOrder  Fragment_confirmCommodityOrderInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_CouponViewPager_Module.class)
+    abstract Fragment_CouponViewPager Fragment_CouponViewPagerInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_coupon_main_Module.class)
+    abstract Fragment_coupon_main Fragment_coupon_mainInjector();
 }

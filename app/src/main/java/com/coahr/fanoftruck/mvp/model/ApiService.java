@@ -3,11 +3,15 @@ package com.coahr.fanoftruck.mvp.model;
 import android.support.annotation.Nullable;
 
 import com.coahr.fanoftruck.mvp.model.Bean.AddShoppingCart;
+import com.coahr.fanoftruck.mvp.model.Bean.AddressListBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
 import com.coahr.fanoftruck.mvp.model.Bean.CarDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Center_Initial_Data;
+import com.coahr.fanoftruck.mvp.model.Bean.Confirm_order;
+import com.coahr.fanoftruck.mvp.model.Bean.CouponBean;
+import com.coahr.fanoftruck.mvp.model.Bean.Coupon_Used;
 import com.coahr.fanoftruck.mvp.model.Bean.DelFormShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginOutBean;
 import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
@@ -30,12 +34,17 @@ import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.model.Bean.VerifyCode;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
+import com.coahr.fanoftruck.mvp.model.Bean.View_videoBean;
+import com.coahr.fanoftruck.mvp.model.Bean.add_AddressBean;
+import com.coahr.fanoftruck.mvp.model.Bean.del_addressBean;
 import com.coahr.fanoftruck.mvp.model.Bean.getBuyCarCode;
 import com.coahr.fanoftruck.mvp.model.Bean.save_identity_pic;
+import com.coahr.fanoftruck.mvp.model.Bean.set_address_defaultBean;
 
 
 import java.util.Map;
 
+import okhttp3.Address;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -135,7 +144,15 @@ public interface ApiService {
     Call<MaintenanceVideoList> getMaintenanceVideoList(@Field("video_name") String video_name,@Field("video_type") String video_type,@Field("start") String start
     ,@Field("length") String length);
 
-
+    /**
+     * 单个视频获取
+     *
+     * @param video_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.getOneVideo)
+    Call<View_videoBean> getOneVideo(@Field("video_id") String video_id);
     /**
      * 视频点赞
      * @param video_id
@@ -148,7 +165,7 @@ public interface ApiService {
 
 
     /**
-     * 视频点赞
+     * 视频评论列表
      * @param video_id
      * @param token
      * @return
@@ -388,4 +405,68 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(ApiContact.MyShoppingCar)
     Call<ShoppingCart> getShoppingCarList(@FieldMap Map<String,String> map);
+
+
+    /**
+     * 获取收货地址列表
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.getAddressList)
+    Call<AddressListBean> getAddressList(@FieldMap Map<String, String> map);
+
+
+    /**
+     * 添加地址
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.add_address)
+    Call<add_AddressBean> add_address(@FieldMap Map<String, String> map);
+
+    /**
+     * 删除地址
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.del_address)
+    Call<del_addressBean> del_address(@FieldMap Map<String, String> map);
+
+    /**
+     * 删除地址
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.setAddressDefault)
+    Call<set_address_defaultBean> set_addressDefault(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST(ApiContact.confirm_order)
+    Call<Confirm_order> Confirm_order(@Field("token") String token, @Field("commodity") String commodity, @Field("ua_id") String ua_id);
+
+    /**
+     * 优惠券
+     */
+
+    @FormUrlEncoded
+    @POST(ApiContact.couponList)
+    Call<CouponBean> get_coupon_list(@Field("token") String token, @Field("page") String page, @Field("length") String length);
+
+
+    /**
+     * 优惠券使用
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.used_coupon)
+    Call<Coupon_Used> used_coupon(@Field("coupon_id") String coupon_id, @Field("token") String token);
 }

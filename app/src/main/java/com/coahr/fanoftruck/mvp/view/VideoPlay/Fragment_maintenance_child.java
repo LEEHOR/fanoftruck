@@ -89,9 +89,9 @@ public class Fragment_maintenance_child extends BaseChildFragment<Fragment_maint
         recyclerView.setAdapter(adapter);
         adapter.setVideoOnClick(new Fragment_maintenance_child_adapter.VideoOnClick() {
             @Override
-            public void OnClick(int position) {
+            public void OnClick(int position,String video_id) {
                 KLog.d("跳转到播放页面");
-                ((SupportFragment) getParentFragment()).start(Fragment_maintenance_videoPlay.newInstance(position,status));
+                ((SupportFragment) getParentFragment()).start(Fragment_maintenance_videoPlay.newInstance(position,status,video_id));
             }
         });
 

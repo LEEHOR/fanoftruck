@@ -5,6 +5,7 @@ import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_maintenance_videoPlay_C;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideo_dz;
+import com.coahr.fanoftruck.mvp.model.Bean.View_videoBean;
 import com.coahr.fanoftruck.mvp.model.Fragment_maintenance_videoPlay_M;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_maintenance_videoPlay;
 
@@ -84,6 +85,27 @@ public class Fragment_maintenance_videoPlay_P extends BasePresenter<Fragment_mai
     public void getVideo_dzFailure(String failure) {
         if (getView() != null) {
             getView().getVideo_dzFailure(failure);
+        }
+    }
+
+    @Override
+    public void getVideo_one(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.getVideo_one(map);
+        }
+    }
+
+    @Override
+    public void getVideo_oneSuccess(View_videoBean view_videoBean) {
+        if (getView() != null) {
+            getView().getVideo_oneSuccess(view_videoBean);
+        }
+    }
+
+    @Override
+    public void getVideo_oneFailure(String failure) {
+        if (getView() != null) {
+            getView().getVideo_oneFailure(failure);
         }
     }
 }

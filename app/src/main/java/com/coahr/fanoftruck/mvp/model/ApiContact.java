@@ -31,6 +31,9 @@ public class ApiContact {
     //维修视频列表
     public static  final  String getMaintenanceVideoList="/APP/Video/get_video_list";
 
+    //单个视频
+    public static final String getOneVideo="/APP/Video/view_video";
+
     //视频点赞
     public static final  String getVideo_dz="APP/Video/video_dz";
 
@@ -68,7 +71,6 @@ public class ApiContact {
     public static final String Car_list="/APP/User/get_user_car_list";
 
     //删除车辆
-
     public static final String del_car="/APP/User/del_user_car";
 
     //预约保养生成订单
@@ -106,4 +108,25 @@ public class ApiContact {
 
     //购物车数据
     public static final String MyShoppingCar="/APP/User/shopping_cart";
+
+    //获取收货地址列表
+    public static final String getAddressList="/APP/User/get_user_address_list";
+
+    //添加
+    public static final String add_address="/APP/User/save_user_address";
+
+    //设为默认地址
+    public static final String setAddressDefault="/APP/User/set_user_address";
+
+    //删除地址
+    public static final String del_address="/APP/User/del_user_address";
+
+    //订单确认接口
+    public static final String confirm_order="/APP/User/confirm_commodity_order";
+
+    //优惠券列表
+    public static final String couponList="/APP/User/get_coupon_list";
+
+    //优惠券使用
+    public static final String used_coupon="/APP/User/get_coupon_selected";
 }

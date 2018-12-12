@@ -79,7 +79,7 @@ public class AddAndSunText extends LinearLayout {
                     ed_makes.setText(String.valueOf("0"));
                 }
                 ed_max = Integer.parseInt(ed_makes.getText().toString());
-                if (ed_max > max) {
+                if (ed_max >=max) {
                     ToastUtils.showLong("已经为最大值");
                 } else {
                     ed_max++;
@@ -101,7 +101,7 @@ public class AddAndSunText extends LinearLayout {
                     ed_makes.setText(String.valueOf("0"));
                 }
                 ed_max = Integer.parseInt(ed_makes.getText().toString());
-                if (ed_max < min) {
+                if (ed_max <= min) {
                     ToastUtils.showLong("已经为最小值");
                 } else {
                     ed_max--;

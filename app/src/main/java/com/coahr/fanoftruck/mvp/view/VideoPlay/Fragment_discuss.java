@@ -73,6 +73,7 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
     private int ALL_DEALER_COUNT = 0; //总数
     private boolean isLoading;
     private Dialog dialogs;
+    private AddDiscussListener addDiscussListener;
 
     public static Fragment_discuss newInstance(String video_id) {
         Fragment_discuss discuss = new Fragment_discuss();
@@ -132,7 +133,6 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
                     @Override
                     public void sendVideoDiscuss(String s, Dialog dialog) {
                         dialogs=dialog;
-                        KLog.d("接受",s);
                         getAddDiscuss(s);
                     }
                 });
@@ -240,6 +240,9 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
     public void getAddDiscussSuccess(AddDiscuss addDiscuss) {
         dialogs.dismiss();
         ToastUtils.showLong(addDiscuss.getMsg());
+        if (addDiscussListener != null) {
+            addDiscussListener.addDiscussSuccess();
+        }
     }
 
     @Override
@@ -259,6 +262,10 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
         p.getVideoDiscussList(map);
     }
 
+    /**
+     * 发表评论
+     * @param describe
+     */
     void  getAddDiscuss(String describe){
         Map map = new HashMap();
         map.put("video_id", video_id);
@@ -266,5 +273,11 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
         map.put("discuss_content",describe);
         p.getAddDiscuss(map);
     }
+    public interface AddDiscussListener{
+        void addDiscussSuccess();
+    }
 
+    public void setAddDiscussListener(AddDiscussListener addDiscussListener) {
+        this.addDiscussListener = addDiscussListener;
+    }
 }

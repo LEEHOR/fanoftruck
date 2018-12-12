@@ -21,8 +21,11 @@ import com.coahr.fanoftruck.mvp.constract.Fragment_shoppingDetail_C;
 import com.coahr.fanoftruck.mvp.model.Bean.AddShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_shoppingDetail_P;
+import com.coahr.fanoftruck.mvp.view.ConfirmCommodityOrder.Fragment_confirmCommodityOrder;
+import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_address_list;
 import com.coahr.fanoftruck.mvp.view.Shopping.adapter.ShoppingDetailAdapter;
 import com.donkingliang.banner.CustomBanner;
+import com.socks.library.KLog;
 
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +61,7 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
     @BindView(R.id.shopping_now)
     LinearLayout shopping_now;
     @BindView(R.id.append_shoppingCar)
-    LinearLayout append_shoppingCar;
+    LinearLayout append_shoppingCart;
     @BindView(R.id.send_address_rel)
     RelativeLayout send_address_rel;
     @BindView(R.id.shopping_swipe)
@@ -68,6 +71,7 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
     private LinearLayoutManager linearLayoutManager;
     private String c_thumbnail;
     private String c_price;
+    private String address_id;
 
 
     public static Fragment_ShoppingDetail newInstance(String c_id) {
@@ -97,14 +101,15 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
                 fragment_dialog_shopping.setListener(new Fragment_dialog_shopping.getShoppingDialog() {
                     @Override
                     public void getShoppingCount(String count) {
-
+                        KLog.d("数目",count);
+                    start(Fragment_confirmCommodityOrder.newInstance(String.format("cid=%s&num=%s",c_id,count),address_id==null?"":address_id));
                     }
                 });
                 fragment_dialog_shopping.show(getChildFragmentManager(), TAG);
             }
         });
 
-        append_shoppingCar.setOnClickListener(new View.OnClickListener() {
+        append_shoppingCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment_dialog_shopping fragment_dialog_shopping = Fragment_dialog_shopping.newInstance(Float.parseFloat(c_price), c_thumbnail, TO_ADD_CART);
@@ -121,7 +126,7 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
         send_address_rel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startForResult(Fragment_address_list.newInstance(Constants.Fragment_shoppingDetail),10);
             }
         });
         shopping_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -213,5 +218,17 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
         map.put("c_id", c_id);
         map.put("c_num", num);
         p.AddShoppingCar(map);
+    }
+
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+        super.onFragmentResult(requestCode, resultCode, data);
+        if (requestCode==10 && resultCode==10){
+            if (data != null) {
+                send_address.setText((String)data.get("address"));
+                address_id = (String) data.get("address_id");
+            }
+
+        }
     }
 }
