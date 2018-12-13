@@ -129,4 +129,13 @@ public class ApiContact {
 
     //优惠券使用
     public static final String used_coupon="/APP/User/get_coupon_selected";
+
+    //优惠券领取列表
+    public static final String CouponCollectionList="/APP/User/get_coupon_all";
+
+    //优惠券领取
+    public static final String receive_coupon="/APP/User/get_coupon_byself";
+
+    //支付接口
+    public static final String payCommodityOrder="/APP/User/save_commodity_order";
 }

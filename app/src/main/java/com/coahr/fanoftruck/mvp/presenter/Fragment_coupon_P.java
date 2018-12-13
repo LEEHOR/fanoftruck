@@ -5,7 +5,7 @@ import com.coahr.fanoftruck.mvp.constract.Fragment_coupon_main_C;
 import com.coahr.fanoftruck.mvp.model.Bean.CouponBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Coupon_Used;
 import com.coahr.fanoftruck.mvp.model.Fragment_coupon_main_M;
-import com.coahr.fanoftruck.mvp.view.Mycoupon.Fragment_coupon_main;
+import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_coupon_main;
 
 import java.util.Map;
 

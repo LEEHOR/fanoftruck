@@ -14,8 +14,6 @@ import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_addCar_C;
 import com.coahr.fanoftruck.mvp.model.Bean.SaveUserCar;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_addCar_P;
-import com.mob.bbssdk.gui.GUIManager;
-import com.mob.bbssdk.gui.utils.OperationCallback;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -31,10 +31,6 @@ import com.coahr.fanoftruck.mvp.view.Services.Adapter.Store_score_adapter;
 import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
 import com.coahr.fanoftruck.widgets.PopupWindows.ConfirmPopWindow;
 import com.donkingliang.banner.CustomBanner;
-import com.mob.bbssdk.gui.GUIManager;
-import com.mob.bbssdk.gui.other.location.LocationManager;
-import com.mob.bbssdk.model.BBSPoiItem;
-import com.socks.library.KLog;
 
 import java.util.ArrayList;
 import java.util.EventListener;

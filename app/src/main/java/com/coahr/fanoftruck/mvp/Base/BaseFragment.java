@@ -1,11 +1,15 @@
 package com.coahr.fanoftruck.mvp.Base;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,14 +19,25 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.alipay.sdk.app.PayTask;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.KeyBoardUtils;
+import com.coahr.fanoftruck.Utils.MD5;
 import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.Utils.ScreenUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
+import com.coahr.fanoftruck.mvp.model.Bean.AliPayResult;
+import com.coahr.fanoftruck.mvp.model.Bean.WxPayJsonEntity;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -59,6 +74,7 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
     public abstract void initData();
 
     public View addFooterView;
+    private static final int SDK_PAY_FLAG = 1;//支付宝支付
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
@@ -256,4 +272,132 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
         }
         return false;
     }
+
+
+    //==========================================阿里支付============================================================//
+
+    /**
+     * 阿里支付
+     * @param orderString
+     *  后台传来的订单
+     */
+    public void toAliPay(final String orderString) {
+        //拿到订单编号，开始支付
+        Runnable authRunnable = new Runnable() {
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(_mActivity);
+                Map<String, String> result = alipay.payV2(orderString, true);
+
+                Message msg = new Message();
+                msg.what = SDK_PAY_FLAG;
+                msg.obj = result;
+
+                mAlyHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread authThread = new Thread(authRunnable);
+        authThread.start();
+    }
+
+
+    /**
+     * 支付宝
+     */
+    @SuppressLint("HandlerLeak")
+    private Handler mAlyHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SDK_PAY_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    AliPayResult aliPayResult = new AliPayResult((Map<String, String>) msg.obj);
+                    /**
+                     * 对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = aliPayResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = aliPayResult.getResultStatus();
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        new MaterialDialog.Builder(getActivity())
+                                .title("支付宝")
+                                .content(resultInfo)
+                                .canceledOnTouchOutside(true)
+                                .build().show();
+
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        new MaterialDialog.Builder(getActivity())
+                                .title("支付宝")
+                                .content(resultInfo)
+                                .canceledOnTouchOutside(true)
+                                .build().show();
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    };
+
+    //==========================================微信支付============================================================//
+    /**
+     * 调起微信支付的方法
+     **/
+    public void toWXPay(final WxPayJsonEntity entity) {
+        final IWXAPI iwxapi = WXAPIFactory.createWXAPI(_mActivity, null); //初始化微信api
+        Runnable payRunnable = new Runnable() {  //这里注意要放在子线程
+            @Override
+            public void run() {
+                PayReq request = new PayReq(); //调起微信APP的对象
+                //下面是设置必要的参数，也就是前面说的参数,这几个参数从何而来请看上面说明
+                request.appId = entity.getAppid();
+                request.partnerId = entity.getMch_id();
+                request.prepayId = entity.getPrepay_id();
+                request.packageValue = "Sign=WXPay";
+                request.nonceStr = entity.getNonce_str();
+                request.timeStamp = String.valueOf(System.currentTimeMillis());
+                request.sign = entity.getSign();
+
+                //签名
+                LinkedHashMap<String, String> signParams = new LinkedHashMap<>();
+                signParams.put("appid", request.appId);
+                signParams.put("noncestr", request.nonceStr);
+                signParams.put("package", request.packageValue);
+                signParams.put("partnerid", request.partnerId);
+                signParams.put("prepayid", request.prepayId);
+                signParams.put("timestamp", request.timeStamp);
+                request.sign = genPackageSign(signParams);
+                iwxapi.sendReq(request);//发送调起微信的请求
+            }
+        };
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
+
+    /**
+     * 将微信支付签名加密
+     * @param params
+     * @return
+     */
+    private String genPackageSign(LinkedHashMap<String, String> params) {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            sb.append(entry.getKey());
+            sb.append('=');
+            sb.append(entry.getValue());
+            sb.append('&');
+        }
+        sb.append("key=");
+        sb.append(Constants.API_KEY);
+
+
+        String packageSign = MD5.getMessageDigest(sb.toString().getBytes()).toUpperCase();
+        return packageSign;
+    }
+
 }

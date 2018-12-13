@@ -10,6 +10,8 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -273,6 +275,24 @@ public class Imageloader {
                 return false;
             }
         }).into(targetImage);
+    }
+
+    /**
+     * 设置控件大小
+     * @param view
+     * @param imageWidth
+     * @param imageHeight
+     */
+    public static void setViewSize(View view, int imageWidth, int imageHeight, ImageView.ScaleType type){
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+        params.height=imageHeight;
+        params.width =imageWidth;
+        view.setLayoutParams(params);
+        if (view instanceof ImageView){
+            if (type !=null){
+                ((ImageView) view).setScaleType(type);
+            }
+        }
     }
 
 }

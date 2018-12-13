@@ -9,10 +9,13 @@ import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
 import com.coahr.fanoftruck.mvp.model.Bean.CarDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Center_Initial_Data;
+import com.coahr.fanoftruck.mvp.model.Bean.ConfirmOrderBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Confirm_order;
 import com.coahr.fanoftruck.mvp.model.Bean.CouponBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Coupon_Used;
 import com.coahr.fanoftruck.mvp.model.Bean.DelFormShoppingCart;
+import com.coahr.fanoftruck.mvp.model.Bean.GetCouponDown;
+import com.coahr.fanoftruck.mvp.model.Bean.GetCouponList;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginOutBean;
 import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Save_Identity_Info;
@@ -469,4 +472,31 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(ApiContact.used_coupon)
     Call<Coupon_Used> used_coupon(@Field("coupon_id") String coupon_id, @Field("token") String token);
+
+    /**
+     * 新优惠券列表
+     * @param token
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.CouponCollectionList)
+    Call<GetCouponList>get_coupon_all(@Field("token") String token);
+
+    /**
+     * 优惠券领取接口
+     */
+
+    @FormUrlEncoded
+    @POST(ApiContact.receive_coupon)
+    Call<GetCouponDown>get_coupon_byself(@Field("token") String token, @Field("coupon_id") String coupon_id);
+
+
+    /**
+     * 支付接口
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.payCommodityOrder)
+    Call<ConfirmOrderBean> payCommodityOrder(@FieldMap Map<String, String> map);
 }

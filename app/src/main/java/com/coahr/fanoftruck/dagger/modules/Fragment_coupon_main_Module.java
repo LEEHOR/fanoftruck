@@ -1,7 +1,6 @@
 package com.coahr.fanoftruck.dagger.modules;
 
-import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_add_address;
-import com.coahr.fanoftruck.mvp.view.Mycoupon.Fragment_coupon_main;
+import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_coupon_main;
 
 import dagger.Module;
 import dagger.Provides;

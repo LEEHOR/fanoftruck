@@ -30,8 +30,6 @@ import com.coahr.fanoftruck.mvp.presenter.Fragment_maintenance_videoPlay_P;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.adapter.Video_play_adapter;
 import com.coahr.fanoftruck.widgets.AltDialog.Dialog_share;
 import com.coahr.fanoftruck.widgets.MyVideo.MyVideoPlay_Normal;
-import com.coahr.fanoftruck.widgets.ShareUtils;
-import com.mob.bbssdk.gui.GUIManager;
 import com.socks.library.KLog;
 
 import java.util.ArrayList;

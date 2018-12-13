@@ -3,12 +3,8 @@ package com.coahr.fanoftruck.mvp.view;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.mvp.Base.BaseSupportActivity;
-import com.mob.bbssdk.BBSSDK;
-import com.mob.bbssdk.theme0.BBSTheme0;
-import com.mob.bbssdk.theme0.view.Theme0MainView;
 
 
-import butterknife.BindView;
 
 /**
  * Created by Leehor
@@ -18,8 +14,7 @@ import butterknife.BindView;
 public class TribuneActivity extends BaseSupportActivity {
 
 
-    @BindView(R.id.myView1)
-    Theme0MainView myView1;
+
     private long exitTime = 0;
     private static final long INTERVAL_TIME = 2000;
     @Override
@@ -29,16 +24,13 @@ public class TribuneActivity extends BaseSupportActivity {
 
     @Override
     public void initView() {
-        BBSTheme0.init();
-        myView1.loadData();
+
 
     }
 
     @Override
     public void initData() {
 
-        //   BBSTheme0.init();
-        // myView1.loadData();
     }
         @Override
         public void onBackPressedSupport() {

@@ -12,8 +12,9 @@ import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_ReservationOrder;
 import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_add_address;
 import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_address_list;
 import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_addCar;
-import com.coahr.fanoftruck.mvp.view.Mycoupon.Fragment_CouponViewPager;
-import com.coahr.fanoftruck.mvp.view.Mycoupon.Fragment_coupon_main;
+import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_CouponReceive;
+import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_CouponViewPager;
+import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_coupon_main;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_about_us;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_certification;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_forgetPass;
@@ -165,4 +166,7 @@ public abstract class AllFragmentModule {
 
     @ContributesAndroidInjector(modules = Fragment_coupon_main_Module.class)
     abstract Fragment_coupon_main Fragment_coupon_mainInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_CouponReceive_Module.class)
+    abstract Fragment_CouponReceive Fragment_CouponReceiveInjector();
 }

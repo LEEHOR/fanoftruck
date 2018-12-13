@@ -1,4 +1,4 @@
-package com.coahr.fanoftruck.mvp.view.Mycoupon.adapter;
+package com.coahr.fanoftruck.mvp.view.MyCoupon.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

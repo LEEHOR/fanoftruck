@@ -15,12 +15,15 @@ import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_confirmCommodityOrder_C;
+import com.coahr.fanoftruck.mvp.model.Bean.ConfirmOrderBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Confirm_order;
 import com.coahr.fanoftruck.mvp.model.Bean.MessageEvent_confirmCommodityOrder;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_confirmCommodityOrder_P;
 import com.coahr.fanoftruck.mvp.view.ConfirmCommodityOrder.adapter.ConfirmCommodityOrderAdapter;
 import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_address_list;
+import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_CouponViewPager;
 import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
+import com.coahr.fanoftruck.widgets.AltDialog.PayTypeSelectDialogFragment;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -71,6 +74,8 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
     private float parseFloat;
     private String total_price;  //保留两位小数的总价
     private String address_id;
+    private String coupon_id;
+    private float discount_price=0;
 
     public static Fragment_confirmCommodityOrder newInstance(String commodity, String ua_id) {
         Fragment_confirmCommodityOrder confirmCommodityOrder = new Fragment_confirmCommodityOrder();
@@ -109,7 +114,31 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
                 rv_order_list.removeItemDecorationAt(i);
             }
         }
+        rl_coupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start(Fragment_CouponViewPager.newInstance(Constants.Fragment_confirmCommodityOrder, Float.parseFloat(total_price)));
+            }
+        });
 
+
+        /**
+         * 提交订单
+         */
+        tv_submit_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PayTypeSelectDialogFragment payTypeSelectDialogFragment=new PayTypeSelectDialogFragment();
+                payTypeSelectDialogFragment.setOnpayTypeSelectListener(new PayTypeSelectDialogFragment.OnPayTypeSelectListener() {
+                    @Override
+                    public void onItemSelect(String payType) {
+
+                    }
+
+                });
+                payTypeSelectDialogFragment.show(getChildFragmentManager(), TAG);
+            }
+        });
     }
 
     @Override
@@ -152,6 +181,16 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
 
     }
 
+    @Override
+    public void onSaveCommodityOrderSuccess(ConfirmOrderBean bean) {
+
+    }
+
+    @Override
+    public void onSaveCommodityOrderFailure(String failure) {
+
+    }
+
     /**
      * 获取列表
      */
@@ -163,13 +202,31 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
         p.getCommodityOrderList(map);
     }
 
+    /**
+     * 发送订单到后台
+     * @param payType
+     */
+    private void saveConfirmOrder(String payType){
+        //计算打折后的价格
+        String last_price = ValidateUtils.getDouble((Float.parseFloat(total_price) - discount_price));
+        Map map = new HashMap();
+        map.put("token", Constants.token);
+        map.put("commodity", commodity);
+        map.put("ua_id", address_id);
+        map.put("fee", null);
+        map.put("total", last_price);
+        map.put("payment", payType);
+        map.put("coupon_id", coupon_id);
+        p.saveCommodityOrder(map);
+    }
+
     @Override
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
         super.onFragmentResult(requestCode, resultCode, data);
         if (requestCode == 11 && resultCode == 11) {
             if (data != null) {
                 tv_receiver_address.setText((String) data.get("address"));
-                address_id = (String) data.get("address_id");
+                address_id= (String) data.get("address_id");
                 tv_receiver_name.setText((String) data.get("address_user"));
                 tv_receiver_phone.setText((String) data.get("address_phone"));
             }
@@ -191,6 +248,10 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(MessageEvent_confirmCommodityOrder messageEvent) {
-
+        coupon_id = messageEvent.getCoupon_id();
+        String discount = messageEvent.getDiscount();
+        tv_coupon_money.setText(discount);
+        discount_price = Float.parseFloat(discount);
+        tv_totalprice.setText(ValidateUtils.getDouble((Float.parseFloat(total_price)-Float.parseFloat(discount))));
     }
 }

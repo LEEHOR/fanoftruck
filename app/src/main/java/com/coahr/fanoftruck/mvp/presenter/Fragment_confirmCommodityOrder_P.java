@@ -2,6 +2,7 @@ package com.coahr.fanoftruck.mvp.presenter;
 
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_confirmCommodityOrder_C;
+import com.coahr.fanoftruck.mvp.model.Bean.ConfirmOrderBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Confirm_order;
 import com.coahr.fanoftruck.mvp.model.Fragment_confirmCommodityOrder_M;
 import com.coahr.fanoftruck.mvp.view.ConfirmCommodityOrder.Fragment_confirmCommodityOrder;
@@ -40,6 +41,27 @@ public class Fragment_confirmCommodityOrder_P extends BasePresenter<Fragment_con
     public void getCommodityOrderFailure(String failure) {
         if (getView() != null) {
             getView().getCommodityOrderFailure(failure);
+        }
+    }
+
+    @Override
+    public void saveCommodityOrder(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.saveCommodityOrder(map);
+        }
+    }
+
+    @Override
+    public void onSaveCommodityOrderSuccess(ConfirmOrderBean bean) {
+        if (getView() != null) {
+            getView().onSaveCommodityOrderSuccess(bean);
+        }
+    }
+
+    @Override
+    public void onSaveCommodityOrderFailure(String failure) {
+        if (getView() != null) {
+            getView().onSaveCommodityOrderFailure(failure);
         }
     }
 }

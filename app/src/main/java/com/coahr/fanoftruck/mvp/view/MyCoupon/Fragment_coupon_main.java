@@ -1,4 +1,4 @@
-package com.coahr.fanoftruck.mvp.view.Mycoupon;
+package com.coahr.fanoftruck.mvp.view.MyCoupon;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,7 +11,6 @@ import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
-import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_coupon_main_C;
 import com.coahr.fanoftruck.mvp.model.Bean.CouponBean;
@@ -19,16 +18,14 @@ import com.coahr.fanoftruck.mvp.model.Bean.Coupon_Used;
 import com.coahr.fanoftruck.mvp.model.Bean.MessageEvent_confirmCommodityOrder;
 import com.coahr.fanoftruck.mvp.model.Bean.MessageEvent_coupon;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_coupon_P;
-import com.coahr.fanoftruck.mvp.view.Mycoupon.adapter.CouponMainAdapter;
+import com.coahr.fanoftruck.mvp.view.MyCoupon.adapter.CouponMainAdapter;
 import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
-import com.socks.library.KLog;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PrimitiveIterator;
 
 import javax.inject.Inject;
 
@@ -112,7 +109,7 @@ public class Fragment_coupon_main extends BaseFragment<Fragment_coupon_main_C.Pr
 
             @Override
             public void OverdueCouponListener(CouponBean.JdataBean.CouponDisableBean disableBean) {
-
+                    ToastUtils.showLong("已过期无法使用");
             }
         });
     }

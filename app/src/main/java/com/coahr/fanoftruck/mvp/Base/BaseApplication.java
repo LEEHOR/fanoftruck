@@ -13,12 +13,20 @@ import com.coahr.fanoftruck.widgets.MyVideo.MyFileNameGenerator;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.socks.library.KLog;
 import com.tencent.smtt.sdk.QbSdk;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.MsgConstant;
+import com.umeng.message.PushAgent;
+import com.umeng.socialize.PlatformConfig;
+
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+
+import static anet.channel.bytes.a.TAG;
 
 /**
  * Created by Leehor
@@ -55,14 +63,20 @@ public class BaseApplication extends Application implements HasActivityInjector,
         DaggerApplicationComponents.create().inject(this);
         mContext=getApplicationContext();
         initX5WebView();
+        UMConfigure.init(this,
+                UMConfigure.DEVICE_TYPE_PHONE, "a2ef9522bf3a1c5c206c1e8dac62e363");
+
+        PlatformConfig.setWeixin("wx89f3b1477df1aa39", "b3ad27916ad0fa404f5d1478f3cc0bc2");
+        PlatformConfig.setQQZone("","");
 
         if (PreferenceUtils.contains(mContext, "token")) {
-            Constants.token = PreferenceUtils.getPrefString(mContext, Constants.token_key, "");
+            Constants.token = PreferenceUtils.getPrefString(mContext, Constants.token_key, null);
             KLog.d("token", Constants.token);
         }
         if (PreferenceUtils.contains(mContext, "sessionId")) {
-            Constants.sessionId = PreferenceUtils.getPrefString(mContext, Constants.uid_key, "");
+            Constants.sessionId = PreferenceUtils.getPrefString(mContext, Constants.uid_key, null);
         }
+        initPush();
     }
 
     @Override
@@ -103,6 +117,28 @@ public class BaseApplication extends Application implements HasActivityInjector,
         };
         //x5内核初始化接口
         QbSdk.initX5Environment(getApplicationContext(), cb);
+
+    }
+
+    private void initPush() {
+
+        PushAgent mPushAgent = PushAgent.getInstance(this);
+        //sdk开启通知声音
+        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
+        mPushAgent.register(new IUmengRegisterCallback() {
+            @Override
+            public void onSuccess(String deviceToken) {
+                KLog.d(TAG, "device token: " + deviceToken);
+                Constants.devicestoken = deviceToken;
+                PreferenceUtils.setPrefString(mContext, Constants.devicestoken_key, deviceToken);
+            }
+
+            @Override
+            public void onFailure(String s, String s1) {
+                KLog.d(TAG, "register failed: " + s + " " + s1);
+            }
+        });
+        PushAgent.getInstance(mContext).onAppStart();
 
     }
 }

@@ -1,9 +1,10 @@
-package com.coahr.fanoftruck.mvp.view.Mycoupon.adapter;
+package com.coahr.fanoftruck.mvp.view.MyCoupon.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_coupon_main;
 
 
 public class CouponViewPagerAdapter extends FragmentPagerAdapter {
@@ -18,7 +19,7 @@ public class CouponViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return  null;
+            return Fragment_coupon_main.newInstance(position,fromFragment,orderPricr);
     }
 
     @Override

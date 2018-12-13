@@ -1,4 +1,4 @@
-package com.coahr.fanoftruck.mvp.view.Mycoupon;
+package com.coahr.fanoftruck.mvp.view.MyCoupon;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.model.Bean.MessageEvent_coupon;
-import com.coahr.fanoftruck.mvp.view.Mycoupon.adapter.CouponViewPagerAdapter;
+import com.coahr.fanoftruck.mvp.view.MyCoupon.adapter.CouponViewPagerAdapter;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -84,7 +84,7 @@ public class Fragment_CouponViewPager extends BaseFragment {
         go_receive_coupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                start(Fragment_CouponReceive.newInstance());
             }
         });
 
