@@ -44,6 +44,7 @@ android {
 
     allprojects {
         repositories {
+            jcenter()
             maven { url "https://jitpack.io" }
         }
     }
@@ -52,7 +53,6 @@ android {
         maven {
             url "http://maven.aliyun.com/nexus/content/repositories/releases"
         }
-        maven { url "http://mvn.mob.com/android" }
     }
 
     dexOptions {
@@ -160,9 +160,8 @@ dependencies {
     //动态申请权限
     implementation 'com.yanzhenjie:permission:2.0.0-rc12'
 
-    //阿里云热更新（alipay-sdk中包含alicloud-android-utdid,
-
-    //                       alicloud-android-utils避免重复）
+    //阿里云热更新（alipay-sdk中包含alicloud-android-utdid
+    //   com.umeng.sdk:push包含 alicloud-android-utils避免重复）
     implementation('com.aliyun.ams:alicloud-android-hotfix:3.2.6') {
         exclude(module: 'alicloud-android-utdid')
         exclude(module: 'alicloud-android-utils')
@@ -209,29 +208,25 @@ dependencies {
 
     //PushSDK必须依赖基础组件库，所以需要加入对应依赖
 
-     implementation 'com.umeng.sdk:common:1.5.1'
+    implementation  'com.umeng.sdk:common:1.5.1'
 
     //PushSDK必须依赖utdid库，所以需要加入对应依赖(alipay-sdk中包含alicloud-android-utdid避免重复)
-
-    // implementation 'com.umeng.sdk:utdid:1.1.5.3'
-
+    //implementation  'com.umeng.umsdk:utdid:1.1.5.3'
     //PushSDK (阿里热更新包含了避免重复)
     implementation 'com.umeng.sdk:push:4.0.0'
 
     //友盟===========================分享====================================
 
     //友盟分享
- /*   implementation 'com.umeng.sdk:share-core:latest.integration'
+  /*  implementation 'com.umeng.sdk:share-core:latest.integration'
     implementation 'com.umeng.sdk:share-qq:latest.integration'
 
     //微信支付已经包含openSdk
-    implementation('com.umeng.sdk:share-wechat:latest.integration') {
-        exclude group: 'com.tencent.mm.opensdk', module: 'wechat-sdk-android-without-mta'
+    implementation ('com.umeng.sdk:share-wechat:latest.integration'){
+        exclude group: 'com.tencent.mm.opensdk'
     }*/
-
-    //最新版com.umeng.sdk:common和分享share-core不兼容导致报错故使用旧版本
-    implementation 'com.umeng.sdk:shareboard-widget:6.9.1'
     //友盟社会化分享
+    //最新版com.umeng.sdk:common和分享share-core不兼容导致报错故使用旧版本
     implementation 'com.umeng.sdk:share-core:6.9.1'
     implementation 'com.umeng.sdk:share-qq:6.9.1.1'
     implementation ('com.umeng.sdk:share-wechat:6.9.1'){
@@ -239,38 +234,5 @@ dependencies {
     }
     //分享面板
     implementation 'com.umeng.sdk:shareboard-widget:6.9.1'
-
 }
 
-// 在MobSDK的扩展中注册BBSSDK的相关信息
-/*MobSDK {
-    appKey "28d4d1ed4e43c"
-    appSecret "20adce5e8a882407f98bbba823b888a7"
-
-    BBSSDK{
-        theme 'theme1'
-        //高德地图配置
-        devInfo {
-            GadMap {
-                apiKey "b61bb3a9849c963ec2bc46ce6d2105df"
-            }
-        }
-
-    }
-
-    // BBSSDK依赖于ShareSDK和MobLink，故还需要引入这两个SDK
-    ShareSDK {
-        devInfo {
-            Wechat {
-                appId "wx4868b35061f87885"
-                appSecret "64020361b8ec4c99936c0e3999a9f249"
-            }
-            QQ {
-                appId "100371282"
-                appKey "aed9b0303e3ed1e27bae87c33761161d"
-            }
-        }
-    }
-    MobLink {
-    }
-}*/

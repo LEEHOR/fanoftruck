@@ -279,7 +279,7 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
     /**
      * 阿里支付
      * @param orderString
-     *  后台传来的订单
+     *
      */
     public void toAliPay(final String orderString) {
         //拿到订单编号，开始支付

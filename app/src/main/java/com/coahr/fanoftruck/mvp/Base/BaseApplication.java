@@ -77,6 +77,7 @@ public class BaseApplication extends Application implements HasActivityInjector,
             Constants.sessionId = PreferenceUtils.getPrefString(mContext, Constants.uid_key, null);
         }
         initPush();
+        UMConfigure.setLogEnabled(true);
     }
 
     @Override
