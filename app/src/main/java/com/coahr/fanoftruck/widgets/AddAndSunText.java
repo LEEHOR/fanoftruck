@@ -40,9 +40,7 @@ public class AddAndSunText extends LinearLayout {
     public AddAndSunText(Context context) {
         super(context, null);
     }
-
     public AddAndSunText(Context context, AttributeSet attrs) {
-
         super(context, attrs);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.AddAndSunText);
         view = LayoutInflater.from(context).inflate(R.layout.layout_addandsuntextview, this);

@@ -39,7 +39,7 @@ import java.util.HashMap;
 
 public class Imageloader {
  private  static  ObjectAnimator anim;
-    private static Bitmap bitmap;
+    private static Bitmap bitmap=null;
 
     public static void loadImage(String path, final ImageView targetImage) {
 

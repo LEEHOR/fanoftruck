@@ -2,13 +2,17 @@ package com.coahr.fanoftruck.mvp.Base;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 
+import com.coahr.fanoftruck.BuildConfig;
 import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.dagger.components.DaggerApplicationComponents;
+import com.coahr.fanoftruck.mvp.view.UMPush.UmengNotificationService;
 import com.coahr.fanoftruck.widgets.MyVideo.MyFileNameGenerator;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.socks.library.KLog;
@@ -77,7 +81,11 @@ public class BaseApplication extends Application implements HasActivityInjector,
             Constants.sessionId = PreferenceUtils.getPrefString(mContext, Constants.uid_key, null);
         }
         initPush();
-        UMConfigure.setLogEnabled(true);
+        if (BuildConfig.DEBUG){
+            UMConfigure.setLogEnabled(true);
+        } else {
+            UMConfigure.setLogEnabled(false);
+        }
     }
 
     @Override
@@ -141,5 +149,7 @@ public class BaseApplication extends Application implements HasActivityInjector,
         });
         PushAgent.getInstance(mContext).onAppStart();
 
+        //自定义消息处理
+        mPushAgent.setPushIntentServiceClass(UmengNotificationService.class);
     }
 }

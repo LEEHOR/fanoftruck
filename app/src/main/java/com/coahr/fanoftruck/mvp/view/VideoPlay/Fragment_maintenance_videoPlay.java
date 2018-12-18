@@ -80,6 +80,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     private int length = 1000;
     private String video_id;
     private int lastVisibleItemPosition;
+    private int fist;
     private List<MaintenanceVideoList.JdataBean> videoList = new ArrayList<>();
     private View_videoBean.JdataBean one_video;  //单个视频
 
@@ -242,7 +243,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
         super.showError(e);
         new MaterialDialog.Builder(_mActivity)
                 .title("加载失败")
-                .content("刷新页面或重进?")
+                .content("刷新页面或退出重进?")
                 .negativeText("退出")
                 .positiveText("刷新")
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -287,32 +288,55 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (adapter.getData().size() > 0) {
-                   /* LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                    //屏幕中最后一个可见子项的position
-                    // int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
-                    //当前屏幕所看到的子项个数
-                    int visibleItemCount = layoutManager.getChildCount();
-                    //当前RecyclerView的所有子项个数
-                    int totalItemCount = layoutManager.getItemCount();
-                    //RecyclerView的滑动状态
-                    int state = recyclerView.getScrollState();*/
                     switch (newState) {
                         case RecyclerView.SCROLL_STATE_IDLE://停止滚动
+                            AnimationUtil.bottomMoveToViewLocation_Visible(right_menu, 300);
                             LinearLayoutManager layoutManagerS = (LinearLayoutManager) recyclerView.getLayoutManager();
                             View view = pagerSnapHelper.findSnapView(linearLayoutManager);
-                            JzvdStd.releaseAllVideos();
                             RecyclerView.ViewHolder childViewHolder = recyclerView.getChildViewHolder(view);
                             int childCount = layoutManagerS.getChildCount(); //获取屏幕可见数目
-                            if (childCount == 1) {  //当屏幕可见数目为1时调用
-                                lastVisibleItemPosition = layoutManagerS.findLastVisibleItemPosition();
-                                getItem(lastVisibleItemPosition);
-                                AnimationUtil.bottomMoveToViewLocation_Visible(right_menu, 300);
-                                ((MyVideoPlay_Normal) childViewHolder.itemView.findViewById(R.id.myVideo)).startVideo();
-                                KLog.d("滑动", "停止1");
-                            } else {
-                                KLog.d("滑动", "停止2");
-                            }
+                            int itemCount = layoutManagerS.getItemCount();
+                            int lastVisibleItemPosition = layoutManagerS.findLastVisibleItemPosition();
+                            if (itemCount - 1 == lastVisibleItemPosition) {
+                                if (fist == 0) {
+                                    if (childCount == 1) {  //当屏幕可见数目为1时调用
+                                       // AnimationUtil.bottomMoveToViewLocation_Visible(right_menu, 300);
+                                        JzvdStd.releaseAllVideos();
+                                        Fragment_maintenance_videoPlay.this.lastVisibleItemPosition = layoutManagerS.findLastVisibleItemPosition();
+                                        getItem(Fragment_maintenance_videoPlay.this.lastVisibleItemPosition);
+                                        ((MyVideoPlay_Normal) childViewHolder.itemView.findViewById(R.id.myVideo)).startVideo();
+                                        KLog.d("滑动", "停止1");
+                                    }
+                                    fist += 1;
+                                } else {
+                                    ToastUtils.showLong("已经是最后一个");
+                                }
+                            } else if (lastVisibleItemPosition==0){
+                                if (fist == 0) {
+                                    if (childCount == 1) {  //当屏幕可见数目为1时调用
 
+                                        JzvdStd.releaseAllVideos();
+                                        Fragment_maintenance_videoPlay.this.lastVisibleItemPosition = layoutManagerS.findLastVisibleItemPosition();
+                                        getItem(Fragment_maintenance_videoPlay.this.lastVisibleItemPosition);
+                                        ((MyVideoPlay_Normal) childViewHolder.itemView.findViewById(R.id.myVideo)).startVideo();
+                                        KLog.d("滑动", "停止1");
+                                    }
+                                    fist += 1;
+                                }else {
+                                    ToastUtils.showLong("已经是第一个");
+                                }
+                            } else {
+                                fist=0;
+                                if (childCount == 1) {  //当屏幕可见数目为1时调用
+                                   // AnimationUtil.bottomMoveToViewLocation_Visible(right_menu, 300);
+                                    JzvdStd.releaseAllVideos();
+                                    Fragment_maintenance_videoPlay.this.lastVisibleItemPosition = layoutManagerS.findLastVisibleItemPosition();
+                                    getItem(Fragment_maintenance_videoPlay.this.lastVisibleItemPosition);
+
+                                    ((MyVideoPlay_Normal) childViewHolder.itemView.findViewById(R.id.myVideo)).startVideo();
+                                    KLog.d("滑动", "停止1");
+                                }
+                            }
                             break;
                         case RecyclerView.SCROLL_STATE_DRAGGING://拖动
 
@@ -327,6 +351,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     }
 
     public void onScrolledUp() {  //上滑
+
         KLog.d("滑动", "up");
         AnimationUtil.moveToViewBottom_Gone(right_menu, 300);
     }
@@ -334,6 +359,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     public void onScrolledDown() { //下滑
         KLog.d("滑动", "down");
         AnimationUtil.moveToViewBottom_Gone(right_menu, 300);
+
     }
 
     public void onScrolledToTop() { //滑动到顶部
@@ -343,6 +369,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
 
     public void onScrolledToBottom() {//滑动到底部
         KLog.d("滑动", "bottom");
+
     }
     @Override
     public void onPause() {
