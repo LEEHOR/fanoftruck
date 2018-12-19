@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="64dp" >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
 
     <ImageView
         android:id="@+id/notification_large_icon"
@@ -12,13 +12,16 @@
         android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
-       android:paddingLeft="@dimen/dp_10"
-        android:paddingRight="@dimen/dp_5"
         android:gravity="center"
+        android:id="@+id/center"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_5"
+        android:paddingTop="@dimen/dp_10"
+       android:layout_alignTop="@+id/notification_large_icon"
         android:layout_toRightOf="@+id/notification_large_icon"
         android:layout_toLeftOf="@+id/notification_small_icon"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -34,12 +37,8 @@
             android:id="@+id/notification_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
             android:text="Message"
             android:textColor="@color/black" />
-
-
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="match_parent"
@@ -48,14 +47,12 @@
             android:textColor="@color/black"
             android:textSize="10dp" />
     </LinearLayout>
-
-
     <ImageView
         android:id="@+id/notification_small_icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:scaleType="fitXY"
-        android:layout_alignParentBottom="true"
+       android:layout_alignBottom="@+id/center"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"

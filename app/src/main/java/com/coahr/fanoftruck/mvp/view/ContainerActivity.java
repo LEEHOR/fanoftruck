@@ -9,6 +9,7 @@ import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_RecommendCar;
 import com.coahr.fanoftruck.mvp.view.CallForHelp.CallForHelp_viewPager;
 import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_MaintenanceOrder;
 import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_ReservationOrder;
+import com.coahr.fanoftruck.mvp.view.MyWebView.Fragment_myWebView;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_about_us;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
 import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
@@ -78,6 +79,9 @@ public class ContainerActivity extends BaseSupportActivity {
                 break;
             case Constants.Fragment_ShoppingCart: //购物车
                 loadRootFragment(R.id.con_fragment, Fragment_shoppingCart.newInstance());
+                break;
+            case Constants.Fragment_MyWebView:
+                loadRootFragment(R.id.con_fragment,Fragment_myWebView.newInstance(getIntent().getStringExtra("url"),getIntent().getStringExtra("title")));
                 break;
         }
     }
