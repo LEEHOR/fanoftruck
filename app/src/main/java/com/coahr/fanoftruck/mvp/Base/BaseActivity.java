@@ -4,15 +4,16 @@ import android.Manifest;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.Toast;
 
 import com.coahr.fanoftruck.Utils.KeyBoardUtils;
 import com.coahr.fanoftruck.Utils.Permission.OnRequestPermissionListener;
 import com.coahr.fanoftruck.Utils.Permission.RequestPermissionUtils;
+import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.commom.ActivityManager;
+import com.coahr.fanoftruck.commom.Constants;
 import com.gyf.barlibrary.ImmersionBar;
-
 
 import java.util.List;
 
@@ -103,6 +104,22 @@ public abstract class BaseActivity<P extends BaseContract.Presenter> extends Sup
                     ,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE);
 
         } else {
+
         }
+    }
+
+    /**
+     * 判断是否登录
+     * @return
+     */
+    public boolean hasLogin() {
+        if (PreferenceUtils.contains(BaseApplication.mContext, Constants.token_key)) {
+            if (Constants.token.equals("")) {
+                Constants.token = PreferenceUtils.getPrefString(this, Constants.token_key, "");
+               // Constants.user_name = PreferenceUtils.getPrefString(this, Constants.user_key, "");
+            }
+            return true;
+        }
+        return false;
     }
 }

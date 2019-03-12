@@ -1,7 +1,7 @@
 package com.coahr.fanoftruck.mvp.Base;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.KeyBoardUtils;

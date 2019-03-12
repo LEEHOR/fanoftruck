@@ -2,13 +2,12 @@ package com.coahr.fanoftruck.mvp.view.MaintenanceOrder;
 
 import android.graphics.Bitmap;
 import android.os.Build;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.View;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
-import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;

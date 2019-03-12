@@ -7,17 +7,17 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.amap.api.location.AMapLocation;
 import com.bumptech.glide.Glide;
 import com.coahr.fanoftruck.R;
@@ -26,7 +26,6 @@ import com.coahr.fanoftruck.Utils.imageLoader.BitmapUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
-import com.coahr.fanoftruck.mvp.Base.BaseRecAdapter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_recorder_preview_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_recorder_preview_P;
@@ -89,35 +88,35 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
             super.handleMessage(msg);
             switch (msg.what) {
                 case MSG_LOAD_DATA:
-                        if (thread == null) {//如果已创建就不再重新创建子线程了
-                            thread = new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Bitmap netVideoBitmap = Imageloader.getNetVideoBitmap(videoPath);
-                                    saveImagePath = FileUtils.saveImage(netVideoBitmap);
-                                    if (saveImagePath != null) {
-                                        Bitmap bitmap=BitmapFactory.decodeFile(saveImagePath);
-                                        Bitmap zipBitmap = BitmapUtils.ImageCompress(bitmap, 1024);
-                                        zipPath=  BitmapUtils.saveBitmapFile(zipBitmap);
-                                        if (zipPath != null) {
-                                            FileUtils.deleteFile(saveImagePath);
-                                            mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
-                                        } else {
-                                            mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
-                                        }
+                    if (thread == null) {//如果已创建就不再重新创建子线程了
+                        thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Bitmap netVideoBitmap = Imageloader.getNetVideoBitmap(videoPath);
+                                saveImagePath = FileUtils.saveImage(netVideoBitmap);
+                                if (saveImagePath != null) {
+                                    Bitmap bitmap = BitmapFactory.decodeFile(saveImagePath);
+                                    Bitmap zipBitmap = BitmapUtils.ImageCompress(bitmap, 1024);
+                                    zipPath = BitmapUtils.saveBitmapFile(zipBitmap);
+                                    if (zipPath != null) {
+                                        FileUtils.deleteFile(saveImagePath);
+                                        mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
                                     } else {
                                         mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
                                     }
+                                } else {
+                                    mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
                                 }
-                            });
-                            thread.start();
-                        } else {
-                            if (zipPath != null) {
-                                mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
-                            } else {
-                                mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
                             }
+                        });
+                        thread.start();
+                    } else {
+                        if (zipPath != null) {
+                            mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
+                        } else {
+                            mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
                         }
+                    }
 
                     break;
                 case MSG_LOAD_SUCCESS:
@@ -129,7 +128,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                         pathList.clear();
                         pathList.add(0, videoPath);
                         pathList.add(1, zipPath);
-                        KLog.d("videoPath",videoPath,"zipPath",zipPath);
+                        KLog.d("videoPath", videoPath, "zipPath", zipPath);
                         // p.uploadVideo(map, pathList);
                         setWait_dialog_text("正在上传...");
                         p.uploadVideo(map, pathList);
@@ -170,7 +169,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     public void initView() {
         videoPath = getArguments().getString("videoPath");
         playerStandard.setUp(videoPath, null, Jzvd.SCREEN_WINDOW_NORMAL);
-        Glide.with(this).load(videoPath).into(playerStandard.thumbImageView);
+        Glide.with(_mActivity).load(videoPath).into(playerStandard.thumbImageView);
         Jzvd.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         Jzvd.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         service_tag1.setOnClickListener(this);
@@ -190,6 +189,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                 return false;
             }
         });
+
         video_describe.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -250,7 +250,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         KLog.d("上传成功", video_upload.getMsg());
         dismissWaitDialog();
         FileUtils.deleteFile(zipPath);
-        ToastUtils.showLong("上传成功"+video_upload.getMsg());
+        ToastUtils.showLong("上传成功" + video_upload.getMsg());
     }
 
     @Override
@@ -258,7 +258,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         KLog.d("上传失败", failure);
         dismissWaitDialog();
         isUpload = false;
-        ToastUtils.showLong("上传失败"+failure);
+        ToastUtils.showLong("上传失败" + failure);
     }
 
 
@@ -284,25 +284,25 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         switch (view.getId()) {
             case R.id.service_tag1:
                 video_type = "1";
-                chanceMode(service_tag1,service_tag2,service_tag3);
+                chanceMode(service_tag1, service_tag2, service_tag3);
                 break;
             case R.id.service_tag2:
                 video_type = "2";
-                chanceMode(service_tag2,service_tag1,service_tag3);
+                chanceMode(service_tag2, service_tag1, service_tag3);
                 break;
             case R.id.service_tag3:
                 video_type = "3";
-                chanceMode(service_tag3,service_tag1,service_tag2);
+                chanceMode(service_tag3, service_tag1, service_tag2);
                 break;
         }
     }
 
-    private void chanceMode(SelectTextView view1,SelectTextView view2,SelectTextView view3) {
+    private void chanceMode(SelectTextView view1, SelectTextView view2, SelectTextView view3) {
         if (view1.getTag() == null || String.valueOf(view1.getTag()).equals("1")) {
             view1.toggle(false);
             view1.setTag("2");
         } else {
-            video_type ="";
+            video_type = "";
             view1.toggle(true);
             view1.setTag("1");
         }
@@ -310,7 +310,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
             view2.toggle(true);
             view2.setTag("1");
         } else {
-            video_type ="";
+            video_type = "";
             view2.toggle(true);
             view2.setTag("1");
         }
@@ -319,7 +319,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
             view3.toggle(true);
             view3.setTag("1");
         } else {
-            video_type ="";
+            video_type = "";
             view3.toggle(true);
             view3.setTag("1");
         }

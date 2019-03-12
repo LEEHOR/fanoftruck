@@ -12,12 +12,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
-import android.widget.RemoteViews;
+import androidx.core.app.NotificationCompat;
 
 import com.coahr.fanoftruck.R;
-import com.coahr.fanoftruck.Utils.TimeUtils;
-import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.umeng.message.UTrack;
 import com.umeng.message.entity.UMessage;

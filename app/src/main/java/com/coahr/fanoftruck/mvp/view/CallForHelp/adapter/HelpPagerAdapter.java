@@ -1,9 +1,9 @@
 package com.coahr.fanoftruck.mvp.view.CallForHelp.adapter;
 
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.coahr.fanoftruck.mvp.view.CallForHelp.Fragment_help;
 

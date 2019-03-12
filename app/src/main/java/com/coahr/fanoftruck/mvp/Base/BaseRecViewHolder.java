@@ -1,6 +1,6 @@
 package com.coahr.fanoftruck.mvp.Base;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 /**

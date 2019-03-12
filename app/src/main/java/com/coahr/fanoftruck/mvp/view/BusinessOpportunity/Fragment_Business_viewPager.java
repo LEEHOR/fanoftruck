@@ -3,9 +3,8 @@ package com.coahr.fanoftruck.mvp.view.BusinessOpportunity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.annotation.NonNull;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.View;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -20,7 +19,6 @@ import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf;
 import com.tencent.smtt.export.external.extension.interfaces.IX5WebViewExtension;
-import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 

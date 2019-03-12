@@ -1,6 +1,6 @@
 package com.coahr.fanoftruck.mvp.model;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.coahr.fanoftruck.mvp.model.Bean.AddShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.AddressListBean;
@@ -47,7 +47,6 @@ import com.coahr.fanoftruck.mvp.model.Bean.set_address_defaultBean;
 
 import java.util.Map;
 
-import okhttp3.Address;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;

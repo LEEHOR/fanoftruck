@@ -1,18 +1,15 @@
 package com.coahr.fanoftruck.widgets;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import com.coahr.fanoftruck.R;
 
@@ -22,7 +19,7 @@ import com.coahr.fanoftruck.R;
  * Email：hengzwdhengzwd@qq.com
  */
 
-public class BlockTextView extends android.support.v7.widget.AppCompatTextView{
+public class BlockTextView extends androidx.appcompat.widget.AppCompatTextView{
 
     private boolean flag = false;  //是否读秒
 

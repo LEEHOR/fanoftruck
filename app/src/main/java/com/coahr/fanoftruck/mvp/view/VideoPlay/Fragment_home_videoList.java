@@ -1,9 +1,9 @@
 package com.coahr.fanoftruck.mvp.view.VideoPlay;
 
 import android.content.pm.ActivityInfo;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.coahr.fanoftruck.R;
@@ -15,7 +15,6 @@ import com.coahr.fanoftruck.mvp.view.VideoPlay.adapter.VideoListAdapter;
 import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,6 +37,7 @@ public class Fragment_home_videoList extends BaseFragment {
     SwipeRefreshLayout video_list_swipe;
     @BindView(R.id.video_list_recycler)
     RecyclerView video_list_recycler;
+    //测试数据
     public static String[] videoUrlList =
             {
                     "http://jzvd.nathen.cn/c494b340ff704015bb6682ffde3cd302/64929c369124497593205a4190d7d128-5287d2089db37e62345123a1be272f8b.mp4",

@@ -17,14 +17,12 @@ import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.MediaRecorder;
-import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Message;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -39,7 +37,6 @@ import android.widget.Toast;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
-import com.socks.library.KLog;
 
 
 import java.io.File;
@@ -62,6 +59,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Leehor
  * on 2018/11/24
  * on 15:21
+ * 自定义拍照
  * 已弃用此拍照
  */
 public class FragmentRecorder extends BaseFragment implements View.OnClickListener {

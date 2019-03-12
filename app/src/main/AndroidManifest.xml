@@ -82,7 +82,7 @@
         <!--阿里云热更新-->
         <!--apk更新-->
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="com.coahr.fanoftruck"
             android:grantUriPermissions="true"
             android:exported="false">

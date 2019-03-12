@@ -2,7 +2,8 @@ package com.coahr.fanoftruck.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
@@ -32,7 +33,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
-
 
 
 public class MainActivity extends BaseActivity<MainActivityC.Presenter> implements MainActivityC.View {
@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
 
     @Override
     public void initView() {
-         loadMultipleRootFragment(R.id.Root_Fragment, 0, mFragments);
+        loadMultipleRootFragment(R.id.Root_Fragment, 0, mFragments);
 
     }
 
@@ -87,10 +87,10 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
         myBottomNavigation.setOnTabPositionListener(new MyBottomNavigation.OnTabPositionListener() {
             @Override
             public void onPositionTab(int position) {
-                if (position == 4 && !PreferenceUtils.contains(BaseApplication.mContext, Constants.token_key)) {
-                    Intent intent = new Intent(MainActivity.this,ContainerActivity.class);
-                    intent.putExtra("fromfragment",Constants.MainActivity);
-                    intent.putExtra("tofragment",Constants.Fragment_login);
+                if (position == 4 && !hasLogin()) {
+                    Intent intent = new Intent(MainActivity.this, ContainerActivity.class);
+                    intent.putExtra("fromfragment", Constants.MainActivity);
+                    intent.putExtra("tofragment", Constants.Fragment_login);
                     startActivity(intent);
 
                 } else {
@@ -101,6 +101,7 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
         });
 
     }
+
     private void showFragment(int position) {
         showHideFragment(mFragments[position], mFragments[bottomNavigationPreposition]);
         myBottomNavigation.beanSelect(position);
@@ -114,7 +115,7 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
             exitTime = System.currentTimeMillis();
         } else {
             finish();
-            if (Constants.isKill){
+            if (Constants.isKill) {
                 ActivityManagerUtils.getInstance().appExit();
             } else {
                 android.os.Process.killProcess(android.os.Process.myPid());
@@ -130,16 +131,6 @@ public class MainActivity extends BaseActivity<MainActivityC.Presenter> implemen
     @Override
     public void onLocationFailure(int failure) {
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == 100) {
-            KLog.d("回来了");
-            // ((Fragment_myUerInfo) mFragments[4])
-
-        }
     }
 
     /**

@@ -15,14 +15,14 @@
         android:background="@color/material_grey_200"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"/>
-    <android.support.v4.widget.SwipeRefreshLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/store_detail_swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/dp_36">
@@ -82,7 +82,7 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:background="@color/colorPrimary"
                 android:layout_marginTop="@dimen/dp_8"
                 android:id="@+id/store_tag"
@@ -160,15 +160,15 @@
                 android:background="@color/material_grey_200"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_1"/>
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:background="@color/colorPrimary"
                 android:layout_marginTop="@dimen/dp_8"
                 android:id="@+id/store_detail_businessScope"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="36dp"
@@ -199,5 +199,5 @@
                 android:gravity="center" />
         </LinearLayout>
     </FrameLayout>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

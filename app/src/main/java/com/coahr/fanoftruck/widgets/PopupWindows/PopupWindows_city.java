@@ -2,8 +2,8 @@ package com.coahr.fanoftruck.widgets.PopupWindows;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +18,8 @@ import com.coahr.fanoftruck.Utils.SideBar;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.model.Bean.CityBean;
 import com.coahr.fanoftruck.mvp.model.Bean.CityInfoBean;
-import com.coahr.fanoftruck.mvp.view.decoration.RecyclerSimplePadding_color;
 import com.coahr.fanoftruck.mvp.view.decoration.RecyclerViewItemDecoration_StickyHeader;
 import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
-import com.socks.library.KLog;
 
 import java.util.ArrayList;
 import java.util.List;

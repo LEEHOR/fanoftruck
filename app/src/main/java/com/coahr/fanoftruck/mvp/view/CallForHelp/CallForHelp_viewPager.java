@@ -1,7 +1,7 @@
 package com.coahr.fanoftruck.mvp.view.CallForHelp;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;

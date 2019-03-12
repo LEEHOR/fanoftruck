@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -45,14 +45,9 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import cn.finalteam.rxgalleryfinal.RxGalleryFinal;
 import cn.finalteam.rxgalleryfinal.RxGalleryFinalApi;
-import cn.finalteam.rxgalleryfinal.imageloader.ImageLoaderType;
 import cn.finalteam.rxgalleryfinal.rxbus.RxBusResultDisposable;
-import cn.finalteam.rxgalleryfinal.rxbus.event.ImageMultipleResultEvent;
 import cn.finalteam.rxgalleryfinal.rxbus.event.ImageRadioResultEvent;
-import cn.finalteam.rxgalleryfinal.utils.Logger;
-import retrofit2.http.FieldMap;
 
 /**
  * Created by Leehor

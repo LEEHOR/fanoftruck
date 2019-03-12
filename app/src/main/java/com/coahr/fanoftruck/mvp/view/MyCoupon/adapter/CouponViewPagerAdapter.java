@@ -1,8 +1,8 @@
 package com.coahr.fanoftruck.mvp.view.MyCoupon.adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_coupon_main;
 

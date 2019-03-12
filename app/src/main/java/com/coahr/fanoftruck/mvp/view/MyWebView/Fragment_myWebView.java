@@ -3,7 +3,7 @@ package com.coahr.fanoftruck.mvp.view.MyWebView;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ProgressBar;
 

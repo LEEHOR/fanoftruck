@@ -1,6 +1,6 @@
 package com.coahr.fanoftruck.Utils.Notification;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by Leehor

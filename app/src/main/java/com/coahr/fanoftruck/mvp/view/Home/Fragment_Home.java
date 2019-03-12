@@ -1,7 +1,7 @@
 package com.coahr.fanoftruck.mvp.view.Home;
 
 import android.content.Intent;
-import android.support.v7.widget.CardView;
+import androidx.cardview.widget.CardView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,7 +14,6 @@ import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_home_P;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.mvp.view.TribuneActivity;
-import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoPlay;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 
 import javax.inject.Inject;

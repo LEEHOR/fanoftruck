@@ -1,11 +1,13 @@
 package com.coahr.fanoftruck.mvp.view.VideoPlay;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -18,7 +20,6 @@ import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.AnimationUtil;
 import com.coahr.fanoftruck.Utils.ToastUtils;
-import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseChildFragment;
@@ -41,7 +42,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import cn.jzvd.JzvdStd;
-import okhttp3.internal.platform.Platform;
 
 /**
  * Created by Leehor
@@ -51,9 +51,9 @@ import okhttp3.internal.platform.Platform;
  */
 public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_maintenance_videoPlay_C.Presenter> implements Fragment_maintenance_videoPlay_C.View, View.OnClickListener {
 
-   @Inject
-   Fragment_maintenance_videoPlay_P p;
-   @BindView(R.id.video_play)
+    @Inject
+    Fragment_maintenance_videoPlay_P p;
+    @BindView(R.id.video_play)
     RecyclerView recyclerView;
     @BindView(R.id.right_menu)
     FrameLayout right_menu;
@@ -80,21 +80,22 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     private int length = 1000;
     private String video_id;
     private int lastVisibleItemPosition;
+    //防止视频重复刷新
     private int fist;
-    private List<MaintenanceVideoList.JdataBean> videoList = new ArrayList<>();
-    private View_videoBean.JdataBean one_video;  //单个视频
+    private List<MaintenanceVideoList.JdataBean> videoList = new ArrayList<>();//视频列表
+    private View_videoBean.JdataBean one_video;  //当前播放的视频
 
 
     public static Fragment_maintenance_videoPlay newInstance(int position, int status, String video_id) {
-    Fragment_maintenance_videoPlay videoPlay=new Fragment_maintenance_videoPlay();
-    Bundle bundle=new Bundle();
-    bundle.putInt("position",position);
+        Fragment_maintenance_videoPlay videoPlay = new Fragment_maintenance_videoPlay();
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", position);
         bundle.putInt("status", status);
         bundle.putString("video_id", video_id);
-    videoPlay.setArguments(bundle);
-    return  videoPlay;
+        videoPlay.setArguments(bundle);
+        return videoPlay;
 
-   }
+    }
 
     @Override
     public Fragment_maintenance_videoPlay_C.Presenter getPresenter() {
@@ -111,7 +112,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
         recyclerView.setOnFlingListener(null);
         pagerSnapHelper = new PagerSnapHelper();
         adapter = new Video_play_adapter();
-        linearLayoutManager = new LinearLayoutManager(BaseApplication.mContext,LinearLayoutManager.VERTICAL,false);
+        linearLayoutManager = new LinearLayoutManager(BaseApplication.mContext, RecyclerView.VERTICAL, false);
         pagerSnapHelper.attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
@@ -132,8 +133,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
             @Override
             public void video_discuss(String video_id) {
                 Fragment_discuss discuss = Fragment_discuss.newInstance(video_id);
-                discuss.show(getChildFragmentManager(),TAG);
-
+                discuss.show(getFragmentManager(), TAG);
             }
 
             @Override
@@ -171,7 +171,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     public void onLocationFailure(int failure) {
 
     }
-
+    //获取视频播放列表
     @Override
     public void getVideoListSuccess(MaintenanceVideoList maintenanceVideoList) {
         if (maintenanceVideoList.getJdata() != null) {
@@ -179,7 +179,6 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
             videoList = maintenanceVideoList.getJdata();
             adapter.setNewData(maintenanceVideoList.getJdata());
             getOneView(video_id);
-
             if (position != 0) {
                 MoveToPosition(linearLayoutManager, recyclerView, position);
             }
@@ -205,7 +204,6 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
                 }).onPositive(new MaterialDialog.SingleButtonCallback() {
             @Override
             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-
                 getList(status);
                 dialog.dismiss();
             }
@@ -216,7 +214,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
 
     @Override
     public void getVideo_dzSuccess(MaintenanceVideo_dz maintenanceVideo_dz) {
-                ToastUtils.showLong("点赞成功");
+        ToastUtils.showLong("点赞成功");
         getOneView(one_video.getId());
     }
 
@@ -297,12 +295,12 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
                             int childCount = layoutManagerS.getChildCount(); //获取屏幕可见数目
                             int itemCount = layoutManagerS.getItemCount();
                             int lastVisibleItemPosition = layoutManagerS.findLastVisibleItemPosition();
-                            if (itemCount - 1 == lastVisibleItemPosition) {
+                            if (itemCount - 1 == lastVisibleItemPosition) { //当视频刷新到最后一个时，防止重复刷新播放量
                                 if (fist == 0) {
-                                    if (childCount == 1) {  //当屏幕可见数目为1时调用
-                                       // AnimationUtil.bottomMoveToViewLocation_Visible(right_menu, 300);
+                                    if (childCount == 1) {  //当屏幕可见数目为1个，开始播放视频
                                         JzvdStd.releaseAllVideos();
                                         Fragment_maintenance_videoPlay.this.lastVisibleItemPosition = layoutManagerS.findLastVisibleItemPosition();
+                                      //获取当前播放视频的评论、点赞信息
                                         getItem(Fragment_maintenance_videoPlay.this.lastVisibleItemPosition);
                                         ((MyVideoPlay_Normal) childViewHolder.itemView.findViewById(R.id.myVideo)).startVideo();
                                         KLog.d("滑动", "停止1");
@@ -311,10 +309,9 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
                                 } else {
                                     ToastUtils.showLong("已经是最后一个");
                                 }
-                            } else if (lastVisibleItemPosition==0){
+                            } else if (lastVisibleItemPosition == 0) {   //当视频刷新到第一个时，防止重复刷新播放量
                                 if (fist == 0) {
-                                    if (childCount == 1) {  //当屏幕可见数目为1时调用
-
+                                    if (childCount == 1) {  //当屏幕可见数目为1个，播放视频
                                         JzvdStd.releaseAllVideos();
                                         Fragment_maintenance_videoPlay.this.lastVisibleItemPosition = layoutManagerS.findLastVisibleItemPosition();
                                         getItem(Fragment_maintenance_videoPlay.this.lastVisibleItemPosition);
@@ -322,24 +319,22 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
                                         KLog.d("滑动", "停止1");
                                     }
                                     fist += 1;
-                                }else {
+                                } else {
                                     ToastUtils.showLong("已经是第一个");
                                 }
                             } else {
-                                fist=0;
+                                fist = 0;
                                 if (childCount == 1) {  //当屏幕可见数目为1时调用
-                                   // AnimationUtil.bottomMoveToViewLocation_Visible(right_menu, 300);
+                                    // AnimationUtil.bottomMoveToViewLocation_Visible(right_menu, 300);
                                     JzvdStd.releaseAllVideos();
                                     Fragment_maintenance_videoPlay.this.lastVisibleItemPosition = layoutManagerS.findLastVisibleItemPosition();
                                     getItem(Fragment_maintenance_videoPlay.this.lastVisibleItemPosition);
-
                                     ((MyVideoPlay_Normal) childViewHolder.itemView.findViewById(R.id.myVideo)).startVideo();
                                     KLog.d("滑动", "停止1");
                                 }
                             }
                             break;
                         case RecyclerView.SCROLL_STATE_DRAGGING://拖动
-
                             break;
                         case RecyclerView.SCROLL_STATE_SETTLING://惯性滑动
                             break;
@@ -353,12 +348,12 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     public void onScrolledUp() {  //上滑
 
         KLog.d("滑动", "up");
-        AnimationUtil.moveToViewBottom_Gone(right_menu, 300);
+        // AnimationUtil.moveToViewBottom_Gone(right_menu, 300);
     }
 
     public void onScrolledDown() { //下滑
         KLog.d("滑动", "down");
-        AnimationUtil.moveToViewBottom_Gone(right_menu, 300);
+        //  AnimationUtil.moveToViewBottom_Gone(right_menu, 300);
 
     }
 
@@ -371,6 +366,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
         KLog.d("滑动", "bottom");
 
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -387,17 +383,17 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     public void MoveToPosition(LinearLayoutManager manager, RecyclerView mRecyclerView, int n) {
         int firstItem = manager.findFirstVisibleItemPosition();
         int lastItem = manager.findLastVisibleItemPosition();
-        KLog.d("数目",n,adapter.getData().size());
+        KLog.d("数目", n, adapter.getData().size());
         if (n <= firstItem) {
             mRecyclerView.scrollToPosition(n);
-            KLog.d("数目","1");
+            KLog.d("数目", "1");
         } else if (n <= lastItem) {
             int top = mRecyclerView.getChildAt(n - firstItem).getTop();
             mRecyclerView.scrollBy(0, top);
-            KLog.d("数目","2");
+            KLog.d("数目", "2");
         } else {
             mRecyclerView.scrollToPosition(n);
-            KLog.d("数目","3");
+            KLog.d("数目", "3");
         }
         adapter.isScrroll(true, n);
 
@@ -406,7 +402,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
     private void getList(int video_types) {
         Map map = new HashMap();
         map.put("video_name", "");
-        if (video_types ==0){
+        if (video_types == 0) {
             map.put("video_type", "");
         } else {
             map.put("video_type", String.valueOf(video_types));
@@ -416,10 +412,10 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
         p.getVideoList(map);
     }
 
-    private void getVideoDiscuss(String video_id){
-        Map map=new HashMap();
-        map.put("video_id",video_id);
-        map.put("token",Constants.token);
+    private void getVideoDiscuss(String video_id) {
+        Map map = new HashMap();
+        map.put("video_id", video_id);
+        map.put("token", Constants.token);
         p.getVideo_dz(map);
     }
 
@@ -455,7 +451,7 @@ public class Fragment_maintenance_videoPlay extends BaseChildFragment<Fragment_m
 
 
     /**
-     * 获取当前位置的视频数据
+     * 获取当前位置的视频点赞、评论数据
      *
      * @param position
      * @return

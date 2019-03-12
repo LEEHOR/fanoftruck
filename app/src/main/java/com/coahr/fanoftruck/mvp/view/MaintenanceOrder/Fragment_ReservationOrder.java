@@ -2,7 +2,7 @@ package com.coahr.fanoftruck.mvp.view.MaintenanceOrder;
 
 import android.graphics.Bitmap;
 import android.os.Build;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;

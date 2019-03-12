@@ -1,10 +1,10 @@
 package com.coahr.fanoftruck.mvp.view.Shopping;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -12,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +34,6 @@ import com.coahr.fanoftruck.mvp.view.Shopping.adapter.ShoppingMallListAdapter;
 import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
 import com.coahr.fanoftruck.widgets.DropDown.ConditionSelectView;
 import com.coahr.fanoftruck.widgets.PopupWindows.PopupWindows_city;
-import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 
 import java.util.ArrayList;
 import java.util.Arrays;

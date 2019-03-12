@@ -2,8 +2,8 @@ package com.coahr.fanoftruck.widgets;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatTextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.ToastUtils;
-import com.socks.library.KLog;
 
 /**
  * Created by Leehor

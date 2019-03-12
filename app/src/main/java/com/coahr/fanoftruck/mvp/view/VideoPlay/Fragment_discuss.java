@@ -2,10 +2,10 @@ package com.coahr.fanoftruck.mvp.view.VideoPlay;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.locks.Condition;
 
 import javax.inject.Inject;
 
@@ -182,7 +181,7 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
     public void iniWidow(Window window) {
         if (window != null) {
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-            lp.dimAmount = 0.9f;   //黑暗度
+            lp.dimAmount = 0.8f;   //黑暗度
             lp.alpha = 0.9f;  //透明度
             window.getDecorView().setPadding(0, 0, 0, 0);
             window.setBackgroundDrawableResource(android.R.color.transparent);
@@ -238,8 +237,9 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
 
     @Override
     public void getAddDiscussSuccess(AddDiscuss addDiscuss) {
-        dialogs.dismiss();
+        KLog.d("评论成功回调");
         ToastUtils.showLong(addDiscuss.getMsg());
+        dialogs.dismiss();
         if (addDiscussListener != null) {
             addDiscussListener.addDiscussSuccess();
         }

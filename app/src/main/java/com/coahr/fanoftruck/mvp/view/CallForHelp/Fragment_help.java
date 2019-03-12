@@ -1,7 +1,7 @@
 package com.coahr.fanoftruck.mvp.view.CallForHelp;
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;

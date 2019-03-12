@@ -1,9 +1,9 @@
 package com.coahr.fanoftruck.mvp.view.MyAddress;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.coahr.fanoftruck.R;
@@ -12,7 +12,6 @@ import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
-import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_address_list_C;
 import com.coahr.fanoftruck.mvp.model.Bean.AddressListBean;
 import com.coahr.fanoftruck.mvp.model.Bean.del_addressBean;
