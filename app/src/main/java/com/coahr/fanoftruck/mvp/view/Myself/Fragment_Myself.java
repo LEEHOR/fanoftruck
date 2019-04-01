@@ -15,6 +15,7 @@ import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 
 import javax.inject.Inject;
 
+import androidx.cardview.widget.CardView;
 import butterknife.BindView;
 
 /**
@@ -22,21 +23,23 @@ import butterknife.BindView;
  * on 2018/11/20
  * on 11:12
  */
-public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> implements Fragment_myself_C.View,View.OnClickListener {
-@Inject
-Fragment_myself_P p;
+public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> implements Fragment_myself_C.View, View.OnClickListener {
+    @Inject
+    Fragment_myself_P p;
     @BindView(R.id.my_userInfo)
     RelativeLayout my_userInfo;
     @BindView(R.id.mycar)
     ImageView mycar;
     @BindView(R.id.iv_about_us)
     ImageView iv_about_us;
-    @BindView(R.id.iv_by_order)
-    ImageView iv_by_order;
+    @BindView(R.id.rl_by_order)
+    RelativeLayout rl_by_order;
     @BindView(R.id.tv_wxyy_order)
     ImageView tv_wxyy_order;
     @BindView(R.id.rel_shoppingCart)
     RelativeLayout rel_shoppingCart;
+    @BindView(R.id.cardview_help_center)
+    CardView cardviewHelpCenter;
 
     public static Fragment_Myself newInstance() {
         return new Fragment_Myself();
@@ -66,15 +69,17 @@ Fragment_myself_P p;
         my_userInfo.setOnClickListener(this);
         mycar.setOnClickListener(this);
         iv_about_us.setOnClickListener(this);
-        iv_by_order.setOnClickListener(this);
+        rl_by_order.setOnClickListener(this);
         tv_wxyy_order.setOnClickListener(this);
         rel_shoppingCart.setOnClickListener(this);
+        cardviewHelpCenter.setOnClickListener(this);
     }
 
     @Override
     public void initData() {
 
     }
+
     @Override
     public void onLocationSuccess(AMapLocation location) {
 
@@ -87,31 +92,35 @@ Fragment_myself_P p;
 
     @Override
     public void onClick(View view) {
-        Intent intent=new Intent();
-        switch (view.getId()){
+        Intent intent = new Intent();
+        switch (view.getId()) {
             case R.id.my_userInfo:  //个人中心
-                intent.setClass(_mActivity,ContainerActivity.class);
-                intent.putExtra("tofragment",Constants.Fragment_userInfo);
+                intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_userInfo);
                 break;
             case R.id.mycar: //我的爱车
-                intent.setClass(_mActivity,ContainerActivity.class);
-                intent.putExtra("tofragment",Constants.Fragment_mycar);
+                intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_mycar);
                 break;
             case R.id.iv_about_us: //关于我们
-                intent.setClass(_mActivity,ContainerActivity.class);
-                intent.putExtra("tofragment",Constants.Fragment_about_us);
+                intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_about_us);
                 break;
-            case R.id.iv_by_order:
-                intent.setClass(_mActivity,ContainerActivity.class);
-                intent.putExtra("tofragment",Constants.Fragment_MaintenanceOder);
+            case R.id.rl_by_order:
+                intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_MaintenanceOder);
                 break;
             case R.id.tv_wxyy_order:
-                intent.setClass(_mActivity,ContainerActivity.class);
-                intent.putExtra("tofragment",Constants.Fragment_ReservationOrder);
+                intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_ReservationOrder);
                 break;
             case R.id.rel_shoppingCart: //购物车
-                intent.setClass(_mActivity,ContainerActivity.class);
-                intent.putExtra("tofragment",Constants.Fragment_ShoppingCart);
+                intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.Fragment_ShoppingCart);
+                break;
+            case R.id.cardview_help_center: //帮助中心
+                intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.FRAGMENT_HELP_CENTER);
                 break;
         }
 

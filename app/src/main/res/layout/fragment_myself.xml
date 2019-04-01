@@ -1,515 +1,564 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<androidx.core.widget.NestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:padding="@dimen/dp_10"
-            android:background="@color/origin_1"
-            android:layout_width="match_parent"
-            android:layout_height="150dp">
-            <RelativeLayout
-                android:id="@+id/my_userInfo"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <FrameLayout
-                    android:id="@+id/frl"
-                    android:padding="@dimen/dp_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/userHeadImg"
-                        app:srcCompat="@mipmap/images"
-                        android:layout_width="40dp"
-                        android:layout_height="@dimen/dp_40" />
-                </FrameLayout>
 
-                <TextView
-                    android:id="@+id/userName"
-                    android:text="dsdssdsdsds"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/dp_18"
-                    android:gravity="top"
-                    android:layout_alignTop="@+id/frl"
-                    android:layout_toRightOf="@+id/frl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                    <TextView
-                        android:id="@+id/userPhone"
-                        android:layout_toRightOf="@+id/frl"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:textSize="@dimen/sp_12"
-                        android:textColor="@color/colorWhite"
-                        android:text="dsdsdsds"
-                        android:layout_alignBottom="@id/frl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-            </RelativeLayout>
-            <TextView
-                android:id="@+id/my_wx_bind"
-                android:layout_marginTop="@dimen/dp_30"
-                android:drawableLeft="@mipmap/images"
-                android:drawablePadding="@dimen/dp_8"
-                android:padding="5dp"
-                android:background="@drawable/shape_origin_white"
-                android:layout_marginRight="15dp"
-                android:text="微信授权"
-                android:textSize="@dimen/dp_10"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <LinearLayout
-           android:paddingLeft="@dimen/edge_margin"
-            android:paddingRight="@dimen/edge_margin"
-            android:paddingBottom="@dimen/edge_margin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <androidx.cardview.widget.CardView
-                app:cardElevation="0dp"
 
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:id="@+id/re_my_order"
-                        android:padding="@dimen/edge_margin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
-                            android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
-                            android:layout_centerVertical="true"
-                            android:drawableLeft="@mipmap/images"
-                            android:drawablePadding="@dimen/dp_5"
-                            android:text="我的订单"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <ImageView
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </RelativeLayout>
-                    <View
-                        android:paddingLeft="@dimen/edge_margin"
-                        android:paddingRight="@dimen/edge_margin"
-                        android:background="@color/material_grey_200"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"/>
-                    <View
-                        android:paddingLeft="@dimen/edge_margin"
-                        android:paddingRight="@dimen/edge_margin"
-                        android:background="@color/material_grey_200"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"/>
-                    <RelativeLayout
-                        android:padding="@dimen/edge_margin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
-                            android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
-                            android:layout_centerVertical="true"
-                            android:drawableLeft="@mipmap/images"
-                            android:drawablePadding="@dimen/dp_5"
-                            android:text="发票管理"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <ImageView
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                app:cardElevation="0dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="150dp"
+                android:background="@color/origin_1"
+                android:padding="@dimen/dp_10">
+
                 <RelativeLayout
-                    android:id="@+id/rel_shoppingCart"
-                    android:padding="@dimen/edge_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:id="@+id/my_userInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true">
+
+                    <FrameLayout
+                        android:id="@+id/frl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5">
+
+                        <ImageView
+                            android:id="@+id/userHeadImg"
+                            android:layout_width="40dp"
+                            android:layout_height="@dimen/dp_40"
+                            android:src="@mipmap/images" />
+                    </FrameLayout>
+
                     <TextView
-                        android:textSize="@dimen/dp_14"
-                        android:textColor="@color/black"
-                        android:layout_alignParentLeft="true"
-                        android:gravity="center_vertical"
-                        android:layout_centerVertical="true"
-                        android:drawableLeft="@mipmap/images"
-                        android:drawablePadding="@dimen/dp_5"
-                        android:text="购物车"
+                        android:id="@+id/userName"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <ImageView
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        app:srcCompat="@mipmap/images"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/frl"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_toRightOf="@+id/frl"
+                        android:gravity="top"
+                        android:text="dsdssdsdsds"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/dp_18" />
 
-            <androidx.cardview.widget.CardView
-                app:cardElevation="0dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:padding="@dimen/edge_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
                     <TextView
-                        android:textSize="@dimen/dp_14"
-                        android:textColor="@color/black"
-                        android:layout_alignParentLeft="true"
-                        android:gravity="center_vertical"
-                        android:layout_centerVertical="true"
-                        android:drawableLeft="@mipmap/images"
-                        android:drawablePadding="@dimen/dp_5"
-                        android:text="我的优惠券"
+                        android:id="@+id/userPhone"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <ImageView
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        app:srcCompat="@mipmap/images"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/frl"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_toRightOf="@+id/frl"
+                        android:text="dsdsdsds"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_12" />
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                app:cardElevation="0dp"
-                android:layout_marginTop="@dimen/dp_10"
+                <TextView
+                    android:id="@+id/my_wx_bind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/dp_30"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/shape_origin_white"
+                    android:drawableLeft="@mipmap/images"
+                    android:drawablePadding="@dimen/dp_8"
+                    android:padding="5dp"
+                    android:text="微信授权"
+                    android:textSize="@dimen/dp_10" />
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/edge_margin"
+                android:paddingRight="@dimen/edge_margin"
+                android:paddingBottom="@dimen/edge_margin">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/edge_margin">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:drawableLeft="@mipmap/images"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center_vertical"
+                                android:text="我的订单"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_14" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/images" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/material_grey_200"
+                            android:paddingLeft="@dimen/edge_margin"
+                            android:paddingRight="@dimen/edge_margin" />
+
+                        <!--<View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/material_grey_200"
+                            android:paddingLeft="@dimen/edge_margin"
+                            android:paddingRight="@dimen/edge_margin" />-->
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/edge_margin">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:drawableLeft="@mipmap/images"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center_vertical"
+                                android:text="发票管理"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_14" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/images" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:padding="@dimen/edge_margin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
-                            android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
-                            android:layout_centerVertical="true"
-                            android:drawableLeft="@mipmap/images"
-                            android:drawablePadding="@dimen/dp_5"
-                            android:text="我的车辆"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <ImageView
-                            android:id="@+id/mycar"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </RelativeLayout>
-                    <View
-                        android:paddingLeft="@dimen/edge_margin"
-                        android:paddingRight="@dimen/edge_margin"
-                        android:background="@color/material_grey_200"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"/>
-                    <RelativeLayout
-                        android:padding="@dimen/edge_margin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:cardElevation="0dp">
 
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
-                            android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
-                            android:layout_centerVertical="true"
-                            android:drawableLeft="@mipmap/images"
-                            android:drawablePadding="@dimen/dp_5"
-                            android:text="维修预约单"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <ImageView
-                            android:id="@+id/tv_wxyy_order"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </RelativeLayout>
-                    <View
-                        android:paddingLeft="@dimen/edge_margin"
-                        android:paddingRight="@dimen/edge_margin"
-                        android:background="@color/material_grey_200"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"/>
                     <RelativeLayout
-                        android:padding="@dimen/edge_margin"
+                        android:id="@+id/rel_shoppingCart"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/edge_margin">
+
                         <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
                             android:layout_centerVertical="true"
                             android:drawableLeft="@mipmap/images"
                             android:drawablePadding="@dimen/dp_5"
-                            android:text="保养预约单"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:gravity="center_vertical"
+                            android:text="购物车"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_14" />
+
                         <ImageView
-                            android:id="@+id/iv_by_order"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:src="@mipmap/images" />
                     </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                app:cardElevation="0dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:padding="@dimen/edge_margin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
-                            android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
-                            android:layout_centerVertical="true"
-                            android:drawableLeft="@mipmap/images"
-                            android:drawablePadding="@dimen/dp_5"
-                            android:text="商机订单"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <ImageView
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </RelativeLayout>
-                    <View
-                        android:paddingLeft="@dimen/edge_margin"
-                        android:paddingRight="@dimen/edge_margin"
-                        android:background="@color/material_grey_200"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"/>
-                    <RelativeLayout
-                        android:padding="@dimen/edge_margin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
-                            android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
-                            android:layout_centerVertical="true"
-                            android:drawableLeft="@mipmap/images"
-                            android:drawablePadding="@dimen/dp_5"
-                            android:text="邀请卡迷"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <ImageView
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </RelativeLayout>
-                    <View
-                        android:paddingLeft="@dimen/edge_margin"
-                        android:paddingRight="@dimen/edge_margin"
-                        android:background="@color/material_grey_200"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:cardElevation="0dp">
 
-            <androidx.cardview.widget.CardView
-                app:cardElevation="0dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/edge_margin">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:drawableLeft="@mipmap/images"
+                            android:drawablePadding="@dimen/dp_5"
+                            android:gravity="center_vertical"
+                            android:text="我的优惠券"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_14" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/images" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:padding="@dimen/edge_margin"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/edge_margin">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:drawableLeft="@mipmap/images"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center_vertical"
+                                android:text="我的车辆"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_14" />
+
+                            <ImageView
+                                android:id="@+id/mycar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/images" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/material_grey_200"
+                            android:paddingLeft="@dimen/edge_margin"
+                            android:paddingRight="@dimen/edge_margin" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/edge_margin">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:drawableLeft="@mipmap/images"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center_vertical"
+                                android:text="维修预约单"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_14" />
+
+                            <ImageView
+                                android:id="@+id/tv_wxyy_order"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/images" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/material_grey_200"
+                            android:paddingLeft="@dimen/edge_margin"
+                            android:paddingRight="@dimen/edge_margin" />
+
+                        <RelativeLayout
+                            android:descendantFocusability="blocksDescendants"
+                            android:id="@+id/rl_by_order"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/edge_margin">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:drawableLeft="@mipmap/images"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center_vertical"
+                                android:text="保养预约单"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_14" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/images" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/edge_margin">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:drawableLeft="@mipmap/images"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center_vertical"
+                                android:text="商机订单"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_14" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/images" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/material_grey_200"
+                            android:paddingLeft="@dimen/edge_margin"
+                            android:paddingRight="@dimen/edge_margin" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/edge_margin">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:drawableLeft="@mipmap/images"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center_vertical"
+                                android:text="邀请卡迷"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_14" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/images" />
+                        </RelativeLayout>
+
+                        <!--<View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/material_grey_200"
+                            android:paddingLeft="@dimen/edge_margin"
+                            android:paddingRight="@dimen/edge_margin" />-->
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:cardElevation="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/edge_margin">
+
                         <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
                             android:layout_centerVertical="true"
                             android:drawableLeft="@mipmap/images"
                             android:drawablePadding="@dimen/dp_5"
+                            android:gravity="center_vertical"
                             android:text="服务加盟"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_14" />
+
                         <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:src="@mipmap/images" />
                     </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                app:cardElevation="0dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:padding="@dimen/edge_margin"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/edge_margin">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:drawableLeft="@mipmap/images"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center_vertical"
+                                android:text="商品收藏"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_14" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/images" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardview_help_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:descendantFocusability="blocksDescendants"
+                    app:cardElevation="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/edge_margin">
+
                         <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
                             android:layout_centerVertical="true"
                             android:drawableLeft="@mipmap/images"
                             android:drawablePadding="@dimen/dp_5"
-                            android:text="商品收藏"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <ImageView
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                app:cardElevation="0dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:padding="@dimen/edge_margin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
-                            android:layout_alignParentLeft="true"
                             android:gravity="center_vertical"
-                            android:layout_centerVertical="true"
-                            android:drawableLeft="@mipmap/images"
-                            android:drawablePadding="@dimen/dp_5"
                             android:text="帮助中心"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <ImageView
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_14" />
 
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:src="@mipmap/images" />
                     </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                app:cardElevation="0dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:padding="@dimen/edge_margin"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textSize="@dimen/dp_14"
-                            android:textColor="@color/black"
-                            android:layout_alignParentLeft="true"
-                            android:gravity="center_vertical"
-                            android:layout_centerVertical="true"
-                            android:drawableLeft="@mipmap/images"
-                            android:drawablePadding="@dimen/dp_5"
-                            android:text="关于我们"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <ImageView
-                            android:id="@+id/iv_about_us"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@mipmap/images"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/edge_margin">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:drawableLeft="@mipmap/images"
+                                android:drawablePadding="@dimen/dp_5"
+                                android:gravity="center_vertical"
+                                android:text="关于我们"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_14" />
+
+                            <ImageView
+                                android:id="@+id/iv_about_us"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/images" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
 
         </LinearLayout>
-
-
-
-
-
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

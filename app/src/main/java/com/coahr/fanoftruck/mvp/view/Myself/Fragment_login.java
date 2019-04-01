@@ -33,7 +33,7 @@ import butterknife.BindView;
  * Created by Leehor
  * on 2018/11/23
  * on 11:38
- * 登陆页面
+ * 登录页面
  */
 public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> implements Fragment_login_C.View {
     @Inject

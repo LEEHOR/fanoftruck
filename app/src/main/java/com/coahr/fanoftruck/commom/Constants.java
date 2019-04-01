@@ -143,6 +143,7 @@ public class Constants {
 
     public static final int Fragment_MyWebView=29;
 
+    public static final int FRAGMENT_HELP_CENTER=30;
 
 
     /**

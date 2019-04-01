@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+        android:id="@+id/mytitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tittle="添加发票信息" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/material_grey_200">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/edge_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="发票类型"
+                android:textColor="@color/color_1c54bc" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/edge_margin"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/edge_margin">
+
+                    <TextView
+                        android:id="@+id/tv_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="发票类型"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+
+                    <RadioGroup
+                        android:id="@+id/rg_radioGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_36"
+                        android:layout_toRightOf="@+id/tv_type"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_personal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="个人"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_14" />
+
+                        <RadioButton
+                            android:id="@+id/rb_company"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_40"
+                            android:text="企业"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_14" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="发票信息"
+                android:textColor="@color/color_1c54bc" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/edge_margin">
+
+                    <TextView
+                        android:id="@+id/text_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="* "
+                        android:textColor="@color/red_1"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/text_2"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/text_1"
+                        android:gravity="center_vertical"
+                        android:text="真实姓名"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+
+                    <EditText
+                        android:id="@+id/et_user_name"
+                        style="@style/normal_edittext_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/text_2"
+                        android:hint="请填真实姓名"
+                        android:minWidth="@dimen/dp_60"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/edge_margin">
+
+                    <TextView
+                        android:id="@+id/text_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="* "
+                        android:textColor="@color/red_1"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/text_4"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/text_3"
+                        android:gravity="center_vertical"
+                        android:text="身份证号"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+
+                    <EditText
+                        android:id="@+id/et_user_idcard"
+                        style="@style/normal_edittext_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/text_4"
+                        android:hint="请填身份证号"
+                        android:minWidth="@dimen/dp_60"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_district"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/edge_margin">
+
+                    <TextView
+                        android:id="@+id/text_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="* "
+                        android:textColor="@color/red_1"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/text_6"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/text_5"
+                        android:gravity="center_vertical"
+                        android:text="家庭住址"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_district"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/text_6"
+                        android:minWidth="@dimen/dp_60"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_select_district"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="请选择地区"
+                        android:textColor="@color/material_grey_550"
+                        android:textSize="@dimen/dp_14" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/edge_margin">
+
+                    <TextView
+                        android:id="@+id/text_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="* "
+                        android:textColor="@color/red_1"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/text_8"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/text_7"
+                        android:gravity="center_vertical"
+                        android:text="详细地址"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+
+                    <EditText
+                        android:id="@+id/et_user_address"
+                        style="@style/normal_edittext_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/text_8"
+                        android:hint="请填写详细地址"
+                        android:minWidth="@dimen/dp_60"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/edge_margin">
+
+                    <TextView
+                        android:id="@+id/text_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="* "
+                        android:textColor="@color/red_1"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/text_10"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/text_9"
+                        android:gravity="center_vertical"
+                        android:text="手机号码"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+
+                    <EditText
+                        android:id="@+id/et_user_phone"
+                        style="@style/normal_edittext_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/text_10"
+                        android:hint="请填写手机号码"
+                        android:minWidth="@dimen/dp_60"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white"
+                app:cardCornerRadius="@dimen/dp_5"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_invoice_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/edge_margin">
+
+                    <TextView
+                        android:id="@+id/text_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="* "
+                        android:textColor="@color/red_1"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/text_12"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/text_11"
+                        android:gravity="center_vertical"
+                        android:text="发票类型"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/text_12"
+                        android:minWidth="@dimen/dp_60"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_select_invoice_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="请选择发票类型"
+                        android:textColor="@color/material_grey_550"
+                        android:textSize="@dimen/dp_14" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/tv_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/material_blue_700"
+        android:gravity="center"
+        android:padding="@dimen/edge_margin"
+        android:text="提交"
+        android:textColor="@color/colorWhite" />
+</LinearLayout>
