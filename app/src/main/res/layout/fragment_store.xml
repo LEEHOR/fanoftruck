@@ -2,37 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/line_root"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/Fr_l"
+    <RelativeLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="55dp"
         android:background="@color/white">
         <EditText
-            android:gravity="center_vertical"
-            android:textSize="@dimen/dp_14"
+            android:layout_toLeftOf="@+id/tv_cancel_search"
+            android:layout_alignParentLeft="true"
             android:id="@+id/Ed_search"
             style="@style/Searchbar_hint_left"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:textCursorDrawable="@drawable/cursor"
             android:imeOptions="actionSearch"/>
         <TextView
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_centerVertical="true"
             android:id="@+id/tv_cancel_search"
-            android:padding="@dimen/dp_5"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"
+           android:layout_alignParentRight="true"
             android:textSize="@dimen/dp_12"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:textColor="@color/material_red_500"
             android:text="取消"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:background="@color/material_grey_200"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"/>
     <com.coahr.fanoftruck.widgets.DropDown.ConditionSelectView
         android:id="@+id/rl_store_condition"
         android:layout_width="match_parent"
@@ -75,11 +79,14 @@
         </RelativeLayout>
 
     </com.coahr.fanoftruck.widgets.DropDown.ConditionSelectView>
-
+    <View
+        android:background="@color/material_grey_200"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"/>
    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
        android:id="@+id/store_swipe"
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="wrap_content">
        <FrameLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent">

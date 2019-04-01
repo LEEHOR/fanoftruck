@@ -1,9 +1,6 @@
 package com.coahr.fanoftruck.mvp.view.RecorderVideo;
 
 import android.content.Context;
-
-import org.reactivestreams.Subscriber;
-
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;

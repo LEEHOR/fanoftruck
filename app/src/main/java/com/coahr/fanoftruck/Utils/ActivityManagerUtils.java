@@ -1,8 +1,8 @@
 package com.coahr.fanoftruck.Utils;
 
-import android.app.Activity;
-
 import java.util.Stack;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Leehor
@@ -12,12 +12,12 @@ import java.util.Stack;
  */
 public class ActivityManagerUtils {
     private static final String TAG = ActivityManagerUtils.class.getSimpleName();
-    private static Stack<Activity> activityStack;
+    private static Stack<AppCompatActivity> activityStack;
     private static ActivityManagerUtils instance;
 
     private ActivityManagerUtils() {
         if (activityStack == null) {
-            activityStack = new Stack<Activity>();
+            activityStack = new Stack<AppCompatActivity>();
         }
     }
 
@@ -36,9 +36,9 @@ public class ActivityManagerUtils {
      *
      * @author kymjs
      */
-    public static Activity getActivity(Class<?> cls) {
+    public static AppCompatActivity getActivity(Class<?> cls) {
         if (activityStack != null)
-            for (Activity activity : activityStack) {
+            for (AppCompatActivity activity : activityStack) {
                 if (activity.getClass().equals(cls)) {
                     return activity;
                 }
@@ -49,7 +49,7 @@ public class ActivityManagerUtils {
     /**
      * 添加Activity到堆栈
      */
-    public void addActivity(Activity activity) {
+    public void addActivity(AppCompatActivity activity) {
         if (activityStack == null) {
             activityStack = new Stack<>();
         }
@@ -59,8 +59,8 @@ public class ActivityManagerUtils {
     /**
      * 获取当前栈顶Activity（堆栈中最后一个压入的）
      */
-    public Activity currentActivity() {
-        Activity activity = activityStack.lastElement();
+    public AppCompatActivity currentActivity() {
+        AppCompatActivity activity = activityStack.lastElement();
         return activity;
     }
 
@@ -74,7 +74,7 @@ public class ActivityManagerUtils {
     /**
      * 结束指定的Activity
      */
-    public void finishActivity(Activity activity) {
+    public void finishActivity(AppCompatActivity activity) {
         if (activityStack != null && activity != null && activityStack.contains(activity)) {
             activityStack.remove(activity);
             activity.finish();
@@ -84,7 +84,7 @@ public class ActivityManagerUtils {
     /**
      * 结束指定的Activity
      */
-    public void removeActivity(Activity activity) {
+    public void removeActivity(AppCompatActivity activity) {
         if (activityStack != null && activity != null && activityStack.contains(activity)) {
             activityStack.remove(activity);
         }
@@ -94,7 +94,7 @@ public class ActivityManagerUtils {
      * 结束指定类名的Activity
      */
     public void finishActivity(Class<?> cls) {
-        for (Activity activity : activityStack) {
+        for (AppCompatActivity activity : activityStack) {
             if (activity.getClass().equals(cls)) {
                 finishActivity(activity);
                 break;
@@ -106,7 +106,7 @@ public class ActivityManagerUtils {
      * 结束所有Activity
      */
     public void finishAllActivity() {
-        for (Activity activity : activityStack) {
+        for (AppCompatActivity activity : activityStack) {
             if (null != activity)
                 activity.finish();
         }

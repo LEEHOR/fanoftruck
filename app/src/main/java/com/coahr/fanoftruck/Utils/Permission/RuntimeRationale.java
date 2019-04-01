@@ -15,7 +15,6 @@
  */
 package com.coahr.fanoftruck.Utils.Permission;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.TextUtils;
@@ -26,6 +25,8 @@ import com.yanzhenjie.permission.Rationale;
 import com.yanzhenjie.permission.RequestExecutor;
 
 import java.util.List;
+
+import androidx.appcompat.app.AlertDialog;
 
 /**
  *

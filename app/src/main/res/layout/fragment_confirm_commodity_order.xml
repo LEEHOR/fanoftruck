@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/tv_receiver_name"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/right" />
+            app:srcCompat="@mipmap/right" />
 
     </RelativeLayout>
     <FrameLayout

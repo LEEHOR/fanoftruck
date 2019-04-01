@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:src="@mipmap/images"
+                        app:srcCompat="@mipmap/images"
                         android:layout_alignParentLeft="true"
                         android:id="@+id/iv_user_head"
                         android:layout_width="45dp"

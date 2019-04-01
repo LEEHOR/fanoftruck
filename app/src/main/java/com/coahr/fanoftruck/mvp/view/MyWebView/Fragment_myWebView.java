@@ -140,6 +140,7 @@ public class Fragment_myWebView extends BaseFragment {
                         android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
             }
         } catch (Exception e) {
+
         }
     }
 

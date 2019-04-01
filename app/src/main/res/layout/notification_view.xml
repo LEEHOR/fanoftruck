@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="64dp" >
 
@@ -9,7 +10,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <LinearLayout
        android:paddingLeft="@dimen/dp_10"
@@ -59,7 +60,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:src="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher" />
     <ImageView
         android:id="@+id/notification_open"
         android:scaleType="fitXY"
@@ -69,5 +70,5 @@
         android:layout_marginTop="@dimen/dp_5"
         android:layout_width="@dimen/dp_18"
         android:layout_height="@dimen/dp_18"
-        android:src="@mipmap/back"/>
+        app:srcCompat="@mipmap/back"/>
 </RelativeLayout>

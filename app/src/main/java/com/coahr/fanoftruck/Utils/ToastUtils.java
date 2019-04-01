@@ -1,15 +1,13 @@
 package com.coahr.fanoftruck.Utils;
 
-import android.app.Activity;
-
 import android.content.Context;
 import android.view.Gravity;
-
 import android.view.View;
-
 import android.widget.Toast;
 
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ToastUtils {
 
@@ -33,7 +31,7 @@ public class ToastUtils {
 		mToast.show();
 	}
 
-	public static void Toast_showImage(Activity activity, final String tvStr, final int imageResource, int  duration,View view){
+	public static void Toast_showImage(AppCompatActivity activity, final String tvStr, final int imageResource, int  duration, View view){
 		if (toast2 == null) {
 
 			toast2 = new Toast(activity);

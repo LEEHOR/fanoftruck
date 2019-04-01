@@ -19,7 +19,7 @@
         android:layout_height="55dp"
         android:layout_gravity="right"
         android:layout_marginTop="@dimen/dp_20"
-        android:src="@drawable/record_camera_switch_normal" />
+        app:srcCompat="@drawable/record_camera_switch_normal" />
 
 
 
@@ -31,7 +31,7 @@
             android:id="@+id/record_control"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/recordvideo_start" />
+            app:srcCompat="@drawable/recordvideo_start" />
         <ImageView
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/dp_20"
@@ -39,7 +39,7 @@
             android:id="@+id/record_pause"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/control_pause"
+            app:srcCompat="@drawable/control_pause"
             android:visibility="gone" />
 
         <Chronometer

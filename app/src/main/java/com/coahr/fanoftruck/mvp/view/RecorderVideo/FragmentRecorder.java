@@ -21,8 +21,10 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.SystemClock;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -133,7 +135,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
     private CaptureRequest.Builder mPreviewBuilder;
     //宽高
     private int heights, widths;
-    private boolean isRecordering=false;
+    private boolean isRecordering = false;
 
     /**
      * A {@link Semaphore} to prevent the app from exiting before closing the camera.
@@ -288,7 +290,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
     }
 
     public static FragmentRecorder newInstance() {
-        FragmentRecorder recorder=new FragmentRecorder();
+        FragmentRecorder recorder = new FragmentRecorder();
 
         return recorder;
     }
@@ -338,8 +340,8 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture,
                                               int width, int height) {   //相机预览准备完毕
-         heights=height;
-         widths=width;
+            heights = height;
+            widths = width;
             openCamera(width, height);
         }
 
@@ -367,7 +369,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
             case R.id.record_control:     //开始按钮
                 if (mRecorderState == STATE_INIT) {//初始录制
                     startRecordingVideo();
-                    isRecordering=true;
+                    isRecordering = true;
                     _mActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -379,7 +381,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
 
                 } else if (mRecorderState == STATE_RECORDING) {  //正在录制状态---停止
                     stopRecordingVideo();
-                    isRecordering=false;
+                    isRecordering = false;
                     Log.d("录像", "onClick:正在录制状态---停止 ");
                     //  refreshControlUI();
                     _mActivity.runOnUiThread(new Runnable() {
@@ -402,19 +404,19 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
                     if (isMerge) {  //是否合并过
                         Log.d("暂停状态 --停止--1", "onClick: " + oldVideoPath.get(0));
                         //start(Fragment_recorder_Preview.newInstance());
-                        startWithPop(Fragment_recorder_Preview.newInstance(oldVideoPath.get(0),null));
+                        startWithPop(Fragment_recorder_Preview.newInstance(oldVideoPath.get(0), null));
                     } else {
-                        startWithPop(Fragment_recorder_Preview.newInstance(mNextVideoAbsolutePath,null));
+                        startWithPop(Fragment_recorder_Preview.newInstance(mNextVideoAbsolutePath, null));
                         Log.d("暂停状态 --停止--2", "onClick:暂停状态 --停止 " + mNextVideoAbsolutePath);
-                     //   start(Fragment_recorder_Preview.newInstance(mNextVideoAbsolutePath));
+                        //   start(Fragment_recorder_Preview.newInstance(mNextVideoAbsolutePath));
                     }
-                    isRecordering=false;
+                    isRecordering = false;
                 }
 
                 break;
             case R.id.record_pause:
                 if (mRecorderState == STATE_RECORDING) {   //暂停录制
-                    isRecordering=true;
+                    isRecordering = true;
                     stopRecordingVideo();
                     _mActivity.runOnUiThread(new Runnable() {
                         @Override
@@ -431,7 +433,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
                     mRecorderState = STATE_PAUSE;
                 } else if (mRecorderState == STATE_PAUSE) {
 
-                    isRecordering=true;
+                    isRecordering = true;
                     //  FileUtils.getSDPath(this,FileUtils.)
                     startRecordingVideo();
                     _mActivity.runOnUiThread(new Runnable() {
@@ -448,14 +450,14 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
             case R.id.iv_switch:
                 if (!isRecordering) {
                     if (camera_type == 0) { //默认打开后置摄像头
-                                closeCamera();
-                                camera_type=1;
-                                openCamera(heights,widths);
-                                //startRecordingVideo();
-                    } else if (camera_type ==1){
                         closeCamera();
-                        camera_type=0;
-                        openCamera(heights,widths);
+                        camera_type = 1;
+                        openCamera(heights, widths);
+                        //startRecordingVideo();
+                    } else if (camera_type == 1) {
+                        closeCamera();
+                        camera_type = 0;
+                        openCamera(heights, widths);
                     }
                 }
         }
@@ -634,7 +636,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
                 Log.d("横屏", "" + chooseOptimalSize.getWidth() + "" + chooseOptimalSize.getHeight());
             } else {
                 configureTransform(height, width);
-               // mTextureView.set(chooseOptimalSize.getHeight(), chooseOptimalSize.getWidth());
+                // mTextureView.set(chooseOptimalSize.getHeight(), chooseOptimalSize.getWidth());
                 Log.d("竖屏", "" + chooseOptimalSize.getWidth() + "" + chooseOptimalSize.getHeight());
             }
 
@@ -683,7 +685,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
      * 开始预览
      */
     private void startPreview() {
-        if (null == mCameraDevice || ! mTextureView.isAvailable() || null == chooseOptimalSize) {
+        if (null == mCameraDevice || !mTextureView.isAvailable() || null == chooseOptimalSize) {
             return;
         }
         try {
@@ -732,8 +734,8 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
         }
         try {
             setUpCaptureRequestBuilder(mPreviewBuilder);
-          //  HandlerThread thread = new HandlerThread("CameraPreview");
-          //  thread.start();
+            //  HandlerThread thread = new HandlerThread("CameraPreview");
+            //  thread.start();
             mPreviewSession.setRepeatingRequest(mPreviewBuilder.build(), null, mBackgroundHandler);
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -744,7 +746,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
         //自动模式
         builder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
         // 设置自动对焦模式
-         builder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
+        builder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
         // 设置自动曝光模式
         builder.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
     }
@@ -1069,7 +1071,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
                         public void onNext(String s) {
                             Log.d("结果", s);
                             closeCamera();
-                            startWithPop(Fragment_recorder_Preview.newInstance(s,null));
+                            startWithPop(Fragment_recorder_Preview.newInstance(s, null));
 
 
                         }
@@ -1088,7 +1090,7 @@ public class FragmentRecorder extends BaseFragment implements View.OnClickListen
             record_control.setEnabled(true);
             Log.d("结果", lastFile);
             closeCamera();
-            startWithPop(Fragment_recorder_Preview.newInstance(lastFile,null));
+            startWithPop(Fragment_recorder_Preview.newInstance(lastFile, null));
         }
     }
 

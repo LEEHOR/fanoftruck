@@ -49,7 +49,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/images" />
+                        app:srcCompat="@mipmap/images" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 

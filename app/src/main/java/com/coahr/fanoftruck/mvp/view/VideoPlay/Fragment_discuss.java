@@ -181,8 +181,9 @@ public class Fragment_discuss extends BaseDialogFragment<Fragment_discuss_dialog
     public void iniWidow(Window window) {
         if (window != null) {
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-            lp.dimAmount = 0.8f;   //黑暗度
+            lp.dimAmount = 0.5f;   //黑暗度
             lp.alpha = 0.9f;  //透明度
+            window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             window.getDecorView().setPadding(0, 0, 0, 0);
             window.setBackgroundDrawableResource(android.R.color.transparent);
             window.setLayout(lp.MATCH_PARENT, lp.MATCH_PARENT);

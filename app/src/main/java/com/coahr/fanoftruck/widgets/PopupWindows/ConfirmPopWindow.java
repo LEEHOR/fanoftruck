@@ -1,23 +1,20 @@
 package com.coahr.fanoftruck.widgets.PopupWindows;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.coahr.fanoftruck.R;
-import com.coahr.fanoftruck.Utils.DensityUtils;
 import com.coahr.fanoftruck.Utils.ScreenUtils;
 import com.coahr.fanoftruck.mvp.Base.BaseApplication;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Leehor
@@ -65,7 +62,7 @@ public class ConfirmPopWindow extends PopupWindow {
     }
 
     //设置添加屏幕的背景透明度
-    public void backgroundAlpha(Activity context, float bgAlpha) {
+    public void backgroundAlpha(AppCompatActivity context, float bgAlpha) {
         WindowManager.LayoutParams lp = context.getWindow().getAttributes();
         lp.alpha = bgAlpha;
         context.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);

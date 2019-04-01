@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 //打开或关闭软键盘
 public class KeyBoardUtils {
 

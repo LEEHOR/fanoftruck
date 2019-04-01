@@ -12,9 +12,8 @@
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_40">
+    android:layout_height="55dp">
     <EditText
-        android:padding="@dimen/dp_5"
         android:id="@+id/ed_search"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -40,6 +39,7 @@
         android:layout_height="wrap_content" />
 </RelativeLayout>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:background="@color/material_grey_200"

@@ -34,6 +34,7 @@ import butterknife.BindView;
  * Created by Leehor
  * on 2018/12/11
  * on 12:54
+ * 购物车
  */
 public class Fragment_shoppingCart extends BaseFragment<Fragment_ShoppingCart_C.Presenter> implements Fragment_ShoppingCart_C.View {
     @Inject

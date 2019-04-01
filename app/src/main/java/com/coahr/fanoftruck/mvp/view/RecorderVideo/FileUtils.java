@@ -2,31 +2,23 @@ package com.coahr.fanoftruck.mvp.view.RecorderVideo;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Movie;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.coahr.fanoftruck.Utils.StoreSpaceUtils;
+
 import com.coahr.fanoftruck.commom.Constants;
-import com.coremedia.iso.boxes.Container;
-import com.googlecode.mp4parser.authoring.Movie;
-import com.googlecode.mp4parser.authoring.Track;
-import com.googlecode.mp4parser.authoring.builder.DefaultMp4Builder;
-import com.googlecode.mp4parser.authoring.container.mp4.MovieCreator;
-import com.googlecode.mp4parser.authoring.tracks.AppendTrack;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+
 
 /**
  * Created by ${xinGen} on 2017/10/20.
@@ -236,23 +228,7 @@ public class FileUtils {
      * @param result
      */
     private static void writeMergeNewFile(String filePath, Movie result) {
-        FileOutputStream fileOutputStream = null;
-        try {
-            Container container = new DefaultMp4Builder().build(result);
-            fileOutputStream = new FileOutputStream(filePath);
-            container.writeContainer(fileOutputStream.getChannel());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fileOutputStream != null) {
-                try {
-                    fileOutputStream.close();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 
     /**

@@ -13,6 +13,7 @@ import java.util.Set;
  * Created by Leehor
  * on 2018/12/1
  * on 0:04
+ * 高德地图
  */
 public class GaodeMapLocation {
     //声明AMapLocationClient类对象

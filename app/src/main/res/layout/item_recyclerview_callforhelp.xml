@@ -23,7 +23,7 @@
         android:id="@+id/iv_1"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@mipmap/images"
+        app:srcCompat="@mipmap/images"
         android:layout_width="25dp"
         android:layout_height="25dp" />
 </RelativeLayout>

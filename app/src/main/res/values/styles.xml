@@ -32,7 +32,7 @@
     </style>
 
     <style name="Searchbar_hint_left">
-        <item name="android:background">@drawable/bg_searchbar</item>
+        <item name="background">@drawable/bg_searchbar</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">25dp</item>
         <item name="android:drawableStart">@mipmap/search</item>
@@ -40,17 +40,19 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:imeOptions">actionSearch</item>
         <item name="android:paddingLeft">15dp</item>
+        <item name="android:textCursorDrawable">@drawable/bg_search_textcursor_drawable</item>
         <item name="android:layout_marginLeft">@dimen/edge_margin</item>
         <item name="android:layout_marginRight">@dimen/edge_margin</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColorHint">#666</item>
         <item name="android:textSize">12dp</item>
         <item name="android:hint">搜索</item>
+
     </style>
 
     <style name="XSpinnerStyle" parent="android:Widget.ListView.DropDown">
         <!-- 分隔线颜色 -->
-        <item name="android:divider">#DFDFDF</item>
+        <item name="divider">@color/gray_300</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
 
@@ -90,9 +92,8 @@
     </style>
 
     <style name="normal_edittext_style">
-
         <item name="android:textSize">@dimen/dp_14</item>
-        <item name="android:background">@null</item>
+        <item name="background">@null</item>
     </style>
 
 

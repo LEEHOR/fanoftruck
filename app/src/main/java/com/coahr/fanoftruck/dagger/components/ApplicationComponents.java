@@ -31,10 +31,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         OkHttpModule.class,
         RetrofitModule.class,
         BaiduLocationModule.class,
-        GaodeLocationModule.class
-})
+        GaodeLocationModule.class})
 public  interface ApplicationComponents {
-
         void inject(BaseApplication application);
 
 }

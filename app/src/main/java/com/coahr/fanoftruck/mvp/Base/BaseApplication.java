@@ -1,42 +1,36 @@
 package com.coahr.fanoftruck.mvp.Base;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
-
-import androidx.fragment.app.Fragment;
 
 import com.coahr.fanoftruck.BuildConfig;
 import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.dagger.components.DaggerApplicationComponents;
-import com.coahr.fanoftruck.mvp.view.UMPush.UmengNotificationService;
 import com.coahr.fanoftruck.widgets.MyVideo.MyFileNameGenerator;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.socks.library.KLog;
 import com.tencent.smtt.sdk.QbSdk;
-import com.umeng.commonsdk.UMConfigure;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.MsgConstant;
-import com.umeng.message.PushAgent;
-import com.umeng.socialize.PlatformConfig;
+
 
 import javax.inject.Inject;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.multidex.MultiDexApplication;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-import static anet.channel.bytes.a.TAG;
 
 /**
  * Created by Leehor
  * on 2018/11/6
  * on 11:45
  */
-public class BaseApplication extends Application implements HasActivityInjector, HasSupportFragmentInjector {
+public class BaseApplication extends MultiDexApplication implements HasActivityInjector, HasSupportFragmentInjector {
 
     public static Context mContext;
     //内部封装map管理众多activity的component
@@ -66,11 +60,11 @@ public class BaseApplication extends Application implements HasActivityInjector,
         DaggerApplicationComponents.create().inject(this);
         mContext=getApplicationContext();
         initX5WebView();
-        UMConfigure.init(this,
+      /*  UMConfigure.init(this,
                 UMConfigure.DEVICE_TYPE_PHONE, "a2ef9522bf3a1c5c206c1e8dac62e363");
 
         PlatformConfig.setWeixin("wx89f3b1477df1aa39", "b3ad27916ad0fa404f5d1478f3cc0bc2");
-        PlatformConfig.setQQZone("","");
+        PlatformConfig.setQQZone("","");*/
 
         if (PreferenceUtils.contains(mContext, "token")) {
             Constants.token = PreferenceUtils.getPrefString(mContext, Constants.token_key, null);
@@ -81,9 +75,9 @@ public class BaseApplication extends Application implements HasActivityInjector,
         }
         initPush();
         if (BuildConfig.DEBUG){
-            UMConfigure.setLogEnabled(true);
+          //  UMConfigure.setLogEnabled(true);
         } else {
-            UMConfigure.setLogEnabled(false);
+           // UMConfigure.setLogEnabled(false);
         }
     }
 
@@ -130,7 +124,7 @@ public class BaseApplication extends Application implements HasActivityInjector,
 
     private void initPush() {
 
-        PushAgent mPushAgent = PushAgent.getInstance(this);
+    /*    PushAgent mPushAgent = PushAgent.getInstance(this);
         //sdk开启通知声音
         mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
         mPushAgent.register(new IUmengRegisterCallback() {
@@ -149,6 +143,6 @@ public class BaseApplication extends Application implements HasActivityInjector,
         PushAgent.getInstance(mContext).onAppStart();
 
         //自定义消息处理
-        mPushAgent.setPushIntentServiceClass(UmengNotificationService.class);
+        mPushAgent.setPushIntentServiceClass(UmengNotificationService.class);*/
     }
 }

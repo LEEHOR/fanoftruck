@@ -14,7 +14,6 @@ import com.coahr.fanoftruck.mvp.Base.BaseSupportActivity;
 public class TribuneActivity extends BaseSupportActivity {
 
 
-
     private long exitTime = 0;
     private static final long INTERVAL_TIME = 2000;
     @Override
