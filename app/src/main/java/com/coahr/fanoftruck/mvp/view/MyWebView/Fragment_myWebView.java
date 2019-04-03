@@ -12,19 +12,15 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.coahr.fanoftruck.BuildConfig;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.PhotoUtil;
 import com.coahr.fanoftruck.Utils.ToastUtils;
@@ -34,7 +30,6 @@ import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.model.ApiContact;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf;
-import com.socks.library.KLog;
 import com.tencent.smtt.export.external.extension.interfaces.IX5WebViewExtension;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
@@ -42,7 +37,6 @@ import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 
 import java.io.File;
-import java.util.UUID;
 
 import butterknife.BindView;
 

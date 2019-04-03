@@ -295,6 +295,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     @Override
     public void Save_Identity_InfoFailure(String failure) {
         ToastUtils.showLong(failure);
+        KLog.e("lizhiguo", "保存失败了。。。。。。。");
     }
 
     @Override
