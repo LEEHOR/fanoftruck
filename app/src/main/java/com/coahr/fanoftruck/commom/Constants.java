@@ -149,6 +149,8 @@ public class Constants {
 
     public static final int FRAGMEN_MY_COUPON=32;//我的优惠券
 
+    public static final int FRAGMENT_MY_ORDER=33; //我的订单
+
 
     /**
      * PreferenceUtils键

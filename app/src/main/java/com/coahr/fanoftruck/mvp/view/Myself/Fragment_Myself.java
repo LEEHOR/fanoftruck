@@ -92,7 +92,9 @@ public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> i
 
                 break;
             case R.id.rl_my_order:
-
+                intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("tofragment", Constants.FRAGMENT_MY_ORDER);
+                intent.putExtra("pagerCount",0);
                 break;
             case R.id.rl_manage_invoices:
                 intent.setClass(_mActivity, ContainerActivity.class);
@@ -108,6 +110,7 @@ public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> i
                 break;
             case R.id.rl_my_coupon:
                 intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("FormFragment",Constants.Fragment_myself);
                 intent.putExtra("tofragment", Constants.FRAGMEN_MY_COUPON);
                 break;
             case R.id.rl_my_car:
@@ -117,6 +120,7 @@ public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> i
                 break;
             case R.id.rl_wxyy_order:
                 intent.setClass(_mActivity, ContainerActivity.class);
+                intent.putExtra("showPosition",0);
                 intent.putExtra("tofragment", Constants.Fragment_ReservationOrder);
                 break;
             case R.id.rl_by_order:

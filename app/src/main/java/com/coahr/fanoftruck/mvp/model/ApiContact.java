@@ -147,4 +147,7 @@ public class ApiContact {
 
     //服务商加盟
     public static final String SERVICE_JOIN="http://app.cvfans.net/H5/user_ready.html";
+
+    //我的订单
+    public  static final String MY_ORDER="/APP/User/get_commodity_order_list";
 }
