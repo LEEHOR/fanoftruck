@@ -8,6 +8,7 @@ import com.coahr.fanoftruck.mvp.view.CallForHelp.CallForHelp_viewPager;
 import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_MaintenanceOrder;
 import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_ReservationOrder;
 import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_CouponViewPager;
+import com.coahr.fanoftruck.mvp.view.MyOrder.Fragment_OrderViewPager;
 import com.coahr.fanoftruck.mvp.view.MyWebView.Fragment_myWebView;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_about_us;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
@@ -88,8 +89,11 @@ public class ContainerActivity extends BaseSupportActivity {
             case Constants.FRAGMENT_HELP_CENTER://帮助中心
                 loadRootFragment(R.id.con_fragment, HelpCenterFragment.newInstance());
                 break;
-                case Constants.FRAGMEN_MY_COUPON://我的优惠券
-                loadRootFragment(R.id.con_fragment, Fragment_CouponViewPager.newInstance(Constants.Fragment_myself, 0));
+            case Constants.FRAGMEN_MY_COUPON://我的优惠券
+                loadRootFragment(R.id.con_fragment, Fragment_CouponViewPager.newInstance(getIntent().getIntExtra("FormFragment", 0), 0));
+                break;
+            case Constants.FRAGMENT_MY_ORDER://我的订单
+                loadRootFragment(R.id.con_fragment, Fragment_OrderViewPager.newInstance(getIntent().getIntExtra("showPosition", 0)));
                 break;
         }
     }

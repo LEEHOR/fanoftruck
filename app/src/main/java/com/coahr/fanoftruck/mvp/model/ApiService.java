@@ -9,6 +9,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
 import com.coahr.fanoftruck.mvp.model.Bean.CarDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Center_Initial_Data;
+import com.coahr.fanoftruck.mvp.model.Bean.CommodityOrderBean;
 import com.coahr.fanoftruck.mvp.model.Bean.ConfirmOrderBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Confirm_order;
 import com.coahr.fanoftruck.mvp.model.Bean.CouponBean;
@@ -498,4 +499,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(ApiContact.payCommodityOrder)
     Call<ConfirmOrderBean> payCommodityOrder(@FieldMap Map<String, String> map);
+
+
+    @FormUrlEncoded
+    @POST(ApiContact.MY_ORDER)
+    Call<CommodityOrderBean> getCommodityOrderList(@Field("token") Object token, @Field("order_status") Object order_status, @Field("page") Object page, @Field("length") Object length);
+
 }

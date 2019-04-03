@@ -16,6 +16,8 @@ import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
 import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_CouponReceive;
 import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_CouponViewPager;
 import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_coupon_main;
+import com.coahr.fanoftruck.mvp.view.MyOrder.Fragment_OrderViewPager;
+import com.coahr.fanoftruck.mvp.view.MyOrder.Fragment_Order_pager;
 import com.coahr.fanoftruck.mvp.view.MyWebView.Fragment_myWebView;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_Myself;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_about_us;
@@ -178,4 +180,10 @@ public abstract class AllFragmentModule {
 
     @ContributesAndroidInjector(modules = Fragment_MyWebView_Module.class)
     abstract Fragment_myWebView Fragment_myWebViewInjector();
+
+    @ContributesAndroidInjector(modules = Fragment_Order_viewPage_Module.class)
+    abstract Fragment_OrderViewPager Fragment_myOrderPage();
+
+    @ContributesAndroidInjector(modules = Fragment_Order_pager_Module.class)
+    abstract Fragment_Order_pager Fragment_Order_pager();
 }
