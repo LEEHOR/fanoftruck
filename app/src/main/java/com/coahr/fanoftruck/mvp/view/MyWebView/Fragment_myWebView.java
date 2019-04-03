@@ -64,6 +64,7 @@ public class Fragment_myWebView extends BaseFragment {
     private String title;
     private boolean isLoading;
 
+    //发票管理
     private static final int LOAD_INVOICE = 1;
 
     /**

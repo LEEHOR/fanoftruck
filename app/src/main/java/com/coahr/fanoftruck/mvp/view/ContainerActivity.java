@@ -76,7 +76,7 @@ public class ContainerActivity extends BaseSupportActivity {
                 break;
             case Constants.Fragment_ReservationOrder: //保养订单
                 loadRootFragment(R.id.con_fragment, Fragment_ReservationOrder.newInstance());
-                break;
+            break;
             case Constants.Fragment_ShoppingCart: //购物车
                 loadRootFragment(R.id.con_fragment, Fragment_shoppingCart.newInstance());
                 break;

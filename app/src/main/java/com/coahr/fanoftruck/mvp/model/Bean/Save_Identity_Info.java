@@ -17,6 +17,15 @@ public class Save_Identity_Info {
     private String msg;
     private JdataBean jdata;
 
+    @Override
+    public String toString() {
+        return "Save_Identity_Info{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", jdata=" + jdata +
+                '}';
+    }
+
     public int getCode() {
         return code;
     }
@@ -47,6 +56,13 @@ public class Save_Identity_Info {
          */
 
         private String jmsg;
+
+        @Override
+        public String toString() {
+            return "JdataBean{" +
+                    "jmsg='" + jmsg + '\'' +
+                    '}';
+        }
 
         public String getJmsg() {
             return jmsg;

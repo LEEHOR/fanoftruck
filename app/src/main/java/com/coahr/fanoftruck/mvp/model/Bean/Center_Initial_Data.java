@@ -10,12 +10,21 @@ public class Center_Initial_Data {
     /**
      * code : 0
      * msg : success
-     * jdata : {"user":{"uid":"1203","wxid":null,"openid":null,"nickname":null,"phone":"18571512117","addtime":"1543558142","update":null,"password":"123456","status":"1","identity_flag":null,"licence_pic":null,"userheadimg":null,"points":"0","username":"leehor","email":"1622293788@qq.com","sex":"0","postal_address":null,"detail_address":null,"realname":null,"pic1":null,"pic2":null}}
+     * jdata : {"user":{"uid":"1203","wxid":null,"openid":null,"nickname":"abc123","phone":"18571512117","addtime":"1543558142","update":null,"password":"123456","status":"1","identity_flag":null,"licence_pic":null,"userheadimg":null,"points":"0","username":"leehor","email":"1622293788@qq.com","sex":"1","postal_address":"北京市北京市东城区","detail_address":"吉里吉里","realname":"李浩","pic1":"http://app.cvfans.net/Data/Identity/20181210/F1544411061.jpg","pic2":"http://app.cvfans.net/Data/Identity/20181210/T1544411061.jpg","accesstime":null}}
      */
 
     private int code;
     private String msg;
     private JdataBean jdata;
+
+    @Override
+    public String toString() {
+        return "Center_Initial_Data{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", jdata=" + jdata +
+                '}';
+    }
 
     public int getCode() {
         return code;
@@ -43,10 +52,17 @@ public class Center_Initial_Data {
 
     public static class JdataBean {
         /**
-         * user : {"uid":"1203","wxid":null,"openid":null,"nickname":null,"phone":"18571512117","addtime":"1543558142","update":null,"password":"123456","status":"1","identity_flag":null,"licence_pic":null,"userheadimg":null,"points":"0","username":"leehor","email":"1622293788@qq.com","sex":"0","postal_address":null,"detail_address":null,"realname":null,"pic1":null,"pic2":null}
+         * user : {"uid":"1203","wxid":null,"openid":null,"nickname":"abc123","phone":"18571512117","addtime":"1543558142","update":null,"password":"123456","status":"1","identity_flag":null,"licence_pic":null,"userheadimg":null,"points":"0","username":"leehor","email":"1622293788@qq.com","sex":"1","postal_address":"北京市北京市东城区","detail_address":"吉里吉里","realname":"李浩","pic1":"http://app.cvfans.net/Data/Identity/20181210/F1544411061.jpg","pic2":"http://app.cvfans.net/Data/Identity/20181210/T1544411061.jpg","accesstime":null}
          */
 
         private UserBean user;
+
+        @Override
+        public String toString() {
+            return "JdataBean{" +
+                    "user=" + user +
+                    '}';
+        }
 
         public UserBean getUser() {
             return user;
@@ -61,7 +77,7 @@ public class Center_Initial_Data {
              * uid : 1203
              * wxid : null
              * openid : null
-             * nickname : null
+             * nickname : abc123
              * phone : 18571512117
              * addtime : 1543558142
              * update : null
@@ -73,26 +89,27 @@ public class Center_Initial_Data {
              * points : 0
              * username : leehor
              * email : 1622293788@qq.com
-             * sex : 0
-             * postal_address : null
-             * detail_address : null
-             * realname : null
-             * pic1 : null
-             * pic2 : null
+             * sex : 1
+             * postal_address : 北京市北京市东城区
+             * detail_address : 吉里吉里
+             * realname : 李浩
+             * pic1 : http://app.cvfans.net/Data/Identity/20181210/F1544411061.jpg
+             * pic2 : http://app.cvfans.net/Data/Identity/20181210/T1544411061.jpg
+             * accesstime : null
              */
 
             private String uid;
-            private String wxid;
-            private String openid;
+            private Object wxid;
+            private Object openid;
             private String nickname;
             private String phone;
             private String addtime;
-            private String update;
+            private Object update;
             private String password;
             private String status;
-            private String identity_flag;
-            private String licence_pic;
-            private String userheadimg;
+            private Object identity_flag;
+            private Object licence_pic;
+            private Object userheadimg;
             private String points;
             private String username;
             private String email;
@@ -102,6 +119,35 @@ public class Center_Initial_Data {
             private String realname;
             private String pic1;
             private String pic2;
+            private Object accesstime;
+
+            @Override
+            public String toString() {
+                return "UserBean{" +
+                        "uid='" + uid + '\'' +
+                        ", wxid=" + wxid +
+                        ", openid=" + openid +
+                        ", nickname='" + nickname + '\'' +
+                        ", phone='" + phone + '\'' +
+                        ", addtime='" + addtime + '\'' +
+                        ", update=" + update +
+                        ", password='" + password + '\'' +
+                        ", status='" + status + '\'' +
+                        ", identity_flag=" + identity_flag +
+                        ", licence_pic=" + licence_pic +
+                        ", userheadimg=" + userheadimg +
+                        ", points='" + points + '\'' +
+                        ", username='" + username + '\'' +
+                        ", email='" + email + '\'' +
+                        ", sex='" + sex + '\'' +
+                        ", postal_address='" + postal_address + '\'' +
+                        ", detail_address='" + detail_address + '\'' +
+                        ", realname='" + realname + '\'' +
+                        ", pic1='" + pic1 + '\'' +
+                        ", pic2='" + pic2 + '\'' +
+                        ", accesstime=" + accesstime +
+                        '}';
+            }
 
             public String getUid() {
                 return uid;
@@ -111,19 +157,19 @@ public class Center_Initial_Data {
                 this.uid = uid;
             }
 
-            public String getWxid() {
+            public Object getWxid() {
                 return wxid;
             }
 
-            public void setWxid(String wxid) {
+            public void setWxid(Object wxid) {
                 this.wxid = wxid;
             }
 
-            public String getOpenid() {
+            public Object getOpenid() {
                 return openid;
             }
 
-            public void setOpenid(String openid) {
+            public void setOpenid(Object openid) {
                 this.openid = openid;
             }
 
@@ -151,11 +197,11 @@ public class Center_Initial_Data {
                 this.addtime = addtime;
             }
 
-            public String getUpdate() {
+            public Object getUpdate() {
                 return update;
             }
 
-            public void setUpdate(String update) {
+            public void setUpdate(Object update) {
                 this.update = update;
             }
 
@@ -175,27 +221,27 @@ public class Center_Initial_Data {
                 this.status = status;
             }
 
-            public String getIdentity_flag() {
+            public Object getIdentity_flag() {
                 return identity_flag;
             }
 
-            public void setIdentity_flag(String identity_flag) {
+            public void setIdentity_flag(Object identity_flag) {
                 this.identity_flag = identity_flag;
             }
 
-            public String getLicence_pic() {
+            public Object getLicence_pic() {
                 return licence_pic;
             }
 
-            public void setLicence_pic(String licence_pic) {
+            public void setLicence_pic(Object licence_pic) {
                 this.licence_pic = licence_pic;
             }
 
-            public String getUserheadimg() {
+            public Object getUserheadimg() {
                 return userheadimg;
             }
 
-            public void setUserheadimg(String userheadimg) {
+            public void setUserheadimg(Object userheadimg) {
                 this.userheadimg = userheadimg;
             }
 
@@ -269,6 +315,14 @@ public class Center_Initial_Data {
 
             public void setPic2(String pic2) {
                 this.pic2 = pic2;
+            }
+
+            public Object getAccesstime() {
+                return accesstime;
+            }
+
+            public void setAccesstime(Object accesstime) {
+                this.accesstime = accesstime;
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.coahr.fanoftruck.mvp.view.Myself;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
@@ -34,6 +35,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.Center_Initial_Data;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginOutBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Save_Identity_Info;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_UserInfo_P;
+import com.coahr.fanoftruck.mvp.view.MainActivity;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.google.gson.Gson;
 import com.socks.library.KLog;
@@ -71,8 +73,8 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     RadioButton rb_sex_man;
     @BindView(R.id.rb_sex_woman)
     RadioButton rb_sex_woman;
-    @BindView(R.id.ed_user_phone)
-    EditText ed_user_phone;
+    @BindView(R.id.tv_user_phone)
+    TextView tv_user_phone;
     @BindView(R.id.tv_select_address)
     TextView tv_select_address;
     @BindView(R.id.tv_postal_address)
@@ -230,18 +232,17 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
 
     @Override
     public void getCenter_Initial_DataSuccess(Center_Initial_Data center_initial_data) {
-        KLog.d("lizhiguo", "data = " + center_initial_data.toString());
         if (center_initial_data != null) {
             Center_Initial_Data.JdataBean.UserBean user = center_initial_data.getJdata().getUser();
             if (user != null) {
-                String userheadimg = user.getUserheadimg();
+                String userheadimg = (String) user.getUserheadimg();
                 if (userheadimg != null) {
                     Imageloader.loadCircularImage(userheadimg, iv_user_head);
                 }
 
-                String username = user.getUsername();
+                String nickname = user.getNickname();
                 if (user != null) {
-                    ed_user_nickname.setText(username);
+                    ed_user_nickname.setText(nickname);
                 }
                 String sex = user.getSex();
                 if (sex != null) {
@@ -255,7 +256,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
                 }
                 String phone = user.getPhone();
                 if (phone != null) {
-                    ed_user_phone.setText(phone);
+                    tv_user_phone.setText(phone);
                 }
 
                 String postal_address = user.getPostal_address();
@@ -288,6 +289,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     @Override
     public void Save_Identity_InfoSuccess(Save_Identity_Info save_identity_info) {
         ToastUtils.showLong(save_identity_info.getJdata().getJmsg());
+        _mActivity.onBackPressed();
     }
 
     @Override
@@ -297,11 +299,13 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
 
     @Override
     public void LoginOutSuccess(LoginOutBean loginOutBean) {
-                ToastUtils.showLong(loginOutBean.getJdata().getJmsg());
+//                ToastUtils.showLong(loginOutBean.getJdata().getJmsg());
         PreferenceUtils.setPrefString(BaseApplication.mContext,Constants.token_key,null);
         PreferenceUtils.setPrefString(BaseApplication.mContext,Constants.uid_key,null);
         Constants.token=null;
         Constants.uid=null;
+
+        startActivity(new Intent(_mActivity, MainActivity.class));
     }
 
     @Override
@@ -372,7 +376,6 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
 
     /**
      * 解析Gson
-     *
      * @param result
      * @return
      */
@@ -450,6 +453,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     private void getInfoMassage() {
         Map map = new HashMap();
         map.put("token", Constants.token);
+        KLog.e("lizhiguo", "token == " + Constants.token);
         p.getCenter_Initial_Data(map);
     }
 
