@@ -45,7 +45,7 @@
             android:id="@+id/tv_two"
             android:layout_below="@+id/iv_two"
             android:layout_centerHorizontal="true"
-            android:text="@string/upload"
+            android:text="@string/shop"
             android:textColor="@color/gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -69,7 +69,7 @@
             android:id="@+id/tv_three"
             android:layout_below="@+id/iv_three"
             android:layout_centerHorizontal="true"
-            android:text="@string/audit"
+            android:text="@string/business"
             android:textColor="@color/gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -92,7 +92,7 @@
             android:id="@+id/tv_four"
             android:layout_below="@+id/iv_four"
             android:layout_centerHorizontal="true"
-            android:text="@string/center"
+            android:text="@string/service"
             android:textColor="@color/gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

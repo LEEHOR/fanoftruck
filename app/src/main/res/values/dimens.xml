@@ -20,6 +20,7 @@
     <dimen name="dp_36">36dp</dimen>
     <dimen name="dp_38">38dp</dimen>
     <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_46">46dp</dimen>
 
     <!--手机头部标题栏-->
     <dimen name="normal_tittle_height">40dp</dimen>

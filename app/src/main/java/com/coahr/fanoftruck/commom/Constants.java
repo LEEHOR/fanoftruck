@@ -143,7 +143,11 @@ public class Constants {
 
     public static final int Fragment_MyWebView=29;
 
-    public static final int FRAGMENT_HELP_CENTER=30;
+    public static final int FRAGMENT_HELP_CENTER=30;//帮助中心
+
+    public static final int FRAGMENT_MANAGE_INVOICE=31;//发票管理
+
+    public static final int FRAGMEN_MY_COUPON=32;//我的优惠券
 
 
     /**

@@ -2,6 +2,8 @@ package com.coahr.fanoftruck.mvp.view.MaintenanceOrder;
 
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.view.View;
+
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.coahr.fanoftruck.R;
@@ -57,6 +59,12 @@ public class Fragment_ReservationOrder extends BaseFragment {
                     webView.reload();
 
                 }
+            }
+        });
+        myTittleBar.getLeftIcon().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _mActivity.onBackPressed();
             }
         });
     }

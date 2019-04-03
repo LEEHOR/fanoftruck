@@ -24,9 +24,9 @@ android {
         multiDexEnabled true
         manifestPlaceholders = [qqappid: "1232323"]
         testInstrumentationRunner "android.support.ValidateUtils.runner.AndroidJUnitRunner"
-        ndk {abiFilters "armeabi", "armeabi-v7a", "x86" }
+        ndk { abiFilters "armeabi", "armeabi-v7a", "x86" }
     }
-    
+
     buildTypes {
         release {
             minifyEnabled false
@@ -34,20 +34,15 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     repositories {
         flatDir {
             dirs project(':UMLibrary').file('libs')
         }
-    }
-
-}
-
-
-android {
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -145,8 +140,6 @@ dependencies {
     //高德地图
     implementation 'com.amap.api:location:3.8.0'
 
-
-
     //微信支付
     //implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 
@@ -155,6 +148,6 @@ dependencies {
     //
     implementation project(':UMLibrary')
 //阿里支付
-    //api(name: 'alipaySdk-15.5.9-20181123210601', ext: 'aar')
+//    api(name: 'alipaySdk-15.5.9-20181123210601', ext: 'aar')
 }
 

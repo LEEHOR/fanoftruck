@@ -52,7 +52,8 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     //阿里支付
-     api (name: 'alipaySdk-15.5.9-20181123210601', ext: 'aar')
+     api (name: 'alipaySdk-15.6.0-20190226104104-noUtdid', ext: 'aar')
+
     //X5webView
     api files('libs/tbs_sdk_thirdapp_v3.6.0.1352_43618_sharewithdownload_withoutGame_obfs_20180918_120327.jar')
 

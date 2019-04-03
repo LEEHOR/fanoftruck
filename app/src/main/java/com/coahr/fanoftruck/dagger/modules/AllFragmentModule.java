@@ -12,19 +12,28 @@ import com.coahr.fanoftruck.mvp.view.MaintenanceOrder.Fragment_ReservationOrder;
 import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_add_address;
 import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_address_list;
 import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_addCar;
+import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
 import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_CouponReceive;
 import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_CouponViewPager;
 import com.coahr.fanoftruck.mvp.view.MyCoupon.Fragment_coupon_main;
 import com.coahr.fanoftruck.mvp.view.MyWebView.Fragment_myWebView;
+import com.coahr.fanoftruck.mvp.view.Myself.Fragment_Myself;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_about_us;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_certification;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_forgetPass;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_login;
-import com.coahr.fanoftruck.mvp.view.MyCar.Fragment_myCar;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_myUerInfo;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_register;
+import com.coahr.fanoftruck.mvp.view.Myself.HelpCenterFragment;
+import com.coahr.fanoftruck.mvp.view.RecorderVideo.FragmentRecorder;
 import com.coahr.fanoftruck.mvp.view.RecorderVideo.Fragment_recorder_Preview;
+import com.coahr.fanoftruck.mvp.view.Services.Fragment_Services;
+import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_appointment;
+import com.coahr.fanoftruck.mvp.view.Services.Fragment_storeOrder;
+import com.coahr.fanoftruck.mvp.view.Services.Fragment_store_detail;
+import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_Shopping;
+import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_ShoppingDetail;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_dialog_shopping;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_shoppingCart;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_MaintenanceVideo_viewPage;
@@ -33,14 +42,6 @@ import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoList;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoPlay;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_maintenance_child;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_maintenance_videoPlay;
-import com.coahr.fanoftruck.mvp.view.Myself.Fragment_Myself;
-import com.coahr.fanoftruck.mvp.view.RecorderVideo.FragmentRecorder;
-import com.coahr.fanoftruck.mvp.view.Services.Fragment_Services;
-import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
-import com.coahr.fanoftruck.mvp.view.Services.Fragment_storeOrder;
-import com.coahr.fanoftruck.mvp.view.Services.Fragment_store_detail;
-import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_Shopping;
-import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_ShoppingDetail;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -96,6 +97,7 @@ public abstract class AllFragmentModule {
     @ContributesAndroidInjector(modules = Fragment_home_Module.class)
     abstract Fragment_help  Fragment_helpInjector();
 
+
     @ContributesAndroidInjector(modules = Fragment_recorder_preview_Module.class)
     abstract Fragment_recorder_Preview  Fragment_recorder_PreviewInjector();
 
@@ -131,6 +133,9 @@ public abstract class AllFragmentModule {
 
     @ContributesAndroidInjector(modules = Fragment_about_us_Module.class)
     abstract Fragment_about_us Fragment_about_usInjector();
+
+    @ContributesAndroidInjector(modules = HelpCenterFragmentModule.class)
+    abstract HelpCenterFragment HelpCenterFragmentInjector();
 
     @ContributesAndroidInjector(modules = Fragment_certification_Module.class)
     abstract Fragment_certification Fragment_certificationInjector();

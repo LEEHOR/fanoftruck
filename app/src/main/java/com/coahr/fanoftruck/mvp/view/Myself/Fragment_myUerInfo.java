@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import androidx.annotation.NonNull;
+
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -143,6 +145,13 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
         tv_select_address.setOnClickListener(this);
         iv_user_head.setOnClickListener(this);
         tv_logout.setOnClickListener(this);
+
+        userInfo_title.getLeftIcon().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _mActivity.onBackPressed();
+            }
+        });
         userInfo_title.getRightText().setText("保存");
         userInfo_title.getRightText().setVisibility(View.VISIBLE);
         userInfo_title.getRightText().setTextColor(getResources().getColor(R.color.origin_1));
@@ -221,6 +230,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
 
     @Override
     public void getCenter_Initial_DataSuccess(Center_Initial_Data center_initial_data) {
+        KLog.d("lizhiguo", "data = " + center_initial_data.toString());
         if (center_initial_data != null) {
             Center_Initial_Data.JdataBean.UserBean user = center_initial_data.getJdata().getUser();
             if (user != null) {
@@ -416,7 +426,8 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     private void saveInfoMassage() {
         Map map = new HashMap();
         map.put("token", Constants.token);
-        map.put("userheadimg", StoreSpaceUtils.getImageStr(originalPath));
+        originalPath = TextUtils.isEmpty(originalPath) ? "" : StoreSpaceUtils.getImageStr(originalPath);
+        map.put("userheadimg", originalPath);
         map.put("nickname", ed_user_nickname.getText().toString());
         map.put("sex", sex);
         map.put("postal_address", tv_postal_address.getText().toString());

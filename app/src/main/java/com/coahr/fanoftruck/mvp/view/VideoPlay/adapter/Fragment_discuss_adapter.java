@@ -1,5 +1,7 @@
 package com.coahr.fanoftruck.mvp.view.VideoPlay.adapter;
 
+import android.widget.ImageView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.coahr.fanoftruck.R;
@@ -25,7 +27,7 @@ public class Fragment_discuss_adapter extends BaseQuickAdapter<MaintenanceVideoD
                     .setText(R.id.tv_discuss_time,TimeUtils.getStringDate_Normal(item.getAdd_time()))
                     .setText(R.id.tv_discuss_msg,item.getDiscuss_content());
             if (item.getUserHeadImg() !=null) {
-                Imageloader.loadCircularImage(item.getUserHeadImg(), helper.getView(R.id.iv_discuss_user_head));
+                Imageloader.loadCircularImage(item.getUserHeadImg(), (ImageView) helper.getView(R.id.iv_discuss_user_head));
             }
     }
 }

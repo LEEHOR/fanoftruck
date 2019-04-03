@@ -25,7 +25,7 @@ public class MyCarAdapter extends BaseQuickAdapter<CarListBean.JdataBean.MycarBe
 
 
     @Override
-    protected void convert(final BaseViewHolder helper, CarListBean.JdataBean.MycarBean item) {
+    protected void convert(final BaseViewHolder helper, final CarListBean.JdataBean.MycarBean item) {
                 if (item !=null){
                     helper.setText(R.id.car_frameno,"车架号："+item.getCar_frameno())
                             .setText(R.id.car_no,"车牌号："+item.getCar_no());

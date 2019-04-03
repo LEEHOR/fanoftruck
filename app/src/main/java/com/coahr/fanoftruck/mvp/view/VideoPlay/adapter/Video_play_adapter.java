@@ -29,7 +29,7 @@ public class Video_play_adapter extends BaseQuickAdapter<MaintenanceVideoList.Jd
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, MaintenanceVideoList.JdataBean item) {
+    protected void convert(BaseViewHolder helper, final MaintenanceVideoList.JdataBean item) {
         if (item != null) {
             ((MyVideoPlay_Normal) helper.getView(R.id.myVideo)).setUp(ApiContact.baseUrl+item.getVideo_link(),"",JzvdStd.SCREEN_WINDOW_NORMAL);
              if (helper.getAdapterPosition() == 0 || isscrolling) {

@@ -138,4 +138,13 @@ public class ApiContact {
 
     //支付接口
     public static final String payCommodityOrder="/APP/User/save_commodity_order";
+
+    //添加发票
+    public static final String ADD_INVOICE="http://app.cvfans.net/H5/invoice1.html";
+
+    //个人、企业发票
+    public static final String SHOW_INVOICE="http://app.cvfans.net/H5/invoice.html";
+
+    //服务商加盟
+    public static final String SERVICE_JOIN="http://app.cvfans.net/H5/user_ready.html";
 }

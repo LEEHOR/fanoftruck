@@ -12,11 +12,11 @@ import com.coahr.fanoftruck.widgets.MyVideo.MyFileNameGenerator;
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.socks.library.KLog;
 import com.tencent.smtt.sdk.QbSdk;
-
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
 
 import javax.inject.Inject;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.multidex.MultiDexApplication;
 import dagger.android.AndroidInjector;
@@ -60,11 +60,9 @@ public class BaseApplication extends MultiDexApplication implements HasActivityI
         DaggerApplicationComponents.create().inject(this);
         mContext=getApplicationContext();
         initX5WebView();
-      /*  UMConfigure.init(this,
-                UMConfigure.DEVICE_TYPE_PHONE, "a2ef9522bf3a1c5c206c1e8dac62e363");
-
-        PlatformConfig.setWeixin("wx89f3b1477df1aa39", "b3ad27916ad0fa404f5d1478f3cc0bc2");
-        PlatformConfig.setQQZone("","");*/
+//        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "a2ef9522bf3a1c5c206c1e8dac62e363");
+        UMConfigure.init(this,"5c121050f1f556ac7c000327","umeng",UMConfigure.DEVICE_TYPE_PHONE,"");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
+        PlatformConfig.setWeixin("你的微信APPID", "你的微信AppSecret");//微信APPID和AppSecret
 
         if (PreferenceUtils.contains(mContext, "token")) {
             Constants.token = PreferenceUtils.getPrefString(mContext, Constants.token_key, null);

@@ -149,7 +149,7 @@ public class Fragment_certification extends BaseFragment<Fragment_certification_
      *
      * @param type 正反面区分
      */
-    private void openImage(int type) {
+    private void openImage(final int type) {
         //快速打开单选图片,flag使用true不裁剪
         RxGalleryFinalApi
                 .openRadioSelectImage(_mActivity, new RxBusResultDisposable<ImageRadioResultEvent>() {

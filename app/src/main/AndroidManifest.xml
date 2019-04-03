@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.coahr.fanoftruck"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.coahr.fanoftruck">
 
     <!-- 这个权限用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
@@ -20,7 +20,7 @@
 
     <!-- SD卡读取权限，用户写入离线定位数据-->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 
     <!-- 外部存储读权限，调试工具加载本地补丁需要 -->
@@ -46,14 +46,15 @@
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
 
     <application
-        android:allowBackup="true"
         android:name="com.coahr.fanoftruck.mvp.Base.BaseApplication"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.coahr.fanoftruck.mvp.view.MainActivity"
+        <activity
+            android:name="com.coahr.fanoftruck.mvp.view.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,31 +68,32 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".mvp.view.TribuneActivity"/>
+        <activity android:name=".mvp.view.TribuneActivity" />
         <!--拍照页面-->
         <activity
             android:name="cn.finalteam.rxgalleryfinal.ui.activity.MediaActivity"
-            android:screenOrientation="portrait"
             android:exported="true"
-            android:theme="@style/Theme_Light.Default"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme_Light.Default" />
         <!--裁剪页面-->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme_Light.Default"/>
+            android:theme="@style/Theme_Light.Default" />
 
         <!--阿里云热更新-->
         <!--apk更新-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.coahr.fanoftruck"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <!--元数据-->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
             android:value="25246895-1" />
@@ -100,17 +102,20 @@
             android:value="ae9c7e03af7eff1738413963c49dc6f8" />
         <meta-data
             android:name="com.taobao.android.hotfix.RSASECRET"
-            android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCP+Qcw+Fo4eS0sBWyEI0DeVxpEes2QX7Fo1Bd9MU/KigDDmdJBa4eSwIwKHE6PzKPKjSiD6kevd3zQk+P4mthOfXWvEeTEARAPQfUh2Yn+/dZYiIIIlIwuFfdYclRIe6gIN/ikQl/I7UChqhNHXii4lAx/EA2E5s7s8mYg0jiBvrwM10ybLPbibCHhI2qfhDV0VZJl/3j6/9QyLizL/oNgcKq2iU9diQnym0i4Du/0H9pjoV+KDYorbFyFPsoxrqynlIQWmhMyARwsrDvEcuaHqN210WLmiU/Lsgs+K7DpKaKl+U0L/+JxVPxaLG4OHaLPY58YSdHwuzUnTRn8glkHAgMBAAECggEAGqLrJq88GeipZ9SVEBlpnfklfffuYkCiFQ/wTJQ7++/uVkH2OW5Ihekjv5cfHdGxl/7nuQg2PQtxRzGlYtBbJqJljH9WAMFllD0SujGCK3ARIQ4YaLf6+2fK/E0itMpT+zlHwjQZfpYOeBp8OJ7+D7AsY7G3npgJPqNWK8pY8//rwPXNX2e6Bm+qtupgchTarV+JaT0XPuSN8SAAc/p57fZDIcxb6gcLMSSzJnMFL2G1lLyg4+ryu08aHAVuff8Ngi2+03D60yJS0o60PlslIHopLJ31ooVb/t5aHh4HgNIkEqD8uMkaHYrc2Exy0R9+4Sr0v10WFEBc2xQOMD/dAQKBgQDE+2Qf7VTaqIWLl1oT2NNBCEA3mLrYQEXyGlY893cUb2KvGnlXOQCnXYh/f+FIkTRGJrgYoCv0U0osXomdosGQnE8a2RLDg6s5lwPHalN98qraa7OZZE2JdHN+OFoguPCupwOk2VCZwR+eObpFM5hp0eh766apXwg9EiwSoOvihwKBgQC7G84KIhescslnuIujUttVn53g5dVfAPQYqC0IYq/jenTjOOyx4+fQIsSIlpKgOHE6SRFxTDsXqkdcJiBQULxZGV6Zasy/Y70cA/xMzizDW0MabzsbvDttEYqqO9g+OrPFosGQF14gSOare5t/R6C7u0BxpWjVexPK+ZlZL9b1gQKBgCzKVOwFlUPbCfLByZO1u+OPsrpxmhrOEpmIb4+RXZxh73iNdoXkykdEN2N2eo17pv1ElJvU3+nAfp80J+qWNZliUYJzVZbre6WutwdDIBUFduAPmVkJu6/DsPdEbQn/w4qTI3r6hx9PEJdz3O0bXE7Dki+LV+wvVbo9RZQ+zyRFAoGARoY+bPdYsPk7DMs0ZsUOQwG8wk4e1IZJexm4j5aS8Uzwzcxg+tQKRhs0tL78WUOs+ekcl/XBuDPIXeVI/LzRoUu8qlrk/aacWvjtmg2ENcYqTsZqIxQZ2gxola2k3h/GLtIf3y3Pnp+bwjr+60SWQuxbZ/qOvxh652CY+lLb1QECgYAS4iG5KNm77NL4V7qurBwMV/bujiIh2IBR5VVXs+DsGfnSca9SRXskzuwyY6wiFbZuEDXt9Ch+szvZUJ1W9NVjTacb5HJJ7L1Py4O0FeLK2gcH9HoxmLKtBdvZKxq9AAZ+IGfQnGNTuRR0+b1R/zvTzvEOz0pawrPo3hfr71h2UA=="/>
+            android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCP+Qcw+Fo4eS0sBWyEI0DeVxpEes2QX7Fo1Bd9MU/KigDDmdJBa4eSwIwKHE6PzKPKjSiD6kevd3zQk+P4mthOfXWvEeTEARAPQfUh2Yn+/dZYiIIIlIwuFfdYclRIe6gIN/ikQl/I7UChqhNHXii4lAx/EA2E5s7s8mYg0jiBvrwM10ybLPbibCHhI2qfhDV0VZJl/3j6/9QyLizL/oNgcKq2iU9diQnym0i4Du/0H9pjoV+KDYorbFyFPsoxrqynlIQWmhMyARwsrDvEcuaHqN210WLmiU/Lsgs+K7DpKaKl+U0L/+JxVPxaLG4OHaLPY58YSdHwuzUnTRn8glkHAgMBAAECggEAGqLrJq88GeipZ9SVEBlpnfklfffuYkCiFQ/wTJQ7++/uVkH2OW5Ihekjv5cfHdGxl/7nuQg2PQtxRzGlYtBbJqJljH9WAMFllD0SujGCK3ARIQ4YaLf6+2fK/E0itMpT+zlHwjQZfpYOeBp8OJ7+D7AsY7G3npgJPqNWK8pY8//rwPXNX2e6Bm+qtupgchTarV+JaT0XPuSN8SAAc/p57fZDIcxb6gcLMSSzJnMFL2G1lLyg4+ryu08aHAVuff8Ngi2+03D60yJS0o60PlslIHopLJ31ooVb/t5aHh4HgNIkEqD8uMkaHYrc2Exy0R9+4Sr0v10WFEBc2xQOMD/dAQKBgQDE+2Qf7VTaqIWLl1oT2NNBCEA3mLrYQEXyGlY893cUb2KvGnlXOQCnXYh/f+FIkTRGJrgYoCv0U0osXomdosGQnE8a2RLDg6s5lwPHalN98qraa7OZZE2JdHN+OFoguPCupwOk2VCZwR+eObpFM5hp0eh766apXwg9EiwSoOvihwKBgQC7G84KIhescslnuIujUttVn53g5dVfAPQYqC0IYq/jenTjOOyx4+fQIsSIlpKgOHE6SRFxTDsXqkdcJiBQULxZGV6Zasy/Y70cA/xMzizDW0MabzsbvDttEYqqO9g+OrPFosGQF14gSOare5t/R6C7u0BxpWjVexPK+ZlZL9b1gQKBgCzKVOwFlUPbCfLByZO1u+OPsrpxmhrOEpmIb4+RXZxh73iNdoXkykdEN2N2eo17pv1ElJvU3+nAfp80J+qWNZliUYJzVZbre6WutwdDIBUFduAPmVkJu6/DsPdEbQn/w4qTI3r6hx9PEJdz3O0bXE7Dki+LV+wvVbo9RZQ+zyRFAoGARoY+bPdYsPk7DMs0ZsUOQwG8wk4e1IZJexm4j5aS8Uzwzcxg+tQKRhs0tL78WUOs+ekcl/XBuDPIXeVI/LzRoUu8qlrk/aacWvjtmg2ENcYqTsZqIxQZ2gxola2k3h/GLtIf3y3Pnp+bwjr+60SWQuxbZ/qOvxh652CY+lLb1QECgYAS4iG5KNm77NL4V7qurBwMV/bujiIh2IBR5VVXs+DsGfnSca9SRXskzuwyY6wiFbZuEDXt9Ch+szvZUJ1W9NVjTacb5HJJ7L1Py4O0FeLK2gcH9HoxmLKtBdvZKxq9AAZ+IGfQnGNTuRR0+b1R/zvTzvEOz0pawrPo3hfr71h2UA==" />
 
         <!--微信-->
-        <activity android:name=".wxapi.WXPayEntryActivity"
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
 
         <!--高德定位-->
         <service android:name="com.amap.api.location.APSService"></service>
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="b61bb3a9849c963ec2bc46ce6d2105df"/>
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b61bb3a9849c963ec2bc46ce6d2105df" />
 
         <meta-data
             android:name="UMENG_APPKEY"
@@ -121,11 +126,20 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="Umeng" />
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <!-- push start -->
         <!-- 使用完全自定义消息来开启应用的服务进程的示例服务配置 -->
-      <!--  <service android:name=".mvp.view.UMPush.UmengNotificationService"/>
-        <service android:name=".mvp.view.UMPush.MyNotificationService"/>
-        <receiver android:name=".mvp.view.UMPush.NotificationBroadcast"/>-->
+        <!--  <service android:name=".mvp.view.UMPush.UmengNotificationService"/>
+          <service android:name=".mvp.view.UMPush.MyNotificationService"/>
+          <receiver android:name=".mvp.view.UMPush.NotificationBroadcast"/>-->
     </application>
 
 </manifest>

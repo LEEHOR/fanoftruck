@@ -20,7 +20,7 @@
                 android:padding="@dimen/dp_10">
 
                 <RelativeLayout
-                    android:id="@+id/my_userInfo"
+                    android:id="@+id/rl_my_userInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -89,7 +89,6 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-
                     android:layout_height="wrap_content"
                     app:cardElevation="0dp">
 
@@ -99,8 +98,10 @@
                         android:orientation="vertical">
 
                         <RelativeLayout
+                            android:id="@+id/rl_my_order"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:descendantFocusability="blocksDescendants"
                             android:padding="@dimen/edge_margin">
 
                             <TextView
@@ -138,8 +139,10 @@
                             android:paddingRight="@dimen/edge_margin" />-->
 
                         <RelativeLayout
+                            android:id="@+id/rl_manage_invoices"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:descendantFocusability="blocksDescendants"
                             android:padding="@dimen/edge_margin">
 
                             <TextView
@@ -204,8 +207,10 @@
                     app:cardElevation="0dp">
 
                     <RelativeLayout
+                        android:id="@+id/rl_my_coupon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:descendantFocusability="blocksDescendants"
                         android:padding="@dimen/edge_margin">
 
                         <TextView
@@ -241,8 +246,10 @@
                         android:orientation="vertical">
 
                         <RelativeLayout
+                            android:id="@+id/rl_my_car"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:descendantFocusability="blocksDescendants"
                             android:padding="@dimen/edge_margin">
 
                             <TextView
@@ -258,7 +265,6 @@
                                 android:textSize="@dimen/dp_14" />
 
                             <ImageView
-                                android:id="@+id/mycar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
@@ -274,8 +280,10 @@
                             android:paddingRight="@dimen/edge_margin" />
 
                         <RelativeLayout
+                            android:id="@+id/rl_wxyy_order"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:descendantFocusability="blocksDescendants"
                             android:padding="@dimen/edge_margin">
 
                             <TextView
@@ -292,7 +300,6 @@
                                 android:textSize="@dimen/dp_14" />
 
                             <ImageView
-                                android:id="@+id/tv_wxyy_order"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
@@ -308,10 +315,10 @@
                             android:paddingRight="@dimen/edge_margin" />
 
                         <RelativeLayout
-                            android:descendantFocusability="blocksDescendants"
                             android:id="@+id/rl_by_order"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:descendantFocusability="blocksDescendants"
                             android:padding="@dimen/edge_margin">
 
                             <TextView
@@ -348,8 +355,10 @@
                         android:orientation="vertical">
 
                         <RelativeLayout
+                            android:id="@+id/rl_business_order"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:descendantFocusability="blocksDescendants"
                             android:padding="@dimen/edge_margin">
 
                             <TextView
@@ -380,8 +389,10 @@
                             android:paddingRight="@dimen/edge_margin" />
 
                         <RelativeLayout
+                            android:id="@+id/rl_invite_truck_fans"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:descendantFocusability="blocksDescendants"
                             android:padding="@dimen/edge_margin">
 
                             <TextView
@@ -420,8 +431,10 @@
                     app:cardElevation="0dp">
 
                     <RelativeLayout
+                        android:id="@+id/rl_service_join"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:descendantFocusability="blocksDescendants"
                         android:padding="@dimen/edge_margin">
 
                         <TextView
@@ -451,49 +464,11 @@
                     android:layout_marginTop="@dimen/dp_10"
                     app:cardElevation="0dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/edge_margin">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
-                                android:layout_centerVertical="true"
-                                android:drawableLeft="@mipmap/images"
-                                android:drawablePadding="@dimen/dp_5"
-                                android:gravity="center_vertical"
-                                android:text="商品收藏"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/dp_14" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:src="@mipmap/images" />
-                        </RelativeLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardview_help_center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:descendantFocusability="blocksDescendants"
-                    app:cardElevation="0dp">
-
                     <RelativeLayout
+                        android:id="@+id/rl_help_center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:descendantFocusability="blocksDescendants"
                         android:padding="@dimen/edge_margin">
 
                         <TextView
@@ -523,12 +498,9 @@
                     android:layout_marginTop="@dimen/dp_10"
                     app:cardElevation="0dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
                         <RelativeLayout
+                            android:id="@+id/rl_about_us"
+                            android:descendantFocusability="blocksDescendants"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/edge_margin">
@@ -546,19 +518,14 @@
                                 android:textSize="@dimen/dp_14" />
 
                             <ImageView
-                                android:id="@+id/iv_about_us"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
                                 android:src="@mipmap/images" />
                         </RelativeLayout>
-                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
             </LinearLayout>
-
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

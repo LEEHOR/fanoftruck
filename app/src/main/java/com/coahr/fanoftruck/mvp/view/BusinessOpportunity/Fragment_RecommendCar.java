@@ -285,7 +285,7 @@ public class Fragment_RecommendCar extends BaseFragment<Fragment_recommendCar_C.
         pvOptions.setPicker(options1Items, options2Items, options3Items);//三级选择器
         pvOptions.show();
     }
-    private void showCarPickerView(List<Business_car.JdataBean.CarsBean> list) {// 弹出选择器
+    private void showCarPickerView(final List<Business_car.JdataBean.CarsBean> list) {// 弹出选择器
 
         OptionsPickerView pvOptions = new OptionsPickerBuilder(getActivity(), new OnOptionsSelectListener() {
             @Override

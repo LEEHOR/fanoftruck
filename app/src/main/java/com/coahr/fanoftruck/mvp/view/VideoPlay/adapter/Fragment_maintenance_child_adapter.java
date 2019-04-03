@@ -28,7 +28,7 @@ public class Fragment_maintenance_child_adapter extends BaseQuickAdapter<Mainten
     }
 
     @Override
-    protected void convert(final BaseViewHolder helper, MaintenanceVideoList.JdataBean item) {
+    protected void convert(final BaseViewHolder helper, final MaintenanceVideoList.JdataBean item) {
         if (item != null) {
             helper.setText(R.id.video_size, item.getVideo_state())
                     .setText(R.id.video_type, item.getVideo_type())
@@ -38,7 +38,7 @@ public class Fragment_maintenance_child_adapter extends BaseQuickAdapter<Mainten
                     .setText(R.id.video_browse, item.getVideo_view_num())
                     .setText(R.id.video_comment, item.getVideo_view_num())
                     .setText(R.id.video_like, item.getVideo_dz_num());
-            Imageloader.loadImage(ApiContact.baseUrl + item.getVideo_cover(), helper.getView(R.id.video_thumbImageView));
+            Imageloader.loadImage(ApiContact.baseUrl + item.getVideo_cover(), (ImageView) helper.getView(R.id.video_thumbImageView));
             helper.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
@@ -13,23 +13,20 @@
 
     <View
         android:layout_width="match_parent"
-        android:background="@color/material_grey_200"
-        android:layout_height="@dimen/dp_1"/>
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/material_grey_200" />
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabInvoiceType"
         android:layout_width="match_parent"
-        android:padding="@dimen/dp_10"
-        android:layout_height="@dimen/dp_46"
-        android:background="@color/colorWhite"
-        app:tabGravity="center"
-        app:tabIndicatorHeight="@dimen/dp_1"
+        android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/black"
-        app:tabTextAppearance="16sp"
-        app:tabTextColor="@color/black"
-        app:tabMode="fixed"/>
+        app:tabBackground="@color/colorWhite"
+        app:tabIndicatorHeight="@dimen/dp_1"
+        app:tabMode="fixed"
+        app:tabTextAppearance="@style/TextAppearanceStyle" />
 
-    <com.cnsunrun.knowledgeshare.common.widget.NoScrollViewPager
+    <com.coahr.fanoftruck.widgets.NoScrollViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
