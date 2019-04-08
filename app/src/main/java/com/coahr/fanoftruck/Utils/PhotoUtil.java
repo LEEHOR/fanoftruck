@@ -13,20 +13,23 @@ import com.coahr.fanoftruck.mvp.view.MyWebView.Fragment_myWebView;
 import java.io.File;
 
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 public class PhotoUtil {
 
     /**
      * 选择相册照片
      */
-    public static void chooseAlbumPic(Activity activity) {
+    public static void chooseAlbumPic(Fragment fragment) {
         Intent i = new Intent(Intent.ACTION_GET_CONTENT);
         i.addCategory(Intent.CATEGORY_OPENABLE);
         i.setType("image/*");
-        activity.startActivityForResult(Intent.createChooser(i, "Image Chooser"), Fragment_myWebView.REQUEST_CODE_ALBUM);
+        fragment.startActivityForResult(Intent.createChooser(i, "Image Chooser"), Fragment_myWebView.REQUEST_CODE_ALBUM);
     }
 
-    public static String takePhoto(Activity activity) {
+    public static String takePhoto(Fragment fragment) {
+        FragmentActivity activity = fragment.getActivity();
         File tempFile = null;
 //        StringBuilder fileName = new StringBuilder();
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -54,7 +57,7 @@ public class PhotoUtil {
             }
         }
 
-        activity.startActivityForResult(intent, Fragment_myWebView.REQUEST_CODE_CAMERA);
+        fragment.startActivityForResult(intent, Fragment_myWebView.REQUEST_CODE_CAMERA);
         return tempFile.getAbsolutePath();
     }
 }

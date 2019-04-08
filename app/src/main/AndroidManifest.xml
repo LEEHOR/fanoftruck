@@ -83,16 +83,16 @@
 
         <!--阿里云热更新-->
         <!--apk更新-->
-        <provider
+        <!--<provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.coahr.fanoftruck"
             android:exported="false"
             android:grantUriPermissions="true">
-            <!--元数据-->
+            &lt;!&ndash;元数据&ndash;&gt;
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
+        </provider>-->
 
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
@@ -135,6 +135,17 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <!-- 解决 Android N 7.0 上 报错：android.os.FileUriExposedException -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
         <!-- push start -->
         <!-- 使用完全自定义消息来开启应用的服务进程的示例服务配置 -->
         <!--  <service android:name=".mvp.view.UMPush.UmengNotificationService"/>
