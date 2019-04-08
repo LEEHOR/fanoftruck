@@ -32,11 +32,11 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/dp_5">
 
-                        <ImageView
+                        <com.coahr.fanoftruck.widgets.CircleImagewView
                             android:id="@+id/userHeadImg"
                             android:layout_width="40dp"
                             android:layout_height="@dimen/dp_40"
-                            android:src="@mipmap/images" />
+                            android:src="@mipmap/default_head" />
                     </FrameLayout>
 
                     <TextView

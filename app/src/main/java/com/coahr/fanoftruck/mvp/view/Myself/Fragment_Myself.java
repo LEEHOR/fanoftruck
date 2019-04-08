@@ -1,20 +1,22 @@
 package com.coahr.fanoftruck.mvp.view.Myself;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
+import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_myself_C;
 import com.coahr.fanoftruck.mvp.model.ApiContact;
-import com.coahr.fanoftruck.mvp.model.ApiService;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_myself_P;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.mvp.view.MainActivity;
+import com.coahr.fanoftruck.widgets.CircleImagewView;
+import com.socks.library.KLog;
 
 import javax.inject.Inject;
 
@@ -30,7 +32,7 @@ public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> i
     @Inject
     Fragment_myself_P p;
     @BindView(R.id.userHeadImg)
-    ImageView userHeadImg;
+    CircleImagewView userHeadImg;
     @BindView(R.id.userName)
     TextView userName;
     @BindView(R.id.userPhone)
@@ -66,7 +68,14 @@ public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> i
 
     @Override
     public void initData() {
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Imageloader.loadCircularImage(Constants.headImg, userHeadImg);
+        userName.setText(TextUtils.isEmpty(Constants.nickname)?Constants.telephone:Constants.nickname);
+        userPhone.setText(Constants.telephone);
     }
 
     @Override

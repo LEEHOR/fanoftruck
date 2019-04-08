@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -30,6 +31,7 @@ import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.model.ApiContact;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.coahr.fanoftruck.widgets.x5web.X5WebViewByMyShelf;
+import com.socks.library.KLog;
 import com.tencent.smtt.export.external.extension.interfaces.IX5WebViewExtension;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
@@ -37,6 +39,8 @@ import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -76,14 +80,13 @@ public class Fragment_myWebView extends BaseFragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mCurrentPhotoPath = PhotoUtil.takePhoto(_mActivity);
+            mCurrentPhotoPath = PhotoUtil.takePhoto(Fragment_myWebView.this);
         }
     };
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == REQUEST_CODE_ALBUM || requestCode == REQUEST_CODE_CAMERA) {
             if (uploadMessage == null && uploadMessageAboveL == null) {
                 return;
@@ -263,7 +266,7 @@ public class Fragment_myWebView extends BaseFragment {
                         android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -308,7 +311,6 @@ public class Fragment_myWebView extends BaseFragment {
             webView.goBack();
             return true;
         }
-
         return super.onBackPressedSupport();
     }
 
@@ -323,7 +325,6 @@ public class Fragment_myWebView extends BaseFragment {
         builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-
                 //一定要返回null,否则<input type='file'>
                 if (uploadMessage != null) {
                     uploadMessage.onReceiveValue(null);
@@ -356,7 +357,7 @@ public class Fragment_myWebView extends BaseFragment {
                 }else{
                     //请求拍照权限
                     if (ActivityCompat.checkSelfPermission(_mActivity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        mCurrentPhotoPath = PhotoUtil.takePhoto(_mActivity);
+                        mCurrentPhotoPath = PhotoUtil.takePhoto(Fragment_myWebView.this);
                     } else {
                         ActivityCompat.requestPermissions(_mActivity, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_PERMISSION_CAMERA);
                     }
@@ -366,9 +367,39 @@ public class Fragment_myWebView extends BaseFragment {
         builder.setNegativeButton("相册", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                PhotoUtil.chooseAlbumPic(_mActivity);
+                PhotoUtil.chooseAlbumPic(Fragment_myWebView.this);
             }
         });
         builder.create().show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults == null && grantResults.length == 0) {
+            return;
+        }
+
+        if (requestCode == REQUEST_CODE_PERMISSION_CAMERA) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                PhotoUtil.takePhoto(this);
+            } else {
+                // Permission Denied
+                new AlertDialog.Builder(_mActivity)
+                        .setTitle("无法拍照")
+                        .setMessage("您未授予拍照权限")
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent localIntent = new Intent();
+                                localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                                localIntent.setData(Uri.fromParts("package", _mActivity.getPackageName(), null));
+                                startActivity(localIntent);
+                            }
+                        }).create().show();
+            }
+        }
     }
 }

@@ -21,6 +21,10 @@ public class Constants {
     public static String token;
     //uid
     public static String uid;
+
+    public static String telephone;
+    public static String nickname;
+    public static String headImg;
     //devicestoken
     public static String devicestoken;
 
@@ -163,6 +167,10 @@ public class Constants {
     public static  String token_key="token";
     //uid
     public static  String uid_key="uid";
+
+    public static  String telephone_key="telephone";
+    public static  String nickname_key="nickname";
+    public static  String headImg_key="headImg";
     //devicestoken
     public static  String devicestoken_key="devicestoken";
 }

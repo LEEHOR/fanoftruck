@@ -240,7 +240,6 @@ public class OrderPagerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public class NeedToPayViewholder extends RecyclerView.ViewHolder {
-
         private LinearLayout ll_commodity_order;
         private TextView tv_time;
 

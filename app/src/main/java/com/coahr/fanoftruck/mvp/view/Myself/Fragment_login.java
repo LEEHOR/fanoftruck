@@ -19,6 +19,7 @@ import com.coahr.fanoftruck.mvp.constract.Fragment_login_C;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginBean;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_Login_P;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
+import com.socks.library.KLog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -176,8 +177,15 @@ public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> imp
     public void LoginSuccess(LoginBean loginBean) {
         PreferenceUtils.setPrefString(BaseApplication.mContext, Constants.token_key, loginBean.getJdata().getToken());
         PreferenceUtils.setPrefString(BaseApplication.mContext, Constants.uid_key, loginBean.getJdata().getUid());
+        PreferenceUtils.setPrefString(BaseApplication.mContext, Constants.nickname_key, loginBean.getJdata().getNickname());
+        PreferenceUtils.setPrefString(BaseApplication.mContext, Constants.telephone_key, loginBean.getJdata().getTelephone());
+        PreferenceUtils.setPrefString(BaseApplication.mContext, Constants.headImg_key, loginBean.getJdata().getHeadImg());
         Constants.token = loginBean.getJdata().getToken();
         Constants.uid = loginBean.getJdata().getUid();
+        Constants.nickname = loginBean.getJdata().getNickname();
+        Constants.telephone = loginBean.getJdata().getTelephone();
+        Constants.headImg = loginBean.getJdata().getHeadImg();
+        KLog.e("lizhiguo", "nickname == " + Constants.nickname+" telephone == " + Constants.telephone + " headImg ==" + Constants.headImg);
         ToastUtils.showLong(loginBean.getMsg());
         if (toFragment==Constants.MainActivity) {
             EventBus.getDefault().postSticky(new EventBusBean(1, "success"));
@@ -192,7 +200,6 @@ public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> imp
         if (toFragment ==Constants.Fragment_myUserInfo){
             _mActivity.onBackPressed();
         }
-
     }
 
     @Override
