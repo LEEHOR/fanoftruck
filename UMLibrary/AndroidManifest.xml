@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.umeng.message.lib"
+          package="com.fanoftruck.umeng.lib"
           android:versionCode="1"
           android:versionName="1.0">
 
@@ -107,7 +107,7 @@
             android:exported="true"
             android:process=":channel">
             <intent-filter>
-                <action android:name="com.umeng.soexample.intent.action.COMMAND" />
+                <action android:name="com.coahr.fanoftruck.intent.action.COMMAND" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
@@ -131,21 +131,6 @@
         <service
             android:name="com.umeng.message.UmengMessageCallbackHandlerService"
             android:exported="false">
-            <intent-filter>
-                <action android:name="com.umeng.messge.registercallback.action" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.umeng.message.enablecallback.action" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.umeng.message.disablecallback.action" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.umeng.message.message.handler.action" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.umeng.message.message.sendmessage.action" />
-            </intent-filter>
         </service>
 
         <service
@@ -154,7 +139,7 @@
 
         <provider
             android:name="com.umeng.message.provider.MessageProvider"
-            android:authorities="com.umeng.soexample.umeng.message"
+            android:authorities="com.coahr.fanoftruck.umeng.message"
             android:exported="false">
             <grant-uri-permission android:pathPattern=".*" />
         </provider>

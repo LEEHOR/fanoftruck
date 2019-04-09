@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!--<item name="android:background">@drawable/bg_fff_background</item>       控制基础view,viewgroup,dialog  de window默认背景，不设置则透明（button貌似不行）-->
         <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
         <item name="windowNoTitle">true</item>
     </style>
 

@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
+import com.coahr.fanoftruck.Utils.Permission.OnRequestPermissionListener;
+import com.coahr.fanoftruck.Utils.Permission.RequestPermissionUtils;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
 import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
@@ -15,6 +17,8 @@ import com.coahr.fanoftruck.mvp.presenter.Fragment_home_P;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.mvp.view.TribuneActivity;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -133,6 +137,5 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
 
     @Override
     public void onLocationFailure(int failure) {
-
     }
 }

@@ -1,5 +1,7 @@
 package com.coahr.fanoftruck.mvp.view;
 
+import android.content.Intent;
+
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseSupportActivity;
@@ -21,6 +23,9 @@ import com.coahr.fanoftruck.mvp.view.Services.Fragment_Store;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_ShoppingDetail;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoList;
 import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoPlay;
+import com.umeng.socialize.UMShareAPI;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Leehor
@@ -102,4 +107,5 @@ public class ContainerActivity extends BaseSupportActivity {
     public void initData() {
 
     }
+
 }
