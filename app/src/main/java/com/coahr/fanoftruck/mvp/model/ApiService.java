@@ -6,6 +6,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.AddShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.AddressListBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentBean;
 import com.coahr.fanoftruck.mvp.model.Bean.AppointmentDefaultBean;
+import com.coahr.fanoftruck.mvp.model.Bean.BindWXData;
 import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
 import com.coahr.fanoftruck.mvp.model.Bean.CarDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Center_Initial_Data;
@@ -18,6 +19,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.DelFormShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.GetCouponDown;
 import com.coahr.fanoftruck.mvp.model.Bean.GetCouponList;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginOutBean;
+import com.coahr.fanoftruck.mvp.model.Bean.MyselfData;
 import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Save_Identity_Info;
 import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
@@ -36,6 +38,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
+import com.coahr.fanoftruck.mvp.model.Bean.UnsetWXData;
 import com.coahr.fanoftruck.mvp.model.Bean.VerifyCode;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
 import com.coahr.fanoftruck.mvp.model.Bean.View_videoBean;
@@ -68,13 +71,12 @@ public interface ApiService {
 
     /**
      * 获取门店信息
-     *  order
-     *  page
-     *  length
-     *  city
-     *  longitude
-     *  latitude
-     *
+     * order
+     * page
+     * length
+     * city
+     * longitude
+     * latitude
      */
     @FormUrlEncoded
     @POST(ApiContact.getStoreList)
@@ -82,6 +84,7 @@ public interface ApiService {
 
     /**
      * 门店详情
+     *
      * @param S_id
      * @param longitude
      * @param latitude
@@ -93,6 +96,7 @@ public interface ApiService {
 
     /**
      * 城市
+     *
      * @param token
      * @return
      */
@@ -102,6 +106,7 @@ public interface ApiService {
 
     /**
      * 搜索
+     *
      * @param token
      * @return
      */
@@ -111,6 +116,7 @@ public interface ApiService {
 
     /**
      * 商品信息
+     *
      * @param brand
      * @param order
      * @param sort
@@ -120,11 +126,12 @@ public interface ApiService {
      */
     @FormUrlEncoded
     @POST(ApiContact.getShoppingList)
-    Call<ShoppingMallBean> getShoppingList(@Field("brand") String brand, @Field("order") String order,@Field("price") String price,
+    Call<ShoppingMallBean> getShoppingList(@Field("brand") String brand, @Field("order") String order, @Field("price") String price,
                                            @Field("sort") String sort, @Field("page") String page, @Field("length") String length);
 
     /**
      * 商品详情
+     *
      * @param c_id
      * @param token
      * @return
@@ -136,6 +143,7 @@ public interface ApiService {
 
     /**
      * 维修视频列表
+     *
      * @param video_name
      * @param video_type
      * @param start
@@ -144,8 +152,8 @@ public interface ApiService {
      */
     @FormUrlEncoded
     @POST(ApiContact.getMaintenanceVideoList)
-    Call<MaintenanceVideoList> getMaintenanceVideoList(@Field("video_name") String video_name,@Field("video_type") String video_type,@Field("start") String start
-    ,@Field("length") String length);
+    Call<MaintenanceVideoList> getMaintenanceVideoList(@Field("video_name") String video_name, @Field("video_type") String video_type, @Field("start") String start
+            , @Field("length") String length);
 
     /**
      * 单个视频获取
@@ -156,35 +164,39 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(ApiContact.getOneVideo)
     Call<View_videoBean> getOneVideo(@Field("video_id") String video_id);
+
     /**
      * 视频点赞
+     *
      * @param video_id
      * @param token
      * @return
      */
     @FormUrlEncoded
     @POST(ApiContact.getVideo_dz)
-    Call<MaintenanceVideo_dz> getMaintenanceVideo_dz(@Field("video_id") String video_id,@Field("token")String token);
+    Call<MaintenanceVideo_dz> getMaintenanceVideo_dz(@Field("video_id") String video_id, @Field("token") String token);
 
 
     /**
      * 视频评论列表
+     *
      * @param video_id
      * @param token
      * @return
      */
     @FormUrlEncoded
     @POST(ApiContact.getVideo_discuss_list)
-    Call<MaintenanceVideoDiscussList> getMaintenanceVideo_discuss_list(@Field("video_id") String video_id, @Field("token")String token);
+    Call<MaintenanceVideoDiscussList> getMaintenanceVideo_discuss_list(@Field("video_id") String video_id, @Field("token") String token);
 
     /**
      * 视频上传0
+     *
      * @param map
      * @return
      */
-     @Multipart
-      @POST(ApiContact.video_add)
-      Call<Video_upload> video_add(@PartMap Map<String, RequestBody> map, @Body MultipartBody multipartBody);
+    @Multipart
+    @POST(ApiContact.video_add)
+    Call<Video_upload> video_add(@PartMap Map<String, RequestBody> map, @Body MultipartBody multipartBody);
 
     /**
      * 视频上传1
@@ -202,12 +214,13 @@ public interface ApiService {
      */
     @POST(ApiContact.video_add)
     Call<Video_upload> video_add(@Body MultipartBody multipartBody);
+
     /**
      * 视频评论
      */
     @FormUrlEncoded
     @POST(ApiContact.getAdddiscuss)
-    Call<AddDiscuss> getAddDiscuss(@Field("video_id") String video_id, @Field("token") String token,@Field("discuss_content") String discuss_content);
+    Call<AddDiscuss> getAddDiscuss(@Field("video_id") String video_id, @Field("token") String token, @Field("discuss_content") String discuss_content);
 
 
     /**
@@ -219,6 +232,7 @@ public interface ApiService {
 
     /**
      * 注册接口
+     *
      * @param userName
      * @param email
      * @param device_token
@@ -226,8 +240,8 @@ public interface ApiService {
      */
     @FormUrlEncoded
     @POST(ApiContact.registerAccount)
-    Call<RegisterBean> register(@Field("phone") String phone, @Field("userName") String userName,@Field("pwd") String pwd
-            ,@Field("email") String email,@Field("device_token") String device_token,@Field("verify_code") String verify_code);
+    Call<RegisterBean> register(@Field("phone") String phone, @Field("userName") String userName, @Field("pwd") String pwd
+            , @Field("email") String email, @Field("device_token") String device_token, @Field("verify_code") String verify_code);
 
     /**
      * 注册短信接口
@@ -262,6 +276,7 @@ public interface ApiService {
 
     /**
      * 车辆列表
+     *
      * @param token
      * @return
      */
@@ -272,6 +287,7 @@ public interface ApiService {
 
     /**
      * 设置默认车辆
+     *
      * @param token
      * @param car_id
      * @return
@@ -283,30 +299,33 @@ public interface ApiService {
 
     /**
      * 删除车辆
+     *
      * @param token
      * @param car_id
      * @return
      */
     @FormUrlEncoded
     @POST(ApiContact.del_car)
-    Call<CarDefaultBean> del_car(@Field("token") String token,@Field("car_id") String car_id);
+    Call<CarDefaultBean> del_car(@Field("token") String token, @Field("car_id") String car_id);
 
 
     /**
      * 预约提交订单
+     *
      * @param token
      * @return
      */
     @FormUrlEncoded
     @POST(ApiContact.appointment)
     Call<AppointmentBean> appointment_order(@Field("token") String token, @Field("car_frameno") String car_frameno
-            ,@Field("car_no") String car_no,@Field("username") String username
-            ,@Field("telephone") String telephone,@Field("appoint_time") String appoint_time
-            ,@Field("service_item") String service_item,@Field("description") String description
-            ,@Field("s_type") String s_type,@Field("s_id") String s_id);
+            , @Field("car_no") String car_no, @Field("username") String username
+            , @Field("telephone") String telephone, @Field("appoint_time") String appoint_time
+            , @Field("service_item") String service_item, @Field("description") String description
+            , @Field("s_type") String s_type, @Field("s_id") String s_id);
 
     /**
      * 预约默认加载
+     *
      * @param token
      * @return
      */
@@ -317,6 +336,7 @@ public interface ApiService {
 
     /**
      * 推荐购车默认数据
+     *
      * @return
      */
     @FormUrlEncoded
@@ -325,6 +345,7 @@ public interface ApiService {
 
     /**
      * 推荐购车默认数据
+     *
      * @return
      */
     @FormUrlEncoded
@@ -346,6 +367,7 @@ public interface ApiService {
 
     /**
      * 个人中心初始化
+     *
      * @param token
      * @return
      */
@@ -353,17 +375,47 @@ public interface ApiService {
     @POST(ApiContact.center_initial_data)
     Call<Center_Initial_Data> Center_Initial_Data(@Field("token") String token);
 
+    /**
+     * 个人中心首页数据
+     *
+     * @param token
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.myself_data)
+    Call<MyselfData> myself_data(@Field("token") String token);
+
+    /**
+     * 绑定微信
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.bind_wx)
+    Call<BindWXData> bindWX(@Field("token") String token,
+                            @Field("unionid") String unionid,
+                            @Field("openid") String openid,
+                            @Field("nickname") String nickname,
+                            @Field("headimgurl") String headimgurl
+    );
+
+    /**
+     * 解除绑定微信
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.unset_wx)
+    Call<UnsetWXData> unsetWX(@Field("token") String token);
 
     /**
      * 个人中心数据保存
+     *
      * @return
      */
     @FormUrlEncoded
     @POST(ApiContact.save_identity_info)
-    Call<Save_Identity_Info>  Save_Identity_Info(@FieldMap Map<String,String> map);
+    Call<Save_Identity_Info> Save_Identity_Info(@FieldMap Map<String, String> map);
 
     /**
      * 登出
+     *
      * @param token
      * @return
      */
@@ -371,18 +423,19 @@ public interface ApiService {
     @POST(ApiContact.logout)
     Call<LoginOutBean> LoginOut(@Field("token") String token);
 
-
     /**
      * 实名认证
+     *
      * @param map
      * @return
      */
     @FormUrlEncoded
-      @POST(ApiContact.save_identity_pic)
-      Call<save_identity_pic> save_identity_pic(@FieldMap Map<String, String> map);
+    @POST(ApiContact.save_identity_pic)
+    Call<save_identity_pic> save_identity_pic(@FieldMap Map<String, String> map);
 
     /**
      * 加入购物车
+     *
      * @param map
      * @return
      */
@@ -392,6 +445,7 @@ public interface ApiService {
 
     /**
      * 从购物车中删除
+     *
      * @param map
      * @return
      */
@@ -402,12 +456,13 @@ public interface ApiService {
 
     /**
      * 购物车
+     *
      * @param map
      * @return
      */
     @FormUrlEncoded
     @POST(ApiContact.MyShoppingCar)
-    Call<ShoppingCart> getShoppingCarList(@FieldMap Map<String,String> map);
+    Call<ShoppingCart> getShoppingCarList(@FieldMap Map<String, String> map);
 
 
     /**
@@ -475,12 +530,13 @@ public interface ApiService {
 
     /**
      * 新优惠券列表
+     *
      * @param token
      * @return
      */
     @FormUrlEncoded
     @POST(ApiContact.CouponCollectionList)
-    Call<GetCouponList>get_coupon_all(@Field("token") String token);
+    Call<GetCouponList> get_coupon_all(@Field("token") String token);
 
     /**
      * 优惠券领取接口
@@ -488,11 +544,12 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(ApiContact.receive_coupon)
-    Call<GetCouponDown>get_coupon_byself(@Field("token") String token, @Field("coupon_id") String coupon_id);
+    Call<GetCouponDown> get_coupon_byself(@Field("token") String token, @Field("coupon_id") String coupon_id);
 
 
     /**
      * 支付接口
+     *
      * @param map
      * @return
      */

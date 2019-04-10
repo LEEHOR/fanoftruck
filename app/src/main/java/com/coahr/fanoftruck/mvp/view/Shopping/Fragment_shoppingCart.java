@@ -19,9 +19,11 @@ import com.coahr.fanoftruck.mvp.constract.Fragment_ShoppingCart_C;
 import com.coahr.fanoftruck.mvp.model.Bean.DelFormShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.ShoppingCart;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_ShoppingCart_P;
+import com.coahr.fanoftruck.mvp.view.ConfirmCommodityOrder.Fragment_confirmCommodityOrder;
 import com.coahr.fanoftruck.mvp.view.Shopping.adapter.ShoppingCartAdapter;
 import com.coahr.fanoftruck.mvp.view.decoration.SpacesItemDecoration;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
+import com.socks.library.KLog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +65,8 @@ public class Fragment_shoppingCart extends BaseFragment<Fragment_ShoppingCart_C.
     private ShoppingCartAdapter shoppingCartAdapter;
     private float total_textPrice; //底部显示
     private String orderConfirm = "";
+    //是否全选
+    private boolean isCheckedAll = false;
 
     public static Fragment_shoppingCart newInstance() {
         return new Fragment_shoppingCart();
@@ -114,6 +118,9 @@ public class Fragment_shoppingCart extends BaseFragment<Fragment_ShoppingCart_C.
                     isDelete = false;
                 }
                 shoppingCartAdapter.unCheckAll();
+
+                //点击后，更新状态
+                isCheckedAll = false;
             }
         });
 
@@ -176,23 +183,41 @@ public class Fragment_shoppingCart extends BaseFragment<Fragment_ShoppingCart_C.
                     return;
                 }
                 for (int i = 0; i < shoppingCartAdapter.getmSelectedPositions().size(); i++) {
+                    ShoppingCart.JdataBean.CommodityBean commodityBean = shoppingCartAdapter.getmSelectedPositions().get(i);
                     if (i == 0) {
-                        orderConfirm = String.format("%s", shoppingCartAdapter.getmSelectedPositions().get(i).getC_id());
+//                        c_id=154&num=2,c_id=159&num=3,
+                        orderConfirm = ("c_id="+String.format("%s", commodityBean.getC_id()) + "&num="+ String.format("%s", commodityBean.getC_num()));
                     } else {
-                        orderConfirm += String.format(",%s", shoppingCartAdapter.getmSelectedPositions().get(i).getC_id());
+                        orderConfirm += (",c_id="+String.format("%s", commodityBean.getC_id()) + "&num="+ String.format("%s", commodityBean.getC_num()));
                     }
                 }
-                if (orderConfirm.equals("")) {
+                orderConfirm+=",";
+                if (orderConfirm.equals(",")) {
                     ToastUtils.showLong("请选择要操作的商品");
                     return;
                 }
                 if (Right_type == 1) {  //结算
-                    tv_settlement.setText("结算(0)");
-                    shoppingCartAdapter.unCheckAll();
+//                    tv_settlement.setText("结算(0)");
+//                    shoppingCartAdapter.unCheckAll();
+                    KLog.e("lizhiguo", "orderConfirm == " + orderConfirm.toString());
+                    start(Fragment_confirmCommodityOrder.newInstance(orderConfirm, ""));
                 }
 
                 if (Right_type == 2) { //删除
                     deleteShoppingFormCart();
+                }
+            }
+        });
+
+        tv_check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isCheckedAll = !isCheckedAll;
+                tv_check.setChecked(isCheckedAll);
+                if (isCheckedAll){
+                    shoppingCartAdapter.checkAll();
+                } else {
+                    shoppingCartAdapter.unCheckAll();
                 }
             }
         });

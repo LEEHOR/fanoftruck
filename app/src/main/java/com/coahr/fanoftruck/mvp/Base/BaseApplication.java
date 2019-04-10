@@ -62,7 +62,7 @@ public class BaseApplication extends MultiDexApplication implements HasActivityI
         initX5WebView();
 //        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "a2ef9522bf3a1c5c206c1e8dac62e363");
         UMConfigure.init(this,"5c121050f1f556ac7c000327","umeng",UMConfigure.DEVICE_TYPE_PHONE,"");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
-        PlatformConfig.setWeixin("你的微信APPID", "你的微信AppSecret");//微信APPID和AppSecret
+        PlatformConfig.setWeixin("wx5441f32a77ce5750", "69870b0cd66594cf4a6c9cc66adf1087");//微信APPID和AppSecret
 
         if (PreferenceUtils.contains(mContext, "token")) {
             Constants.token = PreferenceUtils.getPrefString(mContext, Constants.token_key, null);

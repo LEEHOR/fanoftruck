@@ -32,7 +32,7 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/dp_5">
 
-                        <com.coahr.fanoftruck.widgets.CircleImagewView
+                        <com.coahr.fanoftruck.widgets.CircleImageView
                             android:id="@+id/userHeadImg"
                             android:layout_width="40dp"
                             android:layout_height="@dimen/dp_40"
@@ -47,7 +47,6 @@
                         android:layout_marginLeft="@dimen/dp_10"
                         android:layout_toRightOf="@+id/frl"
                         android:gravity="top"
-                        android:text="dsdssdsdsds"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/dp_18" />
 
@@ -58,7 +57,6 @@
                         android:layout_alignBottom="@id/frl"
                         android:layout_marginLeft="@dimen/dp_10"
                         android:layout_toRightOf="@+id/frl"
-                        android:text="dsdsdsds"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/sp_12" />
                 </RelativeLayout>

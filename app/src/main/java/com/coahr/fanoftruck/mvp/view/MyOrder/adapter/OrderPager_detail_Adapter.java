@@ -26,7 +26,7 @@ public class OrderPager_detail_Adapter extends BaseQuickAdapter<CommodityOrderBe
     protected void convert(BaseViewHolder helper, CommodityOrderBean.JdataEntity.OrderListEntity.CommodityEntity item) {
                 helper.setText(R.id.tv_commodity_info,item.getC_name())
                         .setText(R.id.tv_commodity_price,"¥"+item.getC_price())
-                        .setText(R.id.tv_payment_count,"x"+item.getC_num());
+                        .setText(R.id.tv_commodity_count,"x"+item.getC_num());
         Imageloader.loadImage(item.getC_thumbnail(), (ImageView) helper.getView(R.id.iv_commodity_img));
     }
 }

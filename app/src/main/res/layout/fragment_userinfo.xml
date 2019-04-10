@@ -42,7 +42,7 @@
                         android:textColor="@color/black"
                         android:textSize="14dp" />
 
-                    <ImageView
+                    <com.coahr.fanoftruck.widgets.CircleImageView
                         android:id="@+id/iv_user_head"
                         android:layout_width="45dp"
                         android:layout_height="45dp"

@@ -19,6 +19,15 @@ public class ShoppingCart {
     private String msg;
     private JdataBean jdata;
 
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", jdata=" + jdata +
+                '}';
+    }
+
     public int getCode() {
         return code;
     }
@@ -46,6 +55,13 @@ public class ShoppingCart {
     public static class JdataBean {
         private List<CommodityBean> commodity;
 
+        @Override
+        public String toString() {
+            return "JdataBean{" +
+                    "commodity=" + commodity +
+                    '}';
+        }
+
         public List<CommodityBean> getCommodity() {
             return commodity;
         }
@@ -68,6 +84,17 @@ public class ShoppingCart {
             private String c_price;
             private String c_thumbnail;
             private String c_num;
+
+            @Override
+            public String toString() {
+                return "CommodityBean{" +
+                        "c_id='" + c_id + '\'' +
+                        ", c_name='" + c_name + '\'' +
+                        ", c_price='" + c_price + '\'' +
+                        ", c_thumbnail='" + c_thumbnail + '\'' +
+                        ", c_num='" + c_num + '\'' +
+                        '}';
+            }
 
             public String getC_id() {
                 return c_id;

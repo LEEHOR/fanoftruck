@@ -5,6 +5,7 @@ import com.coahr.fanoftruck.mvp.constract.Fragment_confirmCommodityOrder_C;
 import com.coahr.fanoftruck.mvp.model.Bean.ConfirmOrderBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Confirm_order;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoDiscussList;
+import com.socks.library.KLog;
 
 import java.util.Map;
 
@@ -45,6 +46,7 @@ public class Fragment_confirmCommodityOrder_M extends BaseModel<Fragment_confirm
                 .subscribeWith(new SimpleDisposableSubscriber<ConfirmOrderBean>() {
                     @Override
                     public void _onNext(ConfirmOrderBean bean) {
+                        KLog.e("lizhiguo", bean.toString());
                         if (getPresenter() != null) {
                             if (bean.getCode()==0) {
                                 getPresenter().onSaveCommodityOrderSuccess(bean);

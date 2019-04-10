@@ -13,15 +13,17 @@ import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
 
 public class ThirdLoginUtil {
-    private Activity _mActivity;
+    private static Activity _mActivity;
 
-    private void bindWx(String wxid, String openid, Activity activity, BaseUMAuthListener umAuthListener) {
+    public static void bindWx(String wxid, String openid, Activity activity, BaseUMAuthListener umAuthListener) {
         _mActivity = activity;
 
         if ((wxid != null && !wxid.equals("")) && (openid != null && !openid.equals(""))) {
@@ -38,31 +40,24 @@ public class ThirdLoginUtil {
                     }).onPositive(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-//                    Map map = new HashMap();
-//                    map.put("token", Constants.token);
-//                    map.put("uid", Constants.uid);
-//                    getPresenter().unSetWx(map);
-                    /**
-                     * 此处写一个接口回调
-                     */
+                    EventBus.getDefault().post("unsetWX");
                 }
-            }).build();
+            }).build().show();
         } else {
             UMShareAPI mShareAPI = UMShareAPI.get(_mActivity);
             mShareAPI.getPlatformInfo(_mActivity, SHARE_MEDIA.WEIXIN, umAuthListener);
         }
     }
 
-    abstract class BaseUMAuthListener implements UMAuthListener {
+    public abstract static class BaseUMAuthListener implements UMAuthListener {
         @Override
         public void onStart(SHARE_MEDIA share_media) {
-            KLog.e("onstart");
         }
 
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, final Map<String, String> data) {
             for (Map.Entry<String, String> entry : data.entrySet()) {
-                KLog.d("微信登录","key= " + entry.getKey() + " and value= " + entry.getValue());
+                KLog.e("lizhiguo","key= " + entry.getKey() + " and value= " + entry.getValue());
             }
             KLog.e("onComplete");
             if (SHARE_MEDIA.WEIXIN.equals(platform)) {
@@ -84,32 +79,20 @@ public class ThirdLoginUtil {
                         }).onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        /*Map map = new HashMap();
-                        map.put("openid", data.get("openid"));
-                        map.put("uid", Constants.uid);
-                        map.put("unionid",data.get("unionid"));
-                        map.put("nickname", data.get("screen_name"));
-                        map.put("headimgurl", data.get("profile_image_url"));
-                        map.put("token", Constants.token);
-                        KLog.d("微信",map.get("openid"),map.get("uid"),map.get("unionid"),map.get("nickname"),map.get("headimgurl"),map.get("token"));
-                        getPresenter().bindWx(map);*/
-
-                        onComplete(data);
+                        _onComplete(data);
                     }
                 }).build().show();
             }
         }
 
-        protected abstract void onComplete(Map<String, String> data);
+        protected abstract void _onComplete(Map<String, String> data);
 
         @Override
         public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-            KLog.e("shareonError:" + t.getMessage());
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform, int action) {
-            KLog.e("shareononCancel");
         }
     };
 }

@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 
 
 import com.coahr.fanoftruck.R;
+import com.socks.library.KLog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,9 +64,11 @@ public class PayTypeSelectDialogFragment extends AppCompatDialogFragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_zfb:
+                        KLog.e("lizhiguo", "选择了支付宝");
                         onpayTypeSelectListener.onItemSelect("ali");
                         break;
                     case R.id.rb_wx:
+                        KLog.e("lizhiguo", "选择了微信");
                         onpayTypeSelectListener.onItemSelect("wx");
                         break;
                 }

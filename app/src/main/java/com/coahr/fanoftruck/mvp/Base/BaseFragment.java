@@ -27,6 +27,7 @@ import com.coahr.fanoftruck.Utils.KeyBoardUtils;
 import com.coahr.fanoftruck.Utils.MD5;
 import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.Utils.ScreenUtils;
+import com.coahr.fanoftruck.Utils.ToastUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.model.Bean.AliPayResult;
@@ -320,20 +321,22 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
                     String resultStatus = aliPayResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        new MaterialDialog.Builder(getActivity())
+                        /*new MaterialDialog.Builder(getActivity())
                                 .title("支付宝")
                                 .content(resultInfo)
                                 .canceledOnTouchOutside(true)
-                                .build().show();
+                                .build().show();*/
+                        ToastUtils.showShort(_mActivity, "支付成功了！");
 
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-                        new MaterialDialog.Builder(getActivity())
+                        /*new MaterialDialog.Builder(getActivity())
                                 .title("支付宝")
                                 .content(resultInfo)
                                 .canceledOnTouchOutside(true)
-                                .build().show();
+                                .build().show();*/
+                        ToastUtils.showShort(_mActivity, "支付失败了！");
                     }
                     break;
                 }
@@ -352,6 +355,15 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
         Runnable payRunnable = new Runnable() {  //这里注意要放在子线程
             @Override
             public void run() {
+//                appid='wx89f3b1477df1aa39',
+//                        mch_id='1512629621',
+//                        nonce_str='6V1yA95I2tqo9eH2',
+//                        prepay_id='wx101555390268995f9c9704db1540361672',
+//                        result_code='SUCCESS',
+//                        return_code='SUCCESS',
+//                        return_msg='OK',
+//                        sign='F43D3F08C8A8CAE93FC6C6080A7D0B4C',
+//                        trade_type='APP'
                 PayReq request = new PayReq(); //调起微信APP的对象
                 //下面是设置必要的参数，也就是前面说的参数,这几个参数从何而来请看上面说明
                 request.appId = entity.getAppid();

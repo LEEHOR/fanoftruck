@@ -28,6 +28,21 @@ public  class WxPayJsonEntity {
     private String sign;
     private String trade_type;
 
+    @Override
+    public String toString() {
+        return "WxPayJsonEntity{" +
+                "appid='" + appid + '\'' +
+                ", mch_id='" + mch_id + '\'' +
+                ", nonce_str='" + nonce_str + '\'' +
+                ", prepay_id='" + prepay_id + '\'' +
+                ", result_code='" + result_code + '\'' +
+                ", return_code='" + return_code + '\'' +
+                ", return_msg='" + return_msg + '\'' +
+                ", sign='" + sign + '\'' +
+                ", trade_type='" + trade_type + '\'' +
+                '}';
+    }
+
     public String getAppid() {
         return appid;
     }
