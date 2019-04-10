@@ -185,8 +185,8 @@ public class Fragment_login extends BaseFragment<Fragment_login_C.Presenter> imp
         Constants.nickname = loginBean.getJdata().getNickname();
         Constants.telephone = loginBean.getJdata().getTelephone();
         Constants.headImg = loginBean.getJdata().getHeadImg();
-        KLog.e("lizhiguo", "nickname == " + Constants.nickname+" telephone == " + Constants.telephone + " headImg ==" + Constants.headImg);
         ToastUtils.showLong(loginBean.getMsg());
+        KLog.e("lizhiguo", "token == " + Constants.token);
         if (toFragment==Constants.MainActivity) {
             EventBus.getDefault().postSticky(new EventBusBean(1, "success"));
             _mActivity.onBackPressed();

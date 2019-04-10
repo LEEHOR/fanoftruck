@@ -14,6 +14,7 @@ import com.coahr.fanoftruck.Utils.PreferenceUtils;
 import com.coahr.fanoftruck.commom.ActivityManager;
 import com.coahr.fanoftruck.commom.Constants;
 import com.gyf.barlibrary.ImmersionBar;
+import com.socks.library.KLog;
 
 import java.util.List;
 
@@ -90,7 +91,6 @@ public abstract class BaseActivity<P extends BaseContract.Presenter> extends Sup
             RequestPermissionUtils.requestPermission(BaseActivity.this, new OnRequestPermissionListener() {
                 @Override
                 public void PermissionSuccess(List<String> permissions) {
-
                 }
 
                 @Override

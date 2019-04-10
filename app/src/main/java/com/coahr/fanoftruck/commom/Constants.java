@@ -34,7 +34,7 @@ public class Constants {
     public static int location_counts;
 
     //微信开放平台
-    public static final String wx_app_id = "wx89f3b1477df1aa39";
+    public static final String wx_app_id = "wx5441f32a77ce5750";
 
     public static final String API_KEY = "carsuper1201wechat905appweixinpy";
 

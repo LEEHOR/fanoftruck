@@ -36,7 +36,7 @@ public class OrderPagerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private static final int NEED_TO_RECIEVE = 2;
     private static final int NEED_TO_EVALUATE = 4;
     private static final int RETURN_OR_CHANGE = 5;
-    private static final int HAVE_EVALUATE=6;
+    private static final int HAVE_EVALUATE = 6;
 
     public OrderPagerAdapter(Context context, List<CommodityOrderBean.JdataEntity.OrderListEntity> orderListEntities) {
         this.context = context;
@@ -67,65 +67,73 @@ public class OrderPagerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        if (holder!=null&&holder.itemView!=null) {
-        if (holder instanceof HaveBeenCancleViewholder) {
-            ((HaveBeenCancleViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
-            ((HaveBeenCancleViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
-            ((HaveBeenCancleViewholder) holder).tv_order_status.setText("待付款");
-            OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
-            ((HaveBeenCancleViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
-            ((HaveBeenCancleViewholder) holder).rv_commodity.setAdapter(adapter);
-            ((HaveBeenCancleViewholder) holder).tv_restore_buy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onCommodityOrderHandleListener.restoreToBuy(orderListEntities.get(position));
-                }
-            });
+        if (holder != null && holder.itemView != null) {
+            if (holder instanceof HaveBeenCancleViewholder) {
+                ((HaveBeenCancleViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
+                ((HaveBeenCancleViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
+                ((HaveBeenCancleViewholder) holder).tv_order_status.setText("待付款");
+                OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
+                ((HaveBeenCancleViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
+                ((HaveBeenCancleViewholder) holder).rv_commodity.setAdapter(adapter);
+                ((HaveBeenCancleViewholder) holder).tv_restore_buy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (null != onCommodityOrderHandleListener) {
+                            onCommodityOrderHandleListener.restoreToBuy(orderListEntities.get(position));
+                        }
+                    }
+                });
 
-        }
-        if (holder instanceof NeedToPayViewholder) {
-            ((NeedToPayViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
-            ((NeedToPayViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
-            ((NeedToPayViewholder) holder).tv_order_status.setText("待付款");
-            OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
-            ((NeedToPayViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
-            ((NeedToPayViewholder) holder).rv_commodity.setAdapter(adapter);
-            ((NeedToPayViewholder) holder).tv_pay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onCommodityOrderHandleListener.payImmediately(orderListEntities.get(position));
-                }
-            });
+            }
+            if (holder instanceof NeedToPayViewholder) {
+                ((NeedToPayViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
+                ((NeedToPayViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
+                ((NeedToPayViewholder) holder).tv_order_status.setText("待付款");
+                OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
+                ((NeedToPayViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
+                ((NeedToPayViewholder) holder).rv_commodity.setAdapter(adapter);
+                ((NeedToPayViewholder) holder).tv_pay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (null != onCommodityOrderHandleListener) {
+                            onCommodityOrderHandleListener.payImmediately(orderListEntities.get(position));
+                        }
+                    }
+                });
 
-        }
-        if (holder instanceof NeedToSendViewholder) {
-            ((NeedToSendViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
-            ((NeedToSendViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
-            ((NeedToSendViewholder) holder).tv_order_status.setText("待发货");
-            OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
-            ((NeedToSendViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
-            ((NeedToSendViewholder) holder).rv_commodity.setAdapter(adapter);
-            ((NeedToSendViewholder) holder).tv_urge.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onCommodityOrderHandleListener.urgeMyOrder(orderListEntities.get(position));
-                }
-            });
-        }
-        if (holder instanceof NeedToEvaluateViewholder) {
-            ((NeedToEvaluateViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
-            ((NeedToEvaluateViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
-            ((NeedToEvaluateViewholder) holder).tv_order_status.setText("待评价");
-            OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
-            ((NeedToEvaluateViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
-            ((NeedToEvaluateViewholder) holder).rv_commodity.setAdapter(adapter);
-            ((NeedToEvaluateViewholder) holder).tv_evaluate_immediately.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onCommodityOrderHandleListener.evaluateImmediately(orderListEntities.get(position));
-                }
-            });
-        }
+            }
+            if (holder instanceof NeedToSendViewholder) {
+                ((NeedToSendViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
+                ((NeedToSendViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
+                ((NeedToSendViewholder) holder).tv_order_status.setText("待发货");
+                OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
+                ((NeedToSendViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
+                ((NeedToSendViewholder) holder).rv_commodity.setAdapter(adapter);
+                ((NeedToSendViewholder) holder).tv_urge.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (null != onCommodityOrderHandleListener) {
+                            onCommodityOrderHandleListener.urgeMyOrder(orderListEntities.get(position));
+                        }
+                    }
+                });
+            }
+            if (holder instanceof NeedToEvaluateViewholder) {
+                ((NeedToEvaluateViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
+                ((NeedToEvaluateViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
+                ((NeedToEvaluateViewholder) holder).tv_order_status.setText("待评价");
+                OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
+                ((NeedToEvaluateViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
+                ((NeedToEvaluateViewholder) holder).rv_commodity.setAdapter(adapter);
+                ((NeedToEvaluateViewholder) holder).tv_evaluate_immediately.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (null != onCommodityOrderHandleListener) {
+                            onCommodityOrderHandleListener.evaluateImmediately(orderListEntities.get(position));
+                        }
+                    }
+                });
+            }
 
             if (holder instanceof HaveToEvaluateViewholder) {
                 ((HaveToEvaluateViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
@@ -137,49 +145,59 @@ public class OrderPagerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 ((HaveToEvaluateViewholder) holder).tv_evaluate_immediately.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        onCommodityOrderHandleListener.haveEvaluate(orderListEntities.get(position));
+                        if (null != onCommodityOrderHandleListener) {
+                            onCommodityOrderHandleListener.haveEvaluate(orderListEntities.get(position));
+                        }
                     }
                 });
             }
-        if (holder instanceof NeedToRecieveViewholder) {
-            ((NeedToRecieveViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
-            ((NeedToRecieveViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
-            ((NeedToRecieveViewholder) holder).tv_order_status.setText("待收货");
-            OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
-            ((NeedToRecieveViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
-            ((NeedToRecieveViewholder) holder).rv_commodity.setAdapter(adapter);
-            ((NeedToRecieveViewholder) holder).tv_see_logistics.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onCommodityOrderHandleListener.seeLogistics(orderListEntities.get(position));
-                }
-            });
-            ((NeedToRecieveViewholder) holder).tv_ensure_recieve.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onCommodityOrderHandleListener.ensureToRecieve(orderListEntities.get(position));
-                }
-            });
-        }
-        if (holder instanceof ReturnOrChangeViewholder) {
-            ((ReturnOrChangeViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
-            ((ReturnOrChangeViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
-            ((ReturnOrChangeViewholder) holder).tv_order_status.setText("退换货");
-            OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
-            ((ReturnOrChangeViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
-            ((ReturnOrChangeViewholder) holder).rv_commodity.setAdapter(adapter);
-            ((ReturnOrChangeViewholder) holder).tv_see_logistics.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onCommodityOrderHandleListener.seeLogistics(orderListEntities.get(position));
-                }
-            });
-        }
+            if (holder instanceof NeedToRecieveViewholder) {
+                ((NeedToRecieveViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
+                ((NeedToRecieveViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
+                ((NeedToRecieveViewholder) holder).tv_order_status.setText("待收货");
+                OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
+                ((NeedToRecieveViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
+                ((NeedToRecieveViewholder) holder).rv_commodity.setAdapter(adapter);
+                ((NeedToRecieveViewholder) holder).tv_see_logistics.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (null != onCommodityOrderHandleListener) {
+                            onCommodityOrderHandleListener.seeLogistics(orderListEntities.get(position));
+                        }
+                    }
+                });
+                ((NeedToRecieveViewholder) holder).tv_ensure_recieve.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (null != onCommodityOrderHandleListener) {
+                            onCommodityOrderHandleListener.ensureToRecieve(orderListEntities.get(position));
+                        }
+                    }
+                });
+            }
+            if (holder instanceof ReturnOrChangeViewholder) {
+                ((ReturnOrChangeViewholder) holder).tv_time.setText(orderListEntities.get(position).getCreate_time());
+                ((ReturnOrChangeViewholder) holder).tv_total_price.setText("¥" + orderListEntities.get(position).getTotal());
+                ((ReturnOrChangeViewholder) holder).tv_order_status.setText("退换货");
+                OrderPager_detail_Adapter adapter = new OrderPager_detail_Adapter(orderListEntities.get(position).getCommodity());
+                ((ReturnOrChangeViewholder) holder).rv_commodity.setLayoutManager(new LinearLayoutManager(BaseApplication.mContext));
+                ((ReturnOrChangeViewholder) holder).rv_commodity.setAdapter(adapter);
+                ((ReturnOrChangeViewholder) holder).tv_see_logistics.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (null != onCommodityOrderHandleListener) {
+                            onCommodityOrderHandleListener.seeLogistics(orderListEntities.get(position));
+                        }
+                    }
+                });
+            }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onItemCLick(orderListEntities.get(position));
+                    if (null != onItemClickListener) {
+                        onItemClickListener.onItemCLick(orderListEntities.get(position));
+                    }
                 }
             });
         }

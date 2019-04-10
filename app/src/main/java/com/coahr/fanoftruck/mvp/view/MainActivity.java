@@ -1,8 +1,10 @@
 package com.coahr.fanoftruck.mvp.view;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.amap.api.location.AMapLocation;
@@ -18,16 +20,22 @@ import com.coahr.fanoftruck.mvp.constract.MainActivityC;
 import com.coahr.fanoftruck.mvp.presenter.MainActivityP;
 import com.coahr.fanoftruck.mvp.view.BusinessOpportunity.Fragment_Business_viewPager;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
+import com.coahr.fanoftruck.mvp.view.MyWebView.Fragment_myWebView;
 import com.coahr.fanoftruck.mvp.view.Myself.Fragment_Myself;
 import com.coahr.fanoftruck.mvp.view.Services.Fragment_Services;
 import com.coahr.fanoftruck.mvp.view.Shopping.Fragment_Shopping;
 import com.coahr.fanoftruck.widgets.MyBottomNavigation.MyBottomNavigation;
 import com.socks.library.KLog;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 

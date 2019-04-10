@@ -74,10 +74,13 @@ public class BaseApplication extends MultiDexApplication implements HasActivityI
         mContext=getApplicationContext();
         DaggerApplicationComponents.create().inject(this);
         MultiDex.install(mContext);
-        UMConfigure.setLogEnabled(true);
         UMConfigure.init(mContext,"5c121050f1f556ac7c000327","umeng",UMConfigure.DEVICE_TYPE_PHONE,"a2ef9522bf3a1c5c206c1e8dac62e363");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
         initUpush();
         initX5WebView();
+//        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "a2ef9522bf3a1c5c206c1e8dac62e363");
+        UMConfigure.init(this,"5c121050f1f556ac7c000327","umeng",UMConfigure.DEVICE_TYPE_PHONE,"");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
+        PlatformConfig.setWeixin("wx5441f32a77ce5750", "69870b0cd66594cf4a6c9cc66adf1087");//微信APPID和AppSecret
+
         if (PreferenceUtils.contains(mContext, "token")) {
             Constants.token = PreferenceUtils.getPrefString(mContext, Constants.token_key, null);
             KLog.d("token", Constants.token);
@@ -85,12 +88,11 @@ public class BaseApplication extends MultiDexApplication implements HasActivityI
         if (PreferenceUtils.contains(mContext, "sessionId")) {
             Constants.sessionId = PreferenceUtils.getPrefString(mContext, Constants.uid_key, null);
         }
-
-     /*   if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG){
             UMConfigure.setLogEnabled(true);
         } else {
             UMConfigure.setLogEnabled(false);
-        }*/
+        }
         Utils.init(this); //工具类初始化
     }
 

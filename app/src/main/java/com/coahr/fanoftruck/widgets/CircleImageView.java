@@ -10,8 +10,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -20,17 +22,16 @@ import androidx.appcompat.widget.AppCompatImageView;
 /**
  * 自定义圆角图片
  */
-public class CircleImagewView extends AppCompatImageView {
-    public CircleImagewView(Context context) {
+public class CircleImageView extends AppCompatImageView {
+    public CircleImageView(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
     }
 
-    public CircleImagewView(Context context, AttributeSet attrs) {
+    public CircleImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CircleImagewView(Context context, AttributeSet attrs, int defStyle) {
+    public CircleImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -46,33 +47,23 @@ public class CircleImagewView extends AppCompatImageView {
         if (getWidth() == 0 || getHeight() == 0) {
             return;
         }
-        Bitmap b = null;
-        if(drawable instanceof BitmapDrawable){
-            b =  ((BitmapDrawable)drawable).getBitmap() ;
-        }/*else if(drawable instanceof AsyncDrawable){
-            b = Bitmap
-                    .createBitmap(
-                            getWidth(),
-                            getHeight(),
-                            drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-                                    : Bitmap.Config.RGB_565);
-            Canvas canvas1 = new Canvas(b);
-            // canvas.setBitmap(bitmap);
-            drawable.setBounds(0, 0, getWidth(),
-                    getHeight());
-            drawable.draw(canvas1);
-        }*/
-        Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
 
-        int w = getWidth();
+        if (drawable instanceof BitmapDrawable) {
+            Bitmap b = ((BitmapDrawable) drawable).getBitmap();
+            Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
 
-        Bitmap roundBitmap =  getCroppedBitmap(bitmap, w);
-        canvas.drawBitmap(roundBitmap, 0,0, null);
+            int w = getWidth();
+
+            Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
+            canvas.drawBitmap(roundBitmap, 0, 0, null);
+        } else {
+            super.onDraw(canvas);
+        }
     }
 
     private static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
         Bitmap sbmp;
-        if(bmp.getWidth() != radius || bmp.getHeight() != radius)
+        if (bmp.getWidth() != radius || bmp.getHeight() != radius)
             sbmp = Bitmap.createScaledBitmap(bmp, radius, radius, false);
         else
             sbmp = bmp;
@@ -88,8 +79,8 @@ public class CircleImagewView extends AppCompatImageView {
         paint.setDither(true);
         canvas.drawARGB(0, 0, 0, 0);
         paint.setColor(Color.parseColor("#BAB399"));
-        canvas.drawCircle(sbmp.getWidth() / 2+0.7f, sbmp.getHeight() / 2+0.7f,
-                sbmp.getWidth() / 2+0.1f, paint);
+        canvas.drawCircle(sbmp.getWidth() / 2 + 0.7f, sbmp.getHeight() / 2 + 0.7f,
+                sbmp.getWidth() / 2 + 0.1f, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(sbmp, rect, rect, paint);
 

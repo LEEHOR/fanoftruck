@@ -119,6 +119,12 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
         myOrderPageRecycler.setLayoutManager(linearLayoutManager);
         myOrderPageRecycler.addItemDecoration(new SpacesItemDecoration(0, DensityUtils.dp2px(BaseApplication.mContext, 5),getResources().getColor(R.color.material_grey_200)));
         myOrderPageRecycler.setAdapter(adapter);
+        adapter.setOnItemClickListener(new OrderPagerAdapter.onItemClickListener() {
+            @Override
+            public void onItemCLick(CommodityOrderBean.JdataEntity.OrderListEntity orderListEntity) {
+
+            }
+        });
     }
 
     @Override

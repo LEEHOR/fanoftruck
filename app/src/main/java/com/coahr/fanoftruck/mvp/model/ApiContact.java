@@ -88,6 +88,15 @@ public class ApiContact {
     //推荐购车订单提交
     public static final String save_business_order="/APP/User/save_business_order";
 
+    //个人中心首页数据
+    public static final String myself_data="/APP/User/get_userinfo";
+
+    //绑定微信
+    public static final String bind_wx="/APP/User/bind_wx";
+
+    //解除绑定微信
+    public static final String unset_wx="/APP/User/unset_wx";
+
     //个人中心初始化数据
     public static final String center_initial_data="/APP/Query/center_initial_data";
 

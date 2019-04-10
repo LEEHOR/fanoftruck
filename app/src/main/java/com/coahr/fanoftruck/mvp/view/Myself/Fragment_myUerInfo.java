@@ -36,6 +36,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.LoginOutBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Save_Identity_Info;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_UserInfo_P;
 import com.coahr.fanoftruck.mvp.view.MainActivity;
+import com.coahr.fanoftruck.widgets.CircleImageView;
 import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.google.gson.Gson;
 import com.socks.library.KLog;
@@ -64,7 +65,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
    @BindView(R.id.tv_certification)
     TextView tv_certification;
     @BindView(R.id.iv_user_head)
-    ImageView iv_user_head;
+    CircleImageView iv_user_head;
     @BindView(R.id.ed_user_nickname)
     EditText ed_user_nickname;
     @BindView(R.id.rg_radioGroup)
@@ -232,6 +233,7 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
 
     @Override
     public void getCenter_Initial_DataSuccess(Center_Initial_Data center_initial_data) {
+        KLog.e("lizhiguo", "center_initial_data === " + center_initial_data.toString());
         if (center_initial_data != null) {
             Center_Initial_Data.JdataBean.UserBean user = center_initial_data.getJdata().getUser();
             if (user != null) {
@@ -295,7 +297,6 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     @Override
     public void Save_Identity_InfoFailure(String failure) {
         ToastUtils.showLong(failure);
-        KLog.e("lizhiguo", "保存失败了。。。。。。。");
     }
 
     @Override
@@ -454,7 +455,6 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
     private void getInfoMassage() {
         Map map = new HashMap();
         map.put("token", Constants.token);
-        KLog.e("lizhiguo", "token == " + Constants.token);
         p.getCenter_Initial_Data(map);
     }
 

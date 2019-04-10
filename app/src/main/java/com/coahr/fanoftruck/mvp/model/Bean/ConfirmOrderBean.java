@@ -17,6 +17,15 @@ public class ConfirmOrderBean {
     private JdataEntity jdata;
     private String msg;
 
+    @Override
+    public String toString() {
+        return "ConfirmOrderBean{" +
+                "code=" + code +
+                ", jdata=" + jdata +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
+
     public int getCode() {
         return code;
     }
@@ -51,6 +60,15 @@ public class ConfirmOrderBean {
         private String order;
         private WxPayJsonEntity order_json;
         private String order_string;
+
+        @Override
+        public String toString() {
+            return "JdataEntity{" +
+                    "order='" + order + '\'' +
+                    ", order_json=" + order_json +
+                    ", order_string='" + order_string + '\'' +
+                    '}';
+        }
 
         public String getOrder() {
             return order;

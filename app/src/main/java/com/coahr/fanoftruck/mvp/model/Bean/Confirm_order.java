@@ -19,6 +19,15 @@ public class Confirm_order {
     private String msg;
     private JdataBean jdata;
 
+    @Override
+    public String toString() {
+        return "Confirm_order{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", jdata=" + jdata +
+                '}';
+    }
+
     public int getCode() {
         return code;
     }
@@ -55,6 +64,16 @@ public class Confirm_order {
         private int fee;
         private double total;
         private List<CommodityBean> commodity;
+
+        @Override
+        public String toString() {
+            return "JdataBean{" +
+                    "userinfo=" + userinfo +
+                    ", fee=" + fee +
+                    ", total=" + total +
+                    ", commodity=" + commodity +
+                    '}';
+        }
 
         public UserinfoBean getUserinfo() {
             return userinfo;
@@ -100,6 +119,16 @@ public class Confirm_order {
             private String username;
             private String telephone;
             private String address;
+
+            @Override
+            public String toString() {
+                return "UserinfoBean{" +
+                        "ua_id='" + ua_id + '\'' +
+                        ", username='" + username + '\'' +
+                        ", telephone='" + telephone + '\'' +
+                        ", address='" + address + '\'' +
+                        '}';
+            }
 
             public String getUa_id() {
                 return ua_id;
@@ -148,6 +177,17 @@ public class Confirm_order {
             private String c_price;
             private String c_thumbnail;
             private String c_num;
+
+            @Override
+            public String toString() {
+                return "CommodityBean{" +
+                        "c_id='" + c_id + '\'' +
+                        ", c_name='" + c_name + '\'' +
+                        ", c_price='" + c_price + '\'' +
+                        ", c_thumbnail='" + c_thumbnail + '\'' +
+                        ", c_num='" + c_num + '\'' +
+                        '}';
+            }
 
             public String getC_id() {
                 return c_id;

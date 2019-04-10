@@ -49,7 +49,7 @@ public class RequestPermissionUtils {
                         public void onAction(@NonNull List<String> permissions) {
 
                             if (AndPermission.hasAlwaysDeniedPermission(context, permissions)) {
-                                showSettingDialog(context, permissions);
+
                             } else {
                                 if (listener != null) {
                                     listener.PermissionFail(permissions);
