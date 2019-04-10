@@ -22,6 +22,10 @@ import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.mvp.view.MainActivity;
 import com.coahr.fanoftruck.widgets.CircleImageView;
 import com.socks.library.KLog;
+import com.umeng.message.UmengMessageHandler;
+import com.umeng.message.UmengMessageService;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.handler.UMAPIShareHandler;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -280,5 +284,6 @@ public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> i
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
+        UMShareAPI.get(_mActivity).release();
     }
 }

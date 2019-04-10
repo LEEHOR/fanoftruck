@@ -4,7 +4,6 @@ import com.coahr.fanoftruck.dagger.components.BaseActivityComponents;
 import com.coahr.fanoftruck.mvp.view.ContainerActivity;
 import com.coahr.fanoftruck.mvp.view.MainActivity;
 import com.coahr.fanoftruck.mvp.view.TribuneActivity;
-import com.coahr.fanoftruck.mvp.view.VideoPlay.Fragment_home_videoPlay;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -26,6 +25,5 @@ public abstract class AllActivityModule {
 
     @ContributesAndroidInjector(modules = TribuneAcyivity_Module.class)
     abstract TribuneActivity TribuneActivityInjector();
-
 
 }
