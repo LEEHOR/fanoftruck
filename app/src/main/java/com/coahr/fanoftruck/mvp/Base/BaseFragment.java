@@ -32,6 +32,7 @@ import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.model.Bean.AliPayResult;
 import com.coahr.fanoftruck.mvp.model.Bean.WxPayJsonEntity;
+import com.coahr.fanoftruck.mvp.view.MyOrder.Fragment_Order_pager;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -40,6 +41,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
@@ -327,6 +329,10 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
                                 .canceledOnTouchOutside(true)
                                 .build().show();*/
                         ToastUtils.showShort(_mActivity, "支付成功了！");
+
+                        //刷新订单页面
+                        Intent intent = new Intent(Fragment_Order_pager.RECEIVER_ACTION);
+                        LocalBroadcastManager.getInstance(_mActivity).sendBroadcast(intent);
 
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                     } else {

@@ -148,6 +148,9 @@ public class ApiContact {
     //支付接口
     public static final String payCommodityOrder="/APP/User/save_commodity_order";
 
+    //订单支付接口
+    public static final String payImmediatelyOrder="/APP/User/quick_pay";
+
     //添加发票
     public static final String ADD_INVOICE="http://app.cvfans.net/H5/invoice1.html";
 

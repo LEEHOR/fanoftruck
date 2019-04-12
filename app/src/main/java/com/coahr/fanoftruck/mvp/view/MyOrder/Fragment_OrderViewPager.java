@@ -65,6 +65,7 @@ public class Fragment_OrderViewPager extends BaseFragment {
     public void initData() {
         myCommodityOrderVPAdapter = new MyOrderViewPagerAdapter(getChildFragmentManager());
         myOrderViewPage.setAdapter(myCommodityOrderVPAdapter);
+        myOrderViewPage.setOffscreenPageLimit(myCommodityOrderVPAdapter.getCount()-1);
         myorderTab.setupWithViewPager(myOrderViewPage);
         myOrderViewPage.setCurrentItem(showPosition);
     }

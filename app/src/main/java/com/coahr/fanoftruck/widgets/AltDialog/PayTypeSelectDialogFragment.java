@@ -28,8 +28,6 @@ import butterknife.Unbinder;
  * 支付工具选择弹窗
  */
 public class PayTypeSelectDialogFragment extends AppCompatDialogFragment {
-
-
     @BindView(R.id.rb_zfb)
     RadioButton rbZfb;
     @BindView(R.id.rb_wx)
@@ -64,11 +62,9 @@ public class PayTypeSelectDialogFragment extends AppCompatDialogFragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_zfb:
-                        KLog.e("lizhiguo", "选择了支付宝");
                         onpayTypeSelectListener.onItemSelect("ali");
                         break;
                     case R.id.rb_wx:
-                        KLog.e("lizhiguo", "选择了微信");
                         onpayTypeSelectListener.onItemSelect("wx");
                         break;
                 }

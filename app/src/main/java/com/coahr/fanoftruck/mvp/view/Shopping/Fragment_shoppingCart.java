@@ -186,9 +186,9 @@ public class Fragment_shoppingCart extends BaseFragment<Fragment_ShoppingCart_C.
                     ShoppingCart.JdataBean.CommodityBean commodityBean = shoppingCartAdapter.getmSelectedPositions().get(i);
                     if (i == 0) {
 //                        c_id=154&num=2,c_id=159&num=3,
-                        orderConfirm = ("c_id="+String.format("%s", commodityBean.getC_id()) + "&num="+ String.format("%s", commodityBean.getC_num()));
+                        orderConfirm = (String.format("c_id=%s", commodityBean.getC_id()) + String.format("&num=%s", commodityBean.getC_num()));
                     } else {
-                        orderConfirm += (",c_id="+String.format("%s", commodityBean.getC_id()) + "&num="+ String.format("%s", commodityBean.getC_num()));
+                        orderConfirm += (String.format(",c_id=%s", commodityBean.getC_id()) + String.format("&num=%s", commodityBean.getC_num()));
                     }
                 }
                 orderConfirm+=",";

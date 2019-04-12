@@ -557,6 +557,16 @@ public interface ApiService {
     @POST(ApiContact.payCommodityOrder)
     Call<ConfirmOrderBean> payCommodityOrder(@FieldMap Map<String, String> map);
 
+    /**
+     * 订单支付接口
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(ApiContact.payImmediatelyOrder)
+    Call<ConfirmOrderBean> payImmediatelyOrder(@FieldMap Map<String, String> map);
+
 
     @FormUrlEncoded
     @POST(ApiContact.MY_ORDER)

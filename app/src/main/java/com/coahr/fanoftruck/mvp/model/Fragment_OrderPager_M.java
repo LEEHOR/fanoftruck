@@ -5,6 +5,7 @@ package com.coahr.fanoftruck.mvp.model;
 import com.coahr.fanoftruck.mvp.Base.BaseModel;
 import com.coahr.fanoftruck.mvp.constract.Fragment_MyOrder_Pager_C;
 import com.coahr.fanoftruck.mvp.model.Bean.CommodityOrderBean;
+import com.coahr.fanoftruck.mvp.model.Bean.ConfirmOrderBean;
 
 import java.util.Map;
 
@@ -48,6 +49,23 @@ public class Fragment_OrderPager_M extends BaseModel<Fragment_MyOrder_Pager_C.Pr
                                 getPresenter().loadMoreSuccess(bean);
                             }else {
                                 getPresenter().loadMoreFailure(bean.getMsg());
+                            }
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void payImmediately(Map<String, String> map) {
+        mRxManager.add(createFlowable(new SimpleFlowableOnSubscribe<ConfirmOrderBean>(getApiService().payImmediatelyOrder(map)))
+                .subscribeWith(new SimpleDisposableSubscriber<ConfirmOrderBean>() {
+                    @Override
+                    public void _onNext(ConfirmOrderBean bean) {
+                        if (getPresenter() != null) {
+                            if (bean.getCode()==0) {
+                                getPresenter().payImmediatelySuccess(bean);
+                            }else {
+                                getPresenter().payImmediatelyFailure(bean.getMsg());
                             }
                         }
                     }

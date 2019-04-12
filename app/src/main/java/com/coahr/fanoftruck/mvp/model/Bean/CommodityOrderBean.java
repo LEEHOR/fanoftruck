@@ -19,6 +19,15 @@ public class CommodityOrderBean {
     private JdataEntity jdata;
     private String msg;
 
+    @Override
+    public String toString() {
+        return "CommodityOrderBean{" +
+                "code=" + code +
+                ", jdata=" + jdata +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
+
     public int getCode() {
         return code;
     }
@@ -46,6 +55,13 @@ public class CommodityOrderBean {
     public static class JdataEntity {
         private List<OrderListEntity> order_list;
 
+        @Override
+        public String toString() {
+            return "JdataEntity{" +
+                    "order_list=" + order_list +
+                    '}';
+        }
+
         public List<OrderListEntity> getOrder_list() {
             return order_list;
         }
@@ -68,6 +84,17 @@ public class CommodityOrderBean {
             private String order_id;
             private String total;
             private List<CommodityEntity> commodity;
+
+            @Override
+            public String toString() {
+                return "OrderListEntity{" +
+                        "create_time='" + create_time + '\'' +
+                        ", o_status='" + o_status + '\'' +
+                        ", order_id='" + order_id + '\'' +
+                        ", total='" + total + '\'' +
+                        ", commodity=" + commodity +
+                        '}';
+            }
 
             public String getCreate_time() {
                 return create_time;
@@ -123,6 +150,17 @@ public class CommodityOrderBean {
                 private String c_num;
                 private String c_price;
                 private String c_thumbnail;
+
+                @Override
+                public String toString() {
+                    return "CommodityEntity{" +
+                            "c_id='" + c_id + '\'' +
+                            ", c_name='" + c_name + '\'' +
+                            ", c_num='" + c_num + '\'' +
+                            ", c_price='" + c_price + '\'' +
+                            ", c_thumbnail='" + c_thumbnail + '\'' +
+                            '}';
+                }
 
                 public String getC_id() {
                     return c_id;

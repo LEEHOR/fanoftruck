@@ -82,6 +82,7 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
     private float discount_price = 0;
 
     private String mPayType;
+    private PayTypeSelectDialogFragment payTypeSelectDialogFragment;
 
     public static Fragment_confirmCommodityOrder newInstance(String commodity, String ua_id) {
         Fragment_confirmCommodityOrder confirmCommodityOrder = new Fragment_confirmCommodityOrder();
@@ -127,15 +128,13 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
             }
         });
 
-
-
         /**
          * 提交订单
          */
         tv_submit_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PayTypeSelectDialogFragment payTypeSelectDialogFragment = new PayTypeSelectDialogFragment();
+                payTypeSelectDialogFragment = new PayTypeSelectDialogFragment();
                 payTypeSelectDialogFragment.setOnpayTypeSelectListener(new PayTypeSelectDialogFragment.OnPayTypeSelectListener() {
                     @Override
                     public void onItemSelect(String payType) {
@@ -195,6 +194,7 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
     @Override
     public void onSaveCommodityOrderSuccess(ConfirmOrderBean bean) {
         KLog.e("lizhiguo", "bean == " + bean.toString());
+        payTypeSelectDialogFragment.dismiss();
         if (bean != null && bean.getJdata() != null) {
             switch (mPayType) {
                 case "ali":
@@ -211,7 +211,8 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
 
     @Override
     public void onSaveCommodityOrderFailure(String failure) {
-
+        payTypeSelectDialogFragment.dismiss();
+        ToastUtils.showShort(_mActivity, failure);
     }
 
     /**

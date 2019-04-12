@@ -3,6 +3,7 @@ package com.coahr.fanoftruck.mvp.constract;
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BaseContract;
 import com.coahr.fanoftruck.mvp.model.Bean.CommodityOrderBean;
+import com.coahr.fanoftruck.mvp.model.Bean.ConfirmOrderBean;
 
 import java.util.Map;
 
@@ -14,7 +15,6 @@ import java.util.Map;
 public interface Fragment_MyOrder_Pager_C {
 
     interface View extends BaseContract.View {
-
         void onGetCommodityOrderListSuccess(CommodityOrderBean bean);
 
         void onGetCommodityOrderListFailure(String failure);
@@ -23,6 +23,9 @@ public interface Fragment_MyOrder_Pager_C {
 
         void loadMoreFailure(String failure);
 
+        void payImmediatelySuccess(ConfirmOrderBean bean);
+
+        void payImmediatelyFailure(String failure);
     }
 
     interface Presenter extends BaseContract.Presenter {
@@ -38,11 +41,18 @@ public interface Fragment_MyOrder_Pager_C {
 
         void loadMoreFailure(String failure);
 
+        void payImmediately(Map<String, String> map);
+
+        void payImmediatelySuccess(ConfirmOrderBean bean);
+
+        void payImmediatelyFailure(String failure);
     }
 
     interface Model extends BaseContract.Model {
         void getCommodityOrderList(Map<String, Object> map);
 
         void loadMore(Map<String, Object> map);
+
+        void payImmediately(Map<String, String> map);
     }
 }

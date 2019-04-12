@@ -5,6 +5,7 @@ package com.coahr.fanoftruck.mvp.presenter;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_MyOrder_Pager_C;
 import com.coahr.fanoftruck.mvp.model.Bean.CommodityOrderBean;
+import com.coahr.fanoftruck.mvp.model.Bean.ConfirmOrderBean;
 import com.coahr.fanoftruck.mvp.model.Fragment_OrderPager_M;
 import com.coahr.fanoftruck.mvp.view.MyOrder.Fragment_Order_pager;
 
@@ -26,6 +27,8 @@ public class Fragment_OrderPager_P extends BasePresenter<Fragment_MyOrder_Pager_
     public void showError(Throwable t) {
 
     }
+
+
 
     @Override
     public void getCommodityOrderList(Map<String, Object> map) {
@@ -66,6 +69,27 @@ public class Fragment_OrderPager_P extends BasePresenter<Fragment_MyOrder_Pager_
     public void loadMoreFailure(String failure) {
         if (getView() != null) {
             getView().loadMoreFailure(failure);
+        }
+    }
+
+    @Override
+    public void payImmediately(Map<String, String> map) {
+        if (mModle != null) {
+            mModle.payImmediately(map);
+        }
+    }
+
+    @Override
+    public void payImmediatelySuccess(ConfirmOrderBean bean) {
+        if (getView() != null) {
+            getView().payImmediatelySuccess(bean);
+        }
+    }
+
+    @Override
+    public void payImmediatelyFailure(String failure) {
+        if (getView() != null) {
+            getView().payImmediatelyFailure(failure);
         }
     }
 }
