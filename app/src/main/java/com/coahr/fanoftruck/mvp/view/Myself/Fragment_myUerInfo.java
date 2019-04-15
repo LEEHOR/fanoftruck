@@ -233,7 +233,6 @@ public class Fragment_myUerInfo extends BaseFragment<Fragment_userInfo_C.Present
 
     @Override
     public void getCenter_Initial_DataSuccess(Center_Initial_Data center_initial_data) {
-        KLog.e("lizhiguo", "center_initial_data === " + center_initial_data.toString());
         if (center_initial_data != null) {
             Center_Initial_Data.JdataBean.UserBean user = center_initial_data.getJdata().getUser();
             if (user != null) {

@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+            android:id="@+id/mytitlebar"
             app:tittle="视频上传"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

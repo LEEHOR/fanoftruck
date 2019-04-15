@@ -63,7 +63,6 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
         @Override
         public void onReceive(Context context, Intent intent) {
             if (RECEIVER_ACTION.equals(RECEIVER_ACTION)){
-                KLog.e("lizhiguo", "刷新页面了。。。");
                 current_page = 0;
                 getOrderList(current_page);
             }
@@ -225,7 +224,6 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
 
     @Override
     public void onGetCommodityOrderListSuccess(CommodityOrderBean bean) {
-        KLog.e("lizhiguo", "bean == " + bean.toString());
         current_page=0;
         isLoading = false;
         myOrderPageSwipe.setRefreshing(false);
@@ -243,7 +241,6 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
 
     @Override
     public void loadMoreSuccess(CommodityOrderBean bean) {
-        KLog.e("lizhiguo", "bean == " + bean.toString());
         isLoading = false;
         orderListEntities.addAll(bean.getJdata().getOrder_list());
         adapter.notifyDataSetChanged();
@@ -262,7 +259,6 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
         if (bean != null && bean.getJdata() != null) {
             switch (mPayType) {
                 case "ali":
-                    KLog.e("lizhiguo", "选择了支付宝");
                     toAliPay(bean.getJdata().getOrder_string());
                     break;
                 case "wx":

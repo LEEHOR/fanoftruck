@@ -10,6 +10,9 @@ public class ApiContact {
     public static String baseUrl="http://app.cvfans.net/";
     //测试路径
    // public static String baseUrl="http://192.168.191.1:8080/three_research/";
+    //首页数据
+    public static final String HOME_DATA="/APP/Query/initial_data";
+
     //门店列表
     public static final String getStoreList="/APP/Query/get_station_list";
 

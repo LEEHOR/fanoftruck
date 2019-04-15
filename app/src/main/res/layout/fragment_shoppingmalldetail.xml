@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar
+        android:id="@+id/mytittlebar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tittle="商品详情" />

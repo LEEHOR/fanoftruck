@@ -105,6 +105,13 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
 
     @Override
     public void initView() {
+        mytittle.getLeftIcon().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _mActivity.onBackPressed();
+            }
+        });
+
         rl_reciever_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,7 +145,6 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
                 payTypeSelectDialogFragment.setOnpayTypeSelectListener(new PayTypeSelectDialogFragment.OnPayTypeSelectListener() {
                     @Override
                     public void onItemSelect(String payType) {
-                        KLog.e("lizhiguo", "payType == " + payType +"支付方式回来了");
                         mPayType = payType;
                         saveConfirmO5rder(payType);
                     }
@@ -159,7 +165,6 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
 
     @Override
     public void getCommodityOrderSuccess(Confirm_order confirmOrder) {
-        KLog.e("lizhiguo", "confirmOrder == " + confirmOrder.toString());
         Confirm_order.JdataBean jdata = confirmOrder.getJdata();
         List<Confirm_order.JdataBean.CommodityBean> commodity = jdata.getCommodity();
         if (commodity != null && commodity.size() > 0) {
@@ -198,7 +203,6 @@ public class Fragment_confirmCommodityOrder extends BaseFragment<Fragment_confir
         if (bean != null && bean.getJdata() != null) {
             switch (mPayType) {
                 case "ali":
-                    KLog.e("lizhiguo", "选择了支付宝");
                     toAliPay(bean.getJdata().getOrder_string());
                     break;
                 case "wx":

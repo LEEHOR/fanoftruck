@@ -30,6 +30,7 @@ import com.coahr.fanoftruck.mvp.constract.Fragment_recorder_preview_C;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
 import com.coahr.fanoftruck.mvp.presenter.Fragment_recorder_preview_P;
 import com.coahr.fanoftruck.widgets.SelectTextView;
+import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.socks.library.KLog;
 
 import java.util.ArrayList;
@@ -53,6 +54,8 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
 
     @Inject
     Fragment_recorder_preview_P p;
+    @BindView(R.id.mytitlebar)
+    MyTittleBar mytitlebar;
     @BindView(R.id.preview_video)
     JzvdStd playerStandard;
     @BindView(R.id.video_describe)
@@ -94,6 +97,8 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                             public void run() {
                                 Bitmap netVideoBitmap = Imageloader.getNetVideoBitmap(videoPath);
                                 saveImagePath = FileUtils.saveImage(netVideoBitmap);
+
+                                KLog.e("lizhiguo", "saveImagePath == " + saveImagePath + "--");
                                 if (saveImagePath != null) {
                                     Bitmap bitmap = BitmapFactory.decodeFile(saveImagePath);
                                     Bitmap zipBitmap = BitmapUtils.ImageCompress(bitmap, 1024);
@@ -167,6 +172,13 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
 
     @Override
     public void initView() {
+        mytitlebar.getLeftIcon().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _mActivity.onBackPressed();
+            }
+        });
+
         videoPath = getArguments().getString("videoPath");
         playerStandard.setUp(videoPath, null, Jzvd.SCREEN_WINDOW_NORMAL);
         Glide.with(_mActivity).load(videoPath).into(playerStandard.thumbImageView);
@@ -180,7 +192,6 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
 
     @Override
     public void initData() {
-
         video_describe.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -259,6 +270,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         dismissWaitDialog();
         isUpload = false;
         ToastUtils.showLong("上传失败" + failure);
+        KLog.e("lizhiguo", "failure == " + failure);
     }
 
 
@@ -337,6 +349,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     public void showError(@Nullable Throwable e) {
         super.showError(e);
         ToastUtils.showLong(e.toString());
+        KLog.e("lizhiguo", "Throwable == " + e.toString());
         isUpload = false;
         dismissWaitDialog();
         dismissLoading();

@@ -3,6 +3,7 @@ package com.coahr.fanoftruck.mvp.presenter;
 import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.mvp.Base.BasePresenter;
 import com.coahr.fanoftruck.mvp.constract.Fragment_home_C;
+import com.coahr.fanoftruck.mvp.model.Bean.HomeData;
 import com.coahr.fanoftruck.mvp.model.Fragment_home_M;
 import com.coahr.fanoftruck.mvp.view.Home.Fragment_Home;
 
@@ -38,6 +39,27 @@ public class Fragment_home_P extends BasePresenter<Fragment_home_C.View,Fragment
     public void onLocationFailure(int failure) {
         if (getView() != null) {
             getView().onLocationFailure(failure);
+        }
+    }
+
+    @Override
+    public void getHomeData() {
+        if (mModle != null) {
+            mModle.getHomeData();
+        }
+    }
+
+    @Override
+    public void getHomeDataSuccess(HomeData homeData) {
+        if (getView() != null) {
+            getView().getHomeDataSuccess(homeData);
+        }
+    }
+
+    @Override
+    public void getHomeDataFailure(String failure) {
+        if (getView() != null) {
+            getView().getHomeDataFailure(failure);
         }
     }
 }

@@ -72,7 +72,8 @@ public class ContainerActivity extends BaseSupportActivity {
                 loadRootFragment(R.id.con_fragment, Fragment_about_us.newInstance());
                 break;
             case Constants.Fragment_videoPlay: //视频播放
-                loadRootFragment(R.id.con_fragment, Fragment_home_videoPlay.newInstance());
+                Intent intent = getIntent();
+                loadRootFragment(R.id.con_fragment, Fragment_home_videoPlay.newInstance(intent.getStringExtra("videoLink"), intent.getStringExtra("videoCover")));
                 break;
             case Constants.Fragment_videoList: //视频列表
                 loadRootFragment(R.id.con_fragment, Fragment_home_videoList.newInstance());

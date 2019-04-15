@@ -9,8 +9,10 @@ import android.widget.Toast;
 
 
 import com.coahr.fanoftruck.commom.Constants;
+import com.socks.library.KLog;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -66,7 +68,7 @@ public class FileUtils {
 
         File eis = new File(Constants.SAVE_DIR_ZIPVIDEO);
         if (!eis.exists()) {
-            eis.mkdir();
+            eis.mkdirs();
         }
         return eis.toString() + "/" + videoName;
     }
@@ -75,10 +77,9 @@ public class FileUtils {
      * 创建图片文件保存路径
      */
     public static String getSDImagePath(String videoName) {
-
         File eis = new File(Constants.SAVE_DIR_PHOTO);
         if (!eis.exists()) {
-            eis.mkdir();
+            eis.mkdirs();
         }
         return eis.toString() + "/" + videoName;
     }

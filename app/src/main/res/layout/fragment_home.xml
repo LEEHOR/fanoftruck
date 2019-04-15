@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <com.donkingliang.banner.CustomBanner
-        android:background="@color/black"
+        android:id="@+id/custom_banner"
         android:layout_width="match_parent"
         android:layout_height="160dp">
     </com.donkingliang.banner.CustomBanner>
@@ -404,6 +404,7 @@
                 android:id="@+id/to_video_play"
                 app:cardElevation="0dp"
                 app:cardPreventCornerOverlap="true"
+                android:descendantFocusability="blocksDescendants"
                 android:layout_marginTop="@dimen/dp_5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

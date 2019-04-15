@@ -1,9 +1,6 @@
 package com.coahr.fanoftruck.mvp.view.Shopping;
 
 import android.os.Bundle;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +21,7 @@ import com.coahr.fanoftruck.mvp.presenter.Fragment_shoppingDetail_P;
 import com.coahr.fanoftruck.mvp.view.ConfirmCommodityOrder.Fragment_confirmCommodityOrder;
 import com.coahr.fanoftruck.mvp.view.MyAddress.Fragment_address_list;
 import com.coahr.fanoftruck.mvp.view.Shopping.adapter.ShoppingDetailAdapter;
+import com.coahr.fanoftruck.widgets.TittleBar.MyTittleBar;
 import com.donkingliang.banner.CustomBanner;
 import com.socks.library.KLog;
 
@@ -33,6 +31,9 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 
 import static com.coahr.fanoftruck.mvp.view.Shopping.Fragment_dialog_shopping.TO_ADD_CART;
@@ -66,6 +67,8 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
     RelativeLayout send_address_rel;
     @BindView(R.id.shopping_swipe)
     SwipeRefreshLayout shopping_swipe;
+    @BindView(R.id.mytittlebar)
+    MyTittleBar mytittlebar;
     private String c_id;
     private ShoppingDetailAdapter shoppingDetailAdapter;
     private LinearLayoutManager linearLayoutManager;
@@ -94,6 +97,12 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
 
     @Override
     public void initView() {
+        mytittlebar.getLeftIcon().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _mActivity.onBackPressed();
+            }
+        });
         shopping_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,8 +110,8 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
                 fragment_dialog_shopping.setListener(new Fragment_dialog_shopping.getShoppingDialog() {
                     @Override
                     public void getShoppingCount(String count) {
-                        KLog.d("数目",count);
-                    start(Fragment_confirmCommodityOrder.newInstance(String.format("cid=%s&num=%s",c_id,count),address_id==null?"":address_id));
+                        KLog.d("数目", count);
+                        start(Fragment_confirmCommodityOrder.newInstance(String.format("cid=%s&num=%s", c_id, count), address_id == null ? "" : address_id));
                     }
                 });
                 fragment_dialog_shopping.show(getChildFragmentManager(), TAG);
@@ -126,7 +135,7 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
         send_address_rel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startForResult(Fragment_address_list.newInstance(Constants.Fragment_shoppingDetail),10);
+                startForResult(Fragment_address_list.newInstance(Constants.Fragment_shoppingDetail), 10);
             }
         });
         shopping_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -165,8 +174,8 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
         ShoppingMallDetailBean.JdataEntity.CommodityEntity commodity = shoppingMallDetailBean.getJdata().getCommodity();
         if (commodity != null) {
             List<String> cp_path = commodity.getCp_path();
-            if (cp_path != null && cp_path.size()>0) {
-                SetCustomBannerUtils.setCustomBanner(custom_Banner,cp_path,ImageView.ScaleType.FIT_CENTER);
+            if (cp_path != null && cp_path.size() > 0) {
+                SetCustomBannerUtils.setCustomBanner(custom_Banner, cp_path, ImageView.ScaleType.FIT_CENTER);
 
             }
             c_price = commodity.getC_price();
@@ -188,7 +197,7 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
             }
         }
         shopping_swipe.setRefreshing(false);
-}
+    }
 
     @Override
     public void getShoppingDetailFailure(String failure) {
@@ -223,9 +232,9 @@ public class Fragment_ShoppingDetail extends BaseFragment<Fragment_shoppingDetai
     @Override
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
         super.onFragmentResult(requestCode, resultCode, data);
-        if (requestCode==10 && resultCode==10){
+        if (requestCode == 10 && resultCode == 10) {
             if (data != null) {
-                send_address.setText((String)data.get("address"));
+                send_address.setText((String) data.get("address"));
                 address_id = (String) data.get("address_id");
             }
 

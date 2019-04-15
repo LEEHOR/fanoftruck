@@ -18,6 +18,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.Coupon_Used;
 import com.coahr.fanoftruck.mvp.model.Bean.DelFormShoppingCart;
 import com.coahr.fanoftruck.mvp.model.Bean.GetCouponDown;
 import com.coahr.fanoftruck.mvp.model.Bean.GetCouponList;
+import com.coahr.fanoftruck.mvp.model.Bean.HomeData;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginOutBean;
 import com.coahr.fanoftruck.mvp.model.Bean.MyselfData;
 import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
@@ -68,6 +69,11 @@ import retrofit2.http.PartMap;
  * on 16:01
  */
 public interface ApiService {
+    /**
+     * 首页信息
+     */
+    @POST(ApiContact.HOME_DATA)
+    Call<HomeData> getHomeData();
 
     /**
      * 获取门店信息

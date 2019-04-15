@@ -109,7 +109,6 @@ public class StoreSpaceUtils {
 		if(sdDir == null){
 			return null;
 		}
-		
 		return sdDir.toString();
 	}
 	

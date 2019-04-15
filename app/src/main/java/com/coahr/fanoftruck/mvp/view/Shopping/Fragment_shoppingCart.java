@@ -196,10 +196,11 @@ public class Fragment_shoppingCart extends BaseFragment<Fragment_ShoppingCart_C.
                     ToastUtils.showLong("请选择要操作的商品");
                     return;
                 }
+
+                KLog.e("lizhiguo", "cid === " + orderConfirm);
                 if (Right_type == 1) {  //结算
 //                    tv_settlement.setText("结算(0)");
 //                    shoppingCartAdapter.unCheckAll();
-                    KLog.e("lizhiguo", "orderConfirm == " + orderConfirm.toString());
                     start(Fragment_confirmCommodityOrder.newInstance(orderConfirm, ""));
                 }
 
