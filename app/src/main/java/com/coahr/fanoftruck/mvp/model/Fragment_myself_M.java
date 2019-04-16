@@ -47,7 +47,6 @@ public class Fragment_myself_M extends BaseModel<Fragment_myself_C.Presenter> im
                 .subscribeWith(new SimpleDisposableSubscriber<UnsetWXData>() {
                     @Override
                     public void _onNext(UnsetWXData unsetWXData) {
-                        KLog.e("lizhiguo", "_onNext == " + unsetWXData.toString());
                         if (getPresenter() != null) {
                             if (unsetWXData.getCode() == 0) {
                                 getPresenter().unsetWXSuccess(unsetWXData);

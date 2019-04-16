@@ -46,7 +46,6 @@ public class Fragment_confirmCommodityOrder_M extends BaseModel<Fragment_confirm
                 .subscribeWith(new SimpleDisposableSubscriber<ConfirmOrderBean>() {
                     @Override
                     public void _onNext(ConfirmOrderBean bean) {
-                        KLog.e("lizhiguo", bean.toString());
                         if (getPresenter() != null) {
                             if (bean.getCode()==0) {
                                 getPresenter().onSaveCommodityOrderSuccess(bean);

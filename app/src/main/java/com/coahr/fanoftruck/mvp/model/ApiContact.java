@@ -1,5 +1,12 @@
 package com.coahr.fanoftruck.mvp.model;
 
+import com.coahr.fanoftruck.mvp.model.Bean.CommodityOrderDetailBean;
+
+import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
+
 /**
  * Created by Leehor
  * on 2018/11/12
@@ -33,6 +40,9 @@ public class ApiContact {
 
     //维修视频列表
     public static  final  String getMaintenanceVideoList="/APP/Video/get_video_list";
+
+    //汽车视频列表
+    public static  final  String getTruckVideoList="/APP/Query/more_car_videos";
 
     //单个视频
     public static final String getOneVideo="/APP/Video/view_video";
@@ -165,4 +175,8 @@ public class ApiContact {
 
     //我的订单
     public  static final String MY_ORDER="/APP/User/get_commodity_order_list";
+
+    //待支付订单
+    public  static final String MY_WAIT_ORDER="/APP/User/get_commodity_order_detail";
+    public  static final String CANCEL_WAIT_ORDER="/APP/User/save_commodity_order_cancel";
 }

@@ -11,6 +11,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.Business_car;
 import com.coahr.fanoftruck.mvp.model.Bean.CarDefaultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Center_Initial_Data;
 import com.coahr.fanoftruck.mvp.model.Bean.CommodityOrderBean;
+import com.coahr.fanoftruck.mvp.model.Bean.CommodityOrderDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.ConfirmOrderBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Confirm_order;
 import com.coahr.fanoftruck.mvp.model.Bean.CouponBean;
@@ -21,6 +22,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.GetCouponList;
 import com.coahr.fanoftruck.mvp.model.Bean.HomeData;
 import com.coahr.fanoftruck.mvp.model.Bean.LoginOutBean;
 import com.coahr.fanoftruck.mvp.model.Bean.MyselfData;
+import com.coahr.fanoftruck.mvp.model.Bean.ResultBean;
 import com.coahr.fanoftruck.mvp.model.Bean.SaveBusinessCarBean;
 import com.coahr.fanoftruck.mvp.model.Bean.Save_Identity_Info;
 import com.coahr.fanoftruck.mvp.model.Bean.SearchBean;
@@ -39,6 +41,7 @@ import com.coahr.fanoftruck.mvp.model.Bean.ShoppingMallDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreBean;
 import com.coahr.fanoftruck.mvp.model.Bean.StoreDetailBean;
 import com.coahr.fanoftruck.mvp.model.Bean.MaintenanceVideoList;
+import com.coahr.fanoftruck.mvp.model.Bean.TruckVideoListData;
 import com.coahr.fanoftruck.mvp.model.Bean.UnsetWXData;
 import com.coahr.fanoftruck.mvp.model.Bean.VerifyCode;
 import com.coahr.fanoftruck.mvp.model.Bean.Video_upload;
@@ -146,7 +149,6 @@ public interface ApiService {
     @POST(ApiContact.getShoppingDetail)
     Call<ShoppingMallDetailBean> getShoppingDetail(@Field("c_id") String c_id, @Field("token") String token);
 
-
     /**
      * 维修视频列表
      *
@@ -160,6 +162,12 @@ public interface ApiService {
     @POST(ApiContact.getMaintenanceVideoList)
     Call<MaintenanceVideoList> getMaintenanceVideoList(@Field("video_name") String video_name, @Field("video_type") String video_type, @Field("start") String start
             , @Field("length") String length);
+
+    /**
+     * 汽车视频列表
+     */
+    @POST(ApiContact.getTruckVideoList)
+    Call<TruckVideoListData> getTruckVideoList();
 
     /**
      * 单个视频获取
@@ -578,4 +586,12 @@ public interface ApiService {
     @POST(ApiContact.MY_ORDER)
     Call<CommodityOrderBean> getCommodityOrderList(@Field("token") Object token, @Field("order_status") Object order_status, @Field("page") Object page, @Field("length") Object length);
 
+
+    @FormUrlEncoded
+    @POST(ApiContact.MY_WAIT_ORDER)
+    Call<CommodityOrderDetailBean> getCommodityOrderDetail(@Field("token") String token, @Field("order_id") String order_id);
+
+    @FormUrlEncoded
+    @POST(ApiContact.CANCEL_WAIT_ORDER)
+    Call<ResultBean> cancelCommodityOrder(@Field("token") String token, @Field("order_id") String order_id, @Field("reason") String reason);
 }

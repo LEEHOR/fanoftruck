@@ -57,12 +57,13 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
     SwipeRefreshLayout myOrderPageSwipe;
 
     private LocalBroadcastManager mLocalBroadcastManager;
-    public static final String RECEIVER_ACTION ="order_page_refresh";
+    public static final String RECEIVER_ACTION = "order_page_refresh";
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (RECEIVER_ACTION.equals(RECEIVER_ACTION)){
+            KLog.e("lizhiguo", "刷新页面了。。。。");
+            if (RECEIVER_ACTION.equals(intent.getAction())) {
                 current_page = 0;
                 getOrderList(current_page);
             }
@@ -116,7 +117,7 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
             public void onRefresh() {
                 if (!isLoading) {
                     isLoading = true;
-                    current_page=0;
+                    current_page = 0;
                     getOrderList(current_page);
                 }
             }
@@ -132,11 +133,10 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
                             public void run() {
                                 getOrderMoreList(current_page++);
                             }
-                        },500);
+                        }, 500);
                     }
-
                 }
-                }
+            }
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -148,17 +148,30 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
 
     @Override
     public void initData() {
-        current_page=0;
+        current_page = 0;
         getOrderList(current_page);
         linearLayoutManager = new LinearLayoutManager(BaseApplication.mContext);
         adapter = new OrderPagerAdapter(_mActivity, orderListEntities);
         myOrderPageRecycler.setLayoutManager(linearLayoutManager);
-        myOrderPageRecycler.addItemDecoration(new SpacesItemDecoration(0, DensityUtils.dp2px(BaseApplication.mContext, 5),getResources().getColor(R.color.material_grey_200)));
+        myOrderPageRecycler.addItemDecoration(new SpacesItemDecoration(0, DensityUtils.dp2px(BaseApplication.mContext, 5), getResources().getColor(R.color.material_grey_200)));
         myOrderPageRecycler.setAdapter(adapter);
         adapter.setOnItemClickListener(new OrderPagerAdapter.onItemClickListener() {
             @Override
             public void onItemCLick(CommodityOrderBean.JdataEntity.OrderListEntity orderListEntity) {
-
+                if (orderListEntity.getO_status().equals("0")) {
+                    KLog.e("lizhiguo", "start == getOrder_id" + orderListEntity.getOrder_id());
+                    ((Fragment_OrderViewPager) getParentFragment()).start(NeedToPayFragment.newInstance(orderListEntity.getOrder_id()));
+                }/* else if (orderListEntity.getO_status().equals("1")) {
+                    ((MyCommodityOrderFragment)getParentFragment()).start(NeedToSendFragment.newInstance(orderListEntity.getOrder_id()));
+                } else if (orderListEntity.getO_status().equals("2")) {
+                    ((MyCommodityOrderFragment)getParentFragment()).start(NeedToRecieveFragment.newInstance(orderListEntity.getOrder_id()));
+                } else if (orderListEntity.getO_status().equals("4")) { //待评价
+                    ((MyCommodityOrderFragment)getParentFragment()).start(NeedToEvaluateFragment.newInstance(orderListEntity.getOrder_id(),4));
+                } else if (orderListEntity.getO_status().equals("5")) {
+                    ((MyCommodityOrderFragment)getParentFragment()).start(ReturnOrChangeFragment.newInstance(orderListEntity.getOrder_id()));
+                } else if (orderListEntity.getO_status().equals("6")){ //已评价
+                    ((MyCommodityOrderFragment)getParentFragment()).start(NeedToEvaluateFragment.newInstance(orderListEntity.getOrder_id(),6));
+                }*/
             }
         });
 
@@ -211,12 +224,13 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
 
     /**
      * 发送订单到后台
+     *
      * @param payType
      */
     private void saveConfirmO5rder(String payType) {
         Map<String, String> map = new HashMap();
         map.put("token", Constants.token);
-        map.put("order_id", order_id == null? "": order_id);
+        map.put("order_id", order_id == null ? "" : order_id);
         map.put("order_type", ORDER_TYPE);
         map.put("payment", payType);
         p.payImmediately(map);
@@ -224,7 +238,7 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
 
     @Override
     public void onGetCommodityOrderListSuccess(CommodityOrderBean bean) {
-        current_page=0;
+        current_page = 0;
         isLoading = false;
         myOrderPageSwipe.setRefreshing(false);
         orderListEntities.clear();
@@ -236,7 +250,7 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
     public void onGetCommodityOrderListFailure(String failure) {
         isLoading = false;
         myOrderPageSwipe.setRefreshing(false);
-        current_page=0;
+        current_page = 0;
     }
 
     @Override
@@ -277,6 +291,7 @@ public class Fragment_Order_pager extends BaseLazyFragment<Fragment_MyOrder_Page
 
     /**
      * 获取订单列表
+     *
      * @param pager
      */
     private void getOrderList(int pager) {

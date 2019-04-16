@@ -73,6 +73,9 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     @BindView(R.id.service_tag3)
     SelectTextView service_tag3;
 
+    @BindView(R.id.service_tag4)
+    SelectTextView service_tag4;
+
     private String videoPath;
     List<String> pathList = new ArrayList<>();
     private String video_type;
@@ -97,8 +100,6 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
                             public void run() {
                                 Bitmap netVideoBitmap = Imageloader.getNetVideoBitmap(videoPath);
                                 saveImagePath = FileUtils.saveImage(netVideoBitmap);
-
-                                KLog.e("lizhiguo", "saveImagePath == " + saveImagePath + "--");
                                 if (saveImagePath != null) {
                                     Bitmap bitmap = BitmapFactory.decodeFile(saveImagePath);
                                     Bitmap zipBitmap = BitmapUtils.ImageCompress(bitmap, 1024);
@@ -187,7 +188,7 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         service_tag1.setOnClickListener(this);
         service_tag2.setOnClickListener(this);
         service_tag3.setOnClickListener(this);
-
+        service_tag4.setOnClickListener(this);
     }
 
     @Override
@@ -270,7 +271,6 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         dismissWaitDialog();
         isUpload = false;
         ToastUtils.showLong("上传失败" + failure);
-        KLog.e("lizhiguo", "failure == " + failure);
     }
 
 
@@ -296,20 +296,24 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
         switch (view.getId()) {
             case R.id.service_tag1:
                 video_type = "1";
-                chanceMode(service_tag1, service_tag2, service_tag3);
+                chanceMode(service_tag1, service_tag2, service_tag3, service_tag4);
                 break;
             case R.id.service_tag2:
                 video_type = "2";
-                chanceMode(service_tag2, service_tag1, service_tag3);
+                chanceMode(service_tag2, service_tag1, service_tag3, service_tag4);
                 break;
             case R.id.service_tag3:
                 video_type = "3";
-                chanceMode(service_tag3, service_tag1, service_tag2);
+                chanceMode(service_tag3, service_tag1, service_tag2, service_tag4);
+                break;
+            case R.id.service_tag4:
+                video_type = "4";
+                chanceMode(service_tag4, service_tag1, service_tag2, service_tag3);
                 break;
         }
     }
 
-    private void chanceMode(SelectTextView view1, SelectTextView view2, SelectTextView view3) {
+    private void chanceMode(SelectTextView view1, SelectTextView view2, SelectTextView view3, SelectTextView view4) {
         if (view1.getTag() == null || String.valueOf(view1.getTag()).equals("1")) {
             view1.toggle(false);
             view1.setTag("2");
@@ -326,7 +330,6 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
             view2.toggle(true);
             view2.setTag("1");
         }
-
         if (view3.getTag() == null || String.valueOf(view3.getTag()).equals("1")) {
             view3.toggle(true);
             view3.setTag("1");
@@ -334,6 +337,14 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
             video_type = "";
             view3.toggle(true);
             view3.setTag("1");
+        }
+        if (view4.getTag() == null || String.valueOf(view4.getTag()).equals("1")) {
+            view4.toggle(true);
+            view4.setTag("1");
+        } else {
+            video_type = "";
+            view4.toggle(true);
+            view4.setTag("1");
         }
     }
 
@@ -349,7 +360,6 @@ public class Fragment_recorder_Preview extends BaseFragment<Fragment_recorder_pr
     public void showError(@Nullable Throwable e) {
         super.showError(e);
         ToastUtils.showLong(e.toString());
-        KLog.e("lizhiguo", "Throwable == " + e.toString());
         isUpload = false;
         dismissWaitDialog();
         dismissLoading();

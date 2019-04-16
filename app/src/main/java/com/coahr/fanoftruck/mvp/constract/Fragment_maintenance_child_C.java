@@ -64,7 +64,6 @@ public interface Fragment_maintenance_child_C {
 
         void getVideoList(Map<String, String> map);
 
-
         void getVideoMore(Map<String, String> map);
 
         void getVideoSearch(Map<String, String> map);

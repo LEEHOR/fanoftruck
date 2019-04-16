@@ -1,5 +1,7 @@
 package com.coahr.fanoftruck.mvp.view.CallForHelp;
 
+import com.coahr.fanoftruck.Utils.DensityUtils;
+import com.coahr.fanoftruck.Utils.ViewUtils;
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 
@@ -42,7 +44,7 @@ public class CallForHelp_viewPager extends BaseFragment {
 
     @Override
     public void initView() {
-
+        ViewUtils.setIndicatorWidth(help_tab, DensityUtils.dp2px(_mActivity, 22));
     }
 
     @Override

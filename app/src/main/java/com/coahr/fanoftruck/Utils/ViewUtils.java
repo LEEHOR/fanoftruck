@@ -1,5 +1,7 @@
 package com.coahr.fanoftruck.Utils;
 
+import android.graphics.Rect;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -11,6 +13,26 @@ import java.lang.reflect.Field;
 import androidx.annotation.NonNull;
 
 public class ViewUtils {
+    /**
+     * 增加view的触摸范围
+     * @param view 传入的view
+     */
+    public static void setTouchDelegate(final View view, final int expandTouchWidth, final int expandTouchHeight) {
+        final View parentView = (View) view.getParent();
+        parentView.post(new Runnable() {
+            @Override
+            public void run() {
+                final Rect rect = new Rect();
+                view.getHitRect(rect); // view构建完成后才能获取，所以放在post中执行
+                // 4个方向增加矩形区域
+                rect.top -= expandTouchHeight;
+                rect.bottom += expandTouchHeight;
+                rect.left -= expandTouchWidth;
+                rect.right += expandTouchWidth;
+                parentView.setTouchDelegate(new TouchDelegate(rect, view));
+            }
+        });
+    }
 
     /**
      * 自定义设置tabLayout下划线的宽度

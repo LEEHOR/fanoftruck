@@ -10,6 +10,7 @@ import com.amap.api.location.AMapLocation;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.SetCustomBannerUtils;
 import com.coahr.fanoftruck.Utils.ToastUtils;
+import com.coahr.fanoftruck.Utils.ViewUtils;
 import com.coahr.fanoftruck.Utils.imageLoader.Imageloader;
 import com.coahr.fanoftruck.commom.Constants;
 import com.coahr.fanoftruck.mvp.Base.BaseFragment;
@@ -118,7 +119,7 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ContainerActivity.class);
-                intent.putExtra("tofragment", Constants.Fragment_maintenance);
+                intent.putExtra("tofragment", Constants.Fragment_recommendCar);
                 startActivity(intent);
             }
         });
@@ -133,6 +134,7 @@ public class Fragment_Home extends BaseFragment<Fragment_home_C.Presenter> imple
             }
         });
 
+        ViewUtils.setTouchDelegate(tv_more_videos, 88, 88);
         tv_more_videos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

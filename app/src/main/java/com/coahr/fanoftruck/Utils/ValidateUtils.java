@@ -70,7 +70,7 @@ public class ValidateUtils {
      * @param f
      * @return
      */
-    public static String getDouble(float f){
+    public static String getDouble(double f){
         NumberFormat ddf1=NumberFormat.getNumberInstance() ;
         ddf1.setMaximumFractionDigits(2);
         String s= ddf1.format(f) ;

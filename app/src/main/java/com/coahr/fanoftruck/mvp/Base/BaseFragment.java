@@ -8,18 +8,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.alipay.sdk.app.PayTask;
 import com.coahr.fanoftruck.R;
 import com.coahr.fanoftruck.Utils.DensityUtils;
@@ -37,10 +36,10 @@ import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -249,7 +248,16 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
         dialog_wait.setContentView(wait_dialog_view);
         if (!dialog_wait.isShowing()) {
             dialog_wait.show();
+            changeWindowAlpha(0.3f);
         }
+    }
+
+    //背景变暗代码
+    private void changeWindowAlpha(float alpha) {
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = alpha;
+        _mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getActivity().getWindow().setAttributes(lp);
     }
 
     public void setWait_dialog_text(String s){
@@ -261,6 +269,7 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
     public void dismissWaitDialog() {
         if (dialog_wait != null && dialog_wait.isShowing()) {
             dialog_wait.dismiss();
+            changeWindowAlpha(1.0f);
         }
     }
 
@@ -331,8 +340,7 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Sup
                         ToastUtils.showShort(_mActivity, "支付成功了！");
 
                         //刷新订单页面
-                        Intent intent = new Intent(Fragment_Order_pager.RECEIVER_ACTION);
-                        LocalBroadcastManager.getInstance(_mActivity).sendBroadcast(intent);
+                        LocalBroadcastManager.getInstance(_mActivity).sendBroadcast(new Intent(Fragment_Order_pager.RECEIVER_ACTION));
 
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                     } else {

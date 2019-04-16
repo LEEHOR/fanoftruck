@@ -15,6 +15,7 @@
             android:layout_height="@dimen/dp_1"/>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/help_tab"
+        app:tabIndicatorColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed">

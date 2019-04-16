@@ -174,7 +174,6 @@ public class Fragment_Myself extends BaseFragment<Fragment_myself_C.Presenter> i
 
                 openid = (String) user.getOpenid();
                 wxid = (String) user.getWxid();
-                KLog.e("lizhiguo", "openid == " + openid + "wxid == " + wxid);
                 if (TextUtils.isEmpty(openid) && TextUtils.isEmpty(wxid)) {
                     myWxBind.setText("未绑定");
                 } else {
